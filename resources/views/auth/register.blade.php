@@ -1,0 +1,1 @@
+show register controller html
