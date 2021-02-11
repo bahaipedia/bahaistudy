@@ -46,7 +46,7 @@
             }
 
             .title {
-                font-size: 84px;
+                font-size: 45px;
             }
 
             .links > a {
@@ -62,24 +62,42 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+            a{
+                font-size: 20px;
+                margin: 5px;
+                color:black !important;
+            }
         </style>
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @if (Auth::check())
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Register</a>
-                    @endif
-                </div>
-            @endif
-
             <div class="content">
+                @if(auth()->user() !== NULL)
                 <div class="title m-b-md">
-                    {{$title}}
+                    Welcome to '{{auth()->user()->name}} {{auth()->user()->lastname}}' {{$title}}
+                </div>
+                @else
+                <div class="title m-b-md">
+                    Welcome to {{$title}}
+                </div>
+                @endif
+                <div>
+                    @if(auth()->user() !== NULL)
+
+                    <a href={{route('logout')}}>logout</a>
+                    @else
+                    <a href={{route('login')}}>login</a>
+                    <a href={{route('register')}}>register</a>      
+                    @endif
+                    <a href={{route('reset')}}>reset password</a>
+                </div>
+                <br>
+                <div>
+                    @if(auth()->user() !== NULL && auth()->user()->email_validated == 1)
+                    <a href={{route('deconfirm.email.status', [Crypt::encryptString(auth()->user()->id)])}}>the user email is confirmated change status</a>
+                    @elseif(auth()->user() !== NULL)
+                    <a href={{route('confirm.email')}}>send email confirmation</a>
+                    @endif
                 </div>
             </div>
         </div>

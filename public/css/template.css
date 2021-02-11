@@ -1,0 +1,25 @@
+*{
+	margin: 3px;
+}
+
+body{
+	height: 99vh;
+	width: 98vw;
+	display: flex;
+	font-family: roboto;
+	letter-spacing: 2px;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.wrap-r{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	width: 100%;
+}
+p{
+	height:20px;
+}
