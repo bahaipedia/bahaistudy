@@ -143,20 +143,20 @@
 
 ### DEFINITIONS
 
-- [ ] "Book image": This is an image of the book cover, admin defined. If no admin-defined image exists the system can use a default image.
-- [ ] "Chat box": A place where all users in the group can talk with eachother. Users in the chat box should be identified by their username. Eg: "user1: some message here"
-- [ ] "Group title": This represents what the group will be studying. If a user selects a book from a defined list of books the title/description will be fixed and the user cannot change it. Otherwise the user can set their own title/description.
-- [ ] "Group description": This represents a description of what the group will be studying. See "Group title" above for when the user can or cannot change the description.
-- [ ] "Group participants": This is a list of all people who have joined the group. Next to the users own name would be the button "Leave" to leave the group. View will have different options based on role:
-  - [ ] User who is host: Username (Step down) [Option to stop being the group host, no leave option]
-  * [ ] Other_user (remove) [Option to remove user from the group]
-  * [ ] User in group (host exists): Username (Leave) [Option to leave group]
-  * [ ] User in group (no host exists): Username (Leave|Become host)
-- "Host comments": During the process of creating a new study group the system will ask the user to enter any comments specific to their group that will be shown on the "View group" page.
-- "Maximum group size": During the process of creating a new study group the host can define the maximum number of users allowed to join the group.
-- "Meeting url": This is a small section where the host can enter a URL that will represent the way in which the group will connect with eachother. Eg, a zoom URL. This URL should be visible only after the group has been closed.
-- "Search, filter and sort": Search represents a free-text input box that searches group titles and descriptions. Filter reprents excluding study groups based on certain criteria to narrow the list of groups displayed to the user. Filter options should be "Author" and "Suggested times". Author here means author of the book the group will be studying. Sort means change the order that the groups are listed, based on criteria. Eg: Number of participants, highest to lowest (or visa versa). Date of group creation (Oldest to newest, or visa versa). Default order is oldest group is listed first.
-- "Suggested times": Days and times that the group creator is available to study. Other users can filter by these settings.
+* "Book image": This is an image of the book cover, admin defined. If no admin-defined image exists the system can use a default image.
+* "Chat box": A place where all users in the group can talk with eachother. Users in the chat box should be identified by their username. Eg: "user1: some message here"
+* "Group title": This represents what the group will be studying. If a user selects a book from a defined list of books the title/description will be fixed and the user cannot change it. Otherwise the user can set their own title/description.
+* "Group description": This represents a description of what the group will be studying. See "Group title" above for when the user can or cannot change the description.
+* "Group participants": This is a list of all people who have joined the group. Next to the users own name would be the button "Leave" to leave the group. View will have different options based on role:
+  * User who is host: Username (Step down) [Option to stop being the group host, no leave option]
+  * Other_user (remove) [Option to remove user from the group]
+  * User in group (host exists): Username (Leave) [Option to leave group]
+  * User in group (no host exists): Username (Leave|Become host)
+* "Host comments": During the process of creating a new study group the system will ask the user to enter any comments specific to their group that will be shown on the "View group" page.
+* "Maximum group size": During the process of creating a new study group the host can define the maximum number of users allowed to join the group.
+* "Meeting url": This is a small section where the host can enter a URL that will represent the way in which the group will connect with eachother. Eg, a zoom URL. This URL should be visible only after the group has been closed.
+* "Search, filter and sort": Search represents a free-text input box that searches group titles and descriptions. Filter reprents excluding study groups based on certain criteria to narrow the list of groups displayed to the user. Filter options should be "Author" and "Suggested times". Author here means author of the book the group will be studying. Sort means change the order that the groups are listed, based on criteria. Eg: Number of participants, highest to lowest (or visa versa). Date of group creation (Oldest to newest, or visa versa). Default order is oldest group is listed first.
+* "Suggested times": Days and times that the group creator is available to study. Other users can filter by these settings.
   - Eg: "Filter to show me all study groups with Monday availabilty"
 
 ### EXAMPLES
@@ -202,6 +202,7 @@ _ Book 2 study group (2 participants, Suggested times..., Host: username) [View]
 
 - [ ] Responsive design
 - [ ] Web manual
+- [ ] Create a soft background in Done screen in p5js
 
 ## Texts
 
