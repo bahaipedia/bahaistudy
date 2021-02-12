@@ -1,11 +1,19 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Mail;
-use App\User;
+
+use Carbon\Carbon;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Mail;
+
+use App\User;
+use App\PasswordReset;
+
 
 class UserValidationController extends Controller
 {
@@ -65,88 +73,89 @@ class UserValidationController extends Controller
 
 
     // Methods for password change
-
-
+    // Method for validate user email and generate the token
     public function validatePasswordRequest(Request $request){
-		//You can add validation login here
-		$user = User::where('email', '=', $request->email)
-		    ->first();
-	
-		//Check if the user exists
-		if ($user == Null) {
+		$user = User::where('email', '=', $request->email)->first();
+		if ($user == NULL) {
 		    return redirect()->back()->withErrors(['email' => trans('el email de usuario no se encuentra')]);
 		}
-		//Create Password Reset Token
+
+		$generateToken = str_random(60);
 		DB::table('password_resets')->insert([
 		    'email' => $request->email,
-		    'token' => str_random(60),
+		    'token' => $generateToken,
 		    'created_at' => Carbon::now()
 		]);
-		//Get the token just created above
-		$tokenData = DB::table('password_resets')
-		    ->where('email', $request->email)->first();
-		$token = $tokenData->token . '?email=' . urlencode($user->email);
-		return redirect()->route('password.reset', [$token]);
+		$token = $generateToken . '?email=' . urlencode($user->email);
+		return redirect()->route('auth.reset.password.send', [$user->email, $token]);
 	}
 
-
-    private function sendResetEmail($email, $token)
+    public function sendResetEmail($email, $token)
 	{
-	//Retrieve the user from the database
-	$user = DB::table('users')->where('email', $email)->select('name', 'email')->first();
-	//Generate, the password reset link. The token generated is embedded in the link
-	// $link = 'https://'.auth()->user()->configuration->path.'.herokuapp.com/password/reset/' . $token . '?email=' . urlencode($user->email);
-	$link = 'https://localhost/password/reset/' . $token . '?email=' . urlencode($user->email);
+	
+		$user = User::where('email', $email)->select('name', 'email')->first();
 	    try {
-        	Mail::send('email.test', ['token' => $link, 'email' => $email], function ($message)
+	    	Mail::send('email.password.reset', ['token' => $token, 'email' => Crypt::encryptString($email), 'user' => $user], function ($message)
 	        {
-	            $message->from ('feriodismo@gmail.com');
+	            $message->from ('metafoodincorporated@gmail.com');
 	            $message->to('fabiob1680@hotmail.com');
-	            $message->subject('Reseteando Email');
+	            $message->subject('Email reset');
 	        });
-	        return 'done';
+	        $header = 'The email was sended!';
+	        $message = "Please check your email to reset your password!";
+			return view('auth.response', compact('header', 'message'));
 	    } catch (\Exception $e) {
 	        return $e;
 	    }
 	}
-
 	public function resetPassword(Request $request)
 	{
-		$title = 'inventory';
-	    //Validate input
+
 	    $validator = Validator::make($request->all(), [
 	        'email' => 'required|email|exists:users,email',
-	        'password' => 'required|confirmed',
 	        'token' => 'required' ]);
 
-	    //check if payload is valid before moving on
 	    if ($validator->fails()) {
 	        return redirect()->back()->withErrors(['email' => 'Please complete the form']);
 	    }
-	    $password = $request->password;
-		// Validate the token
-	    $tokenData = DB::table('password_resets')
-	    ->where('token', $request->token)->first();
-		// Redirect the user back to the password reset request form if the token is invalid
-	    if (!$tokenData) return view('auth.passwords.email', compact('title'));
-
-	    $user = User::where('email', $tokenData->email)->first();
-		// Redirect the user back if the email is invalid
+	   
+	    if ($request->email !== substr($request->valemail,0,-1)){
+	    	$header = 'Something went wrong with the password reset';
+	        $message = "We couldn't confirm your email";
+			return view('auth.response', compact('header', 'message'));
+	    }
+	   
+	    $tokenData = PasswordReset::where('token', substr($request->token,0,-1))->first();
+	    
+	    if (!$tokenData) return view('auth.password.form');
+	    
+	    PasswordReset::where('email', $request->email)->delete();
+	    $user = User::where('email', $request->email)->get()[0];
+	    
 	    if (!$user) return redirect()->back()->withErrors(['email' => 'Email not found']);
-		//Hash and update the new password
+	    $password = $request->password;
 	    $user->password = \Hash::make($password);
-	    $user->update(); //or $user->save();
-	    //login the user immediately they change password successfully
-	    // Auth::login($user);
-	    //Delete the token
-	    DB::table('password_resets')->where('email', $user->email)
-	    ->delete();
-	    return redirect()->route('warehouse.dashboard', ['pass']); 
-	  
-
+	    $user->update();
+	    Auth::login($user);
+	    return redirect()->route('welcome'); 
 	}
-	public function changePasswordInput($token){
-		return view('auth.passwords.reset', compact('token', 'title'));
+
+	public function changePasswordInput($email, $token){
+		
+		$email = Crypt::decryptString($email);
+		$tokenVal = PasswordReset::where('email', $email)->orderBy('id','desc')->first()->token;
+		if($token == $tokenVal){
+			return view('auth.password.reset', compact('email', 'token'));
+		}
+		else{
+			$header = 'Something went wrong with the password reset';
+	        $message = "Please try again!";
+			return view('auth.response', compact('header', 'message'));
+		}
+	}
+
+	public function changePasswordEmailInput(){
+		return view('auth.password.form');
 	}
 
 }

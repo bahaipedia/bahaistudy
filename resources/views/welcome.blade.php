@@ -89,7 +89,7 @@
                     <a href={{route('login')}}>login</a>
                     <a href={{route('register')}}>register</a>      
                     @endif
-                    <a href={{route('reset')}}>reset password</a>
+                    <a href={{route('auth.reset.password.input')}}>reset password</a>
                 </div>
                 <br>
                 <div>
