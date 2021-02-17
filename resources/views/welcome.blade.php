@@ -83,7 +83,16 @@
                 @endif
                 <div>
                     @if(auth()->user() !== NULL)
-
+                    <a href={{route('store.book')}}>store book</a>
+                    <a href={{route('store.author')}}>store author</a> 
+                    <a href={{route('store.container')}}>store contanier</a> 
+                    <br>
+                    <br>
+                    <a href={{route('list.books')}}>view books</a>
+                    <a href={{route('list.authors')}}>view authors</a> 
+                    <a href={{route('list.containers')}}>view contaniers</a> 
+                    <br>
+                    <br>
                     <a href={{route('logout')}}>logout</a>
                     @else
                     <a href={{route('login')}}>login</a>

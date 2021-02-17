@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
+
 
 use App\User;
 use App\PasswordReset;
@@ -95,10 +97,10 @@ class UserValidationController extends Controller
 	
 		$user = User::where('email', $email)->select('name', 'email')->first();
 	    try {
-	    	Mail::send('email.password.reset', ['token' => $token, 'email' => Crypt::encryptString($email), 'user' => $user], function ($message)
+	    	Mail::send('email.password.reset', ['token' => $token, 'email' => Crypt::encryptString($email), 'user' => $user], function ($message) use ($user)
 	        {
 	            $message->from ('metafoodincorporated@gmail.com');
-	            $message->to('fabiob1680@hotmail.com');
+	            $message->to($user->email);
 	            $message->subject('Email reset');
 	        });
 	        $header = 'The email was sended!';
@@ -131,12 +133,16 @@ class UserValidationController extends Controller
 	    
 	    PasswordReset::where('email', $request->email)->delete();
 	    $user = User::where('email', $request->email)->get()[0];
-	    
+
 	    if (!$user) return redirect()->back()->withErrors(['email' => 'Email not found']);
+
 	    $password = $request->password;
+
 	    $user->password = \Hash::make($password);
 	    $user->update();
+
 	    Auth::login($user);
+	    
 	    return redirect()->route('welcome'); 
 	}
 

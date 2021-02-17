@@ -3,13 +3,12 @@
 ## Local environment<br>
 
 - [ ] Create steps, organize and visualize all possible views<br>
-- [ ] Create database schema and structure in local environment<br>
+- [X] Create database schema and structure in local environment<br>
 - [ ] Feedback and rethink the user interaction and make changes on database structure<br>
-- [ ] Create controller, route, and view organization structure>variable names, routes format, etc.<br>
-
-- [ ] Create database structure in local environment ( for testing )<br>
-- [ ] Create local-laravel environment<br>
-- [ ] Create developing structure<br>
+- [X] Create controller, route, and view organization structure>variable names, routes format, etc.<br>
+- [X] Create database structure in local environment ( for testing )<br>
+- [X] Create local-laravel environment<br>
+- [X] Create developing structure<br>
 
 ## New overview, for the next steps, should be created-<br>
 
