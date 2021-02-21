@@ -11,12 +11,16 @@
 <label for='description'>decription</label>
 <textarea style='width:300px; height: 100px; resize: none;' id='description' max='120' name='description'  type='text'>example of a large text</textarea>
 <br>
+
+
+
 <label for='weight'>weight</label>
 <input id='weight' min='1' max='10' step='1' value='example' name='weight'  type='number'>
 <br>
 @for($i=0; $i<2; $i++)
 	<label for={{'author_'.$i}}>{{'author_'.$i}}</label>
-	<select name={{'author_'.$i}}>
+	{{-- in the user interface we have to avoid repeat when author is selected --}}
+	<select name={{'author['.$i.']'}}>
 		@foreach($authors as $a)
 			<option value={{$a->id}}>{{$a->name}} {{$a->lastname}}</option>
 		@endforeach
@@ -26,4 +30,7 @@
 <button>CREATE</button>
 </form>
 <a href={{route('welcome')}}>home</a>
+
+
+</script>
 @stop

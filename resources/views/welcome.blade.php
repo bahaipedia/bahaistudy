@@ -90,7 +90,8 @@
                     <br>
                     <a href={{route('list.books')}}>view books</a>
                     <a href={{route('list.authors')}}>view authors</a> 
-                    <a href={{route('list.containers')}}>view contaniers</a> 
+                    <a href={{route('list.containers')}}>view contaniers</a>
+                    <a href={{route('list.users')}}>view users</a>  
                     <br>
                     <br>
                     <a href={{route('logout')}}>logout</a>

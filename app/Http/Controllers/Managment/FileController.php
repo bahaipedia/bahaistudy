@@ -3,8 +3,14 @@
 namespace App\Http\Controllers\Managment;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
+
 use App\BookImage;
+use App\Group;
+
+
 use Illuminate\Http\Request;
+
+
 
 class FileController extends Controller
 {
@@ -38,5 +44,16 @@ class FileController extends Controller
 			return redirect()->back()->withErrors(['file' => 'file input is null']);
 		}
 	}
+	public function getUniqueRandom(){
+		$get_unique_route =  str_random(4).'-'.str_random(4).'-'.str_random(3);
+        $check_route = Group::select('route')->where('route', $get_unique_route)->get();
+        if($check_route->count() > 0){
+        	// $this.getUniqueRandom();
+        	return 'E-FILE0001';
+        }
+        else{
+        	return $get_unique_route;
+        }
+    }
 
 }

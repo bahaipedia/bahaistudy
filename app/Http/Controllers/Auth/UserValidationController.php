@@ -163,5 +163,22 @@ class UserValidationController extends Controller
 	public function changePasswordEmailInput(){
 		return view('auth.password.form');
 	}
-
+	public function disable(Request $request){
+		$user = User::find($request->user_id);
+		$user->status = Carbon::now();
+		$user->update();
+		return redirect()->route('list.users');
+	}
+	public function enable(Request $request){
+		$user = User::find($request->user_id);
+		$user->status = NULL;
+		$user->update();
+		return redirect()->route('list.users');
+	}
+	public function role(Request $request){
+		$user = User::find($request->user_id);
+		$user->role = $request->role;
+		$user->update();
+		return redirect()->route('list.users');
+	}
 }

@@ -6,7 +6,10 @@
 <br>
 
 @foreach($books as $b)
+<div style='display: flex;  flex-direction: column; width: 500px; border:1px solid black;'>
+
 	<p>{{$b->name}} <a href=#>edit info</a></p>
+</div>
 @endforeach
 
 <br>

@@ -6,9 +6,12 @@ use App\Http\Controllers\Managment\FileController;
 use Illuminate\Http\Request;
 
 use App\Book;
+use App\Group;
 use App\Author;
 use App\GroupContainer;
 use App\AuthorsInContainer;
+use App\GroupParticipant;
+use App\AvailableTime;
 
 class StoreController extends Controller
 {
@@ -20,19 +23,42 @@ class StoreController extends Controller
 		if($id == NULL){
 			return 'route in construction';
 		}
-		$container = GroupContainer::find($id);
-		return $container;
-    	return view('dev.forms.store.group');
+		$container = GroupContainer::select('id', 'name')->find($id);
+        $authors = AuthorsInContainer::select('author_id')->where('group_container_id', $id)->get();
+        $books = Book::whereIn('author_id', $authors->pluck('author_id'))->get();
+    	return view('dev.forms.store.group', compact('container', 'authors', 'books'));
     }
 	public function groupPost(Request $request){
         
-        // $author = New Author;
-        // $author->user_id = auth()->user()->id;
-        // $author->name = $request->name;
-        // $author->lastname = $request->lastname;
-        // $author->date_of_birth = $request->date_of_birth;
-        // $author->nationality = $request->nationality;
-        // $author->save();
+        $file_methods = new FileController;
+        $group = New Group;
+        // Test the function when it have repeat
+        $group->route = $file_methods->getUniqueRandom();        
+        $group->name = $request->name;
+        $group->description = $request->description;
+        $group->url = $request->url;
+        $group->book_id = $request->book_id;
+        $group->host_comments = $request->host_comments;
+        $group->host_id = auth()->user()->id;
+        $group->max_size = $request->max_size;
+        $group->group_container_id = $request->group_container_id;
+        $group->save();
+
+        $at = New AvailableTime;
+        $at->start_at = date("Y:m:d h:i:s", strtotime( $request->start_at ));
+        $at->finish_at = date("Y:m:d h:i:s", strtotime( $request->finish_at ));
+        $at->day_of_week = $request->day_of_week;
+        $at->user_id = auth()->user()->id;
+        $at->group_id = $group->id;
+        $at->save();
+
+        $participant = New GroupParticipant;
+        $participant->user_id = auth()->user()->id;
+        $participant->group_id = $group->id;
+        $participant->status = 1;
+        $participant->save();
+
+
 
         $header = 'Group was created!';
         $message = "The group was created";
@@ -65,12 +91,16 @@ class StoreController extends Controller
     }
     public function bookPost(Request $request){
         $file_methods = new FileController;
-        $book_image_id = $file_methods->storeBookImage($request);
+        if($request->hasFile('image')){
+            $book_image_id = $file_methods->storeBookImage($request);
+        }
         $book = New Book;
         $book->user_id = auth()->user()->id;
         $book->name = $request->name;
         $book->description = $request->description;
-        $book->book_image_id = $book_image_id;
+        if($request->hasFile('image')){
+            $book->book_image_id = $book_image_id;
+        }
         $book->date = $request->date;
         $book->author_id = $request->author_id;
         $book->number_pages = $request->number_pages;
@@ -84,6 +114,7 @@ class StoreController extends Controller
     	$authors = Author::all();
     	return view('dev.forms.store.container', compact('authors'));
     }
+
 	public function containerPost(Request $request){
         
         $container = New GroupContainer;
@@ -93,16 +124,14 @@ class StoreController extends Controller
         $container->weight = $request->weight;
         $container->save();
 
-		$aic = New AuthorsInContainer;
-		$aic->author_id = $request->author_0;
-		$aic->group_container_id = $container->id;
-		$aic->save();
-
-		$aic = New AuthorsInContainer;
-		$aic->author_id = $request->author_1;
-		$aic->group_container_id = $container->id;
-		$aic->save();
-
+        // author in container table
+        foreach($request->author as $a){
+            $aic = New AuthorsInContainer;
+            $aic->author_id = $a;
+            $aic->group_container_id = $container->id;
+            $aic->save();
+        }
+		
         $header = 'Container was created!';
         $message = "The container was created succesfully";
         return view('auth.response', compact('header', 'message'));

@@ -2,9 +2,8 @@
 
 ## Local environment<br>
 
-- [ ] Create steps, organize and visualize all possible views<br>
+- [X] Create steps, organize and visualize all possible views<br>
 - [X] Create database schema and structure in local environment<br>
-- [ ] Feedback and rethink the user interaction and make changes on database structure<br>
 - [X] Create controller, route, and view organization structure>variable names, routes format, etc.<br>
 - [X] Create database structure in local environment ( for testing )<br>
 - [X] Create local-laravel environment<br>
@@ -12,13 +11,35 @@
 
 ## New overview, for the next steps, should be created-<br>
 
-- [ ] Implementation for each sector<br>
-- [ ] Create view<br>
-- [ ] Create controller and controller methods,<br>
-- [ ] Create routes<br>
+- [X] Implementation for each sector<br>
+- [X] Create view<br>
+- [X] Create controller and controller methods,<br>
+- [X] Create routes<br>
+- [X] Store implementation <br>
+- [ ] Updates implementation <br>
+- [ ] Deletes implementation <br>
 - [ ] Test and debug<br>
 - [ ] Feedback<br>
 - [ ] Clean data from database<br>
+
+## Roles
+
+- [ ] Determine roles types<br>
+- [ ] Middlewares creation for this types<br>
+- [ ] Testing<br>
+
+## Group dashboard
+
+- [ ] Online status<br>
+- [ ] Realtime updates<br>
+- [ ] Chat implementation<br>
+- [ ] Users Interactions<br>
+
+## Webapp config for admin role
+
+- [ ] Recheck DB logic<br>
+- [ ] Create Views<br>
+- [ ] Updates and monitoring system<br>
 
 ## Final steps<br>
 
