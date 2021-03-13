@@ -1,0 +1,377 @@
+<!--
+TODO LIST:
+- Cambiar estilos a .scss y buscar forma de compilar (escrbir a fabio)
+- Arreglar forma de llamar a las imagenes / icons
+-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Bahai Study Group</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body>
+  <!--  <div id="contenedor-general">-->
+  <!-- HERO IMAGE + TEXT-->
+  <div id="hero-image">
+    <div id="textos">
+      <h1 id="hero-title">Welcome to BahaiStudy.Group,</h1>
+      <h2 id="hero-subtitle">
+        a website designed to
+        <b id="resaltar">
+          help you connect with individuals who want to study
+        </b>
+        the Writings in a group setting.
+      </h2>
+      <div id="alert">
+        <i class="icono"></i>
+        <h5 class="hero-texto">
+          Note that this website is not functional at this time but we are
+          creating it now. Study groups will be held virtually, are open to
+          everyone, and there is no cost or other requirements to join. The
+          group can decide what specific format the meetings should have,
+          click here for a suggested format.
+        </h5>
+      </div>
+    </div>
+    <div id="flecha"></div>
+  </div>
+  <!--  </div>-->
+
+  <!-- HEADER MENU -->
+  <div id="barra">
+    <img id="logotipo" src="logotype.svg" />
+    <div id="enlaces">
+      <a href="#">ABOUT</a>
+      <a href="#">HELP</a>
+      <a href="#">RESOURCES</a>
+      <a href="#">MATERIALS</a>
+      <button id="sign-up" href="#">SIGN UP</button>
+    </div>
+  </div>
+
+  <!-- SECCION 001 CUADRICULA -->
+  <div class="contenedor">
+    <div class="subtitulo">
+      <h3>Works of the Central Figures</h3>
+    </div>
+    <i class="puntos"></i>
+    <!--FILTROS-->
+    <div class="barra-info">
+      <div class="contenedor-vistas">
+        <i class="cuadricula"> </i>
+        <i class="lista"> </i>
+      </div>
+
+      <div class="contenedor-busqueda">
+        <h5 class="filtro">filter</h5>
+        <h5 class="filtro">sort</h5>
+        <h5 class="filtro">search</h5>
+      </div>
+    </div>
+
+    <!--CONTENEDOR LIBROS-->
+    <div id="contenedor-libros">
+      <!--LIBRO 001-->
+      <div class="ficha-libro">
+        <img class="portada-libro" src="" />
+        <div class="parte-derecha-ficha">
+          <h4 class="autor-nombre">BAHA'U'LLÁH</h4>
+          <h3 class="libro-nombre">The Kitáb-I-Iqán</h3>
+          <p class="spaces">(3 spaces available)</p>
+          <p class="descripcion-libro">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+          <button class="join-ficha">JOIN</button>
+        </div>
+      </div>
+
+      <!--LIBRO 002-->
+      <div class="ficha-libro">
+        <img class="portada-libro" src="" />
+        <div class="parte-derecha-ficha">
+          <h4 class="autor-nombre">BAHA'U'LLÁH</h4>
+          <h3 class="libro-nombre">The Kitáb-I-Iqán</h3>
+          <p class="spaces">(3 spaces available)</p>
+          <p class="descripcion-libro">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+          <button class="join-ficha">JOIN</button>
+        </div>
+      </div>
+
+      <!--LIBRO 003-->
+      <div class="ficha-libro">
+        <img class="portada-libro" src="" />
+        <div class="parte-derecha-ficha">
+          <h4 class="autor-nombre">BAHA'U'LLÁH</h4>
+          <h3 class="libro-nombre">The Kitáb-I-Iqán</h3>
+          <p class="spaces">(3 spaces available)</p>
+          <p class="descripcion-libro">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+          <button class="join-ficha">JOIN</button>
+        </div>
+      </div>
+
+      <!--LIBRO 004-->
+      <div class="ficha-libro">
+        <img class="portada-libro" src="" />
+        <div class="parte-derecha-ficha">
+          <h4 class="autor-nombre">BAHA'U'LLÁH</h4>
+          <h3 class="libro-nombre">The Kitáb-I-Iqán</h3>
+          <p class="spaces">(3 spaces available)</p>
+          <p class="descripcion-libro">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+          <button class="join-ficha">JOIN</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCION 002 LISTA -->
+  <div class="contenedor segundo">
+    <div class="subtitulo">
+      <h3>Works of the House of Justice</h3>
+    </div>
+    <i class="puntos"></i>
+    <!--FILTROS-->
+    <div class="barra-info">
+      <div class="contenedor-vistas">
+        <i class="cuadricula"></i>
+        <i class="lista"></i>
+      </div>
+
+      <div class="contenedor-busqueda">
+        <h5 class="amarilloline">filter</h5>
+        <h5 class="amarilloline">sort</h5>
+        <h5 class="amarilloline">search</h5>
+      </div>
+    </div>
+
+    <div class="contenedor-lista">
+      <!--LISTA - LIBRO 001-->
+      <div class="lista-libro">
+        <div class="circulo-libro"></div>
+        <div class="autor-libro">
+          <h4 class="autor-nombre amarillo">BAHA'U'LLÁH</h4>
+          <h3 class="libro-nombre">The Kitáb-I-Iqán</h3>
+        </div>
+        <p class="descripcion-libro-lista">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+        <div class="spaces-part">
+          <p class="spaces">(3 spaces available)</p>
+        </div>
+        <button class="join-plus">+</button>
+      </div>
+
+      <!--LISTA - LIBRO 002-->
+      <div class="lista-libro">
+        <div class="circulo-libro"></div>
+        <div class="autor-libro">
+          <h4 class="autor-nombre amarillo">BAHA'U'LLÁH</h4>
+          <h3 class="libro-nombre">The Kitáb-I-Iqán</h3>
+        </div>
+        <p class="descripcion-libro-lista">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+        <div class="spaces-part">
+          <p class="spaces">(3 spaces available)</p>
+        </div>
+        <button class="join-plus">+</button>
+      </div>
+
+      <!--LISTA - LIBRO 003-->
+      <div class="lista-libro">
+        <div class="circulo-libro"></div>
+        <div class="autor-libro">
+          <h4 class="autor-nombre amarillo">BAHA'U'LLÁH</h4>
+          <h3 class="libro-nombre">The Kitáb-I-Iqán</h3>
+        </div>
+        <p class="descripcion-libro-lista">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+        <div class="spaces-part">
+          <p class="spaces">(3 spaces available)</p>
+        </div>
+        <button class="join-plus">+</button>
+      </div>
+
+      <!--LISTA - LIBRO 004-->
+      <div class="lista-libro">
+        <div class="circulo-libro"></div>
+        <div class="autor-libro">
+          <h4 class="autor-nombre amarillo">BAHA'U'LLÁH</h4>
+          <h3 class="libro-nombre">The Kitáb-I-Iqán</h3>
+        </div>
+        <p class="descripcion-libro-lista">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+        <div class="spaces-part">
+          <p class="spaces">(3 spaces available)</p>
+        </div>
+        <button class="join-plus">+</button>
+      </div>
+
+      <!--LISTA - LIBRO 005-->
+      <div class="lista-libro">
+        <div class="circulo-libro"></div>
+        <div class="autor-libro">
+          <h4 class="autor-nombre amarillo">BAHA'U'LLÁH</h4>
+          <h3 class="libro-nombre">The Kitáb-I-Iqán</h3>
+        </div>
+        <p class="descripcion-libro-lista">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+        <div class="spaces-part">
+          <p class="spaces">(3 spaces available)</p>
+        </div>
+        <button class="join-plus">+</button>
+      </div>
+
+      <button class="show-more-lista ">
+        SHOW EVERYTHING
+      </button>
+    </div>
+  </div>
+
+  <!-- SECCION 003 CUADRICULA -->
+  <div class="contenedor tercero">
+    <div class="subtitulo">
+      <h3>Works of the Central Figures</h3>
+    </div>
+    <i class="puntos"></i>
+    <!--FILTROS-->
+    <div class="barra-info">
+      <div class="contenedor-vistas">
+        <i class="cuadricula"></i>
+        <i class="lista"></i>
+      </div>
+
+      <div class="contenedor-busqueda">
+        <h5 class="naranjaline">filter</h5>
+        <h5 class="naranjaline">sort</h5>
+        <h5 class="naranjaline">search</h5>
+      </div>
+    </div>
+
+    <!--CONTENEDOR LIBROS-->
+    <div id="contenedor-libros">
+      <!--LIBRO 001-->
+      <div class="ficha-libro abajoana">
+        <img class="portada-libro fanaran" src="" />
+        <div class="parte-derecha-ficha">
+          <h4 class="autor-nombre anaran">BAHA'U'LLÁH</h4>
+          <h3 class="libro-nombre">The Kitáb-I-Iqán</h3>
+          <p class="spaces">(3 spaces available)</p>
+          <p class="descripcion-libro">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+          <button class="join-ficha anaranjado bordeana">JOIN</button>
+        </div>
+      </div>
+
+      <!--LIBRO 002-->
+      <div class="ficha-libro abajoana">
+        <img class="portada-libro fanaran" src="" />
+        <div class="parte-derecha-ficha">
+          <h4 class="autor-nombre anaranjado">BAHA'U'LLÁH</h4>
+          <h3 class="libro-nombre">The Kitáb-I-Iqán</h3>
+          <p class="spaces">(3 spaces available)</p>
+          <p class="descripcion-libro">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+          <button class="join-ficha anaranjado bordeana">JOIN</button>
+        </div>
+      </div>
+
+      <!--LIBRO 003-->
+      <div class="ficha-libro abajoana">
+        <div class="izquierda">
+          <h3 class="portada-libro new-group">
+            Create New Group
+          </h3>
+        </div>
+        <div class="parte-derecha-ficha">
+          <h4 class="autor-nombre anaranjado-claro">AUTHOR</h4>
+          <h3 class="libro-nombre marron-claro">Select Book Title</h3>
+          <p class="spaces marron-claro linea-inferior">Maximum Group Size</p>
+          <p class="descripcion-libro marron-claro">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+          <button class="join-ficha anaranjado bordeana">CREATE</button>
+        </div>
+      </div>
+
+      <!--LIBRO 004-->
+      <div class="ficha-libro sinnada">
+        <div class="portada-libro blank-libro">
+          <h3 class="show-more">Show Everything</h3>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  </div>
+
+  <div class="footer">
+    <div class="linea-uno">
+      <p class="footer-text">
+        About
+      </p>
+      <p class="footer-text">
+        Help
+      </p>
+      <p class="footer-text">
+        Resources
+      </p>
+      <p class="footer-text">
+        Materials
+      </p>
+    </div>
+
+    <div class="linea-dos">
+      <p class="footer-text">
+        Terms of Use
+      </p>
+      <p class="footer-text">
+        Privacy Policy
+      </p>
+    </div>
+
+    <div class="linea-tres">
+      <p class="copyright">
+        © bahaistudygroup | 2021
+      </p>
+    </div>
+
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,723 @@
+/*
+DUDAS PARA FABIO:
+- Hacer una prueba de cómo configurar el template y @yield y que yo siga aplicando cosas,
+- Como agregar imagenes (de las carpetas y de la base de datos)
+- Los estilos responsives se arman en php ¿?
+- https://stackoverflow.com/questions/30058556/including-svg-contents-in-laravel-5-blade-template
+*/
+
+/* GENERAL */
+html {
+  box-sizing: border-box;
+  height: 100%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  line-height: 1;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* TIPOGRAFÍAS */
+h1 {
+  font-size: 4em;
+  font-family: "Noto Serif", serif;
+  color: #49392b;
+}
+
+h2 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 2em;
+  font-weight: 300;
+  color: #49392b;
+}
+
+h3 {
+  font-family: "Noto Serif", serif;
+  font-size: 1.7em;
+  color: #49392b;
+}
+
+h4 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1em;
+  font-weight: 300;
+  color: #79c3aa;
+}
+
+h5 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1em;
+  font-weight: 300;
+  color: #49392b;
+}
+
+p {
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.9em;
+}
+
+/* HIPERVINCULOS Y BOTONES */
+
+a {
+  text-decoration: none;
+  font-family: "Montserrat", sans-serif;
+  color: #baada2;
+  letter-spacing: 3px;
+  transition: letter-spacing 0.4s, color 0.4s, border-bottom 0.4s;
+  text-align: center;
+}
+
+a:hover {
+  text-decoration: none;
+  font-family: "Montserrat", sans-serif;
+  color: #49392b;
+  text-align: center;
+}
+
+.join-ficha {
+  width: 130px;
+  height: 40px;
+  font-size: 0.9em;
+  letter-spacing: 0.25em;
+  border: solid 2px #79c3aa;
+  color: #79c3aa;
+  align-self: center;
+  margin-top: 40px;
+  transition-duration: 0.4s;
+  border-radius: 20px;
+  outline: none;
+}
+
+.join-ficha:hover {
+  background-color: #79c3aa;
+  color: white;
+  border: none;
+}
+
+.join-ficha:active {
+  background-color: #58a38a;
+  border: none;
+}
+
+.join-plus {
+  color: #eba72c;
+  border: solid 2px #eba72c;
+  border-radius: 100px;
+  width: 40px;
+  height: 40px;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  left: 320px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2em;
+  outline: none;
+}
+
+.join-plus:hover {
+  background-color: #eba72c;
+  color: white;
+  border: none;
+}
+
+.join-plus:active {
+  background-color: #bd8621;
+  border: none;
+}
+
+.show-more-lista {
+  width: 180px;
+  height: 80px;
+  padding: 10px;
+  font-size: 0.9em;
+  letter-spacing: 0.25em;
+  border: solid 2px #49392b;
+  color: #49392b;
+  align-self: center;
+  border-radius: 40px;
+  line-height: 1.3em;
+  margin-top: 40px;
+  outline: none;
+}
+
+.show-more-lista:hover {
+  background-color: #49392b;
+  color: white;
+}
+
+.show-more-lista:active {
+  background-color: #251d16;
+  color: white;
+}
+
+.login-boton {
+  padding-top: 8px;
+    padding-right: 15px;
+    padding-bottom: 8px;
+    padding-left: 15px;
+  font-size: 0.7em;
+  letter-spacing: 0.25em;
+  border: solid 2px #49392b;
+  color: #49392b;
+  align-self: center;
+  border-radius: 40px;
+  line-height: 1.3em;
+  outline: none;
+  font-weight: 600;
+}
+
+.login-boton:hover {
+  background-color: #49392b;
+  color: white;
+}
+
+.login-boton:active {
+  background-color: #251d16;
+  color: white;
+}
+
+/* BODY */
+.general-container {
+  display: flex;
+  flex-direction: column;
+  }
+
+  /* HEADER MENU */
+#barra {
+  background-color: white;
+  width: 100%;
+  height: 80px;
+  top: 0px;
+  display: flex;
+  position: fixed;
+  align-items: center;
+  z-index: 10;
+}
+
+#logotipo {
+  height: 40px;
+  position: relative;
+  left: 20px;
+}
+
+#enlaces {
+  width: 60%;
+  position: absolute;
+  right: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user {
+  display: flex;
+}
+
+.nombre {
+  letter-spacing: 1px;
+  font-size: 0.9em;
+  display: flex;
+  align-items: center;
+}
+
+.nombre:hover {
+  letter-spacing: 1.1px;
+}
+
+.profile-pic {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: 30px;
+  height: 30px;
+  background-color: #79c3aa;
+  border-radius: 100px;
+  margin: 10px;
+}
+
+.login{
+
+}
+
+/* HERO IMAGE */
+#hero-image {
+  background-image: linear-gradient(
+      45deg,
+      rgba(235, 167, 44, 0.6),
+      rgba(121, 195, 170, 0.6),
+      rgba(241, 114, 33, 0.6)
+    ),
+    url("hero.jpg");
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  color: rgb(255, 255, 255);
+  padding: 20px;
+}
+
+#textos {
+  width: 50%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#hero-title {
+  position: relative;
+  top: 150px;
+  left: 50px;
+  line-height: 1.4;
+}
+
+#hero-subtitle {
+  position: relative;
+  top: 90px;
+  left: 50px;
+  line-height: 1.2;
+}
+
+#resaltar {
+  color: #f17221;
+}
+
+#alert {
+  position: relative;
+  top: 20px;
+  left: 50px;
+  justify-content: flex-start;
+  flex-direction: row;
+}
+
+.icono {
+  background: url("alert.svg");
+  height: 30px;
+  width: 30px;
+  display: block;
+  margin: 15px;
+}
+
+.hero-texto {
+  width: 100%;
+  line-height: 1.5;
+  left: 100px;
+  top: 50px;
+  display: flex;
+  margin: 0px;
+}
+
+.botones {
+  display: flex;
+  width: 40%;
+  position: relative;
+  top: 50px;
+  align-items: center;
+  justify-content: space-around;
+}
+
+
+
+.hero-button {
+  display: flex;
+  position: relative;
+  left: 50px;
+  flex-direction: column;
+  text-transform: uppercase;
+  border-radius: 25px;
+  text-decoration: none;
+  font-family: "Montserrat", sans-serif;
+  border: 2px solid #49392b;
+  background-color: transparent;
+  color: #49392b;
+  font-size: 0.9em;
+  font-weight: 600;
+  padding-left: 20px;
+  padding-top: 5px;
+  padding-right: 20px;
+  padding-bottom: 5px;
+  transition-duration: 0.4s;
+}
+
+.hero-button:hover {
+  background-color: #49392b;
+  color: white;
+}
+
+/* PRIMER CONTENEDOR */
+.contenedor {
+  display: flex;
+  position: relative;
+  top: 50px;
+  width: 100%;
+  flex-direction: column;
+}
+
+.subtitulo {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.puntos {
+  background: url("puntos.svg");
+  height: 7px;
+  width: 32px;
+  display: flex;
+  align-self: center;
+}
+
+.barra-info {
+    width: 95%;
+    top: 20px;
+    display: flex;
+    position: relative;
+    align-self: center;
+    justify-content: space-between;
+  }
+
+  .contenedor-vistas {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 60px;
+  }
+
+  .cuadricula {
+    background: url("cuadricula.svg");
+    width: 18px;
+    height: 18px;
+    padding-right: 10px;
+  }
+
+  .cuadricula:hover,
+  .cuadricula:focus {
+    filter: sepia(51%) saturate(2878%) brightness(5%);
+  }
+
+  .lista {
+    background: url("lista.svg");
+    width: 18px;
+    height: 15px;
+  }
+
+  .lista:hover,
+  .lista:focus {
+    filter: sepia(51%) saturate(2878%) brightness(5%);
+  }
+
+  .contenedor-busqueda {
+    width: 50%;
+    display: flex;
+    position: relative;
+    justify-content: space-around;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+  }
+
+  .filtro {
+    color: #baada2;
+    border-bottom: 1px solid #79c3aa;
+    padding-bottom: 4px;
+    padding-right: 65px;
+  }
+
+/* LIBROS */
+
+#contenedor-libros {
+  top: 50px;
+  width: 98%;
+  height: 370px;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  align-self: center;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.ficha-libro {
+  width: 500px;
+  height: 335px;
+  display: flex;
+  left: 30px;
+  flex-direction: row;
+  margin-left: 30px;
+  border-bottom: 4px solid #79c3aa;
+
+  -webkit-box-shadow: 15px 15px 5px -10px rgba(186, 173, 162, 0.07);
+  -moz-box-shadow: 15px 15px 5px -10px rgba(186, 173, 162, 0.07);
+  box-shadow: 15px 15px 5px -10px rgba(186, 173, 162, 0.07);
+}
+
+.portada-libro {
+  background-color: #79c3aa;
+  width: 220px;
+  height: 335px;
+  display: flex;
+  position: relative;
+}
+
+.parte-derecha-ficha {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+}
+
+.autor-nombre {
+  letter-spacing: 3px;
+}
+
+.libro-nombre {
+  margin-top: -10px;
+  top: 0px;
+}
+
+.spaces {
+  margin-top: -18px;
+  color: #505050;
+}
+
+.descripcion-libro {
+  margin: 0px;
+  width: 90%;
+  line-height: 1.3;
+}
+
+/* VISTA DE LISTA */ 
+.contenedor-lista {
+  top: 50px;
+  width: 98%;
+  height: 400px;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-self: center;
+  overflow-x: auto;
+  overflow-y: scroll;
+}
+
+.segundo {
+  top: 125px;
+}
+
+.lista-libro {
+  width: 95%;
+  height: 100px;
+  display: flex;
+  left: 30px;
+  align-items: center;
+  flex-direction: row;
+  margin-left: 30px;
+  margin-right: 30px;
+  padding-bottom: 14px;
+  padding-top: 14px;
+  border-bottom: 1px solid #eba72c;
+}
+
+.circulo-libro {
+  border-radius: 200px;
+  background-color: #eba72c;
+  width: 60px;
+  height: 60px;
+  position: relative;
+  left: 50px;
+}
+
+.autor-libro {
+  width: 300px;
+  position: relative;
+  left: 70px;
+}
+
+.amarillo {
+  color: #eba72c;
+}
+
+.descripcion-libro-lista {
+  width: 400px;
+  left: 15px;
+  position: relative;
+  line-height: 1.4em;
+}
+
+.spaces-part {
+  position: relative;
+  left: 60px;
+}
+
+/* SCROLL BAR */
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f3f0ed;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #d9cec5;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #baada2;
+}
+
+/* FOOTER */
+
+.footer {
+  background-color: #e6dfda;
+  background-image: url(./footer.png);
+  height: 180px;
+  width: 100%;
+  position: relative;
+  display: flex;
+  top: 300px;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.footer-text {
+  color: #baada2;
+  font-weight: 600;
+  font-size: 0.8em;
+}
+
+.footer-text:hover {
+  color: #49392b;
+}
+
+.linea-uno {
+  justify-content: center;
+  flex-direction: row;
+  display: flex;
+  justify-content: space-around;
+  margin-right: 550px;
+  margin-left: 550px;
+}
+
+.linea-dos {
+  justify-content: center;
+  flex-direction: row;
+  display: flex;
+  justify-content: space-around;
+  margin-right: 600px;
+  margin-left: 600px;
+}
+
+.copyright {
+  font-family: "Noto Serif", serif;
+  color: #49392b;
+  font-weight: 600;
+  align-text: center;
+  display: flex;
+  justify-content: center;
+  font-size: 0.78em;
+}
+
+/* LOGIN - REGISTER */
+
+.caja-centrada {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid red;
+}
+
+.formulario {
+
+}
+
+.texto-pequeno{
+  letter-spacing: 0px;
+  margin-top: 10px;
+}
+
+.registrar{
+  letter-spacing: 0px;
+  color: #F17221;
+  font-weight: 700;
+}
+
+
+
+/* lo que había hecho f
+html, body {
+    background-color: #fff;
+    color: #636b6f;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 100;
+    height: 100vh;
+    margin: 0;
+}
+
+.full-height {
+    height: 100vh;
+}
+
+.flex-center {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.position-ref {
+    position: relative;
+}
+
+.top-right {
+    position: absolute;
+    right: 10px;
+    top: 18px;
+}
+
+.content {
+    text-align: center;
+}
+
+.title {
+    font-size: 45px;
+}
+
+.links > a {
+    color: #636b6f;
+    padding: 0 25px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.m-b-md {
+    margin-bottom: 30px;
+}
+
+a{
+    font-size: 20px;
+    margin: 5px;
+    color:black !important;
+}
+*/

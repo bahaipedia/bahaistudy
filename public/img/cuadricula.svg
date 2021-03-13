@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="66 1606 31 30">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #BAADA2;
+      }
+      .cls-1:hover {
+        fill: #49392b;
+      }
+    </style>
+  </defs>
+  <g id="Group_67" data-name="Group 67" transform="translate(-15 263)">
+    <path id="Path_11" data-name="Path 11" class="cls-1" d="M0,0H13V13H0Z" transform="translate(81 1343)"/>
+    <rect id="Rectangle_27" data-name="Rectangle 27" class="cls-1" width="13" height="13" transform="translate(81 1360)"/>
+    <rect id="Rectangle_26" data-name="Rectangle 26" class="cls-1" width="13" height="13" transform="translate(99 1343)"/>
+    <path id="Path_10" data-name="Path 10" class="cls-1" d="M0,0H13V13H0Z" transform="translate(99 1360)"/>
+  </g>
+</svg>
