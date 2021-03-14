@@ -29,18 +29,30 @@ class GroupController extends Controller
         $message = "Contact the website admin for more information";
         return view('auth.response', compact('header', 'message'));
       }
-      $last_online_at = GroupParticipant::select('id', 'last_online_at')->where('user_id', auth()->user()->id)->where('group_id', $group->id)->first();
-      if($last_online_at !== NUll){
-
-      	$last_online_at->last_online_at = Carbon::now();
-
-      	$last_online_at->update();
-      }
     
       
       $at = AvailableTime::where('group_id', $group->id)->get();
-      $participants = GroupParticipant::where('group_id', $group->id)->where('status', 1)->get();
-      $group->is_participant = GroupParticipant::where('user_id', auth()->user()->id)->where('group_id', $group->id)->where('status', 1)->count();
+        $participants = GroupParticipant::where('group_id', $group->id)->where('status', 1)->get();
+  
+      
+      if(auth()->check()){
+        $group->is_participant = GroupParticipant::where('user_id', auth()->user()->id)
+        ->where('group_id', $group->id)
+        ->where('status', 1)->count();
+        
+        $last_online_at = GroupParticipant::select('id', 'last_online_at')->where('user_id', auth()->user()->id)
+        ->where('group_id', $group->id)->first();
+
+        if($last_online_at !== NUll){
+
+          $last_online_at->last_online_at = Carbon::now();
+
+          $last_online_at->update();
+        }
+      }
+      else{
+        $participants->is_participant = 'Not auth';
+      }
       return view('dev.group.dashboard', compact('group', 'participants', 'at', 'weekday'));
     }
     public function stepdown(Request $request){
