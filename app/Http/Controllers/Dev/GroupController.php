@@ -89,7 +89,7 @@ class GroupController extends Controller
      	return redirect()->route('dev.group.dashboard', [$group->route]);
     }
 
-    public function retire(Request $request){
+    public function leave(Request $request){
 
 	    $group = Group::where('id', $request->id)->select('id', 'host_id', 'route')->first();
 	    $g_participant = GroupParticipant::where('group_id', $request->id)->where('user_id', auth()->user()->id)->first();

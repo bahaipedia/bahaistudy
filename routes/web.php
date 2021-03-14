@@ -70,7 +70,7 @@ Route::get('/list/users', 'ListController@users')->name('list.users');
 Route::get('/group/dashboard/{g?}', 'GroupController@dashboard')->name('group.dashboard');
 Route::post('/group/stepdown/', 'GroupController@stepdown')->name('group.stepdown');
 Route::post('/group/stepup/', 'GroupController@stepup')->name('group.stepup');
-Route::post('/group/retire/', 'GroupController@retire')->name('group.retire');
+Route::post('/group/leave/', 'GroupController@leave')->name('group.leave');
 Route::post('/group/join/', 'GroupController@join')->name('group.join');
 
 // Api routes
@@ -121,7 +121,7 @@ Route::get('/dev/list/users', 'Dev\ListController@users')->name('dev.list.users'
 Route::get('/dev/group/dashboard/{g?}', 'Dev\GroupController@dashboard')->name('dev.group.dashboard');
 Route::post('/dev/group/stepdown/', 'Dev\GroupController@stepdown')->name('dev.group.stepdown');
 Route::post('/dev/group/stepup/', 'Dev\GroupController@stepup')->name('dev.group.stepup');
-Route::post('/dev/group/retire/', 'Dev\GroupController@retire')->name('dev.group.retire');
+Route::post('/dev/group/leave/', 'Dev\GroupController@leave')->name('dev.group.leave');
 Route::post('/dev/group/join/', 'Dev\GroupController@join')->name('dev.group.join');
 
 // Api routes
