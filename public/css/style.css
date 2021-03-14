@@ -8,6 +8,10 @@ FABIO DICE: LISTO jejeje
 - Los estilos responsives se arman en php ¿? 
 FABIO DICE: NOP EN CSS / HTML-BLADE
 - https://stackoverflow.com/questions/30058556/including-svg-contents-in-laravel-5-blade-template
+
+POR HACER:
+- Convertir login en un popup en la misma ventana de inicio con Javascript
+- Agregar logotipos
 */
 
 /* GENERAL */
@@ -77,6 +81,9 @@ a {
   letter-spacing: 3px;
   transition: letter-spacing 0.4s, color 0.4s, border-bottom 0.4s;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 a:hover {
@@ -171,23 +178,20 @@ a:hover {
 
 .login-boton {
   padding-top: 8px;
-    padding-right: 15px;
-    padding-bottom: 8px;
-    padding-left: 15px;
-/*    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 30px;
-    width: 80px;*/
+  padding-right: 15px;
+  padding-bottom: 8px;
+  padding-left: 15px;
   font-size: 0.7em;
   letter-spacing: 0.25em;
-  border: solid 2px #49392b;
+  border: solid 2px #49392B;
   color: #49392b;
   align-self: center;
   border-radius: 40px;
   line-height: 1.3em;
   outline: none;
   font-weight: 600;
+  width: 110px;
+  position: relative;
 }
 
 .login-boton:hover {
@@ -205,6 +209,13 @@ a:hover {
   display: flex;
   flex-direction: column;
   }
+
+.centrado {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
 
   /* HEADER MENU */
 #barra {
@@ -496,11 +507,18 @@ a:hover {
 }
 .autor-nombre {
   letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 0.9em;
 }
 
 .libro-nombre {
   margin-top: -10px;
   top: 0px;
+}
+
+.libro-nombre::first-letter {
+  text-transform: capitalize;
 }
 
 .spaces {
@@ -512,7 +530,14 @@ a:hover {
   margin: 0px;
   width: 90%;
   line-height: 1.3;
+  color: #49392b;
 }
+
+.descripcion-libro::first-letter {
+  text-transform: capitalize;
+}
+
+
 
 /* VISTA DE LISTA */ 
 .contenedor-lista {
@@ -555,26 +580,35 @@ a:hover {
 }
 
 .autor-libro {
-  width: 300px;
+    flex-direction: column;
+    width: 300px;
+    display: flex;
+    position: relative;
+    left: 70px;
+    justify-content: center;
+}
+
+.descripcion-libro-lista {
+  width: 400px;
+  left: 20px;
   position: relative;
-  left: 70px;
+  line-height: 1.3em;
+  color: #49392b;
+}
+
+.descripcion-libro-lista::first-letter {
+  text-transform: capitalize;
 }
 
 .amarillo {
   color: #eba72c;
 }
 
-.descripcion-libro-lista {
-  width: 400px;
-  left: 15px;
-  position: relative;
-  line-height: 1.4em;
-}
-
 .spaces-part {
   position: relative;
   left: 60px;
 }
+
 
 /* SCROLL BAR */
 
@@ -653,31 +687,137 @@ a:hover {
 
 /* LOGIN - REGISTER */
 
+.centrado{
+  width: 100vw;
+  height: 100vh;
+}
+
 .caja-centrada {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   flex-direction: column;
   background-color: white;
-  border: 1px solid red;
+  align-self: center;
+  width: 500px;
+  height: 550px;
+  border-bottom: #49392B 3px solid;
+  -webkit-box-shadow: 15px 15px 5px -10px rgba(186, 173, 162, 0.07);
+  -moz-box-shadow: 15px 15px 5px -10px rgba(186, 173, 162, 0.07);
+  box-shadow: 15px 15px 5px -10px rgba(186, 173, 162, 0.07);
 }
 
-.formulario {
+input[type=email],
+input[type=password] {
+  width: 60%;
+  color: #49392B;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 2px solid #49392B;
+  outline: none;
+  font-family: 'Raleway', sans-serif;
+  text-align: center;
+  font-weight: 600;
+}
 
+input[type=email]:focus,
+input[type=password]:focus {
+  width: 60%;
+  color: #49392B;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 2px solid #49392B;
+  outline: none;
+  font-family: 'Raleway', sans-serif;
+  text-align: center;
+  font-weight: 600;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active
+{
+ -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+::placeholder {
+  color: #E6DFDA;
+  text-transform: uppercase;
+  font-size: 1.05em;
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+
+
+
+.tipo-logo{
+  font-family: "Noto Serif", serif;
+  color: #251d16;
+  letter-spacing: 1px;
+  font-weight: 700;
+  font-size: 1.3em;
+}
+
+.tipo-logo:hover{
+  font-family: "Noto Serif", serif;
+  color: #49392b;
+}
+
+.posicion-boton{
+  position: relative;
+  top: 80px;
 }
 
 .texto-pequeno{
   letter-spacing: 0px;
-  margin-top: 10px;
+  font-size: 0.9em;
+  position: relative;
+  top: 20px;
 }
 
 .registrar{
   letter-spacing: 0px;
-  color: #F17221;
+  color: #f17221;
   font-weight: 700;
+  position: relative;
+  top: 5px;
 }
 
+/* Groups page */
+.container-general {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+}
 
+.informacion {
+  width: 80%;
+  height: 90%;
+  display: flex;
+  align-self: flex-end;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.imagen-libro {
+  display: block;
+  width: 350px;
+  height: 550px;
+  background-color: rgb(85, 52, 52);
+}
+
+.informacion-libro {
+  width: 35%;
+  position: relative;
+  left: -150px;
+  line-height: 1.4;
+}
 
 /* lo que había hecho f
 html, body {

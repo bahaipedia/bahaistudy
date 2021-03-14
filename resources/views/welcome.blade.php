@@ -26,7 +26,7 @@
       <div id="enlaces">
         <a href="#">ABOUT</a>
         <a href="#">HELP</a>
-        <a href="#">RESOURCES</a>
+        <a href="#">RESOURCE</a>
         <a href="#">MATERIALS</a>
         <a href="{{route('dev.welcome')}}">DEV</a>
         @if(auth()->user() !== NULL)
@@ -67,13 +67,13 @@
       <div id="flecha">
       </div>
     </div>
-    {{-- 
+    <!-- 
 
       Jeannifer te deje esto for para que renderizara los contenedores lo limite a tres, es decir que si creas un nuevo no va a parecer
       los deje de modo que tengan 3 libros para que aparezca el scrollbar, otro 2 libros para que no tenga el scrollbar
 
       y otro vacio con un texto para que tomes en cuenta contenedores que no tengan grupos ( en cuanto a disenio y maquetacion )
-     --}}
+-->
     @foreach($containers as $c)
 
     <div class="contenedor">
@@ -96,11 +96,11 @@
     </div>
     <div id="contenedor-libros">
       @php $count = 0 @endphp
-      
+
       @foreach($groups as $g)
       @if($g->group_container_id == $c->id)
       @php $count++ @endphp
-      
+
       <div class="ficha-libro">
         {{-- Jeannifer you can see here how to link the img url --}}
         <img class="portada-libro" src="{{asset('/img/ki.png')}}" />
@@ -144,130 +144,96 @@
       </div>
 
       <div class="contenedor-lista">
+        @foreach($groups as $g)
         <!--LISTA - LIBRO 001-->
         <div class="lista-libro">
           <div class="circulo-libro"></div>
           <div class="autor-libro">
-            <h4 class="autor-nombre amarillo">BAHA'U'LLÁH</h4>
-            <h3 class="libro-nombre">The Kitáb-I-Iqán</h3>
+            <h4 class="autor-nombre amarillo">{{$g->book->author->name}} {{$g->book->author->lastname}}</h4>
+            <h3 class="libro-nombre">{{$g->book->name}}</h3>
           </div>
+
           <p class="descripcion-libro-lista">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            {{$g->description}}
           </p>
           <div class="spaces-part">
-            <p class="spaces">(3 spaces available)</p>
+            <p class="spaces">({{$g->max_size}} spaces available)</p>
           </div>
-          <button class="join-plus">+</button>
+          <a class="join-plus" href='{{route('group.dashboard', [$g->route])}}'>+</a>
         </div>
-
-        <!--LISTA - LIBRO 002-->
-        <div class="lista-libro">
-          <div class="circulo-libro"></div>
-          <div class="autor-libro">
-            <h4 class="autor-nombre amarillo">BAHA'U'LLÁH</h4>
-            <h3 class="libro-nombre">The Kitáb-I-Iqán</h3>
-          </div>
-          <p class="descripcion-libro-lista">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-          <div class="spaces-part">
-            <p class="spaces">(3 spaces available)</p>
-          </div>
-          <button class="join-plus">+</button>
-        </div>
-
-        <!--LISTA - LIBRO 003-->
-        <div class="lista-libro">
-          <div class="circulo-libro"></div>
-          <div class="autor-libro">
-            <h4 class="autor-nombre amarillo">BAHA'U'LLÁH</h4>
-            <h3 class="libro-nombre">The Kitáb-I-Iqán</h3>
-          </div>
-          <p class="descripcion-libro-lista">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-          <div class="spaces-part">
-            <p class="spaces">(3 spaces available)</p>
-          </div>
-          <button class="join-plus">+</button>
-        </div>
-
-        <!--LISTA - LIBRO 004-->
-        <div class="lista-libro">
-          <div class="circulo-libro"></div>
-          <div class="autor-libro">
-            <h4 class="autor-nombre amarillo">BAHA'U'LLÁH</h4>
-            <h3 class="libro-nombre">The Kitáb-I-Iqán</h3>
-          </div>
-          <p class="descripcion-libro-lista">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-          <div class="spaces-part">
-            <p class="spaces">(3 spaces available)</p>
-          </div>
-          <button class="join-plus">+</button>
-        </div>
-
-        <!--LISTA - LIBRO 005-->
-        <div class="lista-libro">
-          <div class="circulo-libro"></div>
-          <div class="autor-libro">
-            <h4 class="autor-nombre amarillo">BAHA'U'LLÁH</h4>
-            <h3 class="libro-nombre">The Kitáb-I-Iqán</h3>
-          </div>
-          <p class="descripcion-libro-lista">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-          <div class="spaces-part">
-            <p class="spaces">(3 spaces available)</p>
-          </div>
-          <button class="join-plus">+</button>
-        </div>
-
-        <button class="show-more-lista ">
-          SHOW EVERYTHING
-        </button>
-      </div>
-    </div>
-    <div class="footer">
-      <div class="linea-uno">
-        <p class="footer-text">
-          About
-        </p>
-        <p class="footer-text">
-          Help
-        </p>
-        <p class="footer-text">
-          Resources
-        </p>
-        <p class="footer-text">
-          Materials
-        </p>
+        @endforeach
       </div>
 
-      <div class="linea-dos">
-        <p class="footer-text">
-          Terms of Use
-        </p>
-        <p class="footer-text">
-          Privacy Policy
-        </p>
-      </div>
+      <button class="show-more-lista ">
+        SHOW EVERYTHING
+      </button>
+      <div class="footer">
+        <div class="linea-uno">
+          <p class="footer-text">
+            About
+          </p>
+          <p class="footer-text">
+            Help
+          </p>
+          <p class="footer-text">
+            Resources
+          </p>
+          <p class="footer-text">
+            Materials
+          </p>
+        </div>
 
-      <div class="linea-tres">
-        <p class="copyright">
-          © bahaistudygroup | 2021
-        </p>
-      </div>
+        <div class="linea-dos">
+          <p class="footer-text">
+            Terms of Use
+          </p>
+          <p class="footer-text">
+            Privacy Policy
+          </p>
+        </div>
 
-    </div>
-    {{-- Jeannifer you can see here how to link the 'js' url --}}
-    <script src='{{asset('/js/ex.js')}}'></script>
+        <div class="linea-tres">
+          <p class="copyright">
+            © bahaistudygroup | 2021
+          </p>
+        </div>
+
+      </div>
+</div>
+        <div class="footer">
+          <div class="linea-uno">
+            <p class="footer-text">
+              About
+            </p>
+            <p class="footer-text">
+              Help
+            </p>
+            <p class="footer-text">
+              Resources
+            </p>
+            <p class="footer-text">
+              Materials
+            </p>
+          </div>
+
+          <div class="linea-dos">
+            <p class="footer-text">
+              Terms of Use
+            </p>
+            <p class="footer-text">
+              Privacy Policy
+            </p>
+          </div>
+
+          <div class="linea-tres">
+            <p class="copyright">
+              © bahaistudygroup | 2021
+            </p>
+          </div>
+
+        </div>
+        {{-- Jeannifer you can see here how to link the 'js' url --}}
+        <script src='{{asset('/js/ex.js')}}'></script>
 </body>
 
 </html>
