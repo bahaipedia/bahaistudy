@@ -55,6 +55,14 @@ return [
             'visibility' => 'public',
         ],
 
+        's3' => [
+            'driver' => 's3',
+            'key' => 'AKIA57DQDYDNYSF6KROF',
+            'secret' => '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',
+            'region' => 'us-east-2',
+            'bucket' => 'metafood',
+        ],
+
 
     ],
 
