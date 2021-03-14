@@ -2,7 +2,7 @@
 @section('cnt')
 
 <h1>new book form</h1>
-<form enctype="multipart/form-data" method=POST action='{{route('store.book.post')}}' class='wrap-r'>
+<form enctype="multipart/form-data" method=POST action='{{route('dev.store.book.post')}}' class='wrap-r'>
 {!! csrf_field() !!}
 
 <label for='name'>name</label>
@@ -30,5 +30,5 @@
 <br>
 <button>CREATE</button>
 </form>
-<a href={{route('welcome')}}>home</a>
+<a href={{route('dev.welcome')}}>home</a>
 @stop

@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\User;
 use App\PasswordReset;
+use App\LogsUserUpdate;
 
 
 class UserValidationController extends Controller
@@ -34,6 +35,8 @@ class UserValidationController extends Controller
             $message->subject('Welcome to Bahai - Please confirm email');
 
         });
+        $user->email_sended_at = Carbon::now();
+        $user->update();
     	return view('auth.confirm');
     }
 
@@ -46,7 +49,7 @@ class UserValidationController extends Controller
         }
         if(auth()->user()->id == $id){
         	$user = User::find(auth()->user()->id);
-        	$user->email_validated = 1;
+        	$user->email_validated = Carbon::now();
         	$user->update();
         	return redirect()->route('welcome');
         }
@@ -64,7 +67,7 @@ class UserValidationController extends Controller
         }
         if(auth()->user()->id == $id){
         	$user = User::find(auth()->user()->id);
-        	$user->email_validated = 0;
+        	$user->email_validated = NULL;
         	$user->update();
         	return redirect()->route('welcome');
         }
@@ -164,19 +167,57 @@ class UserValidationController extends Controller
 		return view('auth.password.form');
 	}
 	public function disable(Request $request){
-		$user = User::find($request->user_id);
+		try{
+            $id = Crypt::decryptString($request->user_id);
+        } catch (DecryptException $e) {
+            return 'DD-E0001';
+        }
+
+		$user = User::find($id);
 		$user->status = Carbon::now();
 		$user->update();
+
+		$logs = New LogsUserUpdate;
+        $logs->action = 1;
+        $logs->user_id = auth()->user()->id;
+        $logs->u_id = $id;
+        $logs->save();
+		
 		return redirect()->route('list.users');
 	}
 	public function enable(Request $request){
-		$user = User::find($request->user_id);
+		try{
+            $id = Crypt::decryptString($request->user_id);
+        } catch (DecryptException $e) {
+            return 'DD-E0001';
+        }
+
+		$user = User::find($id);
 		$user->status = NULL;
 		$user->update();
+
+		$logs = New LogsUserUpdate;
+        $logs->action = 2;
+        $logs->user_id = auth()->user()->id;
+        $logs->u_id = $id;
+        $logs->save();
+
 		return redirect()->route('list.users');
 	}
 	public function role(Request $request){
-		$user = User::find($request->user_id);
+		try{
+            $id = Crypt::decryptString($request->user_id);
+        } catch (DecryptException $e) {
+            return 'DD-E0001';
+        }
+
+		$logs = New LogsUserUpdate;
+        $logs->action = 3;
+        $logs->user_id = auth()->user()->id;
+        $logs->u_id = $id;
+        $logs->save();
+
+		$user = User::find($id);
 		$user->role = $request->role;
 		$user->update();
 		return redirect()->route('list.users');

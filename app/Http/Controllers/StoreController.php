@@ -26,7 +26,8 @@ class StoreController extends Controller
 		$container = GroupContainer::select('id', 'name')->find($id);
         $authors = AuthorsInContainer::select('author_id')->where('group_container_id', $id)->get();
         $books = Book::whereIn('author_id', $authors->pluck('author_id'))->get();
-    	return view('dev.forms.store.group', compact('container', 'authors', 'books'));
+        // CHECK AUTHOR STATUS
+    	return view('bahai.forms.store.group', compact('container', 'authors', 'books'));
     }
 	public function groupPost(Request $request){
         
@@ -66,7 +67,7 @@ class StoreController extends Controller
     }
 
 	public function author(){
-    	return view('dev.forms.store.author');
+    	return view('bahai.forms.store.author');
     }
 	public function authorPost(Request $request){
         
@@ -86,8 +87,8 @@ class StoreController extends Controller
 
     public function book(){
     	// ALL THE VIEWS ITS GOING TO CHANGE WHEN WE START IMPLEMENT THE FRONT-END
-    	$authors = Author::all();
-    	return view('dev.forms.store.book', compact('authors'));
+    	$authors = Author::all()->where('status', NUll);
+    	return view('bahai.forms.store.book', compact('authors'));
     }
     public function bookPost(Request $request){
         $file_methods = new FileController;
@@ -111,8 +112,8 @@ class StoreController extends Controller
     }
 
     public function container(){
-    	$authors = Author::all();
-    	return view('dev.forms.store.container', compact('authors'));
+    	$authors = Author::all()->where('status', NUll);
+    	return view('bahai.forms.store.container', compact('authors'));
     }
 
 	public function containerPost(Request $request){

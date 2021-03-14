@@ -2,11 +2,11 @@
 @section('cnt')
 
 <h1>new author form</h1>
-<form enctype="multipart/form-data" method=POST action='{{route('update.author.post')}}' class='wrap-r'>
+<form enctype="multipart/form-data" method=POST action='{{route('dev.update.author.post')}}' class='wrap-r'>
 {!! csrf_field() !!}
 <input name="_method" type="hidden" value="PUT">
 
-<input value='{{$author->id}}' name='author_id'  type='hidden'>
+<input type='hidden' value="{{Crypt::encryptString($author->id)}}" name='author_id'/>
 
 <label for='name'>name</label>
 <input id='name' max='50' value='{{$author->name}}' name='name'  type='text'>
@@ -23,5 +23,23 @@
 
 <button>UPDATE</button>
 </form>
-<a href={{route('welcome')}}>home</a>
+
+<form method='POST' action='{{route('dev.delete.author.post')}}' id="delete">
+	{!! csrf_field() !!}
+	<input name="_method" type="hidden" value="delete">
+	<input name="author_id" type="hidden" value="{{Crypt::encryptString($author->id)}}">
+	<button>DELETE</button>	
+</form>
+<a href={{route('dev.welcome')}}>home</a>
+
+
+<script>
+	document.querySelector('#delete').addEventListener('click', function(e){
+		e.preventDefault();
+		if(confirm('You want to delete?')){
+			document.querySelector('#delete').submit();
+		}
+	})
+
+</script>
 @stop

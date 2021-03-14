@@ -18,13 +18,13 @@
 	 	@endforeach
 	 	<br>
 	 	<a href=#>edit info</a>
-	 	<a href={{route('store.group', [$c->id])}}>create group</a>
+	 	<a href={{route('dev.store.group', [$c->id])}}>create group</a>
 	</div>
 	<div style='display: flex;  flex-direction: column; width: 70%;border-bottom: :1px solid black;'>
 		@foreach($groups as $g)
 	 		@if($g->group_container_id == $c->id)	
 	 		<span style='display: flex; flex-direction: column;'></span>
-			<a href='{{route('group.dashboard', [$g->route])}}' style='display: flex;'>
+			<a href='{{route('dev.group.dashboard', [$g->route])}}' style='display: flex;'>
 				<span>{{$g->name}} ||</span>
 				<span>{{$g->description}} ||</span>
 				<span>{{$g->book->name}}, </span>
@@ -47,5 +47,5 @@
 
 	@endforeach
 <br>
-<a href={{route('welcome')}}>home</a>
+<a href={{route('dev.welcome')}}>home</a>
 @stop

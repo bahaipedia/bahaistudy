@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Dev;
 
 use Illuminate\Http\Request;
 use App\Test;
@@ -21,7 +21,8 @@ class TestController extends Controller
     public function welcome(){
     	$title = Configuration::find(1)->app_name;
         $groups = Group::select('id', 'name', 'description', 'book_id', 'group_container_id', 'route', 'max_size')->where('status', NULL)->get();
-    	return view('welcome', compact('title', 'groups'));
+        // sending available in group
+    	return view('dev.welcome', compact('title', 'groups'));
     }
     public function console(){
     	$message = Test::all();
@@ -40,25 +41,4 @@ class TestController extends Controller
             });
         return view('console', compact('message'));
     }
-
-    // public function s3template(Request $request){
-    //     $file_methods = new FileController;
-    //     $book_image_id = $file_methods->storeFile($request);
-    //     $book = New Book;
-    //     $book->user_id = auth()->user()->id;
-    //     $book->name = $request->name;
-    //     $book->description = $request->description;
-    //     $book->book_image_id = $book_image_id;
-    //     $book->date = $request->date;
-    //     $book->author_id = $request->author_id;
-    //     $book->number_pages = $request->number_pages;
-    //     $book->save();
-    //     $header = 'Uploaded file!';
-    //     $message = "The file was uploaded";
-    //     return view('auth.response', compact('header', 'message'));
-    // }
-
-    // public function s3form(){
-    //     return view('dev.book-form');
-    // }
 }

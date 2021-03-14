@@ -28,6 +28,7 @@
         <a href="#">HELP</a>
         <a href="#">RESOURCE</a>
         <a href="#">MATERIALS</a>
+        <a href="{{route('dev.welcome')}}">DEV</a>
         @if(auth()->user() !== NULL)
         <div class="user">
           <div class="profile-pic"> </div>
@@ -55,7 +56,7 @@
         <div id="alert">
           <i class="icono"></i>
           <h5 class="hero-texto">
-            Note that this website is not functional at this time but we are
+            Notes that this website is not functional at this time but we are
             creating it now. Study groups will be held virtually, are open to
             everyone, and there is no cost or other requirements to join. The
             group can decide what specific format the meetings should have,
@@ -66,6 +67,14 @@
       <div id="flecha">
       </div>
     </div>
+    <!-- 
+
+      Jeannifer te deje esto for para que renderizara los contenedores lo limite a tres, es decir que si creas un nuevo no va a parecer
+      los deje de modo que tengan 3 libros para que aparezca el scrollbar, otro 2 libros para que no tenga el scrollbar
+
+      y otro vacio con un texto para que tomes en cuenta contenedores que no tengan grupos ( en cuanto a disenio y maquetacion )
+-->
+    @foreach($containers as $c)
 
     <div class="contenedor">
       <div class="subtitulo">
@@ -85,25 +94,36 @@
         <h5 class="filtro">search</h5>
       </div>
     </div>
-    <!-- GALERIA DE LIBROS -->
     <div id="contenedor-libros">
+      @php $count = 0 @endphp
+
       @foreach($groups as $g)
-      <!--LIBRO 001-->
+      @if($g->group_container_id == $c->id)
+      @php $count++ @endphp
+
       <div class="ficha-libro">
-        <img class="portada-libro" src="" />
+        {{-- Jeannifer you can see here how to link the img url --}}
+        <img class="portada-libro" src="{{asset('/img/ki.png')}}" />
         <div class="parte-derecha-ficha">
           <h4 class="autor-nombre">{{$g->book->author->name}} {{$g->book->author->lastname}}</h4>
-          <h3 class="libro-nombre">{{$g->book->name}}</h3>
-          <p class="spaces">({{$g->max_size}} spaces available)</p>
+          <h3 class="libro-nombre">{{$g->name}}</h3>
+          <p class="spaces">({{$g->available}} spaces available of {{$g->max_size}})</p>
           <p class="descripcion-libro">
             {{$g->description}}
           </p>
+          <span class="parte-derecha-ficha-espacio"></span>
           <a class="join-ficha" href='{{route('group.dashboard', [$g->route])}}'>JOIN</a>
         </div>
       </div>
-      @endforeach
-    </div>
+      @endif
 
+      @endforeach
+      @if ($count == 0)
+
+      <h1> this container is empty </h1>
+      @endif
+    </div>
+    @endforeach
     <div class="contenedor segundo">
       <div class="subtitulo">
         <h3>Works of the House of Justice</h3>
@@ -119,6 +139,7 @@
           <h5 class="amarilloline">filter</h5>
           <h5 class="amarilloline">sort</h5>
           <h5 class="amarilloline">search</h5>
+
         </div>
       </div>
 
@@ -178,6 +199,41 @@
         </div>
 
       </div>
+</div>
+        <div class="footer">
+          <div class="linea-uno">
+            <p class="footer-text">
+              About
+            </p>
+            <p class="footer-text">
+              Help
+            </p>
+            <p class="footer-text">
+              Resources
+            </p>
+            <p class="footer-text">
+              Materials
+            </p>
+          </div>
+
+          <div class="linea-dos">
+            <p class="footer-text">
+              Terms of Use
+            </p>
+            <p class="footer-text">
+              Privacy Policy
+            </p>
+          </div>
+
+          <div class="linea-tres">
+            <p class="copyright">
+              © bahaistudygroup | 2021
+            </p>
+          </div>
+
+        </div>
+        {{-- Jeannifer you can see here how to link the 'js' url --}}
+        <script src='{{asset('/js/ex.js')}}'></script>
 </body>
 
 </html>

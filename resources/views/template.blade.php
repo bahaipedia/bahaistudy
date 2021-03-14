@@ -13,4 +13,5 @@
   @yield('cnt')
 </body>
 
+
 </html>

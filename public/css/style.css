@@ -1,8 +1,12 @@
 /*
 DUDAS PARA FABIO:
-- Hacer una prueba de cómo configurar el template y @yield y que yo siga aplicando cosas,
-- Como agregar imagenes (de las carpetas y de la base de datos)
-- Los estilos responsives se arman en php ¿?
+- Hacer una prueba de cómo configurar el template y @yield y que yo siga aplicando cosas, 
+FABIO DICE: ;
+NO TE PREOCUPES POR ESTO AUN
+- Como agregar imagenes (de las carpetas y de la base de datos) 
+FABIO DICE: LISTO jejeje
+- Los estilos responsives se arman en php ¿? 
+FABIO DICE: NOP EN CSS / HTML-BLADE
 - https://stackoverflow.com/questions/30058556/including-svg-contents-in-laravel-5-blade-template
 
 POR HACER:
@@ -101,8 +105,11 @@ a:hover {
   transition-duration: 0.4s;
   border-radius: 20px;
   outline: none;
-  position: relative;
-  top: 80px;
+
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .join-ficha:hover {
@@ -495,7 +502,9 @@ a:hover {
   flex-direction: column;
   margin-left: 15px;
 }
-
+.parte-derecha-ficha-espacio{
+  flex-grow: 2;
+}
 .autor-nombre {
   letter-spacing: 3px;
   text-transform: uppercase;
