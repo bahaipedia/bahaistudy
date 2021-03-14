@@ -55,7 +55,7 @@
         <div id="alert">
           <i class="icono"></i>
           <h5 class="hero-texto">
-            Note that this website is not functional at this time but we are
+            Notes that this website is not functional at this time but we are
             creating it now. Study groups will be held virtually, are open to
             everyone, and there is no cost or other requirements to join. The
             group can decide what specific format the meetings should have,
