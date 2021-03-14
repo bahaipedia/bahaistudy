@@ -30,8 +30,8 @@
 
 ## Group dashboard
 
-- [ ] Online status<br>
-- [ ] Realtime updates<br>
+- [X] Online status<br>
+- [X] Realtime updates<br>
 - [ ] Chat implementation<br>
 - [ ] Users Interactions<br>
 
