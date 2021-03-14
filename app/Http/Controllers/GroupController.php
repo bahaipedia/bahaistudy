@@ -30,16 +30,14 @@ class GroupController extends Controller
         return view('auth.response', compact('header', 'message'));
       }
     
-      
       $at = AvailableTime::where('group_id', $group->id)->get();
-        $participants = GroupParticipant::where('group_id', $group->id)->where('status', 1)->get();
-  
+      $participants = GroupParticipant::where('group_id', $group->id)->where('status', 1)->get();
       
       if(auth()->check()){
         $group->is_participant = GroupParticipant::where('user_id', auth()->user()->id)
         ->where('group_id', $group->id)
         ->where('status', 1)->count();
-        
+
         $last_online_at = GroupParticipant::select('id', 'last_online_at')->where('user_id', auth()->user()->id)
         ->where('group_id', $group->id)->first();
 

@@ -21,6 +21,7 @@ class TestController extends Controller
     public function welcome(){
     	$title = Configuration::find(1)->app_name;
         $groups = Group::select('id', 'name', 'description', 'book_id', 'group_container_id', 'route', 'max_size')->where('status', NULL)->get();
+        // sending available in group
     	return view('welcome', compact('title', 'groups'));
     }
     public function console(){
