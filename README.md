@@ -16,8 +16,8 @@
 - [X] Create controller and controller methods,<br>
 - [X] Create routes<br>
 - [X] Store implementation <br>
-- [ ] Updates implementation <br>
-- [ ] Deletes implementation <br>
+- [X] Updates implementation <br>
+- [X] Deletes implementation <br>
 - [ ] Test and debug<br>
 - [ ] Feedback<br>
 - [ ] Clean data from database<br>
