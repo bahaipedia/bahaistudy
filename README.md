@@ -31,7 +31,7 @@
 ## Group dashboard
 
 - [X] Online status<br>
-- [X] Realtime updates<br>
+- [] Realtime updates<br>
 - [ ] Chat implementation<br>
 - [ ] Users Interactions<br>
 
