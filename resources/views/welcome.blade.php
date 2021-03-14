@@ -67,6 +67,14 @@
       <div id="flecha">
       </div>
     </div>
+    {{-- 
+
+      Jeannifer te deje esto for para que renderizara los contenedores lo limite a tres, es decir que si creas un nuevo no va a parecer
+      los deje de modo que tengan 3 libros para que aparezca el scrollbar, otro 2 libros para que no tenga el scrollbar
+
+      y otro vacio con un texto para que tomes en cuenta contenedores que no tengan grupos ( en cuanto a disenio y maquetacion )
+     --}}
+    @foreach($containers as $c)
 
     <div class="contenedor">
       <div class="subtitulo">
@@ -86,25 +94,36 @@
         <h5 class="filtro">search</h5>
       </div>
     </div>
-
     <div id="contenedor-libros">
+      @php $count = 0 @endphp
+      
       @foreach($groups as $g)
+      @if($g->group_container_id == $c->id)
+      @php $count++ @endphp
+      
       <div class="ficha-libro">
         {{-- Jeannifer you can see here how to link the img url --}}
         <img class="portada-libro" src="{{asset('/img/ki.png')}}" />
         <div class="parte-derecha-ficha">
           <h4 class="autor-nombre">{{$g->book->author->name}} {{$g->book->author->lastname}}</h4>
-          <h3 class="libro-nombre">{{$g->book->name}}</h3>
-          <p class="spaces">({{$g->max_size}} spaces available)</p>
+          <h3 class="libro-nombre">{{$g->name}}</h3>
+          <p class="spaces">({{$g->available}} spaces available of {{$g->max_size}})</p>
           <p class="descripcion-libro">
             {{$g->description}}
           </p>
+          <span class="parte-derecha-ficha-espacio"></span>
           <a class="join-ficha" href='{{route('group.dashboard', [$g->route])}}'>JOIN</a>
         </div>
       </div>
-      @endforeach
-    </div>
+      @endif
 
+      @endforeach
+      @if ($count == 0)
+
+      <h1> this container is empty </h1>
+      @endif
+    </div>
+    @endforeach
     <div class="contenedor segundo">
       <div class="subtitulo">
         <h3>Works of the House of Justice</h3>

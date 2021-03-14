@@ -21,11 +21,21 @@ git fecth
 ```bash
 git merge -m"add your message" origin/main
 ```
-
 ( clean all merge conflict in this step )
 
 - Now you can start working in your project
-- For push use
+- For push repeat this steps, just in case
+
+```bash
+git fecth
+```
+
+```bash
+git merge -m"add your message" origin/main
+```
+( clean all merge conflict in this step )
+
+- And then
 
 ```bash
 git add .

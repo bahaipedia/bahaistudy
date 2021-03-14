@@ -1,9 +1,7 @@
 <?php
 
-// Testing routes
-Route::get('/', 'TestController@welcome')->name('welcome');
-Route::get('/console', 'TestController@console')->name('console');
-Route::get('/email/test', 'TestController@sendEmail')->name('sendEmail');
+// General routes
+Route::get('/', 'GeneralController@welcome')->name('welcome');
 
 // Auth routes
 Route::get('/auth/login/', 'Auth\LoginController@showLoginForm')->name('login');
@@ -127,7 +125,7 @@ Route::post('/dev/group/retire/', 'Dev\GroupController@retire')->name('dev.group
 Route::post('/dev/group/join/', 'Dev\GroupController@join')->name('dev.group.join');
 
 // Api routes
-Route::get('/dev/api/group/participant/{id}', 'Dev\GroupController@apiParticipant')->name('adev.pi.group.participant');
+Route::get('/dev/api/group/participant/{id}', 'Dev\GroupController@apiParticipant')->name('dev.api.group.participant');
 Route::post('/dev/api/group/beat', 'Dev\GroupController@apiBeat')->name('dev.api.group.beat');
 
 
