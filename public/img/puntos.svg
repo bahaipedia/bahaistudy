@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="902 1540 38.946 8.3">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #79c3aa;
+      }
+
+      .cls-2 {
+        fill: #eba72c;
+      }
+
+      .cls-3 {
+        fill: #f17221;
+      }
+    </style>
+  </defs>
+  <g id="Symbol_1_1" data-name="Symbol 1 – 1" transform="translate(676 373)">
+    <circle id="Ellipse_2" data-name="Ellipse 2" class="cls-1" cx="4.15" cy="4.15" r="4.15" transform="translate(226 1167)"/>
+    <circle id="Ellipse_3" data-name="Ellipse 3" class="cls-2" cx="4.15" cy="4.15" r="4.15" transform="translate(241.323 1167)"/>
+    <circle id="Ellipse_4" data-name="Ellipse 4" class="cls-3" cx="4.15" cy="4.15" r="4.15" transform="translate(256.646 1167)"/>
+  </g>
+</svg>

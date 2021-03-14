@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Test;
 use App\Configuration;
 use App\Book;
+use App\Group;
 
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Managment\FileController;
@@ -19,7 +20,8 @@ class TestController extends Controller
 	}
     public function welcome(){
     	$title = Configuration::find(1)->app_name;
-    	return view('welcome', compact('title'));
+        $groups = Group::select('id', 'name', 'description', 'book_id', 'group_container_id', 'route', 'max_size')->where('status', NULL)->get();
+    	return view('welcome', compact('title', 'groups'));
     }
     public function console(){
     	$message = Test::all();
