@@ -2,10 +2,11 @@
 @section('cnt')
 
 <input id='participant_route' value='{{route('api.group.participant', [Crypt::encryptString($group->id)])}}' type='hidden'/>
-<input id='beat_route' value='{{route('api.group.beat')}}' type='hidden'/>
-<input type='hidden' value='{{Crypt::encryptString(auth()->user()->id)}}' id='user_beat'/>
-<input type='hidden' value='{{Crypt::encryptString($group->id)}}' id='group_beat'/>
-
+@if(auth()->check())
+	<input id='beat_route' value='{{route('api.group.beat')}}' type='hidden'/>
+	<input type='hidden' value='{{Crypt::encryptString(auth()->user()->id)}}' id='user_beat'/>
+	<input type='hidden' value='{{Crypt::encryptString($group->id)}}' id='group_beat'/>
+@endif
 {!! csrf_field() !!}
 
 <div style='display: flex;  flex-direction: column; align-items: center; justify-content: flex-start; width: 100%; height: 95vh;'>
@@ -93,9 +94,10 @@
 	@if(!auth()->check())
 		<a href={{route('login')}}>login</a>
 		<a href={{route('register')}}>register</a>
-	@endif
+	@else
 	@if(auth()->user()->id === $group->host_id)
 		<a href='{{route('update.group', [Crypt::encryptString($group->id)])}}'>edit info</a>
+	@endif
 	@endif
 	<a href={{route('welcome')}}>home</a>
 </div>
