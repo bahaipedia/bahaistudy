@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Dev;
 
 use App\User;
 use App\Book;
@@ -21,12 +21,12 @@ class ListController extends Controller
 
 	public function authors(){
 		  $authors = Author::select('id', 'name', 'lastname')->where('status', NULL)->get();
-   		return view('bahai.lists.authors', compact('authors'));
+   		return view('dev.lists.authors', compact('authors'));
     }
 
     public function books(){
 		  $books = Book::select('id', 'name')->where('status', NULL)->get();
-   		return view('bahai.lists.books', compact('books'));
+   		return view('dev.lists.books', compact('books'));
     }
 
     public function containers(){
@@ -35,12 +35,12 @@ class ListController extends Controller
 		  $aic = AuthorsInContainer::all();
       $groups = Group::select('id', 'name', 'description', 'book_id', 'group_container_id', 'route')->where('status', NULL)->get();
       $at = AvailableTime::all();
-   		return view('bahai.lists.containers', compact('containers', 'aic', 'groups', 'at', 'weekday'));
+   		return view('dev.lists.containers', compact('containers', 'aic', 'groups', 'at', 'weekday'));
     }
 
     public function users(){
       $users = User::all();
-      return view('bahai.lists.users', compact('users'));
+      return view('dev.lists.users', compact('users'));
     }
 
 }

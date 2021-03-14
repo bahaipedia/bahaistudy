@@ -43,3 +43,10 @@ git push --set-upstream origin <nameofthebranch>
 
 - The main branch organize the conflict and decide
 - The main branch do the pull
+
+## Folders and files on the view and server
+
+- There is a folder in the view called *dev*, this folder is for development and testing for the serve side
+- For the front-end you can use for see the code, but try not modify them
+- There is a folder called *bahai* this is for the actual website is a replica from the dev
+- Also there is the /dev routes for the server testing and development, wich are the replica for the original routes 

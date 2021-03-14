@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Dev;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
-use App\Http\Controllers\Managment\FileController;
+use App\Http\Controllers\Dev\Managment\FileController;
 
 use Carbon\Carbon;
 
@@ -35,7 +35,7 @@ class UpdateController extends Controller
         }
      
         $user = User::find($id);
-        return view('bahai.forms.update.user', compact('user'));
+        return view('dev.forms.update.user', compact('user'));
     }
 
     public function userUpdate(Request $request){
@@ -60,7 +60,7 @@ class UpdateController extends Controller
         $header = 'User was updated!';
         $message = "The user was updated";
 
-        return view('auth.response', compact('header', 'message'));
+        return view('dev.response', compact('header', 'message'));
     }
 
     // Enable and disable method in UserValidationController is where the user delete method are
@@ -77,7 +77,7 @@ class UpdateController extends Controller
 		$authors = AuthorsInContainer::select('author_id')->where('group_container_id', $group->group_container_id)->get();
         $books = Book::whereIn('author_id', $authors->pluck('author_id'))->get();
 		$containers = GroupContainer::select('id', 'name')->get();
-        return view('bahai.forms.update.group', compact('container', 'containers', 'authors', 'books', 'group'));
+        return view('dev.forms.update.group', compact('container', 'containers', 'authors', 'books', 'group'));
     }
 
     public function groupUpdate(Request $request){
@@ -105,7 +105,7 @@ class UpdateController extends Controller
 
     	$header = 'Group was updated!';
         $message = "The group was updated";
-        return view('auth.response', compact('header', 'message'));
+        return view('dev.response', compact('header', 'message'));
     }
 
     public function groupDelete(Request $request){
@@ -126,7 +126,7 @@ class UpdateController extends Controller
 
         $header = 'Group was deleted!';
         $message = "The group was deleted";
-        return view('auth.response', compact('header', 'message'));
+        return view('dev.response', compact('header', 'message'));
     }
 
 	public function author($id){
@@ -137,7 +137,7 @@ class UpdateController extends Controller
         }
      
         $author = Author::find($id);
-        return view('bahai.forms.update.author', compact('author'));
+        return view('dev.forms.update.author', compact('author'));
     }
 
     public function authorUpdate(Request $request){
@@ -162,7 +162,7 @@ class UpdateController extends Controller
 
     	$header = 'Author was updated!';
         $message = "The author was updated";
-        return view('auth.response', compact('header', 'message'));
+        return view('dev.response', compact('header', 'message'));
     }
 
       public function authorDelete(Request $request){
@@ -184,7 +184,7 @@ class UpdateController extends Controller
 
         $header = 'author was deleted!';
         $message = "The author was deleted";
-        return view('auth.response', compact('header', 'message'));
+        return view('dev.response', compact('header', 'message'));
     }
 
     public function book($id){
@@ -197,7 +197,7 @@ class UpdateController extends Controller
         $book = Book::find($id);
         $authors = Author::all()->where('status', NULL);
 
-        return view('bahai.forms.update.book', compact('book', 'authors'));
+        return view('dev.forms.update.book', compact('book', 'authors'));
     }
 
     public function bookUpdate(Request $request){
@@ -232,7 +232,7 @@ class UpdateController extends Controller
 
         $header = 'Book was updated!';
         $message = "The book was updated";
-        return view('auth.response', compact('header', 'message'));
+        return view('dev.response', compact('header', 'message'));
     }
 
     public function bookDelete(Request $request){
@@ -254,6 +254,6 @@ class UpdateController extends Controller
 
         $header = 'book was deleted!';
         $message = "The book was deleted";
-        return view('auth.response', compact('header', 'message'));
+        return view('dev.response', compact('header', 'message'));
     }
 }

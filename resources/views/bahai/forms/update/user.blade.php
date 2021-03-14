@@ -2,7 +2,7 @@
 @section('cnt')
 
 <h1>update user form</h1>
-<form enctype="multipart/form-data" method=POST action='{{route('dev.update.user.post')}}' class='wrap-r'>
+<form enctype="multipart/form-data" method=POST action='{{route('update.user.post')}}' class='wrap-r'>
 {!! csrf_field() !!}
 <input name="_method" type="hidden" value="PUT">
 
@@ -20,5 +20,5 @@
 
 <button>UPDATE</button>
 </form>
-<a href={{route('dev.welcome')}}>home</a>
+<a href={{route('welcome')}}>home</a>
 @stop

@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Dev;
+
 use Illuminate\Support\Facades\Crypt;
 
 use Carbon\Carbon;
@@ -27,7 +28,7 @@ class GroupController extends Controller
       if($group->status !== NULL){
       	$header = 'Sorry but this group was deleted!';
         $message = "Contact the website admin for more information";
-        return view('auth.response', compact('header', 'message'));
+        return view('dev.response', compact('header', 'message'));
       }
     
       $at = AvailableTime::where('group_id', $group->id)->get();
@@ -51,7 +52,7 @@ class GroupController extends Controller
       else{
         $participants->is_participant = 'Not auth';
       }
-      return view('bahai.group.dashboard', compact('group', 'participants', 'at', 'weekday'));
+      return view('dev.group.dashboard', compact('group', 'participants', 'at', 'weekday'));
     }
     public function stepdown(Request $request){
 
@@ -67,7 +68,7 @@ class GroupController extends Controller
 
 	    	$log->save();
 	    }
-     	return redirect()->route('group.dashboard', [$group->route]);
+     	return redirect()->route('dev.group.dashboard', [$group->route]);
 
     }
     public function stepup(Request $request){
@@ -85,7 +86,7 @@ class GroupController extends Controller
 	    	$log->save();
 	    }
 
-     	return redirect()->route('group.dashboard', [$group->route]);
+     	return redirect()->route('dev.group.dashboard', [$group->route]);
     }
 
     public function retire(Request $request){
@@ -102,7 +103,7 @@ class GroupController extends Controller
 		$log->reason = NULL;
 		$log->save();
 
-     	return redirect()->route('group.dashboard', [$group->route]);
+     	return redirect()->route('dev.group.dashboard', [$group->route]);
     }
     public function join(Request $request){
 
@@ -128,7 +129,7 @@ class GroupController extends Controller
 		$log->reason = NULL;
 		$log->save();
 
-     	return redirect()->route('group.dashboard', [$group->route]);
+     	return redirect()->route('dev.group.dashboard', [$group->route]);
     }
 
     public function apiParticipant($id){
