@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Crypt;
 
+use Carbon\Carbon;
+
 use Illuminate\Http\Request;
 use App\LogsSteppedDownHost;
 use App\GroupParticipant;
@@ -22,6 +24,20 @@ class GroupController extends Controller
     public function dashboard($id = NULL){
       $weekday =  ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
       $group = Group::where('route', $id)->first();
+      if($group->status !== NULL){
+      	$header = 'Sorry but this group was deleted!';
+        $message = "Contact the website admin for more information";
+        return view('auth.response', compact('header', 'message'));
+      }
+      $last_online_at = GroupParticipant::select('id', 'last_online_at')->where('user_id', auth()->user()->id)->where('group_id', $group->id)->first();
+      if($last_online_at !== NUll){
+
+      	$last_online_at->last_online_at = Carbon::now();
+
+      	$last_online_at->update();
+      }
+    
+      
       $at = AvailableTime::where('group_id', $group->id)->get();
       $participants = GroupParticipant::where('group_id', $group->id)->where('status', 1)->get();
       $group->is_participant = GroupParticipant::where('user_id', auth()->user()->id)->where('group_id', $group->id)->where('status', 1)->count();
@@ -47,7 +63,7 @@ class GroupController extends Controller
     public function stepup(Request $request){
 
 	    $group = Group::where('id', $request->id)->select('id', 'host_id', 'route')->first();
-	    if(auth()->user()->email_validated == 1){
+	    if(auth()->user()->email_validated != NULL){
 	    	$group->host_id = auth()->user()->id;
 	    	$group->update();
 
@@ -112,8 +128,26 @@ class GroupController extends Controller
             return 'API-E0001';
         }
       	$participants = GroupParticipant::where('group_id', $id)->where('status', 1)->get()->pluck('user_id');
-      	$users = User::select('name', 'lastname')->whereIn('id', $participants)->get();
-        return $users;
+      	$beat = GroupParticipant::select('id', 'last_online_at')->where('group_id', $id)->where('status', 1)->get();
+      	$users = User::select('id', 'name', 'lastname')->whereIn('id', $participants)->get();
+      	$host = Group::select('host_id')->where('id', $id)->first();
+        $data = [$host, $users, $beat];
+        return $data;
     }
 
+     public function apiBeat(Request $request){
+    	try{
+            $id = Crypt::decryptString($request->id);
+            $group_id = Crypt::decryptString($request->group_id);
+        } catch (DecryptException $e) {
+            return 'API-E0002';
+        }
+   		$last_online_at = GroupParticipant::select('id', 'last_online_at')->where('user_id', $id)->where('group_id', $group_id)->first();
+		if($last_online_at !== NUll){
+			$last_online_at->last_online_at = Carbon::now();
+			$last_online_at->update();
+		}
+    	$last_online_at->update();
+    	return 'done';
+    }
 }

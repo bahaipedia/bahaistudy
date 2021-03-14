@@ -18,7 +18,7 @@ Route::get('/auth/confirm', 'Auth\UserValidationController@confirmEmail')->name(
 Route::get('/auth/confirm/status/{id}', 'Auth\UserValidationController@confirmEmailStatus')->name('confirm.email.status');
 Route::get('/auth/reset/paswword/input', 'Auth\UserValidationController@changePasswordEmailInput')->name('auth.reset.password.input');
 Route::post('/auth/reset/paswword/validate', 'Auth\UserValidationController@validatePasswordRequest')->name('auth.reset.password.validate');
-Route::get('/auth/reset/paswword/send/{email}/{token}', 'Auth\UserValidationController@sendResetEmail')->name('auth.reset.password.send');
+Route::get('/auth/reset/paswword/send/{email}/{tSoken}', 'Auth\UserValidationController@sendResetEmail')->name('auth.reset.password.send');
 Route::get('/auth/reset/paswword/form/{email}/{token}', 'Auth\UserValidationController@changePasswordInput')->name('auth.reset.password.form');
 Route::post('/auth/reset/paswword/post', 'Auth\UserValidationController@resetPassword')->name('auth.reset.password.post');
 
@@ -50,10 +50,18 @@ Route::post('/groups', 'StoreController@groupPost')->name('store.group.post');
 // Update data routes
 Route::get('/groups/update/{g?}/', 'UpdateController@group')->name('update.group');
 Route::put('/groups', 'UpdateController@groupUpdate')->name('update.group.post');
+Route::delete('/groups/delete', 'UpdateController@groupDelete')->name('delete.group.post');
 
 Route::get('/authors/update/{g?}/', 'UpdateController@author')->name('update.author');
 Route::put('/authors', 'UpdateController@authorUpdate')->name('update.author.post');
+Route::delete('/authors/delete', 'UpdateController@authorDelete')->name('delete.author.post');
 
+Route::get('/books/update/{g?}/', 'UpdateController@book')->name('update.book');
+Route::put('/books', 'UpdateController@bookUpdate')->name('update.book.post');
+Route::delete('/books/delete', 'UpdateController@bookDelete')->name('delete.book.post');
+
+Route::get('/users/update/{g?}/', 'UpdateController@user')->name('update.user');
+Route::put('/users', 'UpdateController@userUpdate')->name('update.user.post');
 // List views routes
 Route::get('/list/books', 'ListController@books')->name('list.books');
 Route::get('/list/authors', 'ListController@authors')->name('list.authors');
@@ -69,5 +77,6 @@ Route::post('/group/join/', 'GroupController@join')->name('group.join');
 
 // Api routes
 Route::get('/api/group/participant/{id}', 'GroupController@apiParticipant')->name('api.group.participant');
+Route::post('/api/group/beat', 'GroupController@apiBeat')->name('api.group.beat');
 
 

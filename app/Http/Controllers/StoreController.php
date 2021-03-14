@@ -26,6 +26,7 @@ class StoreController extends Controller
 		$container = GroupContainer::select('id', 'name')->find($id);
         $authors = AuthorsInContainer::select('author_id')->where('group_container_id', $id)->get();
         $books = Book::whereIn('author_id', $authors->pluck('author_id'))->get();
+        // CHECK AUTHOR STATUS
     	return view('dev.forms.store.group', compact('container', 'authors', 'books'));
     }
 	public function groupPost(Request $request){
@@ -86,7 +87,7 @@ class StoreController extends Controller
 
     public function book(){
     	// ALL THE VIEWS ITS GOING TO CHANGE WHEN WE START IMPLEMENT THE FRONT-END
-    	$authors = Author::all();
+    	$authors = Author::all()->where('status', NUll);
     	return view('dev.forms.store.book', compact('authors'));
     }
     public function bookPost(Request $request){
@@ -111,7 +112,7 @@ class StoreController extends Controller
     }
 
     public function container(){
-    	$authors = Author::all();
+    	$authors = Author::all()->where('status', NUll);
     	return view('dev.forms.store.container', compact('authors'));
     }
 

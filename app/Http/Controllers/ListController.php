@@ -20,12 +20,12 @@ class ListController extends Controller
 	}
 
 	public function authors(){
-		  $authors = Author::select('id', 'name', 'lastname')->get();
+		  $authors = Author::select('id', 'name', 'lastname')->where('status', NULL)->get();
    		return view('dev.lists.authors', compact('authors'));
     }
 
     public function books(){
-		  $books = Book::select('id', 'name')->get();
+		  $books = Book::select('id', 'name')->where('status', NULL)->get();
    		return view('dev.lists.books', compact('books'));
     }
 
@@ -33,7 +33,7 @@ class ListController extends Controller
       $weekday =  ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
 		  $containers = GroupContainer::select('id', 'name', 'weight')->orderBy('weight', 'desc')->get();
 		  $aic = AuthorsInContainer::all();
-      $groups = Group::select('id', 'name', 'description', 'book_id', 'group_container_id', 'route')->get();
+      $groups = Group::select('id', 'name', 'description', 'book_id', 'group_container_id', 'route')->where('status', NULL)->get();
       $at = AvailableTime::all();
    		return view('dev.lists.containers', compact('containers', 'aic', 'groups', 'at', 'weekday'));
     }

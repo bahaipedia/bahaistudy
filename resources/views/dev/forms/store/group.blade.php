@@ -20,7 +20,10 @@
 <label>select book</label>
 <select name='book_id'>
 @foreach($books as $b)
-	<option value='{{$b->id}}'>{{$b->name}}</option>
+	{{-- IMPORTANT VALIDATION --}}
+	@if($b->author->status == NULL)
+		<option value='{{$b->id}}'>{{$b->name}}</option>
+	@endif
 @endforeach
 </select>
 <label for='max_size'>users allowed to join the group</label>

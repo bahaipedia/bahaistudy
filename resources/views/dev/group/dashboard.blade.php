@@ -1,6 +1,13 @@
 @extends('template')
 @section('cnt')
-<input id='route' value='{{route('api.group.participant', [Crypt::encryptString($group->id)])}}' type='hidden'/>
+
+<input id='participant_route' value='{{route('api.group.participant', [Crypt::encryptString($group->id)])}}' type='hidden'/>
+<input id='beat_route' value='{{route('api.group.beat')}}' type='hidden'/>
+<input type='hidden' value='{{Crypt::encryptString(auth()->user()->id)}}' id='user_beat'/>
+<input type='hidden' value='{{Crypt::encryptString($group->id)}}' id='group_beat'/>
+
+{!! csrf_field() !!}
+
 <div style='display: flex;  flex-direction: column; align-items: center; justify-content: flex-start; width: 100%; height: 95vh;'>
 <h1>{{$group->name}}</h1>
 @if($group->is_participant == 0)
@@ -19,9 +26,9 @@
 	<p>name: {{$group->name}}</p>
 	<p>description: {{$group->description}}</p>
 	@if($group->host_id != NULL)	
-	<p>host: {{$group->host->name}} {{$group->host->lastname}}</p>
+	<p id='host'>host: {{$group->host->name}} {{$group->host->lastname}}</p>
 	@else
-	<p>host: no host yet</p>
+	<p id='host'>NO HOST IN THIS GROUP</p>
 	@endif
 	<p>url: <a href='{{$group->url}}'>{{$group->url}}</a></p>
 	<span style='font-size:12px; display: flex;'>
@@ -36,9 +43,9 @@
 	<div id='participant'>
 	@foreach($participants as $p)
 		@if($p->user_id == $group->host_id)
-		<p style="font-size: 12px">{{$p->user->name}} {{$p->user->lastname}}</p>
+		<p style="font-size: 12px">{{$p->user->name}} {{$p->user->lastname}} (HOST) </p>
 		@else
-		<p style="font-size: 12px">{{$p->user->name}} {{$p->user->lastname}}</p>
+		<p style="font-size: 12px">{{$p->user->name}} {{$p->user->lastname}} </p>
 		@endif
 	@endforeach
 	</div>
@@ -65,7 +72,7 @@
 			</form>
 
 
-		@elseif($group->host_id === NULL && auth()->user()->email_validated == 1 && $group->is_participant != 0)
+		@elseif($group->host_id === NULL && auth()->user()->email_validated != NULL && $group->is_participant != 0)
 			<form method='POST' action='{{route('group.stepup')}}'>
 				{!! csrf_field() !!}
 				<input name='id' value='{{$group->id}}' type='hidden'/>
@@ -93,8 +100,13 @@
 	<a href={{route('welcome')}}>home</a>
 </div>
 <script>
+	onlineStatus = document.querySelectorAll('.online-status')
+	console.log(onlineStatus[1])
+	var cript = 
 	setInterval(function(){
-		var url = document.querySelector('#route').value;
+		var url = document.querySelector('#participant_route').value;
+		var url2 = document.querySelector('#beat_route').value;
+
 		$.ajax({
 	        url: url,
 	        type: "GET",
@@ -102,12 +114,54 @@
 	   			renderParticipant(data);
 	        }
 		});
-	}, 5000)
+
+		$.ajax({
+
+		headers: {
+        'X-CSRF-Token': $('input[name="_token"]').val()
+   		},
+    	data: {
+    		'id': document.querySelector('#user_beat').value,
+    		'group_id': document.querySelector('#group_beat').value,
+		},
+        url: url2,
+        type: "POST",
+        success: function(data){
+        }
+	});
+	}, 15000)
+
+	
+
 	function renderParticipant(data){
 		document.querySelector('#participant').innerHTML = '';
-		for(var i = 0; i<data.length; i++){
-			document.querySelector('#participant').innerHTML += '<p style="font-size: 12px">'+data[i].name+' '+data[i].lastname+'</p>'
+		for(var i = 0; i<data[1].length; i++){
+			
+				if(data[1][i].id == data[0].host_id){
+
+					document.querySelector('#participant').innerHTML += '<p style="font-size: 12px">'+data[1][i].name+' '+data[1][i].lastname+' (HOST) </p>'
+					document.querySelector('#host').innerHTML = 'host: '+data[1][i].name+' '+data[1][i].lastname
+				}
+				else{
+					document.querySelector('#participant').innerHTML += '<p style="font-size: 12px">'+data[1][i].name+' '+data[1][i].lastname+'</p>'
+				}
+			}
+		if(data[0].host_id == null){
+				document.querySelector('#host').innerHTML = 'NO HOST IN THIS GROUP'
 		}
+
+		for(var ii = 0; ii<data[2].length; ii++){
+			var dt = new Date();
+         	var tz = dt.getTimezoneOffset();
+         	var actual = ((dt/1000)-tz);
+			if(new Date(data[2][ii].last_online_at).getTime()/1000 - actual - 18285 > 0){
+				// is online
+			}
+			else{
+				// is not online
+			}
+		}
+
 	}
 
 

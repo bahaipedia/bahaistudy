@@ -8,5 +8,8 @@
     </head>
     <body>
         @yield('cnt')
+        @if(auth()->check())
+        <p>{{auth()->user()->email}}</p>
+        @endif
     </body>
 </html>
