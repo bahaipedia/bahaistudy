@@ -1,9 +1,9 @@
 @extends('template')
 @section('cnt')
 
-<input id='participant_route' value='{{route('dev.api.group.participant', [Crypt::encryptString($group->id)])}}' type='hidden'/>
+<input id='participant_route' value='{{route('api.group.participant', [Crypt::encryptString($group->id)])}}' type='hidden'/>
 @if(auth()->check())
-	<input id='beat_route' value='{{route('dev.api.group.beat')}}' type='hidden'/>
+	<input id='beat_route' value='{{route('api.group.beat')}}' type='hidden'/>
 	<input type='hidden' value='{{Crypt::encryptString(auth()->user()->id)}}' id='user_beat'/>
 	<input type='hidden' value='{{Crypt::encryptString($group->id)}}' id='group_beat'/>
 @endif
@@ -12,7 +12,7 @@
 <div style='display: flex;  flex-direction: column; align-items: center; justify-content: flex-start; width: 100%; height: 95vh;'>
 <h1>{{$group->name}}</h1>
 @if($group->is_participant == 0)
-	<form method='POST' action='{{route('dev.group.join')}}'>
+	<form method='POST' action='{{route('group.join')}}'>
 		{!! csrf_field() !!}
 		<input name='id' value='{{$group->id}}' type='hidden'/>
 		<button style='width:150px;'>join</button>
@@ -66,7 +66,7 @@
 	@if(auth()->check())
 
 		@if(auth()->user()->id === $group->host_id)
-			<form method='POST' action='{{route('dev.group.stepdown')}}'>
+			<form method='POST' action='{{route('group.stepdown')}}'>
 				{!! csrf_field() !!}
 				<input name='id' value='{{$group->id}}' type='hidden'/>
 				<button style='width:150px;'>step down as a host</button>
@@ -74,7 +74,7 @@
 
 
 		@elseif($group->host_id === NULL && auth()->user()->email_validated != NULL && $group->is_participant != 0)
-			<form method='POST' action='{{route('dev.group.stepup')}}'>
+			<form method='POST' action='{{route('group.stepup')}}'>
 				{!! csrf_field() !!}
 				<input name='id' value='{{$group->id}}' type='hidden'/>
 				<button style='width:150px;'>be the host</button>
@@ -82,7 +82,7 @@
 		@endif
 
 		@if(auth()->user()->id !== $group->host_id && auth()->check() && $group->is_participant != 0)
-		<form method='POST' action='{{route('dev.group.retire')}}'>
+		<form method='POST' action='{{route('group.retire')}}'>
 			{!! csrf_field() !!}
 			<input name='id' value='{{$group->id}}' type='hidden'/>
 			<button style='width:200px;'>step down of the group</button>
@@ -96,7 +96,7 @@
 		<a href={{route('register')}}>register</a>
 	@else
 	@if(auth()->user()->id === $group->host_id)
-		<a href='{{route('dev.update.group', [Crypt::encryptString($group->id)])}}'>edit info</a>
+		<a href='{{route('update.group', [Crypt::encryptString($group->id)])}}'>edit info</a>
 	@endif
 	@endif
 	<a href={{route('welcome')}}>home</a>

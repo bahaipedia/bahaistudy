@@ -34,11 +34,11 @@
 			@endif
 		@endif
 
-	 	<a href={{route('dev.update.user', [Crypt::encryptString($u->id)])}}>edit info</a>
+	 	<a href={{route('update.user', [Crypt::encryptString($u->id)])}}>edit info</a>
 
 </div>
 
 	@endforeach
 <br>
-<a href={{route('dev.welcome')}}>home</a>
+<a href={{route('welcome')}}>home</a>
 @stop

@@ -2,7 +2,7 @@
 @section('cnt')
 
 <h1>update book form</h1>
-<form enctype="multipart/form-data" method=POST action='{{route('dev.update.book.post')}}' class='wrap-r'>
+<form enctype="multipart/form-data" method=POST action='{{route('update.book.post')}}' class='wrap-r'>
 <input name="_method" type="hidden" value="PUT">
 {!! csrf_field() !!}
 <input type='hidden' value="{{Crypt::encryptString($book->id)}}" name='book_id'/>
@@ -42,13 +42,13 @@
 <br>
 <button>UPDATE</button>
 </form>
-<form method='POST' action='{{route('dev.delete.book.post')}}' id="delete">
+<form method='POST' action='{{route('delete.book.post')}}' id="delete">
 	{!! csrf_field() !!}
 	<input name="_method" type="hidden" value="delete">
 	<input name="book_id" type="hidden" value="{{Crypt::encryptString($book->id)}}">
 	<button>DELETE</button>	
 </form>
-<a href={{route('dev.welcome')}}>home</a>
+<a href={{route('welcome')}}>home</a>
 
 
 <script>

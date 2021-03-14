@@ -2,7 +2,7 @@
 @section('cnt')
 
 <h1>new group for '{{$container->name}}' container</h1>
-<form enctype="multipart/form-data" method=POST action='{{route('dev.store.group.post')}}' class='wrap-r'>
+<form enctype="multipart/form-data" method=POST action='{{route('store.group.post')}}' class='wrap-r'>
   {!! csrf_field() !!}
   <input type='hidden' name='group_container_id' value={{$container->id}}>
   <label for='name'>name</label>
@@ -47,6 +47,6 @@
   <button>CREATE</button>
 
 </form>
-<a href={{route('dev.welcome')}}>home</a>
+<a href={{route('welcome')}}>home</a>
 
 @stop

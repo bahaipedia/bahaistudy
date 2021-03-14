@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Dev;
 
-use App\Http\Controllers\Managment\FileController;
+use App\Http\Controllers\Dev\Managment\FileController;
 use Illuminate\Http\Request;
 
 use App\Book;
@@ -27,7 +27,7 @@ class StoreController extends Controller
         $authors = AuthorsInContainer::select('author_id')->where('group_container_id', $id)->get();
         $books = Book::whereIn('author_id', $authors->pluck('author_id'))->get();
         // CHECK AUTHOR STATUS
-    	return view('bahai.forms.store.group', compact('container', 'authors', 'books'));
+    	return view('dev.forms.store.group', compact('container', 'authors', 'books'));
     }
 	public function groupPost(Request $request){
         
@@ -63,11 +63,11 @@ class StoreController extends Controller
 
         $header = 'Group was created!';
         $message = "The group was created";
-        return view('auth.response', compact('header', 'message'));
+        return view('dev.response', compact('header', 'message'));
     }
 
 	public function author(){
-    	return view('bahai.forms.store.author');
+    	return view('dev.forms.store.author');
     }
 	public function authorPost(Request $request){
         
@@ -81,14 +81,14 @@ class StoreController extends Controller
 
         $header = 'Author data stored!';
         $message = "The data was stored";
-        return view('auth.response', compact('header', 'message'));
+        return view('dev.response', compact('header', 'message'));
     }
 
 
     public function book(){
     	// ALL THE VIEWS ITS GOING TO CHANGE WHEN WE START IMPLEMENT THE FRONT-END
     	$authors = Author::all()->where('status', NUll);
-    	return view('bahai.forms.store.book', compact('authors'));
+    	return view('dev.forms.store.book', compact('authors'));
     }
     public function bookPost(Request $request){
         $file_methods = new FileController;
@@ -108,12 +108,12 @@ class StoreController extends Controller
         $book->save();
         $header = 'Uploaded file!';
         $message = "The file was uploaded";
-        return view('auth.response', compact('header', 'message'));
+        return view('dev.response', compact('header', 'message'));
     }
 
     public function container(){
     	$authors = Author::all()->where('status', NUll);
-    	return view('bahai.forms.store.container', compact('authors'));
+    	return view('dev.forms.store.container', compact('authors'));
     }
 
 	public function containerPost(Request $request){
@@ -135,7 +135,7 @@ class StoreController extends Controller
 		
         $header = 'Container was created!';
         $message = "The container was created succesfully";
-        return view('auth.response', compact('header', 'message'));
+        return view('dev.response', compact('header', 'message'));
     }
 
 

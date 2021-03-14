@@ -2,7 +2,7 @@
 @section('cnt')
 
 <h1>new author form</h1>
-<form enctype="multipart/form-data" method=POST action='{{route('dev.update.author.post')}}' class='wrap-r'>
+<form enctype="multipart/form-data" method=POST action='{{route('update.author.post')}}' class='wrap-r'>
 {!! csrf_field() !!}
 <input name="_method" type="hidden" value="PUT">
 
@@ -24,13 +24,13 @@
 <button>UPDATE</button>
 </form>
 
-<form method='POST' action='{{route('dev.delete.author.post')}}' id="delete">
+<form method='POST' action='{{route('delete.author.post')}}' id="delete">
 	{!! csrf_field() !!}
 	<input name="_method" type="hidden" value="delete">
 	<input name="author_id" type="hidden" value="{{Crypt::encryptString($author->id)}}">
 	<button>DELETE</button>	
 </form>
-<a href={{route('dev.welcome')}}>home</a>
+<a href={{route('welcome')}}>home</a>
 
 
 <script>

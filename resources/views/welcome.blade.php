@@ -28,6 +28,7 @@
         <a href="#">HELP</a>
         <a href="#">RESOURCES</a>
         <a href="#">MATERIALS</a>
+        <a href="{{route('dev.welcome')}}">DEV</a>
         @if(auth()->user() !== NULL)
         <div class="user">
           <div class="profile-pic"> </div>
@@ -88,9 +89,9 @@
 
     <div id="contenedor-libros">
       @foreach($groups as $g)
-      <!--LIBRO 001-->
       <div class="ficha-libro">
-        <img class="portada-libro" src="" />
+        {{-- Jeannifer you can see here how to link the img url --}}
+        <img class="portada-libro" src="{{asset('/img/ki.png')}}" />
         <div class="parte-derecha-ficha">
           <h4 class="autor-nombre">{{$g->book->author->name}} {{$g->book->author->lastname}}</h4>
           <h3 class="libro-nombre">{{$g->book->name}}</h3>
@@ -246,6 +247,8 @@
       </div>
 
     </div>
+    {{-- Jeannifer you can see here how to link the 'js' url --}}
+    <script src='{{asset('/js/ex.js')}}'></script>
 </body>
 
 </html>
