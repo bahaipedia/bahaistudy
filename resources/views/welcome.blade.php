@@ -22,7 +22,7 @@
 
   <div class="general-container">
     <div id="barra">
-      <img id="logotipo" src="../public/img/logotype.svg" />
+      <img id="logotipo" src="{{asset('/img/logotype.svg')}}" />
       <div id="enlaces">
         <a href="#">ABOUT</a>
         <a href="#">HELP</a>
@@ -78,9 +78,9 @@
 
     <div class="contenedor">
       <div class="subtitulo">
-        <h3>Works of the Central Figures</h3>
+        <h3 class="espacio-superior">Works of the Central Figures</h3>
       </div>
-      <i class="puntos"></i>
+      <img class="puntos" src="{{asset('/img/puntos.svg')}}" />
     </div>
     <div class="barra-info">
       <div class="contenedor-vistas">
@@ -128,12 +128,12 @@
       <div class="subtitulo">
         <h3>Works of the House of Justice</h3>
       </div>
-      <i class="puntos"></i>
+      <img class="puntos" src="{{asset('/img/puntos.svg')}}" />
       <!--FILTROS-->
       <div class="barra-info">
         <div class="contenedor-vistas">
-          <i class="cuadricula"></i>
-          <i class="lista"></i>
+          <img class="cuadricula" src="{{asset('/img/cuadricula.svg')}}" />
+          <img class="lista" src="{{asset('/img/lista.svg')}}" />
         </div>
         <div class="contenedor-busqueda">
           <h5 class="amarilloline">filter</h5>
@@ -147,26 +147,33 @@
         @foreach($groups as $g)
         <!--LISTA - LIBRO 001-->
         <div class="lista-libro">
-          <div class="circulo-libro"></div>
+          <div class="ticincoizquierda">
+        <img class="portada-libro-pequeno circular" src="{{asset('/img/ki.png')}}" />
           <div class="autor-libro">
             <h4 class="autor-nombre amarillo">{{$g->book->author->name}} {{$g->book->author->lastname}}</h4>
             <h3 class="libro-nombre">{{$g->book->name}}</h3>
           </div>
-
+          </div>
+<div class="cinculibroizquierda">
           <p class="descripcion-libro-lista">
-            {{$g->description}}
+            {{$g->description}} {{$g->description}} {{$g->description}} {{$g->description}} {{$g->description}} {{$g->description}}
+
           </p>
+        </div>
           <div class="spaces-part">
             <p class="spaces">({{$g->max_size}} spaces available)</p>
           </div>
+          <div class="derecha-cinco"> 
           <a class="join-plus" href='{{route('group.dashboard', [$g->route])}}'>+</a>
+        </div>
         </div>
         @endforeach
       </div>
 
       <button class="show-more-lista ">
-        SHOW EVERYTHING
+        EVERYTHING
       </button>
+
       <div class="footer">
         <div class="linea-uno">
           <p class="footer-text">

@@ -27,7 +27,7 @@ git merge -m"add your message" origin/main
 - For push repeat this steps, just in case
 
 ```bash
-git fecth
+git fetch
 ```
 
 ```bash
@@ -53,6 +53,29 @@ git push --set-upstream origin <nameofthebranch>
 
 - The main branch organize the conflict and decide
 - The main branch do the pull
+
+## En caso de que salgan conflictos:
+
+```bash
+> PASO 1
+git checkout -b <nameofthebranch>
+
+> PASO 2
+git fecth
+
+> PASO 3
+git merge -m"add your message" origin/main
+
+!!!! ERROR Your local changes to the following files would be overwritten by merge:
+
+> PASO 4
+Open VSCode y resuelve los conflicts
+
+git add .
+git commit -m"Comentario"
+git push --set-upstream origin layout
+```
+
 
 ## Folders and files on the view and server
 

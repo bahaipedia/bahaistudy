@@ -2,8 +2,12 @@
 
 ## For Front-end
 
-[ ] Scroll-bar in firefox
-[ ] Scroll-bar margin situation in containers when it show and not showing
+- [ ] Scroll-bar in firefox
+- [ ] Scroll-bar margin situation in containers when it show and not showing
+- [ ] Vincular x de login a volver a pantalla principal (Actualmente va a pantalla principal de Dev)
+- [ ] Vincular logo de welcome a welcome
+- [ ] Cómo hacer que funcione Filter / Sort y Search del Home?
+- [ ] Vista de lista: Cómo hacer las imagenes circulares (cuando están en un div en porcentajes)
 
 ## For Server-side
 

@@ -2,7 +2,10 @@
 @section('cnt')
 <div class="centrado">
   <div class="caja-centrada">
-    <a class="tipo-logo" href={{route('welcome')}}>bahaistudy.group</a>
+    <div class="cerrar">
+      <a href="#">x</a>
+    </div>
+    <img class="logotipo" src="{{asset('/img/logo-color.svg')}}" />
 
     <form method=POST action='{{route('login')}}' class='wrap-r'>
       {!! csrf_field() !!}
