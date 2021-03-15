@@ -72,6 +72,8 @@ Route::post('/group/stepdown/', 'GroupController@stepdown')->name('group.stepdow
 Route::post('/group/stepup/', 'GroupController@stepup')->name('group.stepup');
 Route::post('/group/leave/', 'GroupController@leave')->name('group.leave');
 Route::post('/group/join/', 'GroupController@join')->name('group.join');
+// NEW ROUTE IN LAYOUT ENV
+Route::post('/group/message/', 'GroupController@message')->name('group.message');
 
 // Api routes
 Route::get('/api/group/participant/{id}', 'GroupController@apiParticipant')->name('api.group.participant');
@@ -118,14 +120,20 @@ Route::get('/dev/list/containers', 'Dev\ListController@containers')->name('dev.l
 Route::get('/dev/list/users', 'Dev\ListController@users')->name('dev.list.users');
 
 // Group routes
-Route::get('/dev/group/dashboard/{g?}', 'Dev\GroupController@dashboard')->name('dev.group.dashboard');
 Route::post('/dev/group/stepdown/', 'Dev\GroupController@stepdown')->name('dev.group.stepdown');
 Route::post('/dev/group/stepup/', 'Dev\GroupController@stepup')->name('dev.group.stepup');
 Route::post('/dev/group/leave/', 'Dev\GroupController@leave')->name('dev.group.leave');
 Route::post('/dev/group/join/', 'Dev\GroupController@join')->name('dev.group.join');
+
 
 // Api routes
 Route::get('/dev/api/group/participant/{id}', 'Dev\GroupController@apiParticipant')->name('dev.api.group.participant');
 Route::post('/dev/api/group/beat', 'Dev\GroupController@apiBeat')->name('dev.api.group.beat');
 
 
+
+
+// CHANGED ROUTES
+Route::post('/dev/group/message/', 'Dev\GroupController@message')->name('dev.group.message');
+Route::get('/dev/{title}/{g?}', 'Dev\GroupController@dashboard')->name('dev.group.dashboard');
+// GROUPCONTROLLER, LIST/CONTAINER.BLADE.PHP, GROUP/DASHBOARD 

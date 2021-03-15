@@ -12,9 +12,13 @@ use App\GroupParticipant;
 use App\LogsGroupParticipant;
 use App\AvailableTime;
 use App\User;
+use App\Message;
+
 
 use App\Group;
-
+// IN LINKED ROUTES GROUP
+// WELCOME AND CONTAINERS LIST
+// ALSO IN GROUP DASHBOARD
 
 
 class GroupController extends Controller
@@ -22,7 +26,8 @@ class GroupController extends Controller
     public function __construct(){
     	// $this->middleware('authorization');
 	}
-    public function dashboard($id = NULL){
+  // THIS FUNCTION WAS EDITED
+    public function dashboard($title, $id = NULL){
       $weekday =  ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
       $group = Group::where('route', $id)->first();
       if($group->status !== NULL){
@@ -160,5 +165,22 @@ class GroupController extends Controller
 		}
     	$last_online_at->update();
     	return 'done';
+    }
+
+    //THIS FUNCTION WAS EDITTED
+    public function message(Request $request){
+      try{
+          $group_id = Crypt::decryptString($request->group_id);
+      } catch (DecryptException $e) {
+          return 'API-E0002';
+      }
+      $message = New Message;
+      $message->user_id = auth()->user()->id;
+      $message->message = $request->new_message;
+      $message->group_id = $group_id;
+      $message->save();
+      $message_posted = Message::all()->where('edited', NULL)->where('delete', NULL)->where('group_id', $group_id);
+
+      return $message_posted;
     }
 }
