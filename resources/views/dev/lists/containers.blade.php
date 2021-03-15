@@ -24,7 +24,7 @@
 		@foreach($groups as $g)
 	 		@if($g->group_container_id == $c->id)	
 	 		<span style='display: flex; flex-direction: column;'></span>
-			<a href='{{route('dev.group.dashboard', [$g->route])}}' style='display: flex;'>
+			<a href='{{route('dev.group.dashboard', [str_replace('/', ' ', str_replace('#', ' ', $g->book->name)), $g->route])}}' style='display: flex;'>
 				<span>{{$g->name}} ||</span>
 				<span>{{$g->description}} ||</span>
 				<span>{{$g->book->name}}, </span>

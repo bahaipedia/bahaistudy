@@ -11,7 +11,7 @@
 
 <div style='display: flex;  flex-direction: column; align-items: center; justify-content: flex-start; width: 100%; height: 95vh;'>
 <h1>{{$group->name}}</h1>
-@if($group->is_participant == 0)
+@if($group->is_participant == 0 && auth()->check())
 	<form method='POST' action='{{route('group.join')}}'>
 		{!! csrf_field() !!}
 		<input name='id' value='{{$group->id}}' type='hidden'/>
