@@ -129,6 +129,7 @@ Route::post('/dev/group/join/', 'Dev\GroupController@join')->name('dev.group.joi
 // Api routes
 Route::get('/dev/api/group/participant/{id}', 'Dev\GroupController@apiParticipant')->name('dev.api.group.participant');
 Route::post('/dev/api/group/beat', 'Dev\GroupController@apiBeat')->name('dev.api.group.beat');
+Route::get('/dev/api/message/poll/{id}', 'Dev\GroupController@apiMessagePoll')->name('dev.api.message.poll');
 
 
 

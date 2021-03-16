@@ -145,7 +145,7 @@ class GroupController extends Controller
         return $data;
     }
 
-     public function apiBeat(Request $request){
+    public function apiBeat(Request $request){
     	try{
             $id = Crypt::decryptString($request->id);
             $group_id = Crypt::decryptString($request->group_id);
@@ -160,4 +160,6 @@ class GroupController extends Controller
     	$last_online_at->update();
     	return 'done';
     }
+
+   
 }

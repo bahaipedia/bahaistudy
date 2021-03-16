@@ -184,4 +184,17 @@ class GroupController extends Controller
       $message->user_info = $message->user->name.' '.$message->user->lastname.' said: ';
       return $message;
     }
+     public function apiMessagePoll($id){
+      $message = Message::select('user_id', 'id' ,'message')->where('group_id', $id)->get();
+      foreach($message as $m){
+        $m->user_info = $m->user->name.' '.$m->user->lastname.' said: ';
+        if(auth()->user() && $m->user_id == auth()->user()->id){
+          $m->self = 'self';
+        }
+        else{
+          $m->self = 'other';
+        }
+      }
+      return $message;
+    }
 }
