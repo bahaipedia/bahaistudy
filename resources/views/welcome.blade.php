@@ -77,8 +77,8 @@
     @foreach($containers as $c)
 
     <div class="contenedor">
-      <div class="subtitulo">
-        <h3 class="espacio-superior">Works of the Central Figures</h3>
+      <div class="subtitulo espacio">
+        <h3>Works of the Central Figures</h3>
       </div>
       <img class="puntos" src="{{asset('/img/puntos.svg')}}" />
     </div>
@@ -118,14 +118,36 @@
       @endif
 
       @endforeach
-      @if ($count == 0)
+<!-- CREATE NEW GROUP -->
+      <div class="ficha-libro">
+        {{-- Jeannifer you can see here how to link the img url --}}
+        <div class="izquierda">
+        <img class="portada-libro new-group" src="{{asset('/img/books.png')}}" />
+        <form enctype="multipart/form-data" method=POST action='{{route('dev.store.book.post')}}' class='wrap-r'>
+          {!! csrf_field() !!}
+        <h3 class="sobre-imagen">Create New Group</h3>
+        </div>
+        <div class="parte-derecha-ficha">
+{{--          <h4 class="autor-nombre">{{$g->book->author->name}} {{$g->book->author->lastname}}</h4> --}}
+  {{--        <h3 class="libro-nombre">{{$g->name}}</h3> --}}
+          <input id='name' class="libro-nombre hachetres" max='50' value='Study Group Name' name='name'  type='text'>
 
-      <h1> this container is empty </h1>
-      @endif
+          <p class="spaces">({{$g->available}} spaces available of {{$g->max_size}})</p>
+          <p class="descripcion-libro">
+            {{$g->description}}
+          </p>
+          <span class="parte-derecha-ficha-espacio"></span>
+          <button class="join-ficha">CREATE</button>
+          <!--
+            
+          -->
+        </div>
+      </div>
+
     </div>
     @endforeach
     <div class="contenedor segundo">
-      <div class="subtitulo">
+      <div class="subtitulo espacio">
         <h3>Works of the House of Justice</h3>
       </div>
       <img class="puntos" src="{{asset('/img/puntos.svg')}}" />
@@ -173,39 +195,6 @@
       <button class="show-more-lista ">
         EVERYTHING
       </button>
-
-      <div class="footer">
-        <div class="linea-uno">
-          <p class="footer-text">
-            About
-          </p>
-          <p class="footer-text">
-            Help
-          </p>
-          <p class="footer-text">
-            Resources
-          </p>
-          <p class="footer-text">
-            Materials
-          </p>
-        </div>
-
-        <div class="linea-dos">
-          <p class="footer-text">
-            Terms of Use
-          </p>
-          <p class="footer-text">
-            Privacy Policy
-          </p>
-        </div>
-
-        <div class="linea-tres">
-          <p class="copyright">
-            © bahaistudygroup | 2021
-          </p>
-        </div>
-
-      </div>
 </div>
         <div class="footer">
           <div class="linea-uno">
