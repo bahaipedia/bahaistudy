@@ -8,6 +8,7 @@
 - [ ] Vincular logo de welcome a welcome
 - [ ] Cómo hacer que funcione Filter / Sort y Search del Home?
 - [ ] Vista de lista: Cómo hacer las imagenes circulares (cuando están en un div en porcentajes)
+- [ ] authors (View: C:\xampp\htdocs\bahai\resources\views\welcome.blade.php)
 
 ## For Server-side
 

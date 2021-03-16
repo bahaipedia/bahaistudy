@@ -53,7 +53,20 @@ h3 {
   color: #49392b;
 }
 
+.hachetres {
+  font-family: "Noto Serif", serif;
+  font-size: 1.7em;
+  color: #49392b;
+}
+
 h4 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1em;
+  font-weight: 300;
+  color: #79c3aa;
+}
+
+.hachecuatro {
   font-family: "Montserrat", sans-serif;
   font-size: 1em;
   font-weight: 300;
@@ -396,6 +409,10 @@ a:hover {
   flex-direction: row;
 }
 
+.espacio {
+  margin-top: 30px;
+}
+
 .puntos {
   height: 7px;
   width: 32px;
@@ -493,6 +510,14 @@ a:hover {
   height: 335px;
   display: flex;
   position: relative;
+}
+
+.sobre-imagen {
+  position: relative;
+  will-change: top, left;
+  left: 0px;
+  top: -232px;
+  text-align: center;
 }
 
 .parte-derecha-ficha {
