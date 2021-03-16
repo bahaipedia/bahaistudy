@@ -38,7 +38,7 @@ class GroupController extends Controller
     
       $at = AvailableTime::where('group_id', $group->id)->get();
       $participants = GroupParticipant::where('group_id', $group->id)->where('status', 1)->get();
-      
+      $messages = Message::all()->where('edited', NULL)->where('delete', NULL)->where('group_id', $group->id);
       if(auth()->check()){
         $group->is_participant = GroupParticipant::where('user_id', auth()->user()->id)
         ->where('group_id', $group->id)
@@ -57,8 +57,10 @@ class GroupController extends Controller
       else{
         $participants->is_participant = 'Not auth';
       }
-      return view('dev.group.dashboard', compact('group', 'participants', 'at', 'weekday'));
+      return view('dev.group.dashboard', compact('group', 'participants', 'at', 'weekday', 'messages'));
     }
+
+
     public function stepdown(Request $request){
 
 	    $group = Group::where('id', $request->id)->select('id', 'host_id', 'route')->first();
@@ -179,8 +181,7 @@ class GroupController extends Controller
       $message->message = $request->new_message;
       $message->group_id = $group_id;
       $message->save();
-      $message_posted = Message::all()->where('edited', NULL)->where('delete', NULL)->where('group_id', $group_id);
-
-      return $message_posted;
+      $message->user_info = $message->user->name.' '.$message->user->lastname.' said: ';
+      return $message;
     }
 }
