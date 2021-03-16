@@ -82,7 +82,7 @@
 		@endif
 
 		@if(auth()->user()->id !== $group->host_id && auth()->check() && $group->is_participant != 0)
-		<form method='POST' action='{{route('group.retire')}}'>
+		<form method='POST' action='{{route('group.leave')}}'>
 			{!! csrf_field() !!}
 			<input name='id' value='{{$group->id}}' type='hidden'/>
 			<button style='width:200px;'>step down of the group</button>

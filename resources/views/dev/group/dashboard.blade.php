@@ -54,9 +54,15 @@
 </div>
 <div style='flex-grow: 2'></div>
 
-<div style='font-size:12px; display: flex;  flex-direction: column; width: 90%; height: 150px; border:1px solid black;'>
-<p>messages</p>
-
+<div id='message-box' style='font-size:12px; display: flex;  flex-direction: column; width: 90%; height: 150px; border:1px solid black; overflow-y: auto;'>
+<input type='hidden' id='message-string' value='{{auth()->user()->name}} {{auth()->user()->lastname}} said:'/>
+@foreach($messages as $m)
+  @if($m->user_id == auth()->user()->id)
+    <span data-id='{{$m->id}}' class='message-span' style='align-self: flex-end;'><span style='color:grey;'>{{$m->user->name}} {{$m->user->lastname}} said:</span><span>{{$m->message}}</span></span>
+  @else
+    <span data-id='{{$m->id}}' class='message-span' style='align-self: flex-start;'><span style='color:grey;'>{{$m->user->name}} {{$m->user->lastname}} said:</span><span>{{$m->message}}</span></span>
+  @endif
+@endforeach
 </div>
 
 {{-- THIS FUNTION WAS EDITED --}}
@@ -73,7 +79,7 @@
   @if(auth()->check())
 
     @if(auth()->user()->id === $group->host_id)
-      <form method='POST' action='{{route('group.stepdown')}}'>
+      <form method='POST' action='{{route('dev.group.stepdown')}}'>
         {!! csrf_field() !!}
         <input name='id' value='{{$group->id}}' type='hidden'/>
         <button style='width:150px;'>step down as a host</button>
@@ -81,7 +87,7 @@
 
 
     @elseif($group->host_id === NULL && auth()->user()->email_validated != NULL && $group->is_participant != 0)
-      <form method='POST' action='{{route('group.stepup')}}'>
+      <form method='POST' action='{{route('dev.group.stepup')}}'>
         {!! csrf_field() !!}
         <input name='id' value='{{$group->id}}' type='hidden'/>
         <button style='width:150px;'>be the host</button>
@@ -89,7 +95,7 @@
     @endif
 
     @if(auth()->user()->id !== $group->host_id && auth()->check() && $group->is_participant != 0)
-    <form method='POST' action='{{route('group.retire')}}'>
+    <form method='POST' action='{{route('dev.group.leave')}}'>
       {!! csrf_field() !!}
       <input name='id' value='{{$group->id}}' type='hidden'/>
       <button style='width:200px;'>step down of the group</button>
@@ -103,51 +109,50 @@
     <a href={{route('register')}}>register</a>
   @else
   @if(auth()->user()->id === $group->host_id)
-    <a href='{{route('update.group', [Crypt::encryptString($group->id)])}}'>edit info</a>
+    <a href='{{route('dev.update.group', [Crypt::encryptString($group->id)])}}'>edit info</a>
   @endif
   @endif
   <a href={{route('welcome')}}>home</a>
 </div>
 <script>
+
+  
   onlineStatus = document.querySelectorAll('.online-status')
-  console.log(onlineStatus[1])
-  var cript = 
   setInterval(function(){
     var url = document.querySelector('#participant_route').value;
     var url2 = document.querySelector('#beat_route').value;
-
+    // Render participant logic
     $.ajax({
-          url: url,
-          type: "GET",
-          success: function(data){
-          renderParticipant(data);
-          }
+      url: url,
+      type: "GET",
+      success: function(data){
+      renderParticipant(data);
+      }
     });
 
+    // Render host logic
     $.ajax({
-
-    headers: {
+      headers: {
         'X-CSRF-Token': $('input[name="_token"]').val()
       },
       data: {
         'id': document.querySelector('#user_beat').value,
         'group_id': document.querySelector('#group_beat').value,
-    },
-        url: url2,
-        type: "POST",
-        success: function(data){
-        }
-  });
-  }, 5000)
+      },
+      url: url2,
+      type: "POST",
+      success: function(data){
+      }
+    });
+  }, 15000)
 
   
+  // Render logic
 
   function renderParticipant(data){
     document.querySelector('#participant').innerHTML = '';
     for(var i = 0; i<data[1].length; i++){
-      
         if(data[1][i].id == data[0].host_id){
-
           document.querySelector('#participant').innerHTML += '<p style="font-size: 12px">'+data[1][i].name+' '+data[1][i].lastname+' (HOST) </p>'
           document.querySelector('#host').innerHTML = 'host: '+data[1][i].name+' '+data[1][i].lastname
         }
@@ -170,16 +175,23 @@
         // is not online
       }
     }
-
   }
 
-  // THIS FUNTION WAS EDITED
+
+  // Message logic
+
+  messageBox = document.querySelector('#message-box');
+  messageSpan = document.querySelectorAll('.message-span');
+  messageBox.scrollTop = messageBox.scrollTopMax;
+  messageString = document.querySelector('#message-string').value;
   messageForm = document.querySelector('#message-form');
   messageInput = document.querySelector('#message-input');
   messageForm.addEventListener('keyup', function(e){
     if(e.keyCode == 13){
       newMessage = messageInput.value;
       messageInput.value = '';
+      messageBox.innerHTML += '<span  class="message-span" style="align-self: flex-end;"><span style="color:grey;">'+messageString+'</span><span>'+newMessage+'</span></span>'
+      messageBox.scrollTop = messageBox.scrollTopMax;
       $.ajax({
         headers: {
           'X-CSRF-Token': $('input[name="_token"]').val()
@@ -191,7 +203,6 @@
         url: document.querySelector('#message-route').value,
         type: "POST",
         success: function(data){
-          console.log(data)
         }
       });
     }
