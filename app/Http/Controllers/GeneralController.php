@@ -29,7 +29,7 @@ class GeneralController extends Controller
             $g->available = $g->max_size - $participants;
         }
         $containers = GroupContainer::select('id', 'name', 'weight')->orderBy('weight', 'desc')->limit(3)->get();
-    	
+
         return view('welcome', compact('title', 'groups', 'containers'));
     }
 

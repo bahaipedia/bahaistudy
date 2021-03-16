@@ -56,7 +56,10 @@ h3 {
 .hachetres {
   font-family: "Noto Serif", serif;
   font-size: 1.7em;
-  color: #49392b;
+  color: #E6DFDA;
+  font-weight: 700;
+  border: none;
+  width: 260px;
 }
 
 h4 {
@@ -83,6 +86,12 @@ h5 {
 p {
   font-family: "Montserrat", sans-serif;
   font-size: 0.9em;
+}
+
+.pe {
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.9em;
+  color: #E6DFDA
 }
 
 /* HIPERVINCULOS Y BOTONES */
@@ -534,28 +543,105 @@ a:hover {
   text-transform: uppercase;
   font-weight: 500;
   font-size: 0.9em;
+  margin-bottom: 10px;
 }
 
 .libro-nombre {
-  margin-top: -10px;
+  margin-top: 0px;
   top: 0px;
+  margin-bottom: 10px;
 }
 
+.desplegable {
+  width: 180px;
+  position: relative;
+  top: 10px;
+}
+
+select {
+  border: none;
+  height: 30px;
+  color: #79c3aa;
+  outline: none;  
+}
+
+select::-ms-expand {
+  display: none;
+}
 .libro-nombre::first-letter {
   text-transform: capitalize;
 }
 
-.spaces {
-  color: #505050;
+.formulario {
+  outline: none;
+}
+
+.seleccion {
+  outline: none;
+  width: 30px;
+  border: none;
+}
+
+.agrupar{
   display: flex;
-  align-self: center;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 220px;
+  align-items: center;
+  font-size: 1.1em;
+  color: #BAADA2;
+  margin: 0px;
+  padding-bottom: 20px;
+  padding-right: 20px;
+  border-bottom: 2px solid #79c3aa;
+  width: 250px;
+}
+
+.spaces {
+  color: #BAADA2;
+  display: flex;
+  font-size: 1.1em;
+  margin: 0px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+    border-bottom: 2px solid #79c3aa;
+    width: 250px;
+}
+
+.spaces-lista {
+  color: #BAADA2;
+  display: flex;
+  font-size: 1.1em;
+  margin: 0px;
+  width: 250px;
 }
 
 .descripcion-libro {
-  margin: 0px;
+  margin-top: 20px;
   width: 90%;
   line-height: 1.3;
-  color: #49392b;
+  font-size: 1.1em;
+  color: #49392B;
+}
+
+textarea{
+  resize: none;
+}
+textarea:focus{
+  border: none;
+}
+
+.descripcion-libro-form {
+  border: none;
+  font-size: 1.1em;
+  margin-top: 10px;
+  line-height: 1.6em;
+}
+
+.descripcion-libro-form:focus {
+  border: none;
+  outline: none;
+
 }
 
 .descripcion-libro::first-letter {

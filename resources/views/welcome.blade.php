@@ -119,6 +119,7 @@
 
       @endforeach
 <!-- CREATE NEW GROUP -->
+<form enctype="multipart/form-data" method=POST action='{{route('dev.store.group.post')}}' class='wrap-r'>
       <div class="ficha-libro">
         {{-- Jeannifer you can see here how to link the img url --}}
         <div class="izquierda">
@@ -128,14 +129,22 @@
         <h3 class="sobre-imagen">Create New Group</h3>
         </div>
         <div class="parte-derecha-ficha">
+          <select class="autor-nombre desplegable" name="book_id">
+            <option value="Option 1">Option 1</option>
+            <option value="Option 2">Option 2</option>
+            <option value="Option 3">Option 3</option>
+            <option value="Option 4">Option 4</option>
+            <option value="Option 5">Option 5</option>
+          </select>
+
 {{--          <h4 class="autor-nombre">{{$g->book->author->name}} {{$g->book->author->lastname}}</h4> --}}
   {{--        <h3 class="libro-nombre">{{$g->name}}</h3> --}}
-          <input id='name' class="libro-nombre hachetres" max='50' value='Study Group Name' name='name'  type='text'>
-
-          <p class="spaces">({{$g->available}} spaces available of {{$g->max_size}})</p>
-          <p class="descripcion-libro">
-            {{$g->description}}
-          </p>
+          <input id='name' class="libro-nombre hachetres formulario" max='50' value='Select Book Title' name='name' type='text'>
+          <div class="agrupar">
+          <label class="pe">| Maximum Group Size</label>
+          <input id='name' class="pe seleccion" id='max_size' min='1' max='20' step='1' name='max_size' type='number' name='name' type='text'>
+        </div>
+        <textarea id='name' class="descripcion-libro-form pe" rows="3" cols="15">Description... Lorem ipsum dolor sit amet.</textarea>
           <span class="parte-derecha-ficha-espacio"></span>
           <button class="join-ficha">CREATE</button>
           <!--
@@ -143,6 +152,7 @@
           -->
         </div>
       </div>
+    </form>
 
     </div>
     @endforeach
@@ -183,7 +193,7 @@
           </p>
         </div>
           <div class="spaces-part">
-            <p class="spaces">({{$g->max_size}} spaces available)</p>
+            <p class="spaces-lista">({{$g->max_size}} spaces available)</p>
           </div>
           <div class="derecha-cinco"> 
           <a class="join-plus" href='{{route('group.dashboard', [$g->route])}}'>+</a>

@@ -10,6 +10,9 @@
 - [ ] Vista de lista: Cómo hacer las imagenes circulares (cuando están en un div en porcentajes)
 - [ ] authors (View: C:\xampp\htdocs\bahai\resources\views\welcome.blade.php)
 
+### Reunión 16 de Marzo de 2021
+- [ ] Necesito un Select Author como el Select Book de aca http://localhost:8000/dev/groups/6
+
 ## For Server-side
 
 [ ] ex. ERROR when I click 'login' button in welcome.blade.php
