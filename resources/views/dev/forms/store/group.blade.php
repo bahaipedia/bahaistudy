@@ -1,6 +1,5 @@
 @extends('template')
 @section('cnt')
-
 <h1>new group for '{{$container->name}}' container</h1>
 <form enctype="multipart/form-data" method=POST action='{{route('dev.store.group.post')}}' class='wrap-r'>
   {!! csrf_field() !!}

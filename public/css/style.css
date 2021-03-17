@@ -610,6 +610,17 @@ select::-ms-expand {
     width: 250px;
 }
 
+/* GROUPS */
+
+.grupo-container {
+  display: flex;
+  margin: 1px solid red;
+  align-items: center;
+  justify-content: center;
+  width: 500px;
+  height: 400px;
+}
+
 .spaces-lista {
   color: #BAADA2;
   display: flex;
