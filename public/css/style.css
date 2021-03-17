@@ -613,6 +613,8 @@ select::-ms-expand {
 .spaces-lista {
   color: #BAADA2;
   display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 1.1em;
   margin: 0px;
   width: 250px;
@@ -738,6 +740,7 @@ height: 100%;
   position: relative;
   line-height: 1.3em;
   color: #49392b;
+  font-size: 1.1em;
 }
 
 

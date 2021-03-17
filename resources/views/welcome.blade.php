@@ -188,7 +188,7 @@
           </div>
 <div class="cinculibroizquierda">
           <p class="descripcion-libro-lista">
-            {{$g->description}} {{$g->description}} {{$g->description}} {{$g->description}} {{$g->description}} {{$g->description}}
+            {{$g->description}} {{$g->description}} {{$g->description}}
 
           </p>
         </div>
