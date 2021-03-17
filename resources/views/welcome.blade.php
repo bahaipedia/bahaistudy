@@ -81,11 +81,10 @@
         <h3>Works of the Central Figures</h3>
       </div>
       <img class="puntos" src="{{asset('/img/puntos.svg')}}" />
-    </div>
     <div class="barra-info">
       <div class="contenedor-vistas">
-        <i class="cuadricula"> </i>
-        <i class="lista"> </i>
+        <img class="cuadricula" src="{{asset('/img/cuadricula.svg')}}" />
+        <img class="lista" src="{{asset('/img/lista.svg')}}" />
       </div>
 
       <div class="contenedor-busqueda">
@@ -115,6 +114,7 @@
           <a class="join-ficha" href='{{route('group.dashboard', [$g->route])}}'>JOIN</a>
         </div>
       </div>
+
       @endif
 
       @endforeach
@@ -153,10 +153,10 @@
         </div>
       </div>
     </form>
-
+  </div>
     </div>
     @endforeach
-    <div class="contenedor segundo">
+    <div class="contenedor">
       <div class="subtitulo espacio">
         <h3>Works of the House of Justice</h3>
       </div>
@@ -196,7 +196,9 @@
             <p class="spaces-lista">({{$g->max_size}} spaces available)</p>
           </div>
           <div class="derecha-cinco"> 
-          <a class="join-plus" href='{{route('group.dashboard', [$g->route])}}'>+</a>
+            <a href="{{route('group.dashboard', [$g->route])}}">
+          <img class="join-plus" src="{{asset('/img/plus-sign.svg')}}" />
+            </a>
         </div>
         </div>
         @endforeach
