@@ -166,7 +166,10 @@ a:hover {
 }
 
 .show-more-lista {
-  padding: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
   font-size: 0.9em;
   letter-spacing: 0.25em;
   border: solid 2px #49392b;
