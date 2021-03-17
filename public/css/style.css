@@ -51,12 +51,16 @@ h3 {
   font-family: "Noto Serif", serif;
   font-size: 1.7em;
   color: #49392b;
+  margin: 0px;
 }
 
 .hachetres {
   font-family: "Noto Serif", serif;
   font-size: 1.7em;
-  color: #49392b;
+  color: #E6DFDA;
+  font-weight: 700;
+  border: none;
+  width: 260px;
 }
 
 h4 {
@@ -83,6 +87,12 @@ h5 {
 p {
   font-family: "Montserrat", sans-serif;
   font-size: 0.9em;
+}
+
+.pe {
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.9em;
+  color: #E6DFDA
 }
 
 /* HIPERVINCULOS Y BOTONES */
@@ -136,9 +146,6 @@ a:hover {
 }
 
 .join-plus {
-  color: #eba72c;
-  border: solid 2px #eba72c;
-  border-radius: 100px;
   width: 40px;
   height: 40px;
   justify-content: center;
@@ -151,18 +158,18 @@ a:hover {
 }
 
 .join-plus:hover {
-  background-color: #eba72c;
-  color: white;
   border: none;
 }
 
 .join-plus:active {
-  background-color: #bd8621;
   border: none;
 }
 
 .show-more-lista {
-  padding: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
   font-size: 0.9em;
   letter-spacing: 0.25em;
   border: solid 2px #49392b;
@@ -395,14 +402,13 @@ a:hover {
 .contenedor {
   display: flex;
   position: relative;
-  top: 50px;
   width: 100%;
   flex-direction: column;
 }
 
 .subtitulo {
   width: 100%;
-  height: 80px;
+  height: 50px;
   display: flex;
   position: relative;
   justify-content: center;
@@ -424,7 +430,6 @@ a:hover {
 
 .barra-info {
     width: 95%;
-    top: 20px;
     display: flex;
     position: relative;
     align-self: center;
@@ -438,6 +443,11 @@ a:hover {
     justify-content: space-around;
     width: 60px;
   }
+
+.sangria {
+  position: relative;
+  top: 40px;
+}
 
   .cuadricula {
     width: 18px;
@@ -479,7 +489,6 @@ a:hover {
 /* LIBROS */
 
 #contenedor-libros {
-  top: 50px;
   width: 98%;
   height: 370px;
   display: flex;
@@ -488,6 +497,8 @@ a:hover {
   align-self: center;
   overflow-x: auto;
   overflow-y: hidden;
+  top: 20px;
+  margin-bottom: 80px;
 }
 
 .ficha-libro {
@@ -516,7 +527,7 @@ a:hover {
   position: relative;
   will-change: top, left;
   left: 0px;
-  top: -232px;
+  top: -195px;
   text-align: center;
 }
 
@@ -534,28 +545,118 @@ a:hover {
   text-transform: uppercase;
   font-weight: 500;
   font-size: 0.9em;
+  margin-bottom: 10px;
 }
 
 .libro-nombre {
-  margin-top: -10px;
+  margin-top: 0px;
   top: 0px;
+  margin-bottom: 10px;
 }
 
+.desplegable {
+  width: 180px;
+  position: relative;
+  top: 10px;
+}
+
+select {
+  border: none;
+  height: 30px;
+  color: #79c3aa;
+  outline: none;  
+}
+
+select::-ms-expand {
+  display: none;
+}
 .libro-nombre::first-letter {
   text-transform: capitalize;
 }
 
-.spaces {
-  color: #505050;
+.formulario {
+  outline: none;
+}
+
+.seleccion {
+  outline: none;
+  width: 30px;
+  border: none;
+}
+
+.agrupar{
   display: flex;
-  align-self: center;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 220px;
+  align-items: center;
+  font-size: 1.1em;
+  color: #BAADA2;
+  margin: 0px;
+  padding-bottom: 20px;
+  padding-right: 20px;
+  border-bottom: 2px solid #79c3aa;
+  width: 250px;
+}
+
+.spaces {
+  color: #BAADA2;
+  display: flex;
+  font-size: 1.1em;
+  margin: 0px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+    border-bottom: 2px solid #79c3aa;
+    width: 250px;
+}
+
+/* GROUPS */
+
+.grupo-container {
+  display: flex;
+  margin: 1px solid red;
+  align-items: center;
+  justify-content: center;
+  width: 500px;
+  height: 400px;
+}
+
+.spaces-lista {
+  color: #BAADA2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.1em;
+  margin: 0px;
+  width: 250px;
 }
 
 .descripcion-libro {
-  margin: 0px;
+  margin-top: 20px;
   width: 90%;
   line-height: 1.3;
-  color: #49392b;
+  font-size: 1.1em;
+  color: #49392B;
+}
+
+textarea{
+  resize: none;
+}
+textarea:focus{
+  border: none;
+}
+
+.descripcion-libro-form {
+  border: none;
+  font-size: 1.1em;
+  margin-top: 10px;
+  line-height: 1.6em;
+}
+
+.descripcion-libro-form:focus {
+  border: none;
+  outline: none;
+
 }
 
 .descripcion-libro::first-letter {
@@ -650,6 +751,7 @@ height: 100%;
   position: relative;
   line-height: 1.3em;
   color: #49392b;
+  font-size: 1.1em;
 }
 
 
@@ -700,7 +802,7 @@ height: 100%;
   width: 100%;
   position: relative;
   display: flex;
-  top: 300px;
+  top: 100px;
   justify-content: center;
   flex-direction: column;
 }
