@@ -63,11 +63,10 @@ class StoreController extends Controller
 
 
 
-        $header = 'Group was created!';
-        $message = "The group was created";
-        return view('auth.response', compact('header', 'message'));
+        // $header = 'Group was created!';
+        // $message = "The group was created";
+        return redirect()->route('welcome');
     }
-
 	public function author(){
     	return view('bahai.forms.store.author');
     }
