@@ -161,10 +161,10 @@ class GroupController extends Controller
             return 'API-E0002';
         }
    		$last_online_at = GroupParticipant::select('id', 'last_online_at')->where('user_id', $id)->where('group_id', $group_id)->first();
-		if($last_online_at !== NUll){
-			$last_online_at->last_online_at = Carbon::now();
-			$last_online_at->update();
-		}
+  		if($last_online_at !== NUll){
+  			$last_online_at->last_online_at = Carbon::now();
+  			$last_online_at->update();
+  		}
     	$last_online_at->update();
     	return 'done';
     }

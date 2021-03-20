@@ -2,10 +2,14 @@
 @section('cnt')
 
 <input id='participant_route' value='{{route('api.group.participant', [Crypt::encryptString($group->id)])}}' type='hidden'/>
+<input id='beat_route' value='{{route('api.group.beat')}}' type='hidden'/>
+
 @if(auth()->check())
-  <input id='beat_route' value='{{route('api.group.beat')}}' type='hidden'/>
+  <input type='hidden' id='val' value='yes'/>
   <input type='hidden' value='{{Crypt::encryptString(auth()->user()->id)}}' id='user_beat'/>
   <input type='hidden' value='{{Crypt::encryptString($group->id)}}' id='group_beat'/>
+@else
+  <input type='hidden' id='val' value='no'/>
 @endif
 {!! csrf_field() !!}
 
@@ -127,66 +131,80 @@
 
   participant = document.querySelector('#participant');
   host = document.querySelector('#host');
-
+  // logic if user is not logged in
   poll();
   function poll(){
-    var url = document.querySelector('#participant_route').value;
+    var participantsQuery = document.querySelector('#participant_route').value;
      $.ajax({
-        url: url,
+        url: participantsQuery,
         type: "GET",
         success: function(data){
             setTimeout(poll,5000);
             renderParticipant(data);
+            statusParticipant(data[2])
         }
       });
   }
-      // var url2 = document.querySelector('#beat_route').value;
 
-      // // Render host logic
-      // $.ajax({
-      //   headers: {
-      //     'X-CSRF-Token': $('input[name="_token"]').val()
-      //   },
-      //   data: {
-      //     'id': document.querySelector('#user_beat').value,
-      //     'group_id': document.querySelector('#group_beat').value,
-      //   },
-      //   url: url2,
-      //   type: "POST",
-      //   success: function(data){
-      //       alert(data);  
-      //       setTimeout(poll,5000);
-      //   }
-      // });
-     // Render participant logic
-     // for(var ii = 0; ii<data[2].length; ii++){
-     //  var dt = new Date();
-     //      var tz = dt.getTimezoneOffset();
-     //      var actual = ((dt/1000)-tz);
-     //  if(new Date(data[2][ii].last_online_at).getTime()/1000 - actual - 18285 > 0){
-     //    // is online
-     //  }
-     //  else{
-     //    // is not online
-     //  }
-    
-  // Render logic
-  
+
+  if(document.querySelector('#val').value == 'yes'){
+    beatPoll();
+    function beatPoll(){
+      var beatQuery = document.querySelector('#beat_route').value;
+      // Render host logic
+      $.ajax({
+        headers: {
+          'X-CSRF-Token': $('input[name="_token"]').val()
+        },
+        data: {
+          'id': document.querySelector('#user_beat').value,
+          'group_id': document.querySelector('#group_beat').value,
+        },
+        url: beatQuery,
+        type: "POST",
+        success: function(data){
+            setTimeout(beatPoll,15000);
+        }
+      });
+    }
+  }
+   
+  function statusParticipant(data){
+    for(time of data){
+      // console.log(new Date().getTimezoneOffset())
+      var offset = new Date()/1000 + new Date().getTimezoneOffset()*60
+      var online = new Date(time.last_online_at).getTime()/1000
+        if(offset-15 > online){
+          console.log(time.id, 'this user is offline')
+        }
+        else{
+          console.log(time.id, 'this user is online')
+        }
+    }
+  }
 
   function renderParticipant(data){
     participant.innerHTML = '';
+    host.innerHTML = '';
     for(var i = 0; i<data[1].length; i++){
+      var participantHost = document.createElement('p')
+      // css class here
+      // participantHost.className = '..'
+      participantHost.style.fontSize = '12px';
       if(data[1][i].id == data[0].host_id){
-        participant.innerHTML += '<p style="font-size: 12px">'+data[1][i].name+' '+data[1][i].lastname+' (HOST) </p>'
-        host.innerHTML = 'host: '+data[1][i].name+' '+data[1][i].lastname
+        participantHostText = document.createTextNode(`${data[1][i].name} ${data[1][i].lastname} (HOST)`)
+        hostText = document.createTextNode(`host: ${data[1][i].name} ${data[1][i].lastname}`)
       }
       else{
-        participant.innerHTML += '<p style="font-size: 12px">'+data[1][i].name+' '+data[1][i].lastname+'</p>'
+        participantHostText = document.createTextNode(`${data[1][i].name} ${data[1][i].lastname}`)
       }
-    }
+      participantHost.appendChild(participantHostText) 
+      participant.appendChild(participantHost);
+      }
       if(data[0].host_id == null){
-          host.innerHTML = 'NO HOST IN THIS GROUP'
+        hostText = document.createTextNode(`NO HOST IN THIS GROUP`)
       }
+      host.appendChild(hostText)
     }
 
 
@@ -194,7 +212,7 @@
   message = {}
   message.box = document.querySelector('#message-box');
   message.span = document.querySelectorAll('.message-span');
-  message.box.scrollTop = message.box.scrollTopMax;
+  message.box.scrollTop = message.box.scrollHeight;
   message.string = document.querySelector('#message-string').value;
   message.form = document.querySelector('#message-form');
   message.input = document.querySelector('#message-input');
@@ -205,7 +223,7 @@
   //   }
   // }
   var messageQuery = document.querySelector('#message_poll').value;
-
+  var messageTimer;
   messagePoll();
   function messagePoll(){
     var url = messageQuery;
@@ -217,9 +235,7 @@
             for(var i = 0; i<data.length; i++){
               messageRender(data[i].message, data[i].self, data[i].user_info, 'get')
             }
-            setTimeout(messagePoll,10000);
-            message.box.scrollTop = message.box.scrollTopMax;
-
+            messageTimer = setTimeout(messagePoll,5000);
         }
       });
   }
@@ -246,17 +262,19 @@
       message.render.container.appendChild(message.render.text);
       message.box.appendChild(message.render.container)
       message.render.text.innerHTML = newMessage;
+      message.box.scrollTop = message.box.scrollHeight;
+      // message.box.scrollTop = message.box.scrollTopMax;
       return message.render.text;
   }
 
   message.form.addEventListener('keyup', function(e){
     if(e.keyCode == 13){
+      clearTimeout(messageTimer);
       newMessage = message.input.value;
       message.input.value = '';
-
       var renderMessege = messageRender(newMessage, 'self', '', 'push')
-
-      message.box.scrollTop = message.box.scrollTopMax;
+      message.box.scrollTop = message.box.scrollHeight;
+      // message.box.scrollTop = message.box.scrollTopMax;
       $.ajax({
         headers: {
           'X-CSRF-Token': $('input[name="_token"]').val()
@@ -268,6 +286,8 @@
         url: document.querySelector('#message-route').value,
         type: "POST",
         success: function(data){
+          messageTimer = setTimeout(messagePoll,5000);
+
           renderMessege.style.color = 'black';
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
