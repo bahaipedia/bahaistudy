@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Test;
 use App\Configuration;
 use App\Book;
+
+use App\AuthorsInContainer;
 use App\Group;
 
 use App\GroupParticipant;
@@ -28,9 +30,15 @@ class GeneralController extends Controller
             $participants = GroupParticipant::where('group_id', $g->id)->where('status', 1)->count();
             $g->available = $g->max_size - $participants;
         }
+        $authors = AuthorsInContainer::select('author_id', 'group_container_id')->get();
+        $books = Book::whereIn('author_id', $authors->pluck('author_id'))->get();
         $containers = GroupContainer::select('id', 'name', 'weight')->orderBy('weight', 'desc')->limit(3)->get();
+        return view('welcome', compact('title', 'groups', 'containers', 'authors', 'books'));
+    }
 
-        return view('welcome', compact('title', 'groups', 'containers'));
+    public function apiAuthorBook($id){
+        $books = Book::select('id', 'name')->where('author_id', $id)->get();
+        return $books;
     }
 
 }

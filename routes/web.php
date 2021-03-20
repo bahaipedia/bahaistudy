@@ -2,6 +2,7 @@
 
 // General routes
 Route::get('/', 'GeneralController@welcome')->name('welcome');
+Route::get('/api/author/book/{id}', 'GeneralController@apiAuthorBook')->name('api.author.book');
 
 // Auth routes
 Route::get('/auth/login/', 'Auth\LoginController@showLoginForm')->name('login');
