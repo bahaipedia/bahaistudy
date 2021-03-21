@@ -88,6 +88,8 @@ class GroupController extends Controller
      	return redirect()->route('group.dashboard', [$group->route]);
     }
 
+    // THE RULE IS USER LEAVE STATUS ON GROUP PARTICIPANT IS IS JOIN 1 WE HAVE ONLY ONE ROW FOR JOIN SO THE LOGIC VALIDATE IF THE ROW EXIST (UPDATE)
+    // AND IF NOT IT WILL CREATE ONE (INSERT)
     public function leave(Request $request){
 
 	    $group = Group::where('id', $request->id)->select('id', 'host_id', 'route')->first();
@@ -95,19 +97,21 @@ class GroupController extends Controller
 	    $g_participant->status = 0;
 	    $g_participant->update();
 
-		$log = New LogsGroupParticipant;
-		$log->user_id = auth()->user()->id;
-		$log->group_id = $request->id;
-		$log->action = 1;
-		$log->reason = NULL;
-		$log->save();
+  		$log = New LogsGroupParticipant;
+  		$log->user_id = auth()->user()->id;
+  		$log->group_id = $request->id;
+  		$log->action = 1;
+  		$log->reason = NULL;
+  		$log->save();
 
      	return redirect()->route('group.dashboard', [$group->route]);
     }
+
+    
+
     public function join(Request $request){
 
 	    $group = Group::where('id', $request->id)->select('id', 'host_id', 'route')->first();
-
 	    $g_participant = GroupParticipant::where('group_id', $request->id)->where('user_id', auth()->user()->id)->first();
 	    if($g_participant == NULL){
 	    	$participant = New GroupParticipant;
@@ -121,12 +125,12 @@ class GroupController extends Controller
 	    	$g_participant->update();
 	    }
 
-		$log = New LogsGroupParticipant;
-		$log->user_id = auth()->user()->id;
-		$log->group_id = $request->id;
-		$log->action = 0;
-		$log->reason = NULL;
-		$log->save();
+  		$log = New LogsGroupParticipant;
+  		$log->user_id = auth()->user()->id;
+  		$log->group_id = $request->id;
+  		$log->action = 0;
+  		$log->reason = NULL;
+  		$log->save();
 
      	return redirect()->route('group.dashboard', [$group->route]);
     }

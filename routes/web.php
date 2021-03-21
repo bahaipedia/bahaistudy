@@ -134,6 +134,11 @@ Route::get('/dev/api/message/poll/{id}', 'Dev\GroupController@apiMessagePoll')->
 
 
 
+Route::post('/dev/admin/group/drop', 'Dev\AdminController@groupDrop')->name('dev.admin.group.drop');
+Route::get('/dev/admin/messages', 'Dev\AdminController@messages')->name('dev.admin.messages');
+Route::get('/dev/admin/api/messages/{m?}', 'Dev\AdminController@apiMessages')->name('dev.admin.api.messages');
+
+
 
 // CHANGED ROUTES
 Route::post('/dev/group/message/', 'Dev\GroupController@message')->name('dev.group.message');
