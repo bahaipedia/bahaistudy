@@ -52,6 +52,25 @@
     @else
     <p style="font-size: 12px">{{$p->user->name}} {{$p->user->lastname}} </p>
     @endif
+   
+  @endforeach
+  </div>
+</div>
+<div style='display: flex;  flex-direction: column; width: 30%;'>
+  <p>drop participants</p>
+  
+  <br>
+  <div id='participant'>
+  @foreach($participants as $p)
+  @if(auth()->user()->role == 1)
+    <form method='POST' action='{{route('dev.admin.group.drop')}}'>
+      {!! csrf_field() !!}
+
+      <input type='hidden' name='id' value='{{Crypt::encryptString($p->user->id)}}'/>
+      <input type='hidden' name='group_id' value='{{$group->id}}'/>
+      <button>drop</button>
+    </form>
+  @endif
   @endforeach
   </div>
 </div>
