@@ -1,7 +1,7 @@
 *{
 	margin: 3px;
 }
-
+/*
 body{
 	height: 99vh;
 	width: 98vw;
@@ -12,7 +12,7 @@ body{
 	justify-content: flex-start;
 	align-items: center;
 }
-
+*/
 .wrap-r{
 	display: flex;
 	justify-content: center;

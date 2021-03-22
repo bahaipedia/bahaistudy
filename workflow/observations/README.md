@@ -10,9 +10,11 @@
 - [ ] Vista de lista: Cómo hacer las imagenes circulares (cuando están en un div en porcentajes)
 - [ ] authors (View: C:\xampp\htdocs\bahai\resources\views\welcome.blade.php)
 
-### Reunión 16 de Marzo de 2021
+
+### Reunión 18 de Marzo de 2021
 - [ ] Necesito un Select Author como el Select Book de aca http://localhost:8000/dev/groups/6
-- Necesito en el home un if para incluir la ficha de Show everything
+- Quiero que el show everything no aparezca cuando hay 1 solo grupo de libros
+
 
 ## For Server-side
 

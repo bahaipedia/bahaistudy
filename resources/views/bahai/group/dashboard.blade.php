@@ -1,36 +1,55 @@
 @extends('template')
 @section('cnt')
 
-<input id='participant_route' value='{{route('api.group.participant', [Crypt::encryptString($group->id)])}}' type='hidden'/>
-@if(auth()->check())
-	<input id='beat_route' value='{{route('api.group.beat')}}' type='hidden'/>
-	<input type='hidden' value='{{Crypt::encryptString(auth()->user()->id)}}' id='user_beat'/>
-	<input type='hidden' value='{{Crypt::encryptString($group->id)}}' id='group_beat'/>
-@endif
-{!! csrf_field() !!}
+<div class="columna-grupo">
+	<input id='participant_route' value='{{route('api.group.participant', [Crypt::encryptString($group->id)])}}' type='hidden'/>
+	@if(auth()->check())
+		<input id='beat_route' value='{{route('api.group.beat')}}' type='hidden'/>
+		<input type='hidden' value='{{Crypt::encryptString(auth()->user()->id)}}' id='user_beat'/>
+		<input type='hidden' value='{{Crypt::encryptString($group->id)}}' id='group_beat'/>
+	@endif
+	{!! csrf_field() !!}
 
-<div style='display: flex;  flex-direction: column; align-items: center; justify-content: flex-start; width: 100%; height: 95vh;'>
-<h1>{{$group->name}}</h1>
-@if($group->is_participant == 0 && auth()->check())
-	<form method='POST' action='{{route('group.join')}}'>
-		{!! csrf_field() !!}
-		<input name='id' value='{{$group->id}}' type='hidden'/>
-		<button style='width:150px;'>join</button>
-	</form>
-@endif
-<br>
-<br>
-<div style='display: flex;  flex-direction: row; width: 90%; border:1px solid black;'>
-<div style='display: flex;  flex-direction: column; width: 70%;'>
+	{{--<h1>{{$group->name}}</h1>--}}
+<div class="informacion">
+
+		<img class="imagen-libro-dash" src="{{asset('/img/ki.png')}}" />
+		<div class="informacion-dash">
+			<h4 class="autor-nombre-dash">{{$group->book->author->name}} {{$group->book->author->lastname}}</h4>
+			<h3 class="libro-nombre-dash">{{$group->book->name}}</h3>
+			<h5 class="integrantes-dash">
+				7 Integrantes
+			</h5>
+			<h5 class="host-dash">
+				@if($group->host_id != NULL)	
+				<b>HOST:</b> {{$group->host->name}} {{$group->host->lastname}}
+				@else
+	<h5>NO HOST IN THIS GROUP</h5>
+	@endif
+			</h5>
+			<p class="bloqtext-dash">
+				{{$group->description}}
+			</p>
+			<button class="chat-dash">
+				join chat
+			</button>
+			@if($group->is_participant == 0 && auth()->check())
+			<form method='POST' action='{{route('group.join')}}'>
+				{!! csrf_field() !!}
+				<input name='id' value='{{$group->id}}' type='hidden'/>
+				<button class="login-boton dashposition">join</button>
+			</form>
+		@endif
+		</div>
+		</div>
+
+
+{{--
+
 	<p>book: {{$group->book->name}} by {{$group->book->author->name}} {{$group->book->author->lastname}}</p>
 	
 	<p>name: {{$group->name}}</p>
-	<p>description: {{$group->description}}</p>
-	@if($group->host_id != NULL)	
-	<p id='host'>host: {{$group->host->name}} {{$group->host->lastname}}</p>
-	@else
-	<p id='host'>NO HOST IN THIS GROUP</p>
-	@endif
+
 	<p>url: <a href='{{$group->url}}'>{{$group->url}}</a></p>
 	<span style='font-size:12px; display: flex;'>
 	@foreach($at as $a)
@@ -38,21 +57,11 @@
 	@endforeach
 	</span>
 </div>
-<div style='display: flex;  flex-direction: column; width: 30%;'>
-	<p>participants, (max {{$group->max_size}})</p>
-	<br>
-	<div id='participant'>
-	@foreach($participants as $p)
-		@if($p->user_id == $group->host_id)
-		<p style="font-size: 12px">{{$p->user->name}} {{$p->user->lastname}} (HOST) </p>
-		@else
-		<p style="font-size: 12px">{{$p->user->name}} {{$p->user->lastname}} </p>
-		@endif
-	@endforeach
-	</div>
-</div>
-</div>
-<div style='flex-grow: 2'></div>
+
+--}}
+
+
+{{-- 
 
 <div style='font-size:12px; display: flex;  flex-direction: column; width: 90%; height: 150px; border:1px solid black;'>
 <p>messages</p>
@@ -100,7 +109,28 @@
 	@endif
 	@endif
 	<a href={{route('welcome')}}>home</a>
+		--}}
+
+
+<div class="participants-list">
+	<h2 class="parti-dash">List of participants<br></h2>
+		<h4 class="max-dash">(max {{$group->max_size}})</h4>
+	<div id='participant'>
+		@foreach($participants as $p)
+			@if($p->user_id == $group->host_id)
+			<h4>{{$p->user->name}} {{$p->user->lastname}} (HOST) </h4>
+			@else
+			<div class="particip-dash">
+				<div class="perfil-dash"></div>
+			<h4 class="host-dash dash-list">{{$p->user->name}} {{$p->user->lastname}} </h4>
+			</div>
+			@endif
+		@endforeach
+		</div>
 </div>
+</div>
+
+
 <script>
 	onlineStatus = document.querySelectorAll('.online-status')
 	console.log(onlineStatus[1])
@@ -141,11 +171,11 @@
 			
 				if(data[1][i].id == data[0].host_id){
 
-					document.querySelector('#participant').innerHTML += '<p style="font-size: 12px">'+data[1][i].name+' '+data[1][i].lastname+' (HOST) </p>'
+					document.querySelector('#participant').innerHTML += +data[1][i].name+' '+data[1][i].lastname+' (HOST)
 					document.querySelector('#host').innerHTML = 'host: '+data[1][i].name+' '+data[1][i].lastname
 				}
 				else{
-					document.querySelector('#participant').innerHTML += '<p style="font-size: 12px">'+data[1][i].name+' '+data[1][i].lastname+'</p>'
+					document.querySelector('#participant').innerHTML += +data[1][i].name+' '+data[1][i].lastname+
 				}
 			}
 		if(data[0].host_id == null){
@@ -165,7 +195,5 @@
 		}
 
 	}
-
-
 </script>
 @stop

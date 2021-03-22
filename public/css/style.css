@@ -25,6 +25,7 @@ html {
 *:after {
   box-sizing: inherit;
   line-height: 1;
+  margin: 0px;
 }
 
 html,
@@ -77,6 +78,13 @@ h4 {
   color: #79c3aa;
 }
 
+.equis {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.4em;
+  font-weight: 500;
+  color: #251d16;
+}
+
 h5 {
   font-family: "Montserrat", sans-serif;
   font-size: 1em;
@@ -114,6 +122,71 @@ a:hover {
   font-family: "Montserrat", sans-serif;
   color: #49392b;
   text-align: center;
+}
+
+.chat-dash{
+  padding-top: 8px;
+  padding-right: 15px;
+  padding-bottom: 8px;
+  padding-left: 15px;
+  font-size: 0.8em;
+  letter-spacing: 0.25em;
+  border: solid 2px #49392B;
+  color: #49392b;
+  align-self: center;
+  border-radius: 40px;
+  line-height: 1.3em;
+  outline: none;
+  font-weight: 700;
+  width: 150px;
+  position: relative;
+  text-transform: uppercase;
+}
+
+.parti-dash{
+  font-size: 1.5em;
+  font-weight: 500;
+  color: #49392B;
+  margin-bottom: 10px;
+}
+
+.max-dash {
+  text-transform: uppercase;
+  font-weight: 400;
+  letter-spacing: 3px;
+  border-bottom: 2px solid #79c3aa;
+  padding-bottom: 10px;
+}
+
+.particip-dash {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.dash-list{
+  font-size: 0.8em !important;
+  color: #49392B;
+  margin-left: 10px;
+}
+
+.perfil-dash {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50px;
+  background-color: #58a38a;
+}
+
+.chat-dash:hover{
+  background-color: #49392b;
+  color: white;
+}
+
+.chat-dash:active {
+  background-color: #251d16;
+  color: white;
 }
 
 .join-ficha {
@@ -209,6 +282,10 @@ a:hover {
   font-weight: 600;
   width: 110px;
   position: relative;
+}
+
+.dashposition {
+
 }
 
 .login-boton:hover {
@@ -515,6 +592,12 @@ a:hover {
   box-shadow: 15px 15px 5px -10px rgba(186, 173, 162, 0.07);
 }
 
+.fondo-show{
+  background-color: #BAADA2;
+  width: 500px;
+  height: 335px;
+}
+
 .portada-libro {
   background-color: #79c3aa;
   width: 220px;
@@ -523,12 +606,31 @@ a:hover {
   position: relative;
 }
 
+.izquierda-show{
+  background-color:#f3efec;
+  width: 250px;
+  height: 335px;
+  left: 30px;
+  flex-direction: row;
+  margin-left: 30px;
+  -webkit-box-shadow: 15px 15px 5px -10px rgba(186, 173, 162, 0.07);
+  -moz-box-shadow: 15px 15px 5px -10px rgba(186, 173, 162, 0.07);
+  box-shadow: 15px 15px 5px -10px rgba(186, 173, 162, 0.07);
+}
+
 .sobre-imagen {
   position: relative;
   will-change: top, left;
   left: 0px;
   top: -195px;
   text-align: center;
+}
+
+.sobre-show {
+  text-align: center;
+  position: relative;
+  left: 0px;
+  top: 146px; 
 }
 
 .parte-derecha-ficha {
@@ -548,10 +650,31 @@ a:hover {
   margin-bottom: 10px;
 }
 
+.autor-nombre-dash {
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 1.0em;
+  margin-bottom: 15px;
+  margin-left: 0px;
+
+}
+
 .libro-nombre {
   margin-top: 0px;
   top: 0px;
   margin-bottom: 10px;
+}
+
+.libro-nombre-dash {
+  margin-top: 0px;
+  top: 0px;
+  margin-bottom: 20px;
+  font-size: 2em;
+}
+
+.libro-nombre-dash::first-letter {
+  text-transform: capitalize;
 }
 
 .desplegable {
@@ -793,6 +916,20 @@ height: 100%;
   background: #baada2;
 }
 
+.host-dash{
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-size: 0.9em;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
+.integrantes-dash{
+  color: #49392B;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #79C3AA;
+}
+
 /* FOOTER */
 
 .footer {
@@ -934,14 +1071,14 @@ input:-webkit-autofill:active
 
 .posicion-boton{
   position: relative;
-  top: 40px;
+  top: 10px;
 }
 
 .texto-pequeno{
   letter-spacing: 0px;
   font-size: 0.9em;
   position: relative;
-  top: 0px;
+  top: -10px;
 }
 
 .registrar{
@@ -969,6 +1106,14 @@ input:-webkit-autofill:active
   flex-direction: row;
 }
 
+.columna-grupo {
+  width: 99vw;
+  height: 99vh;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+}
+
 .informacion {
   width: 80%;
   height: 90%;
@@ -976,6 +1121,7 @@ input:-webkit-autofill:active
   align-self: flex-end;
   align-items: center;
   justify-content: space-around;
+  border: 1px solid red;
 }
 
 .imagen-libro {
@@ -985,10 +1131,53 @@ input:-webkit-autofill:active
   background-color: rgb(85, 52, 52);
 }
 
+.bloqtext-dash{
+  color: #49392B;
+  font-size: 1.0em;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.bloqtext-dash::first-letter{
+  text-transform: capitalize;  
+}
+
+.imagen-libro-dash {
+  display: flex;
+  width: 350px;
+  height: 550px;
+  flex-direction: column;
+}
+
+.informacion-dash {
+  width: 35%;
+  height: 100%;
+  flex-direction: column;
+  position: relative;
+  top: 120px;
+  left: -170px;
+}
+
+.participants-list {
+  width: 20%;
+  height: 90%;
+  align-self: flex-end;
+  border: 2px solid green;
+  padding: 20px;
+}
+
 .informacion-libro {
   width: 35%;
   position: relative;
   left: -150px;
+  line-height: 1.4;
+}
+
+.informacion-libro-dash {
+  width: 35%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
   line-height: 1.4;
 }
 
