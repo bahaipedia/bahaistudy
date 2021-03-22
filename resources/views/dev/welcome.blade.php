@@ -95,6 +95,10 @@
                     <a href={{route('dev.list.users')}}>view users</a>  
                     <br>
                     <br>
+                    <a href={{route('dev.admin.messages')}}>admin menssages</a>  
+                    <br>
+                    <br>
+
                     <a href={{route('logout')}}>logout</a>
                     @else
                     <a href={{route('login')}}>login</a>

@@ -34,24 +34,26 @@ class StoreController extends Controller
         $file_methods = new FileController;
         $group = New Group;
         // Test the function when it have repeat
+        $book = Book::find($request->book_id);
+
         $group->route = $file_methods->getUniqueRandom();        
-        $group->name = $request->name;
+        $group->name = $book->name;
         $group->description = $request->description;
         $group->url = $request->url;
-        $group->book_id = $request->book_id;
+        $group->book_id = $book->id;
         $group->host_comments = $request->host_comments;
         $group->host_id = auth()->user()->id;
         $group->max_size = $request->max_size;
         $group->group_container_id = $request->group_container_id;
         $group->save();
 
-        $at = New AvailableTime;
-        $at->start_at = date("Y:m:d h:i:s", strtotime( $request->start_at ));
-        $at->finish_at = date("Y:m:d h:i:s", strtotime( $request->finish_at ));
-        $at->day_of_week = $request->day_of_week;
-        $at->user_id = auth()->user()->id;
-        $at->group_id = $group->id;
-        $at->save();
+        // $at = New AvailableTime;
+        // $at->start_at = date("Y:m:d h:i:s", strtotime( $request->start_at ));
+        // $at->finish_at = date("Y:m:d h:i:s", strtotime( $request->finish_at ));
+        // $at->day_of_week = $request->day_of_week;
+        // $at->user_id = auth()->user()->id;
+        // $at->group_id = $group->id;
+        // $at->save();
 
         $participant = New GroupParticipant;
         $participant->user_id = auth()->user()->id;
@@ -61,11 +63,10 @@ class StoreController extends Controller
 
 
 
-        $header = 'Group was created!';
-        $message = "The group was created";
-        return view('auth.response', compact('header', 'message'));
+        // $header = 'Group was created!';
+        // $message = "The group was created";
+        return redirect()->route('welcome');
     }
-
 	public function author(){
     	return view('bahai.forms.store.author');
     }

@@ -2,6 +2,7 @@
 
 // General routes
 Route::get('/', 'GeneralController@welcome')->name('welcome');
+Route::get('/api/author/book/{id}', 'GeneralController@apiAuthorBook')->name('api.author.book');
 
 // Auth routes
 Route::get('/auth/login/', 'Auth\LoginController@showLoginForm')->name('login');
@@ -131,6 +132,11 @@ Route::get('/dev/api/group/participant/{id}', 'Dev\GroupController@apiParticipan
 Route::post('/dev/api/group/beat', 'Dev\GroupController@apiBeat')->name('dev.api.group.beat');
 Route::get('/dev/api/message/poll/{id}', 'Dev\GroupController@apiMessagePoll')->name('dev.api.message.poll');
 
+
+
+Route::post('/dev/admin/group/drop', 'Dev\AdminController@groupDrop')->name('dev.admin.group.drop');
+Route::get('/dev/admin/messages', 'Dev\AdminController@messages')->name('dev.admin.messages');
+Route::get('/dev/admin/api/messages/{m?}', 'Dev\AdminController@apiMessages')->name('dev.admin.api.messages');
 
 
 

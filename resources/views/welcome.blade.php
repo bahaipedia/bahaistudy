@@ -10,6 +10,8 @@
 
   <link rel="stylesheet" href="styles.css" />
   <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
     rel="stylesheet" />
   <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -119,31 +121,38 @@
 
       @endforeach
 <!-- CREATE NEW GROUP -->
-<form enctype="multipart/form-data" method=POST action='{{route('dev.store.group.post')}}' class='wrap-r'>
+@if(auth()->check())
+<form method=POST action='{{route('store.group.post')}}' class='wrap-r'>
       <div class="ficha-libro">
         <div class="izquierda">
         <img class="portada-libro new-group" src="{{asset('/img/books.png')}}" />
-        <form enctype="multipart/form-data" method=POST action='{{route('dev.store.book.post')}}' class='wrap-r'>
+        {{-- <form enctype="multipart/form-data" method=POST action='{{route('dev.store.book.post')}}' class='wrap-r'> --}}
           {!! csrf_field() !!}
+        <input type='hidden' value='{{$c->id}}' name='group_container_id'/>
         <h3 class="sobre-imagen">Create New Group</h3>
         </div>
         <div class="parte-derecha-ficha">
-          <select class="autor-nombre desplegable" name="book_id">
-            <option value="Option 1">Option 1</option>
-            <option value="Option 2">Option 2</option>
-            <option value="Option 3">Option 3</option>
-            <option value="Option 4">Option 4</option>
-            <option value="Option 5">Option 5</option>
+          {{-- CHEQUEA AQUI JEANNIFER POR FAVOR COLOCAR EL WIDTH 100% A ELEMENTO EN CSS --}}
+          <select required class="autor-nombre desplegable" data-container='{{$c->id}}' onchange='getBooks(this)' style="width:100%" name="book_id">
+          @foreach($authors as $a)
+            @if($a->group_container_id == $c->id)
+            <option data-link='{{route('api.author.book', [$a->author->id])}}' value='{{$a->author->id}}'>{{$a->author->name}} {{$a->author->lastname}}</option>
+            @endif
+          @endforeach
           </select>
-
-{{--          <h4 class="autor-nombre">{{$g->book->author->name}} {{$g->book->author->lastname}}</h4> --}}
-  {{--        <h3 class="libro-nombre">{{$g->name}}</h3> --}}
-          <input id='name' class="libro-nombre hachetres formulario" max='50' value='Select Book Title' name='name' type='text'>
+          {{-- <input id='name' class="libro-nombre hachetres formulario" max='50' value='Select Book Title' name='name' type='text'> --}}
+          <select required name='book_id' id='book-element-{{$c->id}}'>
+            <option disabled selected >CHOOSE FIRST THE AUTHOR</option>
+          </select>
           <div class="agrupar">
-          <label class="pe">| Maximum Group Size</label>
-          <input id='name' class="pe seleccion" id='max_size' min='1' max='20' step='1' name='max_size' type='number' name='name' type='text'>
-        </div>
-        <textarea id='name' class="descripcion-libro-form pe" rows="3" cols="15">Description... Lorem ipsum dolor sit amet.</textarea>
+            <input required name='max_size' type='number' placeholder='Maximum Group Size' class="pe"/>
+            {{-- <label class="pe">| Maximum Group Size</label> --}}
+            {{-- <input id='name' class="pe seleccion" id='max_size' min='1' max='20' step='1' name='max_size' type='number' name='name' type='text'> --}}
+          </div>
+          <input required name='description' id='name' class="descripcion-libro-form pe" rows="3" cols="15" placeholder="Description... Lorem ipsum dolor sit amet."/>
+          <input required name='url' placeholder='meeting url' class="pe"/>
+          <input required name='host_comments' placeholder='host comment' class="pe"/>
+          {{-- FALTA AQUI EL TIEMPO DE DISPONIBILIDAD --}}
           <span class="parte-derecha-ficha-espacio"></span>
           <button class="join-ficha">CREATE</button>
           <!--
@@ -246,6 +255,7 @@
         </div>
         {{-- Jeannifer you can see here how to link the 'js' url --}}
         <script src='{{asset('/js/ex.js')}}'></script>
+        <script src='{{asset('/js/forms/group.js')}}'></script>
 </body>
 
 </html>
