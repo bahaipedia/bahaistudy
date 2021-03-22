@@ -15,7 +15,7 @@ git checkout -b <nameofthebranch>
 ```
 
 ```bash
-git fecth
+git fetch
 ```
 
 ```bash

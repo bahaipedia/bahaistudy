@@ -121,7 +121,6 @@
 <!-- CREATE NEW GROUP -->
 <form enctype="multipart/form-data" method=POST action='{{route('dev.store.group.post')}}' class='wrap-r'>
       <div class="ficha-libro">
-        {{-- Jeannifer you can see here how to link the img url --}}
         <div class="izquierda">
         <img class="portada-libro new-group" src="{{asset('/img/books.png')}}" />
         <form enctype="multipart/form-data" method=POST action='{{route('dev.store.book.post')}}' class='wrap-r'>
@@ -153,6 +152,11 @@
         </div>
       </div>
     </form>
+    <div class="">
+      <div class="izquierda-show">
+        <h3 class="sobre-show">Show <br> Everything</h3>
+      </div>
+    </div>
   </div>
     </div>
     @endforeach
