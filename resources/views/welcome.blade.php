@@ -133,7 +133,7 @@
         </div>
         <div class="parte-derecha-ficha">
           {{-- CHEQUEA AQUI JEANNIFER POR FAVOR COLOCAR EL WIDTH 100% A ELEMENTO EN CSS --}}
-          <select required class="autor-nombre desplegable" data-container='{{$c->id}}' onchange='getBooks(this)' style="width:100%" name="book_id">
+          <select required class="autor-nombre hachecuatro desplegable" data-container='{{$c->id}}' onchange='getBooks(this)' name="book_id">
           @foreach($authors as $a)
             @if($a->group_container_id == $c->id)
             <option data-link='{{route('api.author.book', [$a->author->id])}}' value='{{$a->author->id}}'>{{$a->author->name}} {{$a->author->lastname}}</option>
@@ -141,8 +141,8 @@
           @endforeach
           </select>
           {{-- <input id='name' class="libro-nombre hachetres formulario" max='50' value='Select Book Title' name='name' type='text'> --}}
-          <select required name='book_id' id='book-element-{{$c->id}}'>
-            <option disabled selected >CHOOSE FIRST THE AUTHOR</option>
+          <select class= "libro-nombre hachetres formulario" required name='book_id' id='book-element-{{$c->id}}'>
+            <option disabled selected >Choose the Author</option>
           </select>
           <div class="agrupar">
             <input required name='max_size' type='number' placeholder='Maximum Group Size' class="pe"/>
@@ -161,6 +161,7 @@
         </div>
       </div>
     </form>
+    @endif
     <div class="">
       <div class="izquierda-show">
         <h3 class="sobre-show">Show <br> Everything</h3>
@@ -168,7 +169,6 @@
     </div>
   </div>
     </div>
-    @endif
     @endforeach
     <div class="contenedor">
       <div class="subtitulo espacio">
