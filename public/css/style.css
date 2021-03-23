@@ -117,6 +117,17 @@ a {
   justify-content: center;
 }
 
+label{
+  outline: none;
+  border: none;
+}
+
+input {
+  outline: none;
+  border: none;
+  text-transform: none;
+}
+
 a:hover {
   text-decoration: none;
   font-family: "Montserrat", sans-serif;
@@ -156,6 +167,8 @@ a:hover {
   letter-spacing: 3px;
   border-bottom: 2px solid #79c3aa;
   padding-bottom: 10px;
+  font-size: 0.9em;
+  color: #49392b;
 }
 
 .particip-dash {
@@ -164,12 +177,19 @@ a:hover {
   margin-top: 10px;
   margin-bottom: 10px;
   align-items: center;
+  border-bottom: 1px solid #F2F2F2; 
+  padding-bottom: 10px;
 }
 
 .dash-list{
   font-size: 0.8em !important;
   color: #49392B;
   margin-left: 10px;
+  letter-spacing: 1px;
+  font-size: 0.9em;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  text-transform: capitalize;
 }
 
 .perfil-dash {
@@ -285,7 +305,8 @@ a:hover {
 }
 
 .dashposition {
-
+  text-transform: uppercase;
+  font-size: 0.8em !important;
 }
 
 .login-boton:hover {
@@ -708,6 +729,22 @@ select::-ms-expand {
   border: none;
 }
 
+.b-principal {
+  padding-bottom: 10px;
+  background:
+    radial-gradient(circle closest-side, currentColor 80%, transparent) bottom 0 left calc(50% - var(--d, 0px)/2) /100% 5px no-repeat,
+    radial-gradient(circle closest-side, currentColor 80%, transparent) bottom 0 left calc(50% + var(--d, 0px)/2) /100% 5px no-repeat,
+    linear-gradient(currentColor 0 0) bottom /var(--d, 0%) 5px no-repeat;
+  transition: 0.5s;
+  font-weight: 200;
+}
+
+.b-principal:hover {
+  --d: 40px;
+  color: #79c3aa;
+  font-weight: 400;
+}
+
 .agrupar{
   display: flex;
   justify-content: space-between;
@@ -717,7 +754,7 @@ select::-ms-expand {
   font-size: 1.1em;
   color: #BAADA2;
   margin: 0px;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
   padding-right: 20px;
   border-bottom: 2px solid #79c3aa;
   width: 250px;
@@ -738,11 +775,11 @@ select::-ms-expand {
 
 .grupo-container {
   display: flex;
-  margin: 1px solid red;
   align-items: center;
   justify-content: center;
   width: 500px;
   height: 400px;
+  border-right: 1px solid #F2F2F2; 
 }
 
 .spaces-lista {
@@ -1026,6 +1063,17 @@ input[type=password] {
   text-align: center;
   font-weight: 600;
 }
+input[type=number],
+input[type=description] {
+  width: 100%;
+  color: #49392B;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  font-family: 'Raleway', sans-serif;
+  text-align: center;
+}
 
 input[type=email]:focus,
 input[type=password]:focus {
@@ -1058,14 +1106,22 @@ input:-webkit-autofill:active
   font-weight: 600;
 }
 
-
-
 .tipo-logo{
   font-family: "Noto Serif", serif;
   color: #251d16;
   letter-spacing: 1px;
   font-weight: 700;
   font-size: 1.3em;
+}
+
+.botones-dash {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  text-transform: uppercase;
+  align-items: center;
+  position: absolute;
+  top: 400px;
 }
 
 .tipo-logo:hover{
@@ -1125,7 +1181,6 @@ input:-webkit-autofill:active
   align-self: flex-end;
   align-items: center;
   justify-content: space-around;
-  border: 1px solid red;
 }
 
 .imagen-libro {
@@ -1166,8 +1221,10 @@ input:-webkit-autofill:active
   width: 20%;
   height: 90%;
   align-self: flex-end;
-  border: 2px solid green;
   padding: 20px;
+  -webkit-box-shadow: -16px 0px 5px -10px rgb(186 173 162 / 7%);
+  -moz-box-shadow: -16px 0px 5px -10px rgb(186 173 162 / 7%);
+  box-shadow: -16px 0px 5px -10px rgb(186 173 162 / 7%);
 }
 
 .informacion-libro {
