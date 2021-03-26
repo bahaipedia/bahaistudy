@@ -26,11 +26,11 @@
     <div id="barra">
       <img id="logotipo" src="{{asset('/img/logotype.svg')}}" />
       <div id="enlaces">
-        <a href="#">ABOUT</a>
-        <a href="#">HELP</a>
-        <a href="#">RESOURCE</a>
-        <a href="#">MATERIALS</a>
-        <a href="{{route('dev.welcome')}}">DEV</a>
+        <a class="b-principal" href="#">ABOUT</a>
+        <a class="b-principal" href="#">HELP</a>
+        <a class="b-principal" href="#">RESOURCE</a>
+        <a class="b-principal" href="#">MATERIALS</a>
+        <a class="b-principal" href="{{route('dev.welcome')}}">DEV</a>
         @if(auth()->user() !== NULL)
         <div class="user">
           <div class="profile-pic"> </div>
@@ -131,36 +131,28 @@
         <input type='hidden' value='{{$c->id}}' name='group_container_id'/>
         <h3 class="sobre-imagen">Create New Group</h3>
         </div>
-        <div class="parte-derecha-ficha">
-          {{-- CHEQUEA AQUI JEANNIFER POR FAVOR COLOCAR EL WIDTH 100% A ELEMENTO EN CSS --}}
-          <select required class="autor-nombre desplegable" data-container='{{$c->id}}' onchange='getBooks(this)' style="width:100%" name="book_id">
-          @foreach($authors as $a)
-            @if($a->group_container_id == $c->id)
-            <option data-link='{{route('api.author.book', [$a->author->id])}}' value='{{$a->author->id}}'>{{$a->author->name}} {{$a->author->lastname}}</option>
-            @endif
-          @endforeach
-          </select>
-          {{-- <input id='name' class="libro-nombre hachetres formulario" max='50' value='Select Book Title' name='name' type='text'> --}}
-          <select required name='book_id' id='book-element-{{$c->id}}'>
-            <option disabled selected >CHOOSE FIRST THE AUTHOR</option>
-          </select>
-          <div class="agrupar">
-            <input required name='max_size' type='number' placeholder='Maximum Group Size' class="pe"/>
-            {{-- <label class="pe">| Maximum Group Size</label> --}}
-            {{-- <input id='name' class="pe seleccion" id='max_size' min='1' max='20' step='1' name='max_size' type='number' name='name' type='text'> --}}
+        <div class="parte-derecha-ficha-crear">
+          <div class="custom-select">
+              <select class="autor-nombre hachecuatro desplegable-autor" data-container='{{$c->id}}' onchange='getBooks(this)' name="book_id">
+              @foreach($authors as $a)
+              @if($a->group_container_id == $c->id)
+              <option data-link='{{route('api.author.book', [$a->author->id])}}' value='{{$a->author->id}}'>{{$a->author->name}} {{$a->author->lastname}}
+              </option>
+              @endif
+              @endforeach
+            </select>
           </div>
-          <input required name='description' id='name' class="descripcion-libro-form pe" rows="3" cols="15" placeholder="Description... Lorem ipsum dolor sit amet."/>
-          <input required name='url' placeholder='meeting url' class="pe"/>
-          <input required name='host_comments' placeholder='host comment' class="pe"/>
-          {{-- FALTA AQUI EL TIEMPO DE DISPONIBILIDAD --}}
-          <span class="parte-derecha-ficha-espacio"></span>
-          <button class="join-ficha">CREATE</button>
-          <!--
-            
-          -->
+            <select class= 'libro-nombre hachetres formulario-libro' required name='book_id' id='book-element-{{$c->id}}'>
+              <option disabled selected >Choose the Author</option>
+            </select>
+            <input type='number' class='formulario-max pe-max max-group' required name='max_size' placeholder='Maximum Group Size'/>
+            <input type='description' required name='description' id='name' class="descripcion-libro-form pe" rows="3" cols="15" placeholder="Description... Lorem ipsum dolor sit amet."/>
+            <span class="parte-derecha-ficha-espacio"></span>
+            <button class="join-ficha">CREATE</button>
         </div>
       </div>
     </form>
+    @endif
     <div class="">
       <div class="izquierda-show">
         <h3 class="sobre-show">Show <br> Everything</h3>
@@ -168,7 +160,6 @@
     </div>
   </div>
     </div>
-    @endif
     @endforeach
     <div class="contenedor">
       <div class="subtitulo espacio">

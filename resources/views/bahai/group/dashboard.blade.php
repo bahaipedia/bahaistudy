@@ -30,16 +30,20 @@
 			<p class="bloqtext-dash">
 				{{$group->description}}
 			</p>
-			<button class="chat-dash">
-				join chat
-			</button>
-			@if($group->is_participant == 0 && auth()->check())
-			<form method='POST' action='{{route('group.join')}}'>
-				{!! csrf_field() !!}
-				<input name='id' value='{{$group->id}}' type='hidden'/>
-				<button class="login-boton dashposition">join</button>
-			</form>
-		@endif
+			<div class="botones-dash">
+				@if($group->is_participant == 0 && auth()->check())
+				<form method='POST' action='{{route('group.join')}}'>
+					{!! csrf_field() !!}
+					<input name='id' value='{{$group->id}}' type='hidden'/>
+					<button class="login-boton dashposition">join</button>
+				</form>
+				{{-- HICE ESTE ELSE, ESTÁ BIEN HECHO? --}}
+				@else
+				<button class="chat-dash">
+					join chat
+				</button>
+			@endif
+	</div>
 		</div>
 		</div>
 
@@ -118,11 +122,14 @@
 	<div id='participant'>
 		@foreach($participants as $p)
 			@if($p->user_id == $group->host_id)
-			<h4>{{$p->user->name}} {{$p->user->lastname}} (HOST) </h4>
+			<div class="particip-dash">
+			<div class="perfil-dash"></div>
+			<h4 class="dash-list">{{$p->user->name}} {{$p->user->lastname}} (HOST)</h4>
+			</div>
 			@else
 			<div class="particip-dash">
 				<div class="perfil-dash"></div>
-			<h4 class="host-dash dash-list">{{$p->user->name}} {{$p->user->lastname}} </h4>
+			<h4 class="dash-list">{{$p->user->name}} {{$p->user->lastname}} </h4>
 			</div>
 			@endif
 		@endforeach
