@@ -68,7 +68,10 @@ Route::get('/list/containers', 'ListController@containers')->name('list.containe
 Route::get('/list/users', 'ListController@users')->name('list.users');
 
 // Group routes
-Route::get('/group/dashboard/{g?}', 'GroupController@dashboard')->name('group.dashboard');
+// Route::get('/group/dashboard/{g?}', 'GroupController@dashboard')->name('group.dashboard');
+Route::get('/group/{title}/{g?}', 'GroupController@dashboard')->name('group.dashboard');
+Route::get('/chat/{title}/{g?}', 'GroupController@chat')->name('group.chat');
+
 Route::post('/group/stepdown/', 'GroupController@stepdown')->name('group.stepdown');
 Route::post('/group/stepup/', 'GroupController@stepup')->name('group.stepup');
 Route::post('/group/leave/', 'GroupController@leave')->name('group.leave');
@@ -96,6 +99,7 @@ Route::get('/dev/containers', 'Dev\StoreController@container')->name('dev.store.
 Route::post('/dev/containers', 'Dev\StoreController@containerPost')->name('dev.store.container.post');
 // Container id parameter
 Route::get('/dev/groups/{c?}', 'Dev\StoreController@group')->name('dev.store.group');
+
 Route::post('/dev/groups', 'Dev\StoreController@groupPost')->name('dev.store.group.post');
 
 
