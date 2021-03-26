@@ -37,13 +37,41 @@
           <a class="nombre" href=" #">{{auth()->user()->name}} {{auth()->user()->lastname}}</a>
         </div>
         @else
-        <div class="login">
-          <a class="login-boton" href={{route('login')}}>LOGIN</a>
+        <div id="login">
+          <a class="login-boton" href="#"
+          {{--{{route('login')}}
+          --}}>LOGIN</a>
         </div>
         @endif
 
       </div>
     </div>
+
+        <div id="caja-centrada">
+
+          <div class="organizar-elementos">
+            <div class="cerrar">
+              <a href="{{route('welcome')}}" id="equis">X</a>
+          </div>
+          <img class="logotipo" src="{{asset('/img/logo-color.svg')}}" />
+      
+          <form method=POST action='{{route('login')}}' class='wrap-r'>
+            {!! csrf_field() !!}
+      
+            <label for='email'> </label>
+            <input id='email' type='email' class='formulario' name=' email' required type='email' placeholder='your email'>
+            <br>
+      
+            <label for='password'></label>
+            <input id='password' class='formulario' name='password' required type='password' placeholder='password'>
+            <p>{!! $errors->first('email', '
+            <p>please check</p>')!!}</p>
+            <button class=" login-boton posicion-boton">LOGIN</button>
+          </form>
+          <p class="texto-pequeno">Don't have an account? <a class="registrar" href={{route('register')}}>Register</a></p>
+        </div>
+        </div>
+
 
     <div id="hero-image">
       <div id="textos">
@@ -103,7 +131,6 @@
       @php $count++ @endphp
 
       <div class="ficha-libro">
-        {{-- Jeannifer you can see here how to link the img url --}}
         <img class="portada-libro" src="{{asset('/img/ki.png')}}" />
         <div class="parte-derecha-ficha">
           <h4 class="autor-nombre">{{$g->book->author->name}} {{$g->book->author->lastname}}</h4>
@@ -212,6 +239,7 @@
       <button class="show-more-lista ">
         EVERYTHING
       </button>
+
 </div>
         <div class="footer">
           <div class="linea-uno">

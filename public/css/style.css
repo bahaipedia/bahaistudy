@@ -399,7 +399,7 @@ input.max-group::placeholder {
   margin: 10px;
 }
 
-.login{
+#login{
 
 }
 
@@ -417,6 +417,7 @@ input.max-group::placeholder {
   background-size: cover;
   color: rgb(255, 255, 255);
   padding: 20px;
+  position: relative;
 }
 
 #textos {
@@ -1142,24 +1143,25 @@ height: 100%;
 
 /* LOGIN - REGISTER */
 
-.centrado{
-  width: 100vw;
-  height: 100vh;
-}
-
-.caja-centrada {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  flex-direction: column;
+#caja-centrada {
+  position: absolute;
   background-color: white;
-  align-self: center;
   width: 500px;
   height: 550px;
   border-bottom: #49392B 3px solid;
   -webkit-box-shadow: 15px 15px 5px -10px rgba(186, 173, 162, 0.07);
   -moz-box-shadow: 15px 15px 5px -10px rgba(186, 173, 162, 0.07);
   box-shadow: 15px 15px 5px -10px rgba(186, 173, 162, 0.07);
+  z-index: 3;
+  top: 200px;
+}
+
+.organizar-elementos {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  align-self: center;
 }
 
 .logotipo{
@@ -1267,8 +1269,8 @@ input:-webkit-autofill:active
   align-self: flex-end;
 }
 
-.cerrar-equis {
-  font-size: 1em;
+#equis {
+  font-size: 2em;
 }
 
 /* Groups page */
