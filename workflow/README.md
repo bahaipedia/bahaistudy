@@ -48,7 +48,7 @@ git commit -m"use a informative message"
 ```bash
 git push --set-upstream origin <nameofthebranch>
 ```
-
+prueba
 - Now in github page do the pull-request
 
 - The main branch organize the conflict and decide
