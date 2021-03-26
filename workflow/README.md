@@ -36,7 +36,7 @@ git merge -m"add your message" origin/main
 ( clean all merge conflict in this step )
 
 - And then
-hola
+
 ```bash
 git add .
 ```
