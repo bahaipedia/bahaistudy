@@ -113,7 +113,7 @@
             {{$g->description}}
           </p>
           <span class="parte-derecha-ficha-espacio"></span>
-          <a class="join-ficha" href='{{route('group.dashboard', [$g->route])}}'>JOIN</a>
+          <a class="join-ficha" href='{{route('group.dashboard', [str_replace(' ', '-', str_replace('/', ' ', str_replace('#', 'n', $g->book->name))), $g->route])}}'>JOIN</a>
         </div>
       </div>
 
