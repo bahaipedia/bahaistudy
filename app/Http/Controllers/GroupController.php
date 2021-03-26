@@ -42,9 +42,7 @@ class GroupController extends Controller
         ->where('group_id', $group->id)->first();
 
         if($last_online_at !== NUll){
-
           $last_online_at->last_online_at = Carbon::now();
-
           $last_online_at->update();
         }
       }

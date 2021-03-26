@@ -161,6 +161,8 @@
         </div>
       </div>
     </form>
+    @endif
+    
     <div class="">
       <div class="izquierda-show">
         <h3 class="sobre-show">Show <br> Everything</h3>
@@ -168,7 +170,6 @@
     </div>
   </div>
     </div>
-    @endif
     @endforeach
     <div class="contenedor">
       <div class="subtitulo espacio">
