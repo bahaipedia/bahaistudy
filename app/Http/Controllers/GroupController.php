@@ -21,7 +21,7 @@ class GroupController extends Controller
     public function __construct(){
     	// $this->middleware('authorization');
 	}
-    public function dashboard($id = NULL){
+    public function dashboard($title, $id = NULL){
       $weekday =  ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
       $group = Group::where('route', $id)->first();
       if($group->status !== NULL){
@@ -32,7 +32,7 @@ class GroupController extends Controller
     
       $at = AvailableTime::where('group_id', $group->id)->get();
       $participants = GroupParticipant::where('group_id', $group->id)->where('status', 1)->get();
-      
+      $group->participants_count = GroupParticipant::where('group_id', $group->id)->where('status', 1)->count();
       if(auth()->check()){
         $group->is_participant = GroupParticipant::where('user_id', auth()->user()->id)
         ->where('group_id', $group->id)
@@ -42,9 +42,7 @@ class GroupController extends Controller
         ->where('group_id', $group->id)->first();
 
         if($last_online_at !== NUll){
-
           $last_online_at->last_online_at = Carbon::now();
-
           $last_online_at->update();
         }
       }
@@ -53,9 +51,16 @@ class GroupController extends Controller
       }
       return view('bahai.group.dashboard', compact('group', 'participants', 'at', 'weekday'));
     }
+
+    
+    public function chat($title, $id = NULL){
+      return view('bahai.group.chat');
+    }
+
     public function stepdown(Request $request){
 
 	    $group = Group::where('id', $request->id)->select('id', 'host_id', 'route')->first();
+      $group->title_route = str_replace(' ', '-', str_replace('/', ' ', str_replace('#', 'n', $group->book->name)));
 	    if(auth()->user()->id == $group->host_id){
 	    	$group->host_id = NULL;
 	    	$group->update();
@@ -67,7 +72,7 @@ class GroupController extends Controller
 
 	    	$log->save();
 	    }
-     	return redirect()->route('group.dashboard', [$group->route]);
+     	return redirect()->route('group.dashboard', [$group->title_route, $group->route]);
 
     }
     public function stepup(Request $request){
@@ -111,7 +116,8 @@ class GroupController extends Controller
 
     public function join(Request $request){
 
-	    $group = Group::where('id', $request->id)->select('id', 'host_id', 'route')->first();
+	    $group = Group::where('id', $request->id)->select('id', 'host_id', 'book_id', 'route')->first();
+      $group->title_route = str_replace(' ', '-', str_replace('/', ' ', str_replace('#', 'n', $group->book->name)));
 	    $g_participant = GroupParticipant::where('group_id', $request->id)->where('user_id', auth()->user()->id)->first();
 	    if($g_participant == NULL){
 	    	$participant = New GroupParticipant;
@@ -132,7 +138,8 @@ class GroupController extends Controller
   		$log->reason = NULL;
   		$log->save();
 
-     	return redirect()->route('group.dashboard', [$group->route]);
+      return redirect()->route('group.chat', [$group->title_route, $group->route]);
+     	
     }
 
     public function apiParticipant($id){

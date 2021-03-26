@@ -31,6 +31,7 @@ class AdminController extends Controller
 			$g_participant->status = 0;
 			$g_participant->update();
 		if($id == $group->host_id){
+			
 			$group->host_id = NULL;
 			$group->update();
 

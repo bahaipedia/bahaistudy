@@ -18,7 +18,7 @@
 			<h4 class="autor-nombre-dash">{{$group->book->author->name}} {{$group->book->author->lastname}}</h4>
 			<h3 class="libro-nombre-dash">{{$group->book->name}}</h3>
 			<h5 class="integrantes-dash">
-				7 Integrantes
+				{{$group->participants_count}} Participants
 			</h5>
 			<h5 class="host-dash">
 				@if($group->host_id != NULL)	
@@ -37,11 +37,9 @@
 					<input name='id' value='{{$group->id}}' type='hidden'/>
 					<button class="login-boton dashposition">join</button>
 				</form>
-				{{-- HICE ESTE ELSE, ESTÁ BIEN HECHO? --}}
+				{{-- HICE ESTE ELSE, ESTÁ BIEN HECHO? SIII 👏--}}
 				@else
-				<button class="chat-dash">
-					join chat
-				</button>
+				<a class="chat-dash" href='{{route('group.chat', [str_replace(' ', '-', str_replace('/', ' ', str_replace('#', 'n', $group->book->name))), $group->route])}}'>JOIN CHAT</a>
 			@endif
 	</div>
 		</div>
