@@ -34,7 +34,7 @@
         @if(auth()->user() !== NULL)
         <div class="user">
           <div class="profile-pic"> </div>
-          <a class="nombre" href=" #">{{auth()->user()->name}} {{auth()->user()->lastname}}</a>
+          <a class="nombre" href="#">{{auth()->user()->name}} {{auth()->user()->lastname}}</a>
         </div>
         @else
         <div id="login">
@@ -48,10 +48,11 @@
     </div>
 
         <div id="caja-centrada">
-
           <div class="organizar-elementos">
             <div class="cerrar">
-              <a href="{{route('welcome')}}" id="equis">X</a>
+              <a href="#" id="equis">X</a>
+              {{--{{route('welcome')}}--}}
+              
           </div>
           <img class="logotipo" src="{{asset('/img/logo-color.svg')}}" />
       
@@ -173,7 +174,7 @@
               <option disabled selected >Choose the Author</option>
             </select>
             <input type='number' class='formulario-max pe-max max-group' required name='max_size' placeholder='Maximum Group Size'/>
-            <input type='description' required name='description' id='name' class="descripcion-libro-form pe" rows="3" cols="15" placeholder="Description... Lorem ipsum dolor sit amet."/>
+            <textarea type='description' required name='description' id='name' class="descripcion-libro-form pe" rows="3" cols="15" placeholder="Description... Lorem ipsum dolor sit amet."></textarea>
             <span class="parte-derecha-ficha-espacio"></span>
             <button class="join-ficha">CREATE</button>
         </div>

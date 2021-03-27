@@ -41,7 +41,7 @@
 				@else
 				<a class="chat-dash" href='{{route('group.chat', [str_replace(' ', '-', str_replace('/', ' ', str_replace('#', 'n', $group->book->name))), $group->route])}}'>JOIN CHAT</a>
 			@endif
-	</div>
+		</div>
 		</div>
 		</div>
 

@@ -1154,6 +1154,7 @@ height: 100%;
   box-shadow: 15px 15px 5px -10px rgba(186, 173, 162, 0.07);
   z-index: 3;
   top: 200px;
+  display: none;
 }
 
 .organizar-elementos {
@@ -1359,6 +1360,21 @@ input:-webkit-autofill:active
   left: 0px;
   top: 0px;
   line-height: 1.4;
+}
+
+.contenedor-chat{
+  width: 80%;
+  height: 90%;
+  display: flex;
+  border: 1px solid red;
+  align-self: flex-end;
+}
+
+.grupos-izquierda{
+  width: 20%;
+  align-self: left;
+  border: 1px solid red;
+  height: 100vh calc(-80px);
 }
 
 /* lo que había hecho f

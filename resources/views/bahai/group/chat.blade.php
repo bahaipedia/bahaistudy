@@ -1,6 +1,12 @@
 @extends('template')
 @section('cnt')
 
-<div>
-  <h1> HERE IS THE MESSAGES PAGE FOR GROUP </h1>
+<div class="contenedor-chat">
+  <div class="grupos-izquierda">
+    <h3 class="">Groups</h3>
+  </div>
+  <div class="chats-derecha">
+  </div>
 </div>
+
+@stop
