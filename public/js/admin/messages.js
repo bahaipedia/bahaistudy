@@ -1,6 +1,7 @@
 let i = 0
 var check;
 var input;
+var msgBox = document.querySelector('#messages-box');
 var url = document.querySelector('#message-search-route').value;
 function searchMessage(e){
 	input = e.value;
@@ -13,6 +14,7 @@ function searchMessage(e){
 
 function beat(value){
 	i++;
+	msgBox.innerHTML = '';
 	if(i > 2){
 		i = 0;
 		clearInterval(check);
@@ -22,7 +24,11 @@ function beat(value){
 	        url: url,
 	        type: "GET",
 	        success: function(data){
-	    		console.log(data)
+	    		for(d of data){
+	    			subEl = document.createElement('p');
+	    			subEl.appendChild(document.createTextNode(`${d.user_info} ${d.message} in group ${d.group_name} - ${d.created_at}`))
+	    			msgBox.appendChild(subEl);
+	    		}
 	        }
       	});
 	}
