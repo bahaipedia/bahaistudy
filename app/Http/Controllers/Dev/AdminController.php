@@ -56,7 +56,14 @@ class AdminController extends Controller
     	return view('dev.admin.messages', compact('messages'));
     }
     public function apiMessages($message){
+    	if(str_contains($message, '%')){
+    		return [];
+    	}
     	$messages = Message::select('user_id', 'message', 'group_id', 'created_at')->orderBy('created_at', 'desc')->where('message', 'like', '%'.$message.'%')->get();
+    	foreach($messages as $m){
+    		$m->user_info = $m->user->name.' '.$m->user->lastname;
+    		$m->group_name = $m->group->name;
+    	}
     	return $messages;
     }
 }
