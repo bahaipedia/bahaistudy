@@ -23,29 +23,7 @@
 <body>
 
   <div class="general-container">
-    <div id="barra">
-      <img id="logotipo" src="{{asset('/img/logotype.svg')}}" />
-      <div id="enlaces">
-        <a class="b-principal" href="#">ABOUT</a>
-        <a class="b-principal" href="#">HELP</a>
-        <a class="b-principal" href="#">RESOURCE</a>
-        <a class="b-principal" href="#">MATERIALS</a>
-        <a class="b-principal" href="{{route('dev.welcome')}}">DEV</a>
-        @if(auth()->user() !== NULL)
-        <div class="user">
-          <div class="profile-pic"> </div>
-          <a class="nombre" href="#">{{auth()->user()->name}} {{auth()->user()->lastname}}</a>
-        </div>
-        @else
-        <div id="login">
-          <a class="login-boton" href="#"
-          {{--{{route('login')}}
-          --}}>LOGIN</a>
-        </div>
-        @endif
-
-      </div>
-    </div>
+    @include('layout.headers.home')
 
         <div id="caja-centrada">
           <div class="organizar-elementos">
@@ -230,7 +208,7 @@
             <p class="spaces-lista">({{$g->max_size}} spaces available)</p>
           </div>
           <div class="derecha-cinco"> 
-            <a href="{{route('group.dashboard', [$g->route])}}">
+            <a href='{{route('group.dashboard', [str_replace(' ', '-', str_replace('/', ' ', str_replace('#', 'n', $g->book->name))), $g->route])}}'>
           <img class="join-plus" src="{{asset('/img/plus-sign.svg')}}" />
             </a>
         </div>

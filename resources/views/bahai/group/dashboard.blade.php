@@ -1,6 +1,9 @@
 @extends('template')
 @section('cnt')
 
+{{-- estudia la ruta como si fuera un view -> view/layout..etc --}}
+@include('layout.headers.group')
+
 <div class="columna-grupo">
 	<input id='participant_route' value='{{route('api.group.participant', [Crypt::encryptString($group->id)])}}' type='hidden'/>
 	@if(auth()->check())
