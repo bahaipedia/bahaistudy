@@ -15,7 +15,7 @@
 
 	{{--<h1>{{$group->name}}</h1>--}}
 <div class="informacion">
-
+<div class="ficha-info">
 		<img class="imagen-libro-dash" src="{{asset('/img/ki.png')}}" />
 		<div class="informacion-dash">
 			<h4 class="autor-nombre-dash">{{$group->book->author->name}} {{$group->book->author->lastname}}</h4>
@@ -40,12 +40,12 @@
 					<input name='id' value='{{$group->id}}' type='hidden'/>
 					<button class="login-boton dashposition">join</button>
 				</form>
-				{{-- HICE ESTE ELSE, ESTÁ BIEN HECHO? SIII 👏--}}
 				@else
 				<a class="chat-dash" href='{{route('group.chat', [str_replace(' ', '-', str_replace('/', ' ', str_replace('#', 'n', $group->book->name))), $group->route])}}'>JOIN CHAT</a>
 			@endif
 		</div>
 		</div>
+	</div>
 		</div>
 
 

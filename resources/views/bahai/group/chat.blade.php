@@ -1,5 +1,6 @@
 @extends('template')
 @section('cnt')
+@include('layout.headers.group')
 
 <div class="contenedor-chat">
   <div class="grupos-izquierda">
