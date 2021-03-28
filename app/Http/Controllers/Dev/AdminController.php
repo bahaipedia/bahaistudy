@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dev;
 use Illuminate\Support\Facades\Crypt;
+use App\Configuration;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -54,6 +55,22 @@ class AdminController extends Controller
     public function messages(){
     	$messages = Message::select('user_id', 'message', 'group_id', 'created_at')->orderBy('created_at', 'desc')->limit(10)->get();
     	return view('dev.admin.messages', compact('messages'));
+    }
+
+    public function configurations(){
+    	$configurations = Configuration::all()[0];
+    	return view('dev.admin.configurations', compact('configurations'));
+    }
+    public function configurationsPost(Request $request){
+    	$configurations = Configuration::all()[0];
+    	$configurations->app_name = $request->app_name;
+    	$configurations->app_description = $request->app_description;
+    	$configurations->app_description_hight = $request->app_description_hight;
+    	$configurations->app_description_low = $request->app_description_low;
+    	$configurations->app_notes = $request->app_notes;
+    	$configurations->groups_per_host = $request->groups_per_host;
+    	$configurations->update();
+    	return redirect()->route('welcome');
     }
     public function apiMessages($message){
     	if(str_contains($message, '%')){

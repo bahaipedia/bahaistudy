@@ -28,22 +28,18 @@
 
     <div id="hero-image">
       <div id="textos">
-        <h1 id="hero-title">Welcome to BahaiStudy.Group,</h1>
+        <h1 id="hero-title">{{$configurations->app_name}},</h1>
         <h2 id="hero-subtitle">
-          a website designed to
+          {{$configurations->app_description}}
           <b id="resaltar">
-            help you connect with individuals who want to study
+             {{$configurations->app_description_hight}}
           </b>
-          the Writings in a group setting.
+           {{$configurations->app_description_low}}
         </h2>
         <div id="alert">
           <i class="icono"></i>
           <h5 class="hero-texto">
-            Notes that this website is not functional at this time but we are
-            creating it now. Study groups will be held virtually, are open to
-            everyone, and there is no cost or other requirements to join. The
-            group can decide what specific format the meetings should have,
-            click here for a suggested format.
+            {{$configurations->app_notes}}
           </h5>
         </div>
       </div>

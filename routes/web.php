@@ -141,6 +141,8 @@ Route::get('/dev/api/message/poll/{id}', 'Dev\GroupController@apiMessagePoll')->
 Route::post('/dev/admin/group/drop', 'Dev\AdminController@groupDrop')->name('dev.admin.group.drop');
 Route::get('/dev/admin/messages', 'Dev\AdminController@messages')->name('dev.admin.messages');
 Route::get('/dev/admin/api/messages/{m?}', 'Dev\AdminController@apiMessages')->name('dev.admin.api.messages');
+Route::get('/dev/admin/configurations', 'Dev\AdminController@configurations')->name('dev.admin.configurations');
+Route::post('/dev/admin/configurations', 'Dev\AdminController@configurationsPost')->name('dev.admin.configurations.post');
 
 
 

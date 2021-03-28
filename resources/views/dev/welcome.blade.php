@@ -96,6 +96,8 @@
                     <br>
                     <br>
                     <a href={{route('dev.admin.messages')}}>admin menssages</a>  
+                    <a href={{route('dev.admin.configurations')}}>admin configurations</a>  
+
                     <br>
                     <br>
 
