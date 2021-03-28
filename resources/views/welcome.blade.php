@@ -110,10 +110,16 @@
       @php $count++ @endphp
 
       <div class="ficha-libro">
+
+        {{-- Jeannifer you can see here how to link the img url --}}
+        @if($g->book->book_image_id !== NULL && Storage::disk('s3')->exists("bahai-dev/".$g->book->bookImage->code))
+        <img class="portada-libro new-group" src='{{Storage::disk("s3")->url("bahai-dev/".$g->book->bookImage->code)}}'/>
+        @else
         <img class="portada-libro" src="{{asset('/img/ki.png')}}" />
+        @endif
         <div class="parte-derecha-ficha">
           <h4 class="autor-nombre">{{$g->book->author->name}} {{$g->book->author->lastname}}</h4>
-          <h3 class="libro-nombre">{{$g->name}}</h3>
+          <h3 class="libro-nombre">{{$g->book->name}}</h3>
           <p class="spaces">({{$g->available}} spaces available of {{$g->max_size}})</p>
           <p class="descripcion-libro">
             {{$g->description}}
@@ -192,7 +198,11 @@
         <!--LISTA - LIBRO 001-->
         <div class="lista-libro">
           <div class="ticincoizquierda">
-        <img class="portada-libro-pequeno circular" src="{{asset('/img/ki.png')}}" />
+        @if($g->book->book_image_id !== NULL && Storage::disk('s3')->exists("bahai-dev/".$g->book->bookImage->code))
+        <img class="portada-libro-pequeno circular" src='{{Storage::disk("s3")->url("bahai-dev/".$g->book->bookImage->code)}}'/>
+        @else
+        <img class="portada-libro-pequeno circularo" src="{{asset('/img/ki.png')}}" />
+        @endif
           <div class="autor-libro">
             <h4 class="autor-nombre amarillo">{{$g->book->author->name}} {{$g->book->author->lastname}}</h4>
             <h3 class="libro-nombre">{{$g->book->name}}</h3>
