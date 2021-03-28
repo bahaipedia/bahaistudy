@@ -92,6 +92,12 @@ h5 {
   color: #49392b;
 }
 
+h6 {
+  font-family: "Noto Serif", serif;
+  font-size: 1.2em;
+  color: #49392b;
+}
+
 p {
   font-family: "Montserrat", sans-serif;
   font-size: 0.9em;
@@ -192,6 +198,32 @@ input.max-group::placeholder {
   padding-bottom: 10px;
 }
 
+.informacion-chat{
+  display: flex;
+  flex-direction: column;
+}
+
+.subti-libro {
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+
+.select-chat-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  align-items: center;
+  border-bottom: 1px solid #F2F2F2; 
+  padding-bottom: 10px;
+}
+
+.espacio-grupos{
+  padding-bottom: 15px;
+  padding-left: 15px;
+}
+
 .dash-list{
   font-size: 0.8em !important;
   color: #49392B;
@@ -203,12 +235,141 @@ input.max-group::placeholder {
   text-transform: capitalize;
 }
 
+.chat-list{
+  font-size: 0.8em !important;
+  color: #49392B;
+  margin-left: 10px;
+  letter-spacing: 1px;
+  font-size: 0.9em;
+  text-transform: capitalize;
+}
+
+.chat-list-dos{
+  font-size: 0.8em !important;
+  color: #49392B;
+  margin-left: 15px;
+  letter-spacing: 1px;
+  font-size: 0.9em;
+  text-transform: capitalize;
+}
+
+.chats-derecha {
+  width: 100vmax;
+  display: flex;
+  flex-direction: column;
+}
+
+.todos-los-mensajes {
+  display: flex;
+  width: 100%;
+  height: 75%;
+  background-color: #58a38a;
+}
+
+.barra-superior-estatica {
+  width: 100%;
+  margin-top: 80px;
+  height: 15%;
+  display: flex;
+  flex-direction: row;
+  padding-left: 30px;
+  align-items: center;
+  -webkit-box-shadow: 0px 15px 5px -10px rgba(186, 173, 162, 0.07);
+  -moz-box-shadow: 0px 15px 5px -10px rgba(186, 173, 162, 0.07);
+  box-shadow: 0px 15px 5px -10px rgba(186, 173, 162, 0.07);
+}
+
+.escribir-mensaje {
+  height: 5%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-end;
+  background-color: whitesmoke;
+  -webkit-box-shadow: 0px 15px 5px -10px rgba(186, 173, 162, 0.07);
+  -moz-box-shadow: 0px 15px 5px -10px rgba(186, 173, 162, 0.07);
+  box-shadow: 0px 15px 5px -10px rgba(186, 173, 162, 0.07);
+}
+
+.msj-recibido{
+  width: 96%;
+  height: 20%;
+  display: flex;
+  align-self: center;
+  padding-left: 35px;
+  border-bottom: 1px solid #F2F2F2; 
+  padding-right: 200px;
+  margin-top: 20px;
+}
+
+.msj-enviado{
+  width: 96%;
+  height: 20%;
+display: flex;
+align-self: center;
+padding-right: 35px;
+padding-left: 200px;
+text-align: end;
+border-bottom: 1px solid #F2F2F2; 
+
+}
+
+.textos-chat{
+  display: flex;
+  flex-direction: column;
+}
+
+.texto-enviado{
+  line-height: 1.4em;
+  color: #49392B;
+  padding: 25px;
+}
+
+.texto-enviado-uno{
+  line-height: 1.4em;
+  color: #49392B;
+  padding: 25px;
+}
+
 .perfil-dash {
   width: 40px !important;
   height: 40px !important;
   border-radius: 50px;
   background-color: #58a38a;
 }
+
+.organizar-superior{
+  display: flex;
+  flex-direction: column;
+}
+
+.centrar{
+  display: flex;
+  align-self: center;
+  justify-self: flex-end;
+}
+
+.centrar-uno{
+  display: flex;
+  align-self: flex-end;
+  flex-direction: row;
+  justify-self: center;
+}
+
+.perfil-chat {
+  width: 75px !important;
+  height: 75px !important;
+  border-radius: 50px;
+  background-color: #58a38a;
+}
+
+.perfil-chat-dos {
+  width: 75px !important;
+  height: 75px !important;
+  border-radius: 50px;
+  background-color: #58a38a;
+}
+
 
 .chat-dash:hover{
   background-color: #49392b;
@@ -399,7 +560,7 @@ input.max-group::placeholder {
   margin: 10px;
 }
 
-.login{
+#login{
 
 }
 
@@ -417,6 +578,7 @@ input.max-group::placeholder {
   background-size: cover;
   color: rgb(255, 255, 255);
   padding: 20px;
+  position: relative;
 }
 
 #textos {
@@ -693,6 +855,18 @@ input.max-group::placeholder {
   font-size: 0.9em !important;
   margin-bottom: 10px;
   margin-top: 10px;
+}
+
+.autor-envia {
+  padding-right: 25px;
+  font-weight: 600;
+  align-self: flex-end;
+}
+
+.autor-envia-uno {
+  padding-left: 25px;
+  font-weight: 600;
+  align-self: flex-start;
 }
 
 .autor-nombre-dash {
@@ -1142,24 +1316,26 @@ height: 100%;
 
 /* LOGIN - REGISTER */
 
-.centrado{
-  width: 100vw;
-  height: 100vh;
-}
-
-.caja-centrada {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  flex-direction: column;
+#caja-centrada {
+  position: absolute;
   background-color: white;
-  align-self: center;
   width: 500px;
   height: 550px;
   border-bottom: #49392B 3px solid;
   -webkit-box-shadow: 15px 15px 5px -10px rgba(186, 173, 162, 0.07);
   -moz-box-shadow: 15px 15px 5px -10px rgba(186, 173, 162, 0.07);
   box-shadow: 15px 15px 5px -10px rgba(186, 173, 162, 0.07);
+  z-index: 3;
+  top: 200px;
+  display: none;
+}
+
+.organizar-elementos {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  align-self: center;
 }
 
 .logotipo{
@@ -1267,8 +1443,8 @@ input:-webkit-autofill:active
   align-self: flex-end;
 }
 
-.cerrar-equis {
-  font-size: 1em;
+#equis {
+  font-size: 2em;
 }
 
 /* Groups page */
@@ -1330,18 +1506,27 @@ input:-webkit-autofill:active
   height: 100%;
   flex-direction: column;
   position: relative;
-  top: 120px;
-  left: -170px;
+  top: 50px;
+  left: 50px;
 }
 
 .participants-list {
   width: 20%;
-  height: 90%;
+  height: 100%;
   align-self: flex-end;
   padding: 20px;
+  padding-top: 100px;
   -webkit-box-shadow: -16px 0px 5px -10px rgb(186 173 162 / 7%);
   -moz-box-shadow: -16px 0px 5px -10px rgb(186 173 162 / 7%);
   box-shadow: -16px 0px 5px -10px rgb(186 173 162 / 7%);
+}
+
+.ficha-info {
+  display: flex;
+  width: 800px;
+  -webkit-box-shadow: 10px 10px 5px -10px rgb(186 173 162 / 7%);
+  -moz-box-shadow: 10px 10px 5px -10px rgb(186 173 162 / 7%);
+  box-shadow: 10px 10px 5px -10px rgb(186 173 162 / 7%);
 }
 
 .informacion-libro {
@@ -1357,6 +1542,34 @@ input:-webkit-autofill:active
   left: 0px;
   top: 0px;
   line-height: 1.4;
+}
+
+.contenedor-chat{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-self: flex-end;
+  justify-self: center;
+  overflow: hidden;
+}
+
+.grupos-izquierda{
+  width: 25%;
+  align-self: left;
+  height: 100%;
+  padding-top: 100px;
+  padding-left: 20px;
+  padding-right: 20px;
+  z-index: 4;
+  -webkit-box-shadow: 15px 15px 5px -10px rgba(186, 173, 162, 0.07);
+  -moz-box-shadow: 15px 15px 5px -10px rgba(186, 173, 162, 0.07);
+  box-shadow: 15px 15px 5px -10px rgba(186, 173, 162, 0.07);
+}
+
+.todos-los-mensajes {
+  display: flex;
+background-color: white;
+flex-direction: column;
 }
 
 /* lo que había hecho f
