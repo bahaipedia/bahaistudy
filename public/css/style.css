@@ -313,7 +313,7 @@ input.max-group::placeholder {
   margin-bottom: 5px;
   border-bottom: 1px solid #F2F2F2; 
   padding-bottom: 5px;
-
+  justify-content: flex-end; 
 }
 
 .textos-chat{

@@ -186,12 +186,41 @@ class GroupController extends Controller
             return 'API-E0002';
         }
    		$last_online_at = GroupParticipant::select('id', 'last_online_at')->where('user_id', $id)->where('group_id', $group_id)->first();
-		if($last_online_at !== NUll){
-			$last_online_at->last_online_at = Carbon::now();
-			$last_online_at->update();
-		}
+  		if($last_online_at !== NUll){
+  			$last_online_at->last_online_at = Carbon::now();
+  			$last_online_at->update();
+  		}
     	$last_online_at->update();
     	return 'done';
+    }
+
+     public function message(Request $request){
+      try{
+          $group_id = Crypt::decryptString($request->group_id);
+      } catch (DecryptException $e) {
+          return 'API-E0002';
+      }
+      $message = New Message;
+      $message->user_id = auth()->user()->id;
+      $message->message = $request->new_message;
+      $message->group_id = $group_id;
+      $message->save();
+      $message->user_info = $message->user->name.' '.$message->user->lastname.' said: ';
+      return $message;
+    }
+
+    public function apiMessagePoll($id){
+      $message = Message::select('user_id', 'id' ,'message')->where('group_id', $id)->get();
+      foreach($message as $m){
+        $m->user_info = $m->user->name.' '.$m->user->lastname;
+        if(auth()->user() && $m->user_id == auth()->user()->id){
+          $m->self = 'self';
+        }
+        else{
+          $m->self = 'other';
+        }
+      }
+      return $message;
     }
 
    

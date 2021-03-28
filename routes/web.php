@@ -77,11 +77,11 @@ Route::post('/group/stepup/', 'GroupController@stepup')->name('group.stepup');
 Route::post('/group/leave/', 'GroupController@leave')->name('group.leave');
 Route::post('/group/join/', 'GroupController@join')->name('group.join');
 // NEW ROUTE IN LAYOUT ENV
-Route::post('/group/message/', 'GroupController@message')->name('group.message');
-
+Route::post('/api/group/message/', 'GroupController@message')->name('group.message');
 // Api routes
 Route::get('/api/group/participant/{id}', 'GroupController@apiParticipant')->name('api.group.participant');
 Route::post('/api/group/beat', 'GroupController@apiBeat')->name('api.group.beat');
+Route::get('/api/message/poll/{id}', 'GroupController@apiMessagePoll')->name('api.message.poll');
 
 
 
