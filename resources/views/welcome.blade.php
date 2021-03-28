@@ -173,14 +173,14 @@
         @if($g->book->book_image_id !== NULL && Storage::disk('s3')->exists("bahai-dev/".$g->book->bookImage->code))
         <img class="portada-libro-pequeno circular" src='{{Storage::disk("s3")->url("bahai-dev/".$g->book->bookImage->code)}}'/>
         @else
-        <img class="portada-libro-pequeno circularo" src="{{asset('/img/ki.png')}}" />
+        <img class="portada-libro-pequeno circular" src="{{asset('/img/ki.png')}}" />
         @endif
           <div class="autor-libro">
             <h4 class="autor-nombre amarillo">{{$g->book->author->name}} {{$g->book->author->lastname}}</h4>
             <h3 class="libro-nombre">{{$g->book->name}}</h3>
           </div>
           </div>
-<div class="cinculibroizquierda">
+        <div class="cinculibroizquierda">
           <p class="descripcion-libro-lista">
             {{$g->description}} {{$g->description}} {{$g->description}}
 

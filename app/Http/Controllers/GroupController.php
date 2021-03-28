@@ -11,6 +11,7 @@ use App\GroupParticipant;
 use App\LogsGroupParticipant;
 use App\AvailableTime;
 use App\User;
+use App\Message;
 
 use App\Group;
 
@@ -54,7 +55,28 @@ class GroupController extends Controller
 
     
     public function chat($title, $id = NULL){
-      return view('bahai.group.chat');
+      $group = Group::where('route', $id)->first();
+      
+      $messages = Message::all()->where('edited', NULL)->where('delete', NULL)->where('group_id', $group->id);
+      $participants = GroupParticipant::where('group_id', $group->id)->where('status', 1)->get();
+      $group->participants_count = GroupParticipant::where('group_id', $group->id)->where('status', 1)->count();
+      if(auth()->check()){
+        $group->is_participant = GroupParticipant::where('user_id', auth()->user()->id)
+        ->where('group_id', $group->id)
+        ->where('status', 1)->count();
+
+        $last_online_at = GroupParticipant::select('id', 'last_online_at')->where('user_id', auth()->user()->id)
+        ->where('group_id', $group->id)->first();
+
+        if($last_online_at !== NUll){
+          $last_online_at->last_online_at = Carbon::now();
+          $last_online_at->update();
+        }
+      }
+      else{
+        $participants->is_participant = 'Not auth';
+      }
+      return view('bahai.group.chat', compact('messages', 'participants', 'group'));
     }
 
     public function stepdown(Request $request){
