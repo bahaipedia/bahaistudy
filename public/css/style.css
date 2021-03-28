@@ -293,42 +293,45 @@ input.max-group::placeholder {
 
 .msj-recibido{
   width: 96%;
-  height: 20%;
   display: flex;
   align-self: center;
   padding-left: 35px;
   border-bottom: 1px solid #F2F2F2; 
   padding-right: 200px;
   margin-top: 20px;
+  margin-bottom:  20px;
+
 }
 
 .msj-enviado{
   width: 96%;
-  height: 20%;
-display: flex;
-align-self: center;
-padding-right: 35px;
-padding-left: 200px;
-text-align: end;
-border-bottom: 1px solid #F2F2F2; 
+  display: flex;
+  align-self: center;
+  padding-right: 35px;
+  padding-left: 200px;
+  text-align: end;
+  margin-bottom: 5px;
+  border-bottom: 1px solid #F2F2F2; 
+  padding-bottom: 5px;
 
 }
 
 .textos-chat{
   display: flex;
   flex-direction: column;
+  width: calc(100% - 90px);
+  margin-right: 10px;
 }
 
 .texto-enviado{
   line-height: 1.4em;
   color: #49392B;
-  padding: 25px;
+  /*padding: 25px;*/
 }
 
 .texto-enviado-uno{
   line-height: 1.4em;
   color: #49392B;
-  padding: 25px;
 }
 
 .perfil-dash {
@@ -1190,7 +1193,7 @@ height: 100%;
 
 .autor-libro {
     flex-direction: column;
-    width: 300px;
+    width: calc(100% - 70px);
     display: flex;
     position: relative;
     left: 20px;
