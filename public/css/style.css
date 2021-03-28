@@ -92,6 +92,12 @@ h5 {
   color: #49392b;
 }
 
+h6 {
+  font-family: "Noto Serif", serif;
+  font-size: 1.2em;
+  color: #49392b;
+}
+
 p {
   font-family: "Montserrat", sans-serif;
   font-size: 0.9em;
@@ -192,6 +198,32 @@ input.max-group::placeholder {
   padding-bottom: 10px;
 }
 
+.informacion-chat{
+  display: flex;
+  flex-direction: column;
+}
+
+.subti-libro {
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+
+.select-chat-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  align-items: center;
+  border-bottom: 1px solid #F2F2F2; 
+  padding-bottom: 10px;
+}
+
+.espacio-grupos{
+  padding-bottom: 15px;
+  padding-left: 15px;
+}
+
 .dash-list{
   font-size: 0.8em !important;
   color: #49392B;
@@ -203,12 +235,141 @@ input.max-group::placeholder {
   text-transform: capitalize;
 }
 
+.chat-list{
+  font-size: 0.8em !important;
+  color: #49392B;
+  margin-left: 10px;
+  letter-spacing: 1px;
+  font-size: 0.9em;
+  text-transform: capitalize;
+}
+
+.chat-list-dos{
+  font-size: 0.8em !important;
+  color: #49392B;
+  margin-left: 15px;
+  letter-spacing: 1px;
+  font-size: 0.9em;
+  text-transform: capitalize;
+}
+
+.chats-derecha {
+  width: 100vmax;
+  display: flex;
+  flex-direction: column;
+}
+
+.todos-los-mensajes {
+  display: flex;
+  width: 100%;
+  height: 75%;
+  background-color: #58a38a;
+}
+
+.barra-superior-estatica {
+  width: 100%;
+  margin-top: 80px;
+  height: 15%;
+  display: flex;
+  flex-direction: row;
+  padding-left: 30px;
+  align-items: center;
+  -webkit-box-shadow: 0px 15px 5px -10px rgba(186, 173, 162, 0.07);
+  -moz-box-shadow: 0px 15px 5px -10px rgba(186, 173, 162, 0.07);
+  box-shadow: 0px 15px 5px -10px rgba(186, 173, 162, 0.07);
+}
+
+.escribir-mensaje {
+  height: 5%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-end;
+  background-color: whitesmoke;
+  -webkit-box-shadow: 0px 15px 5px -10px rgba(186, 173, 162, 0.07);
+  -moz-box-shadow: 0px 15px 5px -10px rgba(186, 173, 162, 0.07);
+  box-shadow: 0px 15px 5px -10px rgba(186, 173, 162, 0.07);
+}
+
+.msj-recibido{
+  width: 96%;
+  height: 20%;
+  display: flex;
+  align-self: center;
+  padding-left: 35px;
+  border-bottom: 1px solid #F2F2F2; 
+  padding-right: 200px;
+  margin-top: 20px;
+}
+
+.msj-enviado{
+  width: 96%;
+  height: 20%;
+display: flex;
+align-self: center;
+padding-right: 35px;
+padding-left: 200px;
+text-align: end;
+border-bottom: 1px solid #F2F2F2; 
+
+}
+
+.textos-chat{
+  display: flex;
+  flex-direction: column;
+}
+
+.texto-enviado{
+  line-height: 1.4em;
+  color: #49392B;
+  padding: 25px;
+}
+
+.texto-enviado-uno{
+  line-height: 1.4em;
+  color: #49392B;
+  padding: 25px;
+}
+
 .perfil-dash {
   width: 40px !important;
   height: 40px !important;
   border-radius: 50px;
   background-color: #58a38a;
 }
+
+.organizar-superior{
+  display: flex;
+  flex-direction: column;
+}
+
+.centrar{
+  display: flex;
+  align-self: center;
+  justify-self: flex-end;
+}
+
+.centrar-uno{
+  display: flex;
+  align-self: flex-end;
+  flex-direction: row;
+  justify-self: center;
+}
+
+.perfil-chat {
+  width: 75px !important;
+  height: 75px !important;
+  border-radius: 50px;
+  background-color: #58a38a;
+}
+
+.perfil-chat-dos {
+  width: 75px !important;
+  height: 75px !important;
+  border-radius: 50px;
+  background-color: #58a38a;
+}
+
 
 .chat-dash:hover{
   background-color: #49392b;
@@ -694,6 +855,18 @@ input.max-group::placeholder {
   font-size: 0.9em !important;
   margin-bottom: 10px;
   margin-top: 10px;
+}
+
+.autor-envia {
+  padding-right: 25px;
+  font-weight: 600;
+  align-self: flex-end;
+}
+
+.autor-envia-uno {
+  padding-left: 25px;
+  font-weight: 600;
+  align-self: flex-start;
 }
 
 .autor-nombre-dash {
@@ -1372,18 +1545,31 @@ input:-webkit-autofill:active
 }
 
 .contenedor-chat{
-  width: 80%;
-  height: 90%;
+  width: 100vw;
+  height: 100vh;
   display: flex;
-  border: 1px solid red;
   align-self: flex-end;
+  justify-self: center;
+  overflow: hidden;
 }
 
 .grupos-izquierda{
-  width: 20%;
+  width: 25%;
   align-self: left;
-  border: 1px solid red;
-  height: 100vh calc(-80px);
+  height: 100%;
+  padding-top: 100px;
+  padding-left: 20px;
+  padding-right: 20px;
+  z-index: 4;
+  -webkit-box-shadow: 15px 15px 5px -10px rgba(186, 173, 162, 0.07);
+  -moz-box-shadow: 15px 15px 5px -10px rgba(186, 173, 162, 0.07);
+  box-shadow: 15px 15px 5px -10px rgba(186, 173, 162, 0.07);
+}
+
+.todos-los-mensajes {
+  display: flex;
+background-color: white;
+flex-direction: column;
 }
 
 /* lo que había hecho f
