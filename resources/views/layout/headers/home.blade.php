@@ -13,7 +13,7 @@
     </div>
     @else
     <div class="login">
-      <a class="login-boton" href={{route('login')}}>LOGIN</a>
+      <a class="login-boton" href=#>LOGIN</a>
     </div>
     @endif
 

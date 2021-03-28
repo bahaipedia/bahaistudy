@@ -33,7 +33,7 @@ class GeneralController extends Controller
         $configurations = Configuration::select('app_name', 'app_description', 'app_description_hight', 'app_description_low', 'app_notes')->get()->first();
         $authors = AuthorsInContainer::select('author_id', 'group_container_id')->get();
         $books = Book::whereIn('author_id', $authors->pluck('author_id'))->get();
-        $containers = GroupContainer::select('id', 'name', 'weight')->orderBy('weight', 'desc')->limit(3)->get();
+        $containers = GroupContainer::select('id', 'name', 'weight')->orderBy('weight', 'desc')->limit(1)->get();
         return view('welcome', compact('title', 'groups', 'containers', 'authors', 'books', 'configurations'));
     }
 
