@@ -105,7 +105,7 @@
 
       @endforeach
 <!-- CREATE NEW GROUP -->
-@if(auth()->check())
+@if(auth()->check() && $create_group)
 <form method=POST action='{{route('store.group.post')}}' class='wrap-r'>
       <div class="ficha-libro">
         <div class="izquierda">

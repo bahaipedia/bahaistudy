@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\LogsSteppedDownHost;
 use App\GroupParticipant;
 use App\LogsGroupParticipant;
+use App\LogsConfiguration;
 use App\AvailableTime;
 use App\User;
 use App\Message;
@@ -63,6 +64,35 @@ class AdminController extends Controller
     }
     public function configurationsPost(Request $request){
     	$configurations = Configuration::all()[0];
+
+        $log = New LogsConfiguration;
+        $log->user_id = auth()->user()->id;
+        $log->save();
+
+        if($request->send_created_a_study_group != NULL){
+            $configurations->send_created_a_study_group = 1;
+        }else{
+            $configurations->send_created_a_study_group = 0;
+        }
+
+        if($request->validation_per_group_creation != NULL){
+            $configurations->validation_per_group_creation = 1;
+        }else{
+            $configurations->validation_per_group_creation = 0;
+        }
+
+        if($request->send_created_account != NULL){
+            $configurations->send_created_account = 1;
+        }else{
+            $configurations->send_created_account = 0;
+        }
+
+        if($request->send_host_stepped_down != NULL){
+            $configurations->send_host_stepped_down = 1;
+        }else{
+            $configurations->send_host_stepped_down = 0;    
+        }
+
     	$configurations->app_name = $request->app_name;
     	$configurations->app_description = $request->app_description;
     	$configurations->app_description_hight = $request->app_description_hight;
@@ -70,6 +100,7 @@ class AdminController extends Controller
     	$configurations->app_notes = $request->app_notes;
     	$configurations->groups_per_host = $request->groups_per_host;
     	$configurations->update();
+
     	return redirect()->route('welcome');
     }
     public function apiMessages($message){

@@ -12,7 +12,7 @@ message.group_id = document.querySelector('#group_id').value
 message.route = document.querySelector('#message-route').value
 message.query = document.querySelector('#message-poll').value;
 var messageTimer;
-messagePoll();
+// messagePoll();
 function messagePoll(){
   var url = message.query;
    $.ajax({
