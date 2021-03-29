@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Book;
 use App\Group;
 use App\Author;
+use App\Configuration;
 use App\GroupContainer;
 use App\AuthorsInContainer;
 use App\GroupParticipant;
@@ -31,6 +32,17 @@ class StoreController extends Controller
     }
 	public function groupPost(Request $request){
         
+        // get how many groups where created by user
+        $count = Group::where('host_id', auth()->user()->id)->count();
+        $groups_per_host = Configuration::select('groups_per_host')->get()[0]->groups_per_host;
+        if($count >= $groups_per_host){
+            $header = 'Sorry!';
+            $message = "You can't create a new group";
+            return view('auth.response', compact('header', 'message'));
+        }
+
+        
+        // check by
         $file_methods = new FileController;
         $group = New Group;
         // Test the function when it have repeat

@@ -110,7 +110,7 @@
                 </div>
                 <br>
                 <div>
-                    @if(auth()->user() !== NULL && auth()->user()->email_validated == 1)
+                    @if(auth()->user() !== NULL && auth()->user()->email_validated != NULL)
                     <a href={{route('deconfirm.email.status', [Crypt::encryptString(auth()->user()->id)])}}>the user email is confirmated change status</a>
                     @elseif(auth()->user() !== NULL)
                     <a href={{route('confirm.email')}}>send email confirmation</a>

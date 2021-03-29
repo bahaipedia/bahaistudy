@@ -13,6 +13,7 @@ use App\LogsGroupParticipant;
 use App\AvailableTime;
 use App\User;
 use App\Message;
+use Illuminate\Support\Facades\Mail;
 
 
 use App\Group;
@@ -74,6 +75,18 @@ class GroupController extends Controller
 	    	$log->action = 1;
 
 	    	$log->save();
+
+        $user = auth()->user();
+        // try {
+        //   Mail::send('email.notification', ['user' => $user, 'group' => $group], function ($message) use ($user)
+        //     {
+        //         $message->from ('metafoodincorporated@gmail.com');
+        //         $message->to('fabiob1680@hotmail.com');
+        //         $message->subject('Notification');
+        //     });
+        // } catch (\Exception $e) {
+        //     return $e;
+        // }
 	    }
      	return redirect()->route('dev.group.dashboard', [$group->route]);
 

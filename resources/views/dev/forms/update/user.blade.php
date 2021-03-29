@@ -18,6 +18,14 @@
 <input id='email' name='email' value='{{$user->email}}'  >
 <br>
 
+<label for='notifications'>notifications</label>
+@if($user->notifications != 1)
+	<input type='checkbox' name='notifications'/>
+@else
+	<input type='checkbox' name='notifications' checked/>
+@endif
+<br>
+
 <button>UPDATE</button>
 </form>
 <a href={{route('dev.welcome')}}>home</a>

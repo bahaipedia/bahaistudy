@@ -55,6 +55,13 @@ class UpdateController extends Controller
         $user->name = $request->name;
         $user->lastname = $request->lastname;
         $user->email = $request->email;
+        
+        if($request->notifications != NULL){
+            $user->notifications = 1;
+        }else{
+            $user->notifications = 0;
+        }
+
         $user->update();
 
         $header = 'User was updated!';
