@@ -31,17 +31,17 @@
 <label for='send_created_a_study_group'>user must confirm email for create a group</label>
 
 @if($configurations->validation_per_group_creation != 1)
-<input type='checkbox' name='send_created_a_study_group'>
+<input type='checkbox' name='validation_per_group_creation'>
 @else
-<input type='checkbox' name='send_created_a_study_group' checked>
+<input type='checkbox' name='validation_per_group_creation' checked>
 @endif
 <br>
 
 <label for='validation_per_group_creation'>send email when group was created</label>
-@if($configurations->validation_per_group_creation != 1)
-	<input type='checkbox' name='validation_per_group_creation'/>
+@if($configurations->send_created_a_study_group != 1)
+	<input type='checkbox' name='send_created_a_study_group'/>
 @else
-	<input type='checkbox' name='validation_per_group_creation' checked/>
+	<input type='checkbox' name='send_created_a_study_group' checked/>
 @endif
 <br>
 

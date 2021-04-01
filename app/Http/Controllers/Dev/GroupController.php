@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dev;
 
 use Illuminate\Support\Facades\Crypt;
+use App\Http\Controllers\Managment\EmailController;
 
 use Carbon\Carbon;
 
@@ -12,6 +13,7 @@ use App\GroupParticipant;
 use App\LogsGroupParticipant;
 use App\AvailableTime;
 use App\User;
+use App\Configuration;
 use App\Message;
 use Illuminate\Support\Facades\Mail;
 
@@ -63,8 +65,8 @@ class GroupController extends Controller
 
 
     public function stepdown(Request $request){
-
-	    $group = Group::where('id', $request->id)->select('id', 'host_id', 'route')->first();
+      $configuration = Configuration::select('send_host_stepped_down')->get()[0];
+	    $group = Group::where('id', $request->id)->select('id', 'host_id', 'route', 'book_id', 'name')->first();
 	    if(auth()->user()->id == $group->host_id){
 	    	$group->host_id = NULL;
 	    	$group->update();
@@ -75,25 +77,19 @@ class GroupController extends Controller
 	    	$log->action = 1;
 
 	    	$log->save();
-
         $user = auth()->user();
-        // try {
-        //   Mail::send('email.notification', ['user' => $user, 'group' => $group], function ($message) use ($user)
-        //     {
-        //         $message->from ('metafoodincorporated@gmail.com');
-        //         $message->to('fabiob1680@hotmail.com');
-        //         $message->subject('Notification');
-        //     });
-        // } catch (\Exception $e) {
-        //     return $e;
-        // }
+        if($configuration->send_host_stepped_down == 1){
+          $email = new EmailController;
+          $email->StepDownHost($user, $group);
+        }
+        
 	    }
-     	return redirect()->route('dev.group.dashboard', [$group->route]);
+     	return redirect()->route('dev.group.dashboard', [str_replace('/', ' ', str_replace('#', ' ', $group->book->name)), $group->route]);
 
     }
     public function stepup(Request $request){
 
-	    $group = Group::where('id', $request->id)->select('id', 'host_id', 'route')->first();
+	    $group = Group::where('id', $request->id)->select('id', 'host_id', 'route', 'book_id')->first();
 	    if(auth()->user()->email_validated != NULL){
 	    	$group->host_id = auth()->user()->id;
 	    	$group->update();
@@ -106,28 +102,28 @@ class GroupController extends Controller
 	    	$log->save();
 	    }
 
-     	return redirect()->route('dev.group.dashboard', [$group->route]);
+      return redirect()->route('dev.group.dashboard', [str_replace('/', ' ', str_replace('#', ' ', $group->book->name)), $group->route]);
     }
 
     public function leave(Request $request){
 
-	    $group = Group::where('id', $request->id)->select('id', 'host_id', 'route')->first();
+	    $group = Group::where('id', $request->id)->select('id', 'host_id', 'route', 'book_id')->first();
 	    $g_participant = GroupParticipant::where('group_id', $request->id)->where('user_id', auth()->user()->id)->first();
 	    $g_participant->status = 0;
 	    $g_participant->update();
 
-		$log = New LogsGroupParticipant;
-		$log->user_id = auth()->user()->id;
-		$log->group_id = $request->id;
-		$log->action = 1;
-		$log->reason = NULL;
-		$log->save();
+  		$log = New LogsGroupParticipant;
+  		$log->user_id = auth()->user()->id;
+  		$log->group_id = $request->id;
+  		$log->action = 1;
+  		$log->reason = NULL;
+  		$log->save();
+      return redirect()->route('dev.group.dashboard', [str_replace('/', ' ', str_replace('#', ' ', $group->book->name)), $group->route]);
 
-     	return redirect()->route('dev.group.dashboard', [$group->route]);
     }
     public function join(Request $request){
 
-	    $group = Group::where('id', $request->id)->select('id', 'host_id', 'route')->first();
+	    $group = Group::where('id', $request->id)->select('id', 'host_id', 'route', 'book_id')->first();
 
 	    $g_participant = GroupParticipant::where('group_id', $request->id)->where('user_id', auth()->user()->id)->first();
 	    if($g_participant == NULL){
@@ -142,14 +138,14 @@ class GroupController extends Controller
 	    	$g_participant->update();
 	    }
 
-		$log = New LogsGroupParticipant;
-		$log->user_id = auth()->user()->id;
-		$log->group_id = $request->id;
-		$log->action = 0;
-		$log->reason = NULL;
-		$log->save();
+  		$log = New LogsGroupParticipant;
+  		$log->user_id = auth()->user()->id;
+  		$log->group_id = $request->id;
+  		$log->action = 0;
+  		$log->reason = NULL;
+  		$log->save();
+      return redirect()->route('dev.group.dashboard', [str_replace('/', ' ', str_replace('#', ' ', $group->book->name)), $group->route]);
 
-     	return redirect()->route('dev.group.dashboard', [$group->route]);
     }
 
     public function apiParticipant($id){
