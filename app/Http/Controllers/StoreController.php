@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Managment\EmailController;
 use App\Http\Controllers\Managment\FileController;
 use Illuminate\Http\Request;
 
@@ -31,13 +32,19 @@ class StoreController extends Controller
     	return view('bahai.forms.store.group', compact('container', 'authors', 'books'));
     }
 	public function groupPost(Request $request){
-        
+        $configuration = Configuration::select('send_created_a_study_group', 'validation_per_group_creation')->get()[0];
+        $user = auth()->user();
+        if($configuration->validation_per_group_creation == 1 && $user->email_validated == NULL){
+                $header = "Sorry! We can't created a group this time";
+                $message = "Please confirm your email please!";
+                return view('auth.response', compact('header', 'message'));
+        }
         // get how many groups where created by user
         $count = Group::where('host_id', auth()->user()->id)->count();
         $groups_per_host = Configuration::select('groups_per_host')->get()[0]->groups_per_host;
         if($count >= $groups_per_host){
             $header = 'Sorry!';
-            $message = "You can't create a new group";
+            $message = "You can't create a new group you reach the max amount of group per user";
             return view('auth.response', compact('header', 'message'));
         }
 
@@ -75,6 +82,10 @@ class StoreController extends Controller
 
 
 
+        if($configuration->send_created_a_study_group == 1){
+          $email = new EmailController;
+          $email->GroupCreated($user, $group);
+        }
         // $header = 'Group was created!';
         // $message = "The group was created";
         return redirect()->route('welcome');
