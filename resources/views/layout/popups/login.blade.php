@@ -1,11 +1,9 @@
 <div id="caja-centrada">
     <div class="organizar-elementos">
       <div class="cerrar">
-        <a href="#" id="equis">X</a>
-        {{--{{route('welcome')}}--}}
-        
+        <a href="#" id="equis">X</a>        
     </div>
-    <img class="logotipo" src="{{asset('/img/logo-color.svg')}}" />
+    <img class="logotipo-verti" src="{{asset('/img/logo-color.svg')}}" />
 
     <form method=POST action='{{route('login')}}' class='wrap-r'>
       {!! csrf_field() !!}

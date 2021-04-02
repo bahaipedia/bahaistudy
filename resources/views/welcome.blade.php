@@ -26,9 +26,6 @@
   <div class="general-container">
     @include('layout.headers.home')
 
-   
-
-
     <div id="hero-image">
       <div id="textos">
         <h1 id="hero-title">{{$configurations->app_name}},</h1>
@@ -40,7 +37,6 @@
            {{$configurations->app_description_low}}
         </h2>
         <div id="alert">
-          <i class="icono"></i>
           <h5 class="hero-texto">
             {{$configurations->app_notes}}
           </h5>
@@ -132,7 +128,7 @@
             <input type='number' class='formulario-max pe-max max-group' required name='max_size' placeholder='Maximum Group Size'/>
             <textarea type='description' required name='description' id='name' class="descripcion-libro-form pe" rows="3" cols="15" placeholder="Description... Lorem ipsum dolor sit amet."></textarea>
             <span class="parte-derecha-ficha-espacio"></span>
-            <button class="join-ficha">CREATE</button>
+            <a href="{{route('store.group')}}" class="join-ficha-pop">CREATE</a>
         </div>
       </div>
     </form>
