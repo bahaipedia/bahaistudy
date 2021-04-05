@@ -34,7 +34,7 @@ class GeneralController extends Controller
         $authors = AuthorsInContainer::select('author_id', 'group_container_id')->get();
         $books = Book::whereIn('author_id', $authors->pluck('author_id'))->get();
         $containers = GroupContainer::select('id', 'name', 'weight')->orderBy('weight', 'desc')->limit(1)->get();
-        $create_group = false;
+        $create_group = true;
         
         if(auth()->check()){
             $count = Group::where('host_id', auth()->user()->id)->count();
