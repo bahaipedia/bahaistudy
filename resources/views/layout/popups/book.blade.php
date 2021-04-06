@@ -27,7 +27,7 @@
         <label class="texto-may" for='date'>release date</label>
         <input id='date' name='date' type='date'>
         <label class="texto-may" for='number_pages'>number of pages</label>
-        <input id='number_pages'  placeholder="SELECT NUMBER PAGES" class="hachecuatro autor-nombre" name='number_pages' type='number'>
+        <input id='number_pages'  placeholder="SELECT NUMBER PAGES" class="hachecuatro autor-nombre" min='0' max='3000' name='number_pages' type='number'>
         <br>
         <label class="texto-min-bot" for='image'>Upload Cover Image</label>
         <input style='display:none;' id='image' type='file' accept='.png' name='image'>

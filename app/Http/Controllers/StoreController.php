@@ -146,16 +146,18 @@ class StoreController extends Controller
         $container->save();
 
         // author in container table
-        foreach($request->author as $a){
-            $aic = New AuthorsInContainer;
-            $aic->author_id = $a;
-            $aic->group_container_id = $container->id;
-            $aic->save();
+        $authors = array_unique($request->author);
+        foreach($authors as $a){
+            if($a != 'null'){
+                $aic = New AuthorsInContainer;
+                $aic->author_id = $a;
+                $aic->group_container_id = $container->id;
+                $aic->save();
+            }
         }
 		
-        $header = 'Container was created!';
-        $message = "The container was created succesfully";
-        return view('auth.response', compact('header', 'message'));
+        return redirect()->route('welcome');
+        
     }
 
 

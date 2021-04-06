@@ -26,6 +26,7 @@
   @include('layout.popups.book')
   @include('layout.popups.author')
   @include('layout.popups.container')
+  @include('layout.popups.register')
 
 
 
@@ -232,6 +233,7 @@
         </div>
         <script src='{{asset('/js/popups.js')}}'></script>
         <script src='{{asset('/js/forms/group.js')}}'></script>
+        <script src='{{asset('/js/containers.js')}}'></script>
 </body>
 
 </html>
