@@ -1212,7 +1212,7 @@ select::-ms-expand {
   border: 1px solid #9e9e9e;
   border-radius: 5px;
   padding: 10px;
-  width: 160px;
+  width: 200px;
   text-align: center;
 }
 
@@ -1266,7 +1266,8 @@ form {
   margin-top: 10px;
   line-height: 1.6em;
   width: 100%;
-  height: 120px;
+  height: 160px;
+  margin-bottom: 10px;
 }
 
 .descripcion-libro-form:focus {
@@ -1477,16 +1478,29 @@ form {
 
 /* LOGIN - REGISTER */
 
-#caja-centrada {
+#caja-login {
+  display: none;
+}
+#caja-group {
+  display: none;
+}
+#caja-book {
+  display: none;
+}
+#caja-author {
+  display: none;
+}
+#caja-container {
+  display: flex;
+}
+.pop-up-general{
   position: fixed;
   width: 100vw;
   height: 100vh;
-  /*border-bottom: #49392b 3px solid;*/
   -webkit-box-shadow: 15px 15px 5px -10px rgba(186, 173, 162, 0.07);
   -moz-box-shadow: 15px 15px 5px -10px rgba(186, 173, 162, 0.07);
   box-shadow: 15px 15px 5px -10px rgba(186, 173, 162, 0.07);
   z-index: 3;
-  display: none;
   justify-content: center;
   align-items: center;
   animation: fondo-color 1s forwards;
@@ -1742,6 +1756,7 @@ input:-webkit-autofill:active {
   width: 25%;
   align-self: left;
   height: 100%;
+  overflow-y: auto;
   padding-top: 100px;
   padding-left: 20px;
   padding-right: 20px;

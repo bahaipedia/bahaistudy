@@ -1,9 +1,9 @@
 <div id="barra">
   <img id="logotipo" src="{{asset('/img/logotype.svg')}}" />
   <div id="enlaces">
-    <a class="b-principal" href="#">ABOUT</a>
-    <a class="b-principal" href="#">HELP</a>
-    <a class="b-principal" href="#">RESOURCE</a>
+    <a class="b-principal" onclick="openPopup('caja-container')" href="#">ABOUT</a>
+    <a class="b-principal" onclick="openPopup('caja-book')" href="#">HELP</a>
+    <a class="b-principal" onclick="openPopup('caja-author')" href="#">RESOURCE</a>
     <a class="b-principal" href="#">MATERIALS</a>
     <a class="b-principal" href="{{route('dev.welcome')}}">DEV</a>
     @if(auth()->user() !== NULL)
@@ -13,7 +13,7 @@
     </div>
     @else
     <div class="login">
-      <a class="login-boton" href=#>LOGIN</a>
+      <a class="login-boton" onclick='openPopup("caja-login")' href=#>LOGIN</a>
     </div>
     @endif
 

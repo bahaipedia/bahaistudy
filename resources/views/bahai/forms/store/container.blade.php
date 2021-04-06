@@ -32,5 +32,4 @@
 <a href={{route('welcome')}}>home</a>
 
 
-</script>
 @stop

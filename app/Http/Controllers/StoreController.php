@@ -86,15 +86,14 @@ class StoreController extends Controller
           $email = new EmailController;
           $email->GroupCreated($user, $group);
         }
-        // $header = 'Group was created!';
-        // $message = "The group was created";
+        
         return redirect()->route('welcome');
     }
 	public function author(){
     	return view('bahai.forms.store.author');
     }
 	public function authorPost(Request $request){
-        
+
         $author = New Author;
         $author->user_id = auth()->user()->id;
         $author->name = $request->name;
@@ -103,9 +102,8 @@ class StoreController extends Controller
         $author->nationality = $request->nationality;
         $author->save();
 
-        $header = 'Author data stored!';
-        $message = "The data was stored";
-        return view('auth.response', compact('header', 'message'));
+        return redirect()->route('welcome');
+      
     }
 
 
@@ -130,9 +128,7 @@ class StoreController extends Controller
         $book->author_id = $request->author_id;
         $book->number_pages = $request->number_pages;
         $book->save();
-        $header = 'Uploaded file!';
-        $message = "The file was uploaded";
-        return view('auth.response', compact('header', 'message'));
+        return redirect()->route('welcome');
     }
 
     public function container(){

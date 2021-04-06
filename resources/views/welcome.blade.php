@@ -22,6 +22,12 @@
 
 <body>
   @include('layout.popups.login')
+  @include('layout.popups.group')
+  @include('layout.popups.book')
+  @include('layout.popups.author')
+  @include('layout.popups.container')
+
+
 
   <div class="general-container">
     @include('layout.headers.home')
@@ -45,13 +51,7 @@
       <div id="flecha">
       </div>
     </div>
-    <!-- 
 
-      Jeannifer te deje esto for para que renderizara los contenedores lo limite a tres, es decir que si creas un nuevo no va a parecer
-      los deje de modo que tengan 3 libros para que aparezca el scrollbar, otro 2 libros para que no tenga el scrollbar
-
-      y otro vacio con un texto para que tomes en cuenta contenedores que no tengan grupos ( en cuanto a disenio y maquetacion )
--->
     @foreach($containers as $c)
 
     <div class="contenedor">
@@ -79,7 +79,6 @@
       @php $count++ @endphp
 
       <div class="ficha-libro">
-        {{-- Jeannifer you can see here how to link the img url --}}
         @if($g->book->book_image_id !== NULL && Storage::disk('s3')->exists("bahai-dev/".$g->book->bookImage->code))
         <img class="portada-libro new-group" src='{{Storage::disk("s3")->url("bahai-dev/".$g->book->bookImage->code)}}'/>
         @else
@@ -128,7 +127,7 @@
             <input type='number' class='formulario-max pe-max max-group' required name='max_size' placeholder='Maximum Group Size'/>
             <textarea type='description' required name='description' id='name' class="descripcion-libro-form pe" rows="3" cols="15" placeholder="Description... Lorem ipsum dolor sit amet."></textarea>
             <span class="parte-derecha-ficha-espacio"></span>
-            <a href="{{route('store.group')}}" class="join-ficha-pop">CREATE</a>
+            <a href="#" onclick="openPopup('caja-group')" class="join-ficha-pop">CREATE</a>
         </div>
       </div>
     </form>
@@ -201,7 +200,7 @@
 </div>
         <div class="footer">
           <div class="linea-uno">
-            <p class="footer-text">
+            <p  class="footer-text">
               About
             </p>
             <p class="footer-text">
@@ -231,8 +230,7 @@
           </div>
 
         </div>
-        {{-- Jeannifer you can see here how to link the 'js' url --}}
-        <script src='{{asset('/js/ex.js')}}'></script>
+        <script src='{{asset('/js/popups.js')}}'></script>
         <script src='{{asset('/js/forms/group.js')}}'></script>
 </body>
 

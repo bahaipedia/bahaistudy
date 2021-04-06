@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Test;
 use App\Configuration;
 use App\Book;
+use App\Author;
 
 use App\AuthorsInContainer;
 use App\Group;
@@ -35,7 +36,7 @@ class GeneralController extends Controller
         $books = Book::whereIn('author_id', $authors->pluck('author_id'))->get();
         $containers = GroupContainer::select('id', 'name', 'weight')->orderBy('weight', 'desc')->limit(1)->get();
         $create_group = true;
-        
+        $authors_books = Author::select('id', 'name', 'lastname')->where('status', NULL)->get();
         if(auth()->check()){
             $count = Group::where('host_id', auth()->user()->id)->count();
             $groups_per_host = Configuration::select('groups_per_host')->get()[0]->groups_per_host;
@@ -44,7 +45,7 @@ class GeneralController extends Controller
             }
         }
         
-        return view('welcome', compact('title', 'groups', 'containers', 'authors', 'books', 'configurations', 'create_group'));
+        return view('welcome', compact('title', 'groups', 'containers', 'authors', 'authors_books', 'books', 'configurations', 'create_group'));
     }
 
     public function apiAuthorBook($id){
