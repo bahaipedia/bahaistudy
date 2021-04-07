@@ -16,26 +16,28 @@
 
       <form class="ancho" enctype="multipart/form-data" method=POST action='{{route('dev.store.book.post')}}'>
         {!! csrf_field() !!}
-        <input class="hachecuatro autor-nombre" max='50' value='book #' name='name' type='text'>
+        <input type="hidden" name='container_id' id='logic-group-popup-container-id'>
+        <input type="hidden" name='book_id' id='logic-group-popup-book-id'>
+        <input type="hidden" name='author_id' id='logic-group-popup-author-id'>
+
+        <input required disabled class="hachecuatro autor-nombre" id='logic-group-popup-book' value='book #' name='name' type='text'>
         <br>
-        <select class="libro-nombre hachetres" name='author_id'>
-          @foreach($authors as $a)
-          <option value={{$a->id}}>{{$a->name}} {{$a->lastname}}</option>
-          @endforeach
-        </select>
-        <textarea class="descripcion-libro-crear pe" max='200' name='description'
+        <input required class="hachecuatro autor-nombre" id='logic-group-popup-author' value='author' disabled>
+        <textarea required id='logic-group-popup-descriptions' class="descripcion-libro-crear pe" max='200' name='description'
           type='text'>Description... Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</textarea>
         <label class="texto-may">release date</label>
-        <input  name='date' type='date'>
+        <input  required name='date' type='date'>
         <label class="texto-may">number of pages</label>
-        <input  value=400 name='number_pages' type='number'>
+        <input required id='logic-group-popup-max-size' name='max-size' type='number'>
         <br>
+        {{-- avaliable time --}}
+        {{-- host comment --}}
+        {{-- meeting_url --}}
        
-        <p>{!! $errors->first('file')!!}</p>
         <a href="#" class="join-ficha-pop">CREATE</a>
       </form>
 	  <div style='display: flex; justify-content: center; align-items: center; height: 100%; '>
-	    <a onclick="closePopup('caja-group')" href="#" id="equis">X</a>        
+	    <span onclick="closePopup('caja-group')" href="#" id="equis">X</span>        
 	   </div>
     </div>
   </div>

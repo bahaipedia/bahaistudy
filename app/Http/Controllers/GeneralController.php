@@ -26,17 +26,22 @@ class GeneralController extends Controller
 	}
     public function welcome(){
     	$title = Configuration::find(1)->app_name;
+
         $groups = Group::select('id', 'name', 'description', 'book_id', 'group_container_id', 'route', 'max_size')->where('status', NULL)->get();
+
         foreach($groups as $g){
             $participants = GroupParticipant::where('group_id', $g->id)->where('status', 1)->count();
             $g->available = $g->max_size - $participants;
         }
+
+
         $configurations = Configuration::select('app_name', 'app_description', 'app_description_hight', 'app_description_low', 'app_notes')->get()->first();
         $authors = AuthorsInContainer::select('author_id', 'group_container_id')->get();
         $books = Book::whereIn('author_id', $authors->pluck('author_id'))->get();
-        $containers = GroupContainer::select('id', 'name', 'weight')->orderBy('weight', 'desc')->limit(1)->get();
-        $create_group = true;
+        $containers = GroupContainer::select('id', 'name', 'weight')->orderBy('weight', 'asc')->limit(1)->get();
         $authors_books = Author::select('id', 'name', 'lastname')->where('status', NULL)->get();
+
+        $create_group = true;
         if(auth()->check()){
             $count = Group::where('host_id', auth()->user()->id)->count();
             $groups_per_host = Configuration::select('groups_per_host')->get()[0]->groups_per_host;

@@ -7,13 +7,13 @@
 
     <form action='{{route('register.post')}}' method=POST class='wrap-r'>
      {!! csrf_field() !!}
-      <input id='name' placeholder='name' name='name' class='formulario' required type='text'>
+      <input placeholder='name' name='name' class='formulario' required type='text'>
       <br>
       <input id='lastname' placeholder='lastname' name='lastname' class='formulario' required type='text'>
       <br>
-      <input id='email' placeholder='email' name='email' class='formulario' required type='email'>
+      <input placeholder='email' name='email' class='formulario' required type='email'>
       <br>
-      <input id='password' placeholder='password' name='password' class='formulario' required type='password'>
+      <input placeholder='password' name='password' class='formulario' required type='password'>
       <br>
       <input id='c-password' placeholder='repeat password' name='password' class='formulario' required type='password'>
       <br>

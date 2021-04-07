@@ -113,7 +113,7 @@
         </div>
         <div class="parte-derecha-ficha-crear">
           <div class="custom-select">
-              <select class="autor-nombre hachecuatro desplegable-autor" data-container='{{$c->id}}' onchange='getBooks(this)' name="book_id">
+              <select class="autor-nombre hachecuatro desplegable-autor" data-container='{{$c->id}}' onchange='getBooks(this); createGroup(this);' name="author_id">
               @foreach($authors as $a)
               @if($a->group_container_id == $c->id)
               <option data-link='{{route('api.author.book', [$a->author->id])}}' value='{{$a->author->id}}'>{{$a->author->name}} {{$a->author->lastname}}
@@ -122,13 +122,13 @@
               @endforeach
             </select>
           </div>
-            <select class= 'libro-nombre hachetres formulario-libro' required name='book_id' id='book-element-{{$c->id}}'>
+            <select onchange='createGroup(this);' class='libro-nombre hachetres formulario-libro' required name='book_id' id='book-element-{{$c->id}}'>
               <option disabled selected >Choose the Author</option>
             </select>
-            <input type='number' class='formulario-max pe-max max-group' required name='max_size' placeholder='Maximum Group Size'/>
-            <textarea type='description' required name='description' id='name' class="descripcion-libro-form pe" rows="3" cols="15" placeholder="Description... Lorem ipsum dolor sit amet."></textarea>
+            <input onchange='createGroup(this);' type='number' class='formulario-max pe-max max-group' required name='max_size' placeholder='Maximum Group Size'/>
+            <textarea onchange='createGroup(this);' type='description' required name='description' id='name' class="descripcion-libro-form pe" rows="3" cols="15" placeholder="Description... Lorem ipsum dolor sit amet."></textarea>
             <span class="parte-derecha-ficha-espacio"></span>
-            <a href="#" onclick="openPopup('caja-group')" class="join-ficha-pop">CREATE</a>
+            <span onclick="renderInfoGroup(this);" class="join-ficha-pop">CREATE</span>
         </div>
       </div>
     </form>
@@ -142,7 +142,7 @@
   </div>
     </div>
     @endforeach
-    <div class="contenedor">
+   {{--  <div class="contenedor">
       <div class="subtitulo espacio">
         <h3>Works of the House of Justice</h3>
       </div>
@@ -192,7 +192,7 @@
         </div>
         </div>
         @endforeach
-      </div>
+      </div> --}}
 
       <button class="show-more-lista ">
         EVERYTHING
@@ -233,7 +233,7 @@
         </div>
         <script src='{{asset('/js/popups.js')}}'></script>
         <script src='{{asset('/js/forms/group.js')}}'></script>
-        <script src='{{asset('/js/containers.js')}}'></script>
+        <script src='{{asset('/js/forms/containers.js')}}'></script>
 </body>
 
 </html>
