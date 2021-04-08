@@ -1,4 +1,5 @@
 function closePopup(element){
+	
  	document.getElementById(element).style.display = "none";
 	document.querySelector("body").style.overflow = 'auto';
 }

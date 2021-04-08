@@ -38,7 +38,7 @@ class GeneralController extends Controller
         $configurations = Configuration::select('app_name', 'app_description', 'app_description_hight', 'app_description_low', 'app_notes')->get()->first();
         $authors = AuthorsInContainer::select('author_id', 'group_container_id')->get();
         $books = Book::whereIn('author_id', $authors->pluck('author_id'))->get();
-        $containers = GroupContainer::select('id', 'name', 'weight')->orderBy('weight', 'asc')->limit(1)->get();
+        $containers = GroupContainer::select('id', 'name', 'weight')->orderBy('weight', 'asc')->limit(10)->get();
         $authors_books = Author::select('id', 'name', 'lastname')->where('status', NULL)->get();
 
         $create_group = true;

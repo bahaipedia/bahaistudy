@@ -57,7 +57,7 @@
 
     <div class="contenedor">
       <div class="subtitulo espacio">
-        <h3>Works of the Central Figures</h3>
+        <h3>{{$c->name}}</h3>
       </div>
       <img class="puntos" src="{{asset('/img/puntos.svg')}}" />
     <div class="barra-info">
@@ -102,33 +102,34 @@
       @endforeach
 <!-- CREATE NEW GROUP -->
 @if(auth()->check() && $create_group)
-<form method=POST action='{{route('store.group.post')}}' class='wrap-r'>
+<form  class='wrap-r'>
       <div class="ficha-libro">
         <div class="izquierda">
         <img class="portada-libro new-group" src="{{asset('/img/books.png')}}" />
         {{-- <form enctype="multipart/form-data" method=POST action='{{route('dev.store.book.post')}}' class='wrap-r'> --}}
-          {!! csrf_field() !!}
-        <input type='hidden' value='{{$c->id}}' name='group_container_id'/>
+         
         <h3 class="sobre-imagen">Create New Group</h3>
         </div>
         <div class="parte-derecha-ficha-crear">
           <div class="custom-select">
-              <select class="autor-nombre hachecuatro desplegable-autor" data-container='{{$c->id}}' onchange='getBooks(this); createGroup(this);' name="author_id">
+              <select class="autor-nombre hachecuatro desplegable-autor logic-an" data-container='{{$c->id}}' onchange='getBooks(this); createGroup(this);' name="author_id">
+              <option disabled selected value='0'>Choose the Author</option>
+              
               @foreach($authors as $a)
-              @if($a->group_container_id == $c->id)
+              @if($a->group_container_id == $c->id && $a->author->status === NULL)
               <option data-link='{{route('api.author.book', [$a->author->id])}}' value='{{$a->author->id}}'>{{$a->author->name}} {{$a->author->lastname}}
               </option>
               @endif
               @endforeach
             </select>
-          </div>
-            <select onchange='createGroup(this);' class='libro-nombre hachetres formulario-libro' required name='book_id' id='book-element-{{$c->id}}'>
+            </div>
+            <select onchange='createGroup(this);' class='libro-nombre hachetres formulario-libro logic-bn' required name='book_id' id='book-element-{{$c->id}}'>
               <option disabled selected >Choose the Author</option>
             </select>
-            <input onchange='createGroup(this);' type='number' class='formulario-max pe-max max-group' required name='max_size' placeholder='Maximum Group Size'/>
-            <textarea onchange='createGroup(this);' type='description' required name='description' id='name' class="descripcion-libro-form pe" rows="3" cols="15" placeholder="Description... Lorem ipsum dolor sit amet."></textarea>
+            <input onchange='createGroup(this);' type='number' class='formulario-max pe-max max-group logic-mg' required name='max_size' placeholder='Maximum Group Size'/>
+            <textarea onchange='createGroup(this);' type='description' required name='description' id='name' class="descripcion-libro-form pe logic-de" rows="3" cols="15" placeholder="Description... Lorem ipsum dolor sit amet."></textarea>
             <span class="parte-derecha-ficha-espacio"></span>
-            <span onclick="renderInfoGroup(this);" class="join-ficha-pop">CREATE</span>
+            <span onclick="renderInfoGroup(this);" data-container='{{$c->id}}' class="join-ficha-pop">CREATE</span>
         </div>
       </div>
     </form>
