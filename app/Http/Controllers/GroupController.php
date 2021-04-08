@@ -58,7 +58,7 @@ class GroupController extends Controller
     
     public function chat($title, $id = NULL){
       $group = Group::where('route', $id)->first();
-      
+      $groups = Group::where('group_container_id', $group->group_container_id)->get();
       $messages = Message::all()->where('edited', NULL)->where('delete', NULL)->where('group_id', $group->id);
       $participants = GroupParticipant::where('group_id', $group->id)->where('status', 1)->get();
       $group->participants_count = GroupParticipant::where('group_id', $group->id)->where('status', 1)->count();
@@ -78,7 +78,7 @@ class GroupController extends Controller
       else{
         $participants->is_participant = 'Not auth';
       }
-      return view('bahai.group.chat', compact('messages', 'participants', 'group'));
+      return view('bahai.group.chat', compact('messages', 'participants', 'group', 'groups'));
     }
 
     public function stepdown(Request $request){
