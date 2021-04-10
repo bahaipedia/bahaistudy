@@ -29,16 +29,46 @@
 <div class="contenedor-chat">
   <div class="grupos-izquierda">
     <h3 class="espacio-grupos">Groups</h3>
-      <div class="select-chat-group">
+    @foreach($groups as $g)
+      @if($g->id == $group->id)
+      <a href='{{route('group.chat', [str_replace(' ', '-', str_replace('/', ' ', str_replace('#', 'n', $g->book->name))), $g->route])}}'>
+        <div style="background: blue;" class="perfil-dash">
+        </div>
+        <div class="informacion-chat">
+        <h6 class="subti-libro">{{$g->book->name}}</h6>
+        @if($g->host_id !== NULL)
+        <h4 class="chat-list">
+        with {{$g->host->name}} {{$g->host->lastname}}
+        </h4>
+        @else
+        <h4 class="chat-list">
+        No host yet
+        </h4>
+        @endif
+        </div>
+      </a>
+      @else
+      {{-- <div onclick='changeReference()' class="select-chat-group"> --}}
+      <a href='{{route('group.chat', [str_replace(' ', '-', str_replace('/', ' ', str_replace('#', 'n', $g->book->name))), $g->route])}}'>
         <div class="perfil-dash">
         </div>
         <div class="informacion-chat">
-        <h6 class="subti-libro">{{$group->book->name}}</h6>
+        <h6 class="subti-libro">{{$g->book->name}}</h6>
+        @if($g->host_id !== NULL)
         <h4 class="chat-list">
-        with {{$group->host->name}} {{$group->host->lastname}}
+        with {{$g->host->name}} {{$g->host->lastname}}
         </h4>
+        @else
+        <h4 class="chat-list">
+        No host yet
+        </h4>
+        @endif
         </div>
-      </div>
+      </a>
+      {{-- </div> --}}
+      @endif
+
+    @endforeach
 </div>
   <div class="chats-derecha">
     <div class="barra-superior-estatica">
@@ -82,11 +112,11 @@
     @if(auth()->user())
 
     <form method="POST" id='message-form' class="escribir-mensaje"}}>
-      <textarea id='message-input' placeholder='Write your message here'></textarea>
+      <textarea id='message-input' maxlength="400" placeholder='Write your message here'></textarea>
     </div>
     @else
      <form id='message-form' class="escribir-mensaje">
-      <textarea disabled id='message-input' placeholder='Write your message here'></textarea>
+      <textarea disabled id='message-input'  placeholder='Write your message here'></textarea>
     </form>
     @endif
   </div>

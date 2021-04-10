@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Crypt;
 
 use Carbon\Carbon;
+use App\Http\Controllers\Managment\EmailController;
 
 use Illuminate\Http\Request;
 use App\LogsSteppedDownHost;
 use App\GroupParticipant;
 use App\LogsGroupParticipant;
+use App\Configuration;
 use App\AvailableTime;
 use App\User;
 use App\Message;
@@ -56,7 +58,7 @@ class GroupController extends Controller
     
     public function chat($title, $id = NULL){
       $group = Group::where('route', $id)->first();
-      
+      $groups = Group::where('group_container_id', $group->group_container_id)->get();
       $messages = Message::all()->where('edited', NULL)->where('delete', NULL)->where('group_id', $group->id);
       $participants = GroupParticipant::where('group_id', $group->id)->where('status', 1)->get();
       $group->participants_count = GroupParticipant::where('group_id', $group->id)->where('status', 1)->count();
@@ -76,12 +78,13 @@ class GroupController extends Controller
       else{
         $participants->is_participant = 'Not auth';
       }
-      return view('bahai.group.chat', compact('messages', 'participants', 'group'));
+      return view('bahai.group.chat', compact('messages', 'participants', 'group', 'groups'));
     }
 
     public function stepdown(Request $request){
+      $configuration = Configuration::select('send_host_stepped_down')->get()[0];
 
-	    $group = Group::where('id', $request->id)->select('id', 'host_id', 'route')->first();
+	    $group = Group::where('id', $request->id)->select('id', 'host_id', 'route', 'book_id')->first();
       $group->title_route = str_replace(' ', '-', str_replace('/', ' ', str_replace('#', 'n', $group->book->name)));
 	    if(auth()->user()->id == $group->host_id){
 	    	$group->host_id = NULL;
@@ -93,13 +96,17 @@ class GroupController extends Controller
 	    	$log->action = 1;
 
 	    	$log->save();
-	    }
-     	return redirect()->route('group.dashboard', [$group->title_route, $group->route]);
 
+        if($configuration->send_host_stepped_down == 1){
+          $email = new EmailController;
+          $email->StepDownHost($user, $group);
+        }
+	    }
+      return redirect()->route('group.dashboard', [str_replace('/', ' ', str_replace('#', ' ', $group->book->name)), $group->route]);
     }
     public function stepup(Request $request){
 
-	    $group = Group::where('id', $request->id)->select('id', 'host_id', 'route')->first();
+	    $group = Group::where('id', $request->id)->select('id', 'host_id', 'route', 'book_id')->first();
 	    if(auth()->user()->email_validated != NULL){
 	    	$group->host_id = auth()->user()->id;
 	    	$group->update();
@@ -111,15 +118,15 @@ class GroupController extends Controller
 
 	    	$log->save();
 	    }
+      return redirect()->route('group.dashboard', [str_replace('/', ' ', str_replace('#', ' ', $group->book->name)), $group->route]);
 
-     	return redirect()->route('group.dashboard', [$group->route]);
     }
 
     // THE RULE IS USER LEAVE STATUS ON GROUP PARTICIPANT IS IS JOIN 1 WE HAVE ONLY ONE ROW FOR JOIN SO THE LOGIC VALIDATE IF THE ROW EXIST (UPDATE)
     // AND IF NOT IT WILL CREATE ONE (INSERT)
     public function leave(Request $request){
 
-	    $group = Group::where('id', $request->id)->select('id', 'host_id', 'route')->first();
+	    $group = Group::where('id', $request->id)->select('id', 'host_id', 'route', 'book_id')->first();
 	    $g_participant = GroupParticipant::where('group_id', $request->id)->where('user_id', auth()->user()->id)->first();
 	    $g_participant->status = 0;
 	    $g_participant->update();
@@ -130,8 +137,8 @@ class GroupController extends Controller
   		$log->action = 1;
   		$log->reason = NULL;
   		$log->save();
+      return redirect()->route('group.dashboard', [str_replace('/', ' ', str_replace('#', ' ', $group->book->name)), $group->route]);
 
-     	return redirect()->route('group.dashboard', [$group->route]);
     }
 
     
