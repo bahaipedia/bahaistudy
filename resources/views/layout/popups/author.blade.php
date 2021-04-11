@@ -37,18 +37,3 @@
   </div>
 </div>
 </div>
-{{-- 
-<h1>new author form</h1>
-<form enctype="multipart/form-data" method=POST action='{{route('dev.store.author.post')}}' class='wrap-r'>
-{!! csrf_field() !!}
-
-
-
-<label for='date_of_birth'>date_of_birth</label>
-<input id='date_of_birth'   type='date'>
-<br>
-<label for='nationality'>nationality</label>
-<input id='nationality' max='50' value='example'  type='text'>
-<br>
-
-<button>CREATE</button> --}}
