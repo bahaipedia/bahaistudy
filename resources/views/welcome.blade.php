@@ -93,7 +93,7 @@
             {{$g->description}}
           </p>
           <span class="parte-derecha-ficha-espacio"></span>
-          <a class="join-ficha" href='{{route('group.dashboard', [str_replace(' ', '-', str_replace('/', ' ', str_replace('#', 'n', $g->book->name))), $g->route])}}'>JOIN</a>
+          <a class="join-ficha margen-ficha" href='{{route('group.dashboard', [str_replace(' ', '-', str_replace('/', ' ', str_replace('#', 'n', $g->book->name))), $g->route])}}'>JOIN</a>
         </div>
       </div>
 
@@ -129,7 +129,7 @@
             <input onchange='createGroup(this);' type='number' class='formulario-max pe-max max-group logic-mg' required name='max_size' placeholder='Maximum Group Size'/>
             <textarea onchange='createGroup(this);' type='description' required name='description' id='name' class="descripcion-libro-form pe logic-de" rows="3" cols="15" placeholder="Description... Lorem ipsum dolor sit amet."></textarea>
             <span class="parte-derecha-ficha-espacio"></span>
-            <span onclick="renderInfoGroup(this);" data-container='{{$c->id}}' class="join-ficha-pop">CREATE</span>
+            <span onclick="renderInfoGroup(this);" data-container='{{$c->id}}' class="join-ficha-pop margen-ficha">CREATE</span>
         </div>
       </div>
     </form>
