@@ -1,5 +1,3 @@
-console.log('group form')
-
 function getBooks(element){
 	var containerId = element.dataset.container;
 	var authorId = element.value;

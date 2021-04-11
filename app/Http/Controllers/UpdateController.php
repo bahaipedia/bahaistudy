@@ -101,20 +101,64 @@ class UpdateController extends Controller
     	$logs->save();
 
     	$group = Group::find($id);
-        $group->name = $request->name;
+        // $group->name = $request->name;
         $group->description = $request->description;
         $group->url = $request->url;
-        $group->book_id = $request->book_id;
+        // $group->book_id = $request->book_id;
         $group->host_comments = $request->host_comments;
         $group->host_id = auth()->user()->id;
         $group->max_size = $request->max_size;
         $group->update();
 
-    	$header = 'Group was updated!';
-        $message = "The group was updated";
-        return view('auth.response', compact('header', 'message'));
+        return redirect()->route('welcome');
+    	
     }
 
+    public function containerUpdate(Request $request){
+        try{
+            $id = Crypt::decryptString($request->container_id);
+        } catch (DecryptException $e) {
+            return 'DD-E0001';
+        }
+
+        // $logs = New LogsGroupUpdate;
+        // $logs->action = 0;
+        // $logs->user_id = auth()->user()->id;
+        // $logs->group_id = $id;
+        // $logs->save();
+        $container = GroupContainer::find($id);
+        $container->name = $request->name;
+        $container->description = $request->description;
+        $container->weight = $request->weight;
+        
+        $container->update();
+
+        return redirect()->route('welcome');
+       
+    }
+    public function apiGroup($id){
+        try{
+            $query_id = Crypt::decryptString($id);
+        } catch (DecryptException $e) {
+            return 'UPD-E0002';
+        }
+        $group = Group::find($query_id);
+        $group->crypt = $id;
+        $group->author = $group->book->author->name. ' ' . $group->book->author->lastname;
+        $group->book = NULL;
+        return $group;
+    }
+    public function apiContainer($id){
+        try{
+            $query_id = Crypt::decryptString($id);
+        } catch (DecryptException $e) {
+            return 'UPD-E0002';
+        }
+     
+        $container = GroupContainer::find($query_id);
+        $container->crypt = $id;
+        return $container;
+    }
     public function groupDelete(Request $request){
         try{
             $id = Crypt::decryptString($request->group_id);
@@ -147,6 +191,19 @@ class UpdateController extends Controller
         return view('bahai.forms.update.author', compact('author'));
     }
 
+    public function apiAuthor($id){
+        try{
+            $query_id = Crypt::decryptString($id);
+        } catch (DecryptException $e) {
+            return 'UPD-E0002';
+        }
+     
+        $author = Author::find($query_id);
+        $author->crypt = $id;
+        $author->date = date("Y-m-d", strtotime( $author->date_of_birth ));
+        return $author;
+    }
+
     public function authorUpdate(Request $request){
         try{
             $id = Crypt::decryptString($request->author_id);
@@ -167,9 +224,8 @@ class UpdateController extends Controller
     	$author->nationality = $request->nationality;
     	$author->update();
 
-    	$header = 'Author was updated!';
-        $message = "The author was updated";
-        return view('auth.response', compact('header', 'message'));
+        return redirect()->route('welcome');
+    	
     }
 
       public function authorDelete(Request $request){
@@ -207,13 +263,26 @@ class UpdateController extends Controller
         return view('bahai.forms.update.book', compact('book', 'authors'));
     }
 
+     public function apiBook($id){
+        try{
+            $query_id = Crypt::decryptString($id);
+        } catch (DecryptException $e) {
+            return 'UPD-E0002';
+        }
+     
+        $book = Book::find($query_id);
+        $book->crypt = $id;
+        $book->date = date("Y-m-d", strtotime( $book->date ));
+    
+        return $book;
+    }
+
     public function bookUpdate(Request $request){
         try{
             $id = Crypt::decryptString($request->book_id);
         } catch (DecryptException $e) {
             return 'DD-E0002';
         }
-
         $logs = New LogsBookUpdate;
         $logs->action = 0;
         $logs->user_id = auth()->user()->id;
@@ -237,9 +306,7 @@ class UpdateController extends Controller
 
         $book->update();
 
-        $header = 'Book was updated!';
-        $message = "The book was updated";
-        return view('auth.response', compact('header', 'message'));
+        return redirect()->route('welcome');
     }
 
     public function bookDelete(Request $request){

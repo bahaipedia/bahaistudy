@@ -41,6 +41,7 @@ Route::get('/authors', 'StoreController@author')->name('store.author');
 Route::post('/authors', 'StoreController@authorPost')->name('store.author.post');
 Route::get('/containers', 'StoreController@container')->name('store.container');
 Route::post('/containers', 'StoreController@containerPost')->name('store.container.post');
+
 // Container id parameter
 Route::get('/groups/{c?}', 'StoreController@group')->name('store.group');
 Route::post('/groups', 'StoreController@groupPost')->name('store.group.post');
@@ -67,6 +68,9 @@ Route::get('/list/authors', 'ListController@authors')->name('list.authors');
 Route::get('/list/containers', 'ListController@containers')->name('list.containers');
 Route::get('/list/users', 'ListController@users')->name('list.users');
 
+
+Route::put('/containers', 'UpdateController@containerUpdate')->name('update.container.post');
+
 // Group routes
 // Route::get('/group/dashboard/{g?}', 'GroupController@dashboard')->name('group.dashboard');
 Route::get('/group/{title}/{g?}', 'GroupController@dashboard')->name('group.dashboard');
@@ -83,12 +87,12 @@ Route::get('/api/group/participant/{id}', 'GroupController@apiParticipant')->nam
 Route::post('/api/group/beat', 'GroupController@apiBeat')->name('api.group.beat');
 Route::get('/api/message/poll/{id}', 'GroupController@apiMessagePoll')->name('api.message.poll');
 
-
-
-
+Route::get('/api/update/author/{id}', 'UpdateController@apiAuthor')->name('api.update.author');
+Route::get('/api/update/container/{id}', 'UpdateController@apiContainer')->name('api.update.container');
+Route::get('/api/update/group/{id}', 'UpdateController@apiGroup')->name('api.update.group');
+Route::get('/api/update/book/{id}', 'UpdateController@apiBook')->name('api.update.book');
 
 Route::get('/dev', 'Dev\TestController@welcome')->name('dev.welcome');
-
 
 // Store data routes
 Route::get('/dev/books', 'Dev\StoreController@book')->name('dev.store.book');

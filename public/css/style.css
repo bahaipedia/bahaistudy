@@ -674,7 +674,7 @@ input.max-group::placeholder {
       rgba(121, 195, 170, 0.6),
       rgba(241, 114, 33, 0.6)
     ),
-    url("hero.jpg");
+    url("/img/hero.jpg");
   width: 100%;
   height: 100vh;
   background-size: cover;
@@ -717,7 +717,7 @@ input.max-group::placeholder {
 }
 
 .icono {
-  background: url("alert.svg");
+  background: url("/img/alert.svg");
   height: 30px;
   width: 30px;
   display: block;
@@ -831,7 +831,7 @@ input.max-group::placeholder {
 }
 
 .lista {
-  background: url("lista.svg");
+  /*background: url("lista.svg");*/
   width: 18px;
   height: 15px;
 }
@@ -1425,7 +1425,7 @@ form {
 
 .footer {
   background-color: #e6dfda;
-  background-image: url(./footer.png);
+  /*background-image: url(./footer.png);*/
   height: 180px;
   width: 100%;
   position: relative;
@@ -1496,6 +1496,20 @@ form {
 #caja-register {
   display: none;
 }
+
+#caja-up-author{
+  display:none;
+}
+#caja-up-book{
+  display:none;
+}
+#caja-up-container{
+  display:none;
+}
+#caja-up-group{
+  display:none;
+}
+
 .pop-up-general{
   position: fixed;
   width: 100vw;
