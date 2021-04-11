@@ -8,7 +8,6 @@
   <link href="{{asset('css/style.css')}}" rel="stylesheet" type="text/css" />
   <title>Bahai</title>
 
-  <link rel="stylesheet" href="styles.css" />
   <link rel="preconnect" href="https://fonts.gstatic.com" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -27,6 +26,11 @@
   @include('layout.popups.author')
   @include('layout.popups.container')
   @include('layout.popups.register')
+
+  @include('layout.popups.updates.author')
+  @include('layout.popups.updates.book')
+  @include('layout.popups.updates.container')
+  @include('layout.popups.updates.group')
 
 
 
@@ -57,7 +61,7 @@
 
     <div class="contenedor">
       <div class="subtitulo espacio">
-        <h3>{{$c->name}}</h3>
+        <h3 onclick="openPopup('caja-up-container', ['container', '{{route("api.update.container", [Crypt::encryptString($c->id)])}}'])">{{$c->name}}</h3>
       </div>
       <img class="puntos" src="{{asset('/img/puntos.svg')}}" />
     <div class="barra-info">
@@ -81,13 +85,13 @@
 
       <div class="ficha-libro">
         @if($g->book->book_image_id !== NULL && Storage::disk('s3')->exists("bahai-dev/".$g->book->bookImage->code))
-        <img class="portada-libro new-group" src='{{Storage::disk("s3")->url("bahai-dev/".$g->book->bookImage->code)}}'/>
+        <img class="portada-libro new-group" src='{{Storage::disk("s3")->url("bahai-dev/".$g->book->bookImage->code)}}' onclick="openPopup('caja-up-group', ['group', '{{route("api.update.group", [Crypt::encryptString($g->id)])}}'])" src="{{asset('/img/ki.png')}}" />
         @else
-        <img class="portada-libro" src="{{asset('/img/ki.png')}}" />
+        <img class="portada-libro" />
         @endif
         <div class="parte-derecha-ficha">
-          <h4 class="autor-nombre">{{$g->book->author->name}} {{$g->book->author->lastname}}</h4>
-          <h3 class="libro-nombre">{{$g->book->name}}</h3>
+          <h4 class="autor-nombre" onclick="openPopup('caja-up-author', ['author', '{{route("api.update.author", [Crypt::encryptString($g->book->author_id)])}}'])">{{$g->book->author->name}} {{$g->book->author->lastname}}</h4>
+          <h3 onclick="openPopup('caja-up-book', ['book', '{{route("api.update.book", [Crypt::encryptString($g->book->id)])}}'])" class="libro-nombre">{{$g->book->name}}</h3>
           <p class="spaces">({{$g->available}} spaces available of {{$g->max_size}})</p>
           <p class="descripcion-libro">
             {{$g->description}}
@@ -106,8 +110,6 @@
       <div class="ficha-libro">
         <div class="izquierda">
         <img class="portada-libro new-group" src="{{asset('/img/books.png')}}" />
-        {{-- <form enctype="multipart/form-data" method=POST action='{{route('dev.store.book.post')}}' class='wrap-r'> --}}
-         
         <h3 class="sobre-imagen">Create New Group</h3>
         </div>
         <div class="parte-derecha-ficha-crear">
@@ -127,7 +129,7 @@
               <option disabled selected >Choose the Author</option>
             </select>
             <input onchange='createGroup(this);' type='number' class='formulario-max pe-max max-group logic-mg' required name='max_size' placeholder='Maximum Group Size'/>
-            <textarea onchange='createGroup(this);' type='description' required name='description' id='name' class="descripcion-libro-form pe logic-de" rows="3" cols="15" placeholder="Description... Lorem ipsum dolor sit amet."></textarea>
+            <textarea onchange='createGroup(this);' type='description' required name='description'  class="descripcion-libro-form pe logic-de" rows="3" cols="15" placeholder="Description... Lorem ipsum dolor sit amet."></textarea>
             <span class="parte-derecha-ficha-espacio"></span>
             <span onclick="renderInfoGroup(this);" data-container='{{$c->id}}' class="join-ficha-pop">CREATE</span>
         </div>
