@@ -30,7 +30,8 @@
        
         <button class="join-ficha-pop">CREATE</button>
       </form>
-    <div style='display: flex; justify-content: center; align-items: center; height: 100%; '>
+ 
+    <div class="equis">
       <a onclick="closePopup('caja-author')" href="#" id="equis">X</a>        
     </div>
     </div>

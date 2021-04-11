@@ -2,7 +2,6 @@
 <div class="full-libro">
   <div class="ficha-crear">
     <div class="parte-izq-crear">
-      <img class="portada-libro crear-grupo" src="{{asset('/img/books.png')}}" />
       <div class="textos-iqcrear">
         <h1 class="crear-titulo">Instructions</h1>
         <p class="crear-texto">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
@@ -34,7 +33,7 @@
         <p>{!! $errors->first('file')!!}</p>
         <button class="join-ficha-pop">CREATE</button>
       </form>
-	  <div style='display: flex; justify-content: center; align-items: center; height: 100%; '>
+	  <div class="equis">
 	    <a onclick="closePopup('caja-book')" href="#" id="equis">X</a>        
 	   </div>
     </div>
