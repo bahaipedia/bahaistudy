@@ -27,8 +27,8 @@
           type='text'>Description... Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</textarea>
         <textarea class="descripcion-libro-crear pe" style='height: 90px;'placeholder="add a host comment" max='120' name='host_comments'
           type='text'></textarea>
-        <label class="texto-may">number of pages</label>
-        <input required id='logic-group-popup-max-size' name='max_size' type='number'>
+        <label class="texto-may">number of particiapants</label>
+        <input required id='logic-group-popup-max-size' name='max_size' min="2" max="20" type='number'>
         <label class="texto-may">meeting url</label>
         <input  max='250'  name='url' type='text'>
         <br>

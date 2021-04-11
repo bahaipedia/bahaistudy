@@ -27,8 +27,8 @@
 				@if($group->host_id != NULL)	
 				<b>HOST:</b> {{$group->host->name}} {{$group->host->lastname}}
 				@else
-	<h5>NO HOST IN THIS GROUP</h5>
-	@endif
+			<h5>NO HOST IN THIS GROUP</h5>
+			@endif
 			</h5>
 			<p class="bloqtext-dash">
 				{{$group->description}}
@@ -49,74 +49,6 @@
 		</div>
 
 
-{{--
-
-	<p>book: {{$group->book->name}} by {{$group->book->author->name}} {{$group->book->author->lastname}}</p>
-	
-	<p>name: {{$group->name}}</p>
-
-	<p>url: <a href='{{$group->url}}'>{{$group->url}}</a></p>
-	<span style='font-size:12px; display: flex;'>
-	@foreach($at as $a)
-		<span>AT: {{$weekday[$a->day_of_week]}} {{date("h:i", strtotime( $a->start_at ))}} to {{date("h:i", strtotime( $a->finish_at ))}} ||</span>
-	@endforeach
-	</span>
-</div>
-
---}}
-
-
-{{-- 
-
-<div style='font-size:12px; display: flex;  flex-direction: column; width: 90%; height: 150px; border:1px solid black;'>
-<p>messages</p>
-
-</div>
-@if(auth()->check())
-<textarea placeholder='Write your message here' style='display: flex; align-items: center;  flex-direction: column; width: 90%; height: 30px; border:1px solid black;' ></textarea>
-@endif
-<br>
-<div style='font-size:12px; display: flex;  align-items: center; justify-content: center; flex-direction: column; width: 90%; height: 60px;'>
-	@if(auth()->check())
-
-		@if(auth()->user()->id === $group->host_id)
-			<form method='POST' action='{{route('group.stepdown')}}'>
-				{!! csrf_field() !!}
-				<input name='id' value='{{$group->id}}' type='hidden'/>
-				<button style='width:150px;'>step down as a host</button>
-			</form>
-
-
-		@elseif($group->host_id === NULL && auth()->user()->email_validated != NULL && $group->is_participant != 0)
-			<form method='POST' action='{{route('group.stepup')}}'>
-				{!! csrf_field() !!}
-				<input name='id' value='{{$group->id}}' type='hidden'/>
-				<button style='width:150px;'>be the host</button>
-			</form>
-		@endif
-
-		@if(auth()->user()->id !== $group->host_id && auth()->check() && $group->is_participant != 0)
-		<form method='POST' action='{{route('group.leave')}}'>
-			{!! csrf_field() !!}
-			<input name='id' value='{{$group->id}}' type='hidden'/>
-			<button style='width:200px;'>step down of the group</button>
-		</form>
-		@endif
-	@endif
-
-</div>
-	@if(!auth()->check())
-		<a href={{route('login')}}>login</a>
-		<a href={{route('register')}}>register</a>
-	@else
-	@if(auth()->user()->id === $group->host_id)
-		<a href='{{route('update.group', [Crypt::encryptString($group->id)])}}'>edit info</a>
-	@endif
-	@endif
-	<a href={{route('welcome')}}>home</a>
-		--}}
-
-
 <div class="participants-list">
 	<h2 class="parti-dash">List of participants<br></h2>
 		<h4 class="max-dash">(max {{$group->max_size}})</h4>
@@ -126,12 +58,10 @@
 			<div class="particip-dash">
 			<h4 class="dash-list">{{$p->user->name}} {{$p->user->lastname}} (HOST)</h4>
 
-			@if($group->host_id != NULL)
-			{{--NOTA: no se cual es la ruta acá para ser y dejar de ser host ni sé coómo se diría eso en ingles--}}
-			{{--Creo que falta la lógica de que el hostear / dejar de ser host solo salga debajo del nombre de uno mismo--}}
-			<div class="host-boton" href='#'>DEJAR DE HOSTEAR</div>
-			@else
-			<div class="host-boton" href='#'>HOSTEAR</div>
+			@if($group->host_id == auth()->user()->id)
+			<div class="host-boton">STEP DOWN AS A HOST</div>
+			@elseif($group->host_id == NULL)
+			<div class="host-boton" href='#'>BE THE HOST</div>
 			@endif
 
 			</div>
@@ -148,7 +78,7 @@
 </div>
 
 
-<script>
+{{-- <script>
 	onlineStatus = document.querySelectorAll('.online-status')
 	console.log(onlineStatus[1])
 	var cript = 
@@ -212,5 +142,5 @@
 		}
 
 	}
-</script>
+</script> --}}
 @stop
