@@ -124,8 +124,16 @@
 		@foreach($participants as $p)
 			@if($p->user_id == $group->host_id)
 			<div class="particip-dash">
-			<div class="perfil-dash"></div>
 			<h4 class="dash-list">{{$p->user->name}} {{$p->user->lastname}} (HOST)</h4>
+
+			@if($group->host_id != NULL)
+			{{--NOTA: no se cual es la ruta acá para ser y dejar de ser host ni sé coómo se diría eso en ingles--}}
+			{{--Creo que falta la lógica de que el hostear / dejar de ser host solo salga debajo del nombre de uno mismo--}}
+			<div class="host-boton" href='#'>DEJAR DE HOSTEAR</div>
+			@else
+			<div class="host-boton" href='#'>HOSTEAR</div>
+			@endif
+
 			</div>
 			@else
 			<div class="particip-dash">
@@ -133,6 +141,7 @@
 			<h4 class="dash-list">{{$p->user->name}} {{$p->user->lastname}} </h4>
 			</div>
 			@endif
+
 		@endforeach
 		</div>
 </div>

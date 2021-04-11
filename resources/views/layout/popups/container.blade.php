@@ -2,7 +2,6 @@
 <div class="full-libro">
   <div class="ficha-crear">
     <div class="parte-izq-crear">
-      <img class="portada-libro crear-grupo" src="{{asset('/img/books.png')}}" />
       <div class="textos-iqcrear">
         <h1 class="crear-titulo">Containers</h1>
         <p class="crear-texto">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
@@ -16,7 +15,6 @@
 
       <form class="ancho" enctype="multipart/form-data" method=POST action='{{route('store.container.post')}}'>
          {!! csrf_field() !!}
-        <label class="texto-may" for='date'>name</label>
         <input required class="hachecuatro autor-nombre" max='50' placeholder="CONTAINER NAME" name='name' type='text'>
       
         <textarea required  class="descripcion-libro-crear pe" maxlength='200' placeholder='Description... Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' name='description'></textarea>
@@ -29,13 +27,12 @@
               @endforeach
           </select>
         </div>
-        <label class="texto-may">weight</label>
         <input required placeholder="SELECT CONTAINER WEIGHT" class="hachecuatro autor-nombre" name='weight' min='0' max='10' type='number'>
         <br>
 
         <button class="join-ficha-pop">CREATE</button>
       </form>
-	  <div style='display: flex; justify-content: center; align-items: center; height: 100%; '>
+	  <div class="equis">
 	    <a onclick="closePopup('caja-container')" href="#" id="equis">X</a>        
 	   </div>
     </div>

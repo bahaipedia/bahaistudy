@@ -62,11 +62,11 @@ h3 {
   color: #e6dfda;
   font-weight: 700;
   border: none;
-/*  width: 260px; */
+  /*  width: 260px; */
   text-transform: lowercase;
 }
 
-.hachetres::first-letter{
+.hachetres::first-letter {
   text-transform: uppercase !important;
 }
 
@@ -82,13 +82,6 @@ h4 {
   font-size: 1em;
   font-weight: 300;
   color: #79c3aa;
-}
-
-.equis {
-  font-family: "Montserrat", sans-serif;
-  font-size: 1.4em;
-  font-weight: 500;
-  color: #251d16;
 }
 
 h5 {
@@ -195,12 +188,25 @@ input.max-group::placeholder {
 
 .particip-dash {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   margin-top: 10px;
   margin-bottom: 10px;
-  align-items: center;
+  align-items: flex-start;
   border-bottom: 1px solid #f2f2f2;
   padding-bottom: 10px;
+}
+
+.host-boton {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 10px;
+  text-transform: capitalize;
+  text-decoration: underline;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.75em;
+  color: #6d5f54;
+  font-weight: 500;
+  margin-bottom: 10px;
 }
 
 .informacion-chat {
@@ -235,7 +241,7 @@ input.max-group::placeholder {
   margin-left: 10px;
   letter-spacing: 1px;
   font-size: 0.9em;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
   margin-top: 15px;
   text-transform: capitalize;
 }
@@ -425,6 +431,7 @@ input.max-group::placeholder {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: "Montserrat", sans-serif;
 }
 
 .join-ficha-pop:hover {
@@ -433,7 +440,7 @@ input.max-group::placeholder {
   border: none;
 }
 
-.full-libro{
+.full-libro {
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -441,28 +448,32 @@ input.max-group::placeholder {
   justify-content: center;
 }
 
-.parte-izq-crear{
+.parte-izq-crear {
   display: block;
   position: relative;
+  background-image: url("/img/books.png");
+
 }
 
-.textos-iqcrear{
+.textos-iqcrear {
   display: block;
-  position: relative;
-  top: -500px;
-  left: 30px;
+  position: inherit;
   width: 370px;
+  padding-left: 20px;
+  padding-top: 20px;
 }
 
-.formulario-crear{
+.formulario-crear {
   display: flex;
   flex-direction: row;
   position: relative;
-  left: 100px;
   align-self: center;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
 }
 
-.crear-texto{
+.crear-texto {
   line-height: 1.6;
   position: relative;
   top: 20px;
@@ -470,17 +481,17 @@ input.max-group::placeholder {
   font-size: 1em;
 }
 
-.crear-titulo{
+.crear-titulo {
   font-size: 3.2em !important;
 }
 
-.crear-grupo{
+.crear-grupo {
   display: block !important;
   height: 100% !important;
   width: 115% !important;
 }
 
-.ficha-crear{
+.ficha-crear {
   width: 70%;
   height: 80%;
   display: flex;
@@ -674,7 +685,7 @@ input.max-group::placeholder {
       rgba(121, 195, 170, 0.6),
       rgba(241, 114, 33, 0.6)
     ),
-    url("hero.jpg");
+    url("/img/hero.jpg");
   width: 100%;
   height: 100vh;
   background-size: cover;
@@ -894,7 +905,7 @@ input.max-group::placeholder {
 }
 
 .portada-libro {
-  background-color: #79c3aa;
+  background-color: #58a38a;
   width: 220px;
   height: 335px;
   display: flex;
@@ -1201,13 +1212,13 @@ select::-ms-expand {
   text-align: left;
 }
 
-.texto-may{
+.texto-may {
   text-transform: uppercase;
   font-family: "Montserrat", sans-serif;
   letter-spacing: 3px;
 }
 
-.texto-min-bot{
+.texto-min-bot {
   font-family: "Montserrat", sans-serif;
   border: 1px solid #9e9e9e;
   border-radius: 5px;
@@ -1216,7 +1227,7 @@ select::-ms-expand {
   text-align: center;
 }
 
-.texto-min-bot:hover{
+.texto-min-bot:hover {
   background-color: #251d16;
   color: white;
 }
@@ -1246,11 +1257,12 @@ form {
   flex-direction: column;
 }
 
-.ancho{
+.ancho {
   width: 400px;
   height: 500px;
   display: flex;
   justify-content: space-around;
+  align-self: center;
 }
 
 .descripcion-libro-form {
@@ -1496,7 +1508,7 @@ form {
 #caja-register {
   display: none;
 }
-.pop-up-general{
+.pop-up-general {
   position: fixed;
   width: 100vw;
   height: 100vh;
@@ -1507,16 +1519,16 @@ form {
   justify-content: center;
   align-items: center;
   animation: fondo-color 1s forwards;
-  animation-fill-mode: forwards;  
+  animation-fill-mode: forwards;
   z-index: 6;
 }
 
 @keyframes fondo-color {
   from {
-    background-color: rgba(186, 173, 162, 0.0);
+    background-color: rgba(186, 173, 162, 0);
   }
   to {
-    background-color:  rgba(186, 173, 162, 0.6);
+    background-color: rgba(186, 173, 162, 0.6);
   }
 }
 
@@ -1646,8 +1658,12 @@ input:-webkit-autofill:active {
   top: -20px;
 }
 
-#equis {
-  font-size: 2em;
+.equis {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  color: #251d16;
+  font-size: 1.2em;
 }
 
 /* Groups page */
