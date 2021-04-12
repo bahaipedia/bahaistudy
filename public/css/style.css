@@ -427,11 +427,14 @@ input.max-group::placeholder {
   transition-duration: 0.4s;
   border-radius: 20px;
   outline: none;
-  margin-bottom: 25px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: "Montserrat", sans-serif;
+}
+
+.margen-ficha {
+  margin-bottom: 25px;
 }
 
 .join-ficha-pop:hover {
@@ -449,18 +452,17 @@ input.max-group::placeholder {
 }
 
 .parte-izq-crear {
-  display: block;
-  position: relative;
+  display: flex;
   background-image: url("/img/books.png");
-
+  width: 75%;
 }
 
 .textos-iqcrear {
-  display: block;
+  display: flex;
   position: inherit;
-  width: 370px;
-  padding-left: 20px;
-  padding-top: 20px;
+  flex-direction: column;
+  padding: 20px;
+  align-self: center;
 }
 
 .formulario-crear {
@@ -1508,7 +1510,6 @@ form {
 #caja-register {
   display: none;
 }
-<<<<<<< HEAD
 
 #caja-up-author{
   display:none;
@@ -1680,6 +1681,9 @@ input:-webkit-autofill:active {
   align-items: flex-start;
   color: #251d16;
   font-size: 1.2em;
+  height: 90%;
+  align-self: center;
+  margin-left: 75px;
 }
 
 /* Groups page */

@@ -2,7 +2,6 @@
 <div class="full-libro">
   <div class="ficha-crear">
     <div class="parte-izq-crear">
-      <img class="portada-libro crear-grupo" src="{{asset('/img/books.png')}}" />
       <div class="textos-iqcrear">
         <h1 class="crear-titulo">Instructions</h1>
         <p class="crear-texto">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
