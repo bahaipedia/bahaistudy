@@ -236,6 +236,18 @@ input.max-group::placeholder {
   border-radius: 200px;
 }
 
+.edit-boton-brown {
+  background-image: url("/img/edit-boton.svg");
+  display: flex;
+  width: 30px;
+  height: 30px;
+  margin-left: 5px;
+  -webkit-box-shadow: 6px 6px 5px 0px rgb(186 173 162 / 10%);
+  -moz-box-shadow: 0px 15px 5px -10px rgba(186, 173, 162, 0.1);
+  box-shadow: 8px 8px 7px 0px rgb(186 173 162 / 20%);
+  border-radius: 200px;
+}
+
 .host-boton {
   margin-top: 0px;
   margin-bottom: 0px;
@@ -247,6 +259,52 @@ input.max-group::placeholder {
   color: #6d5f54;
   font-weight: 500;
   margin-bottom: 10px;
+}
+
+.botones-flotantes {
+  width: 65px;
+  height: 180px;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 10;
+  background-color: transparent;
+}
+
+.nuevo-autor {
+  background-image: url(/img/author.svg);
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  -webkit-box-shadow: 4px 4px 5px 00px rgba(186, 173, 162, 20%);
+  -moz-box-shadow: 4px 4px 5px 0px rgba(186, 173, 162, 20%);
+  box-shadow: 4px 4px 5px 0px rgb(186 173 162 / 20%);
+  border-radius: 30px;
+  margin-top: 10px;
+}
+
+.nuevo-libro {
+  background-image: url(/img/book.svg);
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  -webkit-box-shadow: 4px 4px 5px 00px rgba(186, 173, 162, 20%);
+  -moz-box-shadow: 4px 4px 5px 0px rgba(186, 173, 162, 20%);
+  box-shadow: 4px 4px 5px 0px rgb(186 173 162 / 20%);
+  border-radius: 30px;
+  margin-top: 10px;
+}
+
+.nuevo-container {
+  background-image: url(/img/container.svg);
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  -webkit-box-shadow: 4px 4px 5px 00px rgba(186, 173, 162, 20%);
+  -moz-box-shadow: 4px 4px 5px 0px rgba(186, 173, 162, 20%);
+  box-shadow: 4px 4px 5px 0px rgb(186 173 162 / 20%);
+  border-radius: 30px;
+  margin-top: 10px;
 }
 
 .informacion-chat {
@@ -619,6 +677,12 @@ input.max-group::placeholder {
 }
 
 .titulo-boton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.autor-boton {
   display: flex;
   flex-direction: row;
   align-items: center;

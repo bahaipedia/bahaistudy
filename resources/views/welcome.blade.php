@@ -37,6 +37,15 @@
   <div class="general-container">
     @include('layout.headers.home')
 
+    <div class="botones-flotantes">
+      <a class="nuevo-autor" onclick="openPopup('caja-author')">
+      </a>
+      <a class="nuevo-libro" onclick="openPopup('caja-book')">
+      </a>
+      <a class="nuevo-container" onclick="openPopup('caja-container')">
+      </a>
+    </div>
+
     <div id="hero-image">
       <div id="textos">
         <h1 id="hero-title">{{$configurations->app_name}},</h1>
@@ -95,7 +104,10 @@
           <h4 class="autor-nombre">{{$g->book->author->name}} {{$g->book->author->lastname}}</h4>
          <a class="edit-boton-ficha" onclick="openPopup('caja-up-author', ['author', '{{route("api.update.author", [Crypt::encryptString($g->book->author_id)])}}'])"></a> 
         </div>
-          <h3 onclick="openPopup('caja-up-book', ['book', '{{route("api.update.book", [Crypt::encryptString($g->book->id)])}}'])" class="libro-nombre">{{$g->book->name}}</h3>
+        <div class="autor-boton">
+          <h3 class="libro-nombre">{{$g->book->name}}</h3>
+          <a class="edit-boton-brown" onclick="openPopup('caja-up-book', ['book', '{{route("api.update.book", [Crypt::encryptString($g->book->id)])}}'])"> </a>
+        </div>
           <p class="spaces">({{$g->available}} spaces available of {{$g->max_size}})</p>
           <p class="descripcion-libro">
             {{$g->description}}

@@ -24,13 +24,11 @@
 
         <label class="texto-pequ">lastname</label>
         <input required class="logic-author-up-popup-ltname hachecuatro autor-nombre"  max='50' placeholder="AUTHOR LASTNAME" name='lastname'  type='text'>
-   
         <label class="texto-pequ">date of birth</label>
         <input required class="logic-author-up-popup-dob in-pop" name='date_of_birth' type='date'>
 
         <label class="texto-pequ">nationality</label>
-        <input required class="logic-author-up-popup-nat hachecuatro autor-nombre"  max='50' placeholder="NATIONALITY"  name='nationality'  type='text'>        
-       
+        <input required class="logic-author-up-popup-nat hachecuatro autor-nombre"  max='50' placeholder="NATIONALITY"  name='nationality'  type='text'>
         <button class="join-ficha-pop">UPDATE</button>
       </form>
     <div class="equis">

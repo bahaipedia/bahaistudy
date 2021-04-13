@@ -13,11 +13,11 @@
     </div>
     <div class="formulario-crear">
 
-    <form enctype="multipart/form-data" method=POST action='{{route('update.book.post')}}' class='wrap-r'>
+    <form enctype="multipart/form-data" method=POST action='{{route('update.book.post')}}' class='ancho'>
     <input name="_method" type="hidden" value="PUT">
     {!! csrf_field() !!}
         <input type="hidden" name="book_id" class="logic-book-up-popup-id"/>
-        <label class="texto-may" for='date'>name</label>
+        <label class="texto-pequ" for='date'>name</label>
         <input class="logic-book-up-popup-name hachecuatro autor-nombre" max='50' placeholder="BOOK NAME" name='name' type='text'>
         <select class="logic-book-up-popup-author libro-nombre hachetres" name='author_id'>
           @foreach($authors_books as $a)
@@ -25,17 +25,17 @@
           @endforeach
         </select>
         <textarea class="logic-book-up-popup-desc descripcion-libro-crear pe" maxlength='200' placeholder='Description... Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' name='description'></textarea>
-        <label class="texto-may" for='date'>release date</label>
-        <input class='logic-book-up-popup-dor' name='date' type='date'>
-        <label class="texto-may" for='number_pages'>number of pages</label>
+        <label class="texto-pequ" for='date'>release date</label>
+        <input class='logic-book-up-popup-dor in-pop' name='date' type='date'>
+        <label class="texto-pequ" for='number_pages'>number of pages</label>
         <input placeholder="SELECT NUMBER PAGES" class="logic-book-up-popup-number hachecuatro autor-nombre" min='0' max='3000' name='number_pages' type='number'>
         <br>
         <label class="texto-min-bot" for='logic-image-update'>Upload Cover Image</label>
         <input style='display:none;' id='logic-image-update' type='file' accept='.png' name='image'>
         <button class="join-ficha-pop">UPDATE</button>
       </form>
-	  <div style='display: flex; justify-content: center; align-items: center; height: 100%; '>
-	    <button onclick="closePopup('caja-up-book')">X</button>        
+	  <div class="equis">
+	    <a onclick="closePopup('caja-up-book')">X</a>        
 	   </div>
     </div>
   </div>
