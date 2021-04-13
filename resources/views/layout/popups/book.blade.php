@@ -13,7 +13,7 @@
     </div>
     <div class="formulario-crear">
 
-      <form class="ancho-pop-dos" enctype="multipart/form-data" method=POST action='{{route('store.book.post')}}'>
+      <form class="ancho" enctype="multipart/form-data" method=POST action='{{route('store.book.post')}}'>
         {!! csrf_field() !!}
         <input class="hachecuatro autor-nombre" max='50' placeholder="BOOK NAME" name='name' type='text'>
         <select class="libro-nombre hachetres" name='author_id' id='author_id'>
