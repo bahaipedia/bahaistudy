@@ -91,7 +91,10 @@
         <img class="portada-libro" />
         @endif
         <div class="parte-derecha-ficha">
-          <h4 class="autor-nombre" onclick="openPopup('caja-up-author', ['author', '{{route("api.update.author", [Crypt::encryptString($g->book->author_id)])}}'])">{{$g->book->author->name}} {{$g->book->author->lastname}}</h4>
+          <div class="titulo-boton">
+          <h4 class="autor-nombre">{{$g->book->author->name}} {{$g->book->author->lastname}}</h4>
+         <a class="edit-boton-ficha" onclick="openPopup('caja-up-author', ['author', '{{route("api.update.author", [Crypt::encryptString($g->book->author_id)])}}'])"></a> 
+        </div>
           <h3 onclick="openPopup('caja-up-book', ['book', '{{route("api.update.book", [Crypt::encryptString($g->book->id)])}}'])" class="libro-nombre">{{$g->book->name}}</h3>
           <p class="spaces">({{$g->available}} spaces available of {{$g->max_size}})</p>
           <p class="descripcion-libro">

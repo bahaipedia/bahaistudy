@@ -29,7 +29,7 @@
       </form>
  
     <div class="equis">
-      <a onclick="closePopup('caja-author')" href="#" id="equis">X</a>        
+      <a onclick="closePopup('caja-author')" id="equis">X</a>        
     </div>
     </div>
   </div>

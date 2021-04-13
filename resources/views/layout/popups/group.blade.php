@@ -46,7 +46,7 @@
         <button  class="join-ficha-pop">CREATE</button>
       </form>
 	  <div class="equis">
-	    <span onclick="closePopup('caja-group'); refreshForm();" href="#" id="equis">X</span>        
+	    <span onclick="closePopup('caja-group'); refreshForm();" id="equis">X</span>        
 	   </div>
     </div>
   </div>

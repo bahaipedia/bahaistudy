@@ -35,7 +35,7 @@
         <button class="join-ficha-pop">UPDATE</button>
       </form>
 	  <div style='display: flex; justify-content: center; align-items: center; height: 100%; '>
-	    <button onclick="closePopup('caja-up-book')" href="#">X</button>        
+	    <button onclick="closePopup('caja-up-book')">X</button>        
 	   </div>
     </div>
   </div>

@@ -32,7 +32,7 @@
         <button class="join-ficha-pop">CREATE</button>
       </form>
 	  <div class="equis">
-	    <a onclick="closePopup('caja-book')" href="#" id="equis">X</a>        
+	    <a onclick="closePopup('caja-book')" id="equis">X</a>        
 	   </div>
     </div>
   </div>

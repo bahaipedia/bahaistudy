@@ -50,7 +50,7 @@
         <button  class="join-ficha-pop">UPDATE</button>
       </form>
 	  <div style='display: flex; justify-content: center; align-items: center; height: 100%; '>
-	    <span onclick="closePopup('caja-up-group'); refreshForm();" href="#" id="equis">X</span>        
+	    <span onclick="closePopup('caja-up-group'); refreshForm();" id="equis">X</span>        
 	   </div>
     </div>
   </div>
