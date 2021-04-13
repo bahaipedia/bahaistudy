@@ -135,6 +135,21 @@ input {
   text-transform: none;
 }
 
+.in-pop {
+  text-transform: uppercase;
+  color: #e6dfda;
+  font-family: "Montserrat";
+  letter-spacing: 3px;
+}
+
+.ancho-pop-dos {
+  width: 400px;
+  height: 350px;
+  display: flex;
+  justify-content: space-around;
+  align-self: center;
+}
+
 a:hover {
   text-decoration: none;
   font-family: "Montserrat", sans-serif;
@@ -455,6 +470,8 @@ input.max-group::placeholder {
   display: flex;
   background-image: url("/img/books.png");
   width: 75%;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
 }
 
 .textos-iqcrear {
@@ -501,6 +518,7 @@ input.max-group::placeholder {
   -webkit-box-shadow: 15px 15px 5px -10px rgba(186, 173, 162, 0.07);
   -moz-box-shadow: 15px 15px 5px -10px rgba(186, 173, 162, 0.07);
   box-shadow: 15px 15px 5px -10px rgba(186, 173, 162, 0.07);
+  border-radius: 30px;
 }
 
 .join-ficha-pop:active {
@@ -1511,21 +1529,20 @@ form {
   display: none;
 }
 
-#caja-up-author{
-  display:none;
+#caja-up-author {
+  display: none;
 }
-#caja-up-book{
-  display:none;
+#caja-up-book {
+  display: none;
 }
-#caja-up-container{
-  display:none;
+#caja-up-container {
+  display: none;
 }
-#caja-up-group{
-  display:none;
+#caja-up-group {
+  display: none;
 }
 
-.pop-up-general{
-
+.pop-up-general {
   position: fixed;
   width: 100vw;
   height: 100vh;
@@ -1683,7 +1700,15 @@ input:-webkit-autofill:active {
   font-size: 1.2em;
   height: 90%;
   align-self: center;
-  margin-left: 75px;
+  margin-left: 100px;
+}
+
+.texto-pequ {
+  font-size: 0.8em;
+  text-transform: uppercase;
+  font-family: "Montserrat", sans-serif !important;
+  color: #e6dfda;
+  letter-spacing: 3px;
 }
 
 /* Groups page */
