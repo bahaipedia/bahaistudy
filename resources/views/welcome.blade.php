@@ -61,7 +61,8 @@
 
     <div class="contenedor">
       <div class="subtitulo espacio">
-        <h3 onclick="openPopup('caja-up-container', ['container', '{{route("api.update.container", [Crypt::encryptString($c->id)])}}'])">{{$c->name}}</h3>
+        <h3>{{$c->name}}</h3>
+        <a onclick="openPopup('caja-up-container', ['container', '{{route("api.update.container", [Crypt::encryptString($c->id)])}}'])" class="edit-boton"></a>
       </div>
       <img class="puntos" src="{{asset('/img/puntos.svg')}}" />
     <div class="barra-info">

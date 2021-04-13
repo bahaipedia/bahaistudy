@@ -122,6 +122,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 label {
@@ -209,6 +210,21 @@ input.max-group::placeholder {
   align-items: flex-start;
   border-bottom: 1px solid #f2f2f2;
   padding-bottom: 10px;
+}
+
+.edit-boton {
+  background-image: url("/img/edit-boton.svg");
+  display: block;
+  width: 35px;
+  height: 35px;
+  margin-left: 25px;
+  -webkit-box-shadow: 6px 6px 5px 0px rgb(186 173 162 / 10%);
+  -moz-box-shadow: 0px 15px 5px -10px rgba(186, 173, 162, 0.1);
+  box-shadow: 8px 8px 7px 0px rgb(186 173 162 / 20%);
+  border-radius: 200px;
+}
+
+.edit-boton:hover {
 }
 
 .host-boton {

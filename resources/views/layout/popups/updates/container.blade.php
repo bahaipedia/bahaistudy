@@ -12,8 +12,7 @@
       </div>
     </div>
     <div class="formulario-crear">
-
-         <form enctype="multipart/form-data" method=POST action='{{route('update.container.post')}}' class='wrap-r'>
+         <form class="ancho" enctype="multipart/form-data" method=POST action='{{route('update.container.post')}}' class='wrap-r'>
         <input name="_method" type="hidden" value="PUT">
         {!! csrf_field() !!}
         <input type='hidden' class="logic-cont-up-popup-id" name='container_id'/>
@@ -36,8 +35,8 @@
 
         <button class="join-ficha-pop">UPDATE</button>
       </form>
-	  <div style='display: flex; justify-content: center; align-items: center; height: 100%; '>
-	    <a onclick="closePopup('caja-up-container')" href="#" id="equis">X</a>        
+	  <div class="equis">
+	    <a onclick="closePopup('caja-up-container')" id="equis">X</a>        
 	   </div>
     </div>
   </div>
