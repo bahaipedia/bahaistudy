@@ -41,6 +41,7 @@
 					<button class="login-boton dashposition">join</button>
 				</form>
 				@else
+				<a class="chat-dash" href='{{route('group.chat', [str_replace(' ', '-', str_replace('/', ' ', str_replace('#', 'n', $group->book->name))), $group->route])}}'>JOIN GROUP</a>
 				<a class="chat-dash" href='{{route('group.chat', [str_replace(' ', '-', str_replace('/', ' ', str_replace('#', 'n', $group->book->name))), $group->route])}}'>JOIN CHAT</a>
 			@endif
 		</div>

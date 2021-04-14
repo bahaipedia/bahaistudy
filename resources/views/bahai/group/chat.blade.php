@@ -28,11 +28,11 @@
 
 <div class="contenedor-chat">
   <div class="grupos-izquierda">
-    <h3 class="espacio-grupos">Groups</h3>
+    <h4 class="espacio-grupos">Groups</h4>
     @foreach($groups as $g)
       @if($g->id == $group->id)
-      <a href='{{route('group.chat', [str_replace(' ', '-', str_replace('/', ' ', str_replace('#', 'n', $g->book->name))), $g->route])}}'>
-        <div style="background: blue;" class="perfil-dash">
+      <a class="grupo-chat" href='{{route('group.chat', [str_replace(' ', '-', str_replace('/', ' ', str_replace('#', 'n', $g->book->name))), $g->route])}}'>
+        <div class="perfil-dash">
         </div>
         <div class="informacion-chat">
         <h6 class="subti-libro">{{$g->book->name}}</h6>
@@ -49,7 +49,7 @@
       </a>
       @else
       {{-- <div onclick='changeReference()' class="select-chat-group"> --}}
-      <a href='{{route('group.chat', [str_replace(' ', '-', str_replace('/', ' ', str_replace('#', 'n', $g->book->name))), $g->route])}}'>
+      <a class="grupo-chat" href='{{route('group.chat', [str_replace(' ', '-', str_replace('/', ' ', str_replace('#', 'n', $g->book->name))), $g->route])}}'>
         <div class="perfil-dash">
         </div>
         <div class="informacion-chat">
@@ -76,7 +76,7 @@
 
       </div>
       <div class="organizar-superior">
-      <h3 class="espacio-grupos">
+      <h3 class="nombre-grupos">
         {{$group->book->name}}
       </h3>
       <h4 class="chat-list-dos">
