@@ -12,14 +12,15 @@
       </div>
     </div>
     <div class="formulario-crear">
-
-         <form enctype="multipart/form-data" method=POST action='{{route('update.container.post')}}' class='wrap-r'>
+        <form class="ancho" enctype="multipart/form-data" method=POST action='{{route('update.container.post')}}' class='wrap-r'>
         <input name="_method" type="hidden" value="PUT">
         {!! csrf_field() !!}
-        <input type='hidden' class="logic-cont-up-popup-id" name='container_id'/>
-        <label class="texto-may" for='date'>name</label>
+
+        {{-- Uhmm, no se como hacer acá para formatearlo de la misma manera que los de--}}
+        <input type='hidden' class="logic-cont-up-popup-id hachecuatro autor-nombre" name='container_id'/>
         <input required class="logic-cont-up-popup-name hachecuatro autor-nombre" max='50' placeholder="CONTAINER NAME" name='name' type='text'>
-      
+        <label class="texto-pequ">container description</label>
+
         <textarea required  class="logic-cont-up-popup-desc descripcion-libro-crear pe" maxlength='200' placeholder='Description... Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' name='description'></textarea>
 
         {{-- <div id='author-in-container'>
@@ -30,14 +31,14 @@
               @endforeach
           </select>
         </div> --}}
-        <label class="texto-may">weight</label>
+        <label class="texto-pequ">container weight</label>
         <input required placeholder="SELECT CONTAINER WEIGHT" class="logic-cont-up-popup-weight hachecuatro autor-nombre" name='weight' min='0' max='10' type='number'>
         <br>
 
         <button class="join-ficha-pop">UPDATE</button>
       </form>
-	  <div style='display: flex; justify-content: center; align-items: center; height: 100%; '>
-	    <a onclick="closePopup('caja-up-container')" href="#" id="equis">X</a>        
+	  <div class="equis">
+	    <a onclick="closePopup('caja-up-container')" id="equis">X</a>        
 	   </div>
     </div>
   </div>

@@ -1,7 +1,7 @@
 <div id="caja-register" class='pop-up-general'>
     <div class="organizar-elementos" style="height: 650px;">
       <div class="cerrar">
-        <a onclick="closePopup('caja-register')" href="#" id="equis">X</a>        
+        <a onclick="closePopup('caja-register')" id="equis">X</a>        
     </div>
     <img class="logotipo-verti" src="{{asset('/img/logo-color.svg')}}" />
 

@@ -13,7 +13,7 @@
     </div>
     <div class="formulario-crear">
 
-        <form enctype="multipart/form-data" method=POST action='{{route('update.group.post')}}' class='ancho'>
+        <form class="ancho" enctype="multipart/form-data" method=POST action='{{route('update.group.post')}}' class='ancho'>
         <input name="_method" type="hidden" value="PUT">
         {!! csrf_field() !!}
         <input type="hidden" class='logic-group-up-popup-id' name='group_id'>
@@ -49,8 +49,8 @@
        
         <button  class="join-ficha-pop">UPDATE</button>
       </form>
-	  <div style='display: flex; justify-content: center; align-items: center; height: 100%; '>
-	    <span onclick="closePopup('caja-up-group'); refreshForm();" href="#" id="equis">X</span>        
+	  <div class="equis">
+	    <a onclick="closePopup('caja-up-group'); refreshForm();" id="equis">X</a>        
 	   </div>
     </div>
   </div>

@@ -16,23 +16,20 @@
       <form class="ancho" method=POST action='{{route('store.author.post')}}'>
         {!! csrf_field() !!}
 
-        <label class="texto-may">name</label>
         <input required class="hachecuatro autor-nombre"  max='50' placeholder="AUTHOR NAME" name='name'  type='text'>
 
-        <label class="texto-may">lastname</label>
         <input required class="hachecuatro autor-nombre"  max='50' placeholder="AUTHOR LASTNAME" name='lastname'  type='text'>
    
-        <label class="texto-may">date of birth</label>
-        <input required name='date_of_birth' type='date'>
+        <label class="texto-pequ">date of birth</label>
+        <input required name='date_of_birth' type='date' class='in-pop'>
 
-        <label class="texto-may">nationality</label>
         <input required class="hachecuatro autor-nombre"  max='50' placeholder="NATIONALITY"  name='nationality'  type='text'>        
        
         <button class="join-ficha-pop">CREATE</button>
       </form>
  
     <div class="equis">
-      <a onclick="closePopup('caja-author')" href="#" id="equis">X</a>        
+      <a onclick="closePopup('caja-author')" id="equis">X</a>        
     </div>
     </div>
   </div>

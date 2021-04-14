@@ -1,9 +1,9 @@
 <div id="barra">
   <img id="logotipo" src="{{asset('/img/logotype.svg')}}" />
   <div id="enlaces">
-    <a class="b-principal" onclick="openPopup('caja-container')" href="#">ABOUT</a>
-    <a class="b-principal" onclick="openPopup('caja-book')" href="#">HELP</a>
-    <a class="b-principal" onclick="openPopup('caja-author')" href="#">RESOURCE</a>
+    <a class="b-principal">ABOUT</a>
+    <a class="b-principal">HELP</a>
+    <a class="b-principal">RESOURCE</a>
     <a class="b-principal" href="#">MATERIALS</a>
     <a class="b-principal" href="{{route('dev.welcome')}}">DEV</a>
     @if(auth()->user() !== NULL)

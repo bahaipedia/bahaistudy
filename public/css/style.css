@@ -122,6 +122,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 label {
@@ -133,6 +134,21 @@ input {
   outline: none;
   border: none;
   text-transform: none;
+}
+
+.in-pop {
+  text-transform: uppercase;
+  color: #e6dfda;
+  font-family: "Montserrat";
+  letter-spacing: 3px;
+}
+
+.ancho-pop-dos {
+  width: 400px;
+  height: 350px;
+  display: flex;
+  justify-content: space-around;
+  align-self: center;
 }
 
 a:hover {
@@ -159,6 +175,7 @@ a:hover {
   width: 150px;
   position: relative;
   text-transform: uppercase;
+  margin-left: 10px;
 }
 
 .parti-dash {
@@ -196,6 +213,42 @@ input.max-group::placeholder {
   padding-bottom: 10px;
 }
 
+.edit-boton {
+  background-image: url("/img/edit-boton.svg");
+  display: block;
+  width: 35px;
+  height: 35px;
+  margin-left: 25px;
+  -webkit-box-shadow: 6px 6px 5px 0px rgb(186 173 162 / 10%);
+  -moz-box-shadow: 0px 15px 5px -10px rgba(186, 173, 162, 0.1);
+  box-shadow: 8px 8px 7px 0px rgb(186 173 162 / 20%);
+  border-radius: 200px;
+}
+
+.edit-boton-ficha {
+  background-image: url("/img/edit-boton.svg");
+  display: flex;
+  width: 30px;
+  height: 30px;
+  margin-left: 5px;
+  -webkit-box-shadow: 6px 6px 5px 0px rgb(186 173 162 / 10%);
+  -moz-box-shadow: 0px 15px 5px -10px rgba(186, 173, 162, 0.1);
+  box-shadow: 8px 8px 7px 0px rgb(186 173 162 / 20%);
+  border-radius: 200px;
+}
+
+.edit-boton-brown {
+  background-image: url("/img/edit-boton.svg");
+  display: flex;
+  width: 30px;
+  height: 30px;
+  margin-left: 5px;
+  -webkit-box-shadow: 6px 6px 5px 0px rgb(186 173 162 / 10%);
+  -moz-box-shadow: 0px 15px 5px -10px rgba(186, 173, 162, 0.1);
+  box-shadow: 8px 8px 7px 0px rgb(186 173 162 / 20%);
+  border-radius: 200px;
+}
+
 .host-boton {
   margin-top: 0px;
   margin-bottom: 0px;
@@ -209,14 +262,63 @@ input.max-group::placeholder {
   margin-bottom: 10px;
 }
 
+.botones-flotantes {
+  width: 65px;
+  height: 180px;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 10;
+  background-color: transparent;
+}
+
+.nuevo-autor {
+  background-image: url(/img/author.svg);
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  -webkit-box-shadow: 4px 4px 5px 00px rgba(186, 173, 162, 20%);
+  -moz-box-shadow: 4px 4px 5px 0px rgba(186, 173, 162, 20%);
+  box-shadow: 4px 4px 5px 0px rgb(186 173 162 / 20%);
+  border-radius: 30px;
+  margin-top: 10px;
+}
+
+.nuevo-libro {
+  background-image: url(/img/book.svg);
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  -webkit-box-shadow: 4px 4px 5px 00px rgba(186, 173, 162, 20%);
+  -moz-box-shadow: 4px 4px 5px 0px rgba(186, 173, 162, 20%);
+  box-shadow: 4px 4px 5px 0px rgb(186 173 162 / 20%);
+  border-radius: 30px;
+  margin-top: 10px;
+}
+
+.nuevo-container {
+  background-image: url(/img/container.svg);
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  -webkit-box-shadow: 4px 4px 5px 00px rgba(186, 173, 162, 20%);
+  -moz-box-shadow: 4px 4px 5px 0px rgba(186, 173, 162, 20%);
+  box-shadow: 4px 4px 5px 0px rgb(186 173 162 / 20%);
+  border-radius: 30px;
+  margin-top: 10px;
+}
+
 .informacion-chat {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
 }
 
 .subti-libro {
   margin-left: 10px;
-  margin-bottom: 5px;
+  margin-top: 0px;
+  letter-spacing: 0px;
+  font-weight: 500 !important;
 }
 
 .select-chat-group {
@@ -231,8 +333,10 @@ input.max-group::placeholder {
 }
 
 .espacio-grupos {
-  padding-bottom: 15px;
-  padding-left: 15px;
+  color: #49392b;
+  font-size: 1.6em;
+  font-weight: 500;
+  margin: 0px;
 }
 
 .dash-list {
@@ -253,15 +357,18 @@ input.max-group::placeholder {
   letter-spacing: 1px;
   font-size: 0.9em;
   text-transform: capitalize;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 .chat-list-dos {
   font-size: 0.9em !important;
   color: #49392b;
-  margin-left: 15px;
   letter-spacing: 1px;
   font-size: 0.9em;
   text-transform: capitalize;
+  margin-top: 10px;
+  margin-bottom: 0px;
 }
 
 .chats-derecha {
@@ -302,6 +409,8 @@ input.max-group::placeholder {
   -moz-box-shadow: 0px -20px 5px -10px rgb(186 173 162 / 10%);
   box-shadow: 0px -20px 5px -10px rgb(186 173 162 / 10%);
   justify-content: center;
+  position: relative;
+  left: 10px;
 }
 
 .msj-recibido {
@@ -358,6 +467,8 @@ input.max-group::placeholder {
 .organizar-superior {
   display: flex;
   flex-direction: column;
+  position: relative;
+  left: 20px;
 }
 
 .centrar {
@@ -455,6 +566,8 @@ input.max-group::placeholder {
   display: flex;
   background-image: url("/img/books.png");
   width: 75%;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
 }
 
 .textos-iqcrear {
@@ -501,6 +614,7 @@ input.max-group::placeholder {
   -webkit-box-shadow: 15px 15px 5px -10px rgba(186, 173, 162, 0.07);
   -moz-box-shadow: 15px 15px 5px -10px rgba(186, 173, 162, 0.07);
   box-shadow: 15px 15px 5px -10px rgba(186, 173, 162, 0.07);
+  border-radius: 30px;
 }
 
 .join-ficha-pop:active {
@@ -573,6 +687,18 @@ input.max-group::placeholder {
 .show-more-lista:active {
   background-color: #251d16;
   color: white;
+}
+
+.titulo-boton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.autor-boton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .login-boton {
@@ -947,6 +1073,7 @@ input.max-group::placeholder {
   display: flex;
   flex-direction: column;
   margin-left: 15px;
+  margin-right: 15px;
 }
 
 .parte-derecha-ficha-crear {
@@ -966,6 +1093,7 @@ input.max-group::placeholder {
   font-size: 0.9em !important;
   margin-bottom: 10px;
   margin-top: 10px;
+  width: 200px;
 }
 
 .autor-envia {
@@ -990,6 +1118,13 @@ input.max-group::placeholder {
   font-size: 1em;
   margin-bottom: 15px;
   margin-left: 0px;
+}
+
+.nombre-grupos{
+  color: #49392b;
+  font-size: 1.6em;
+  font-weight: 500;
+  margin: 0px;
 }
 
 .libro-nombre {
@@ -1185,6 +1320,14 @@ select::-ms-expand {
 }
 
 /* GROUPS */
+
+.grupo-chat{
+  padding-top: 15px;
+  padding-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
 
 .grupo-container {
   display: flex;
@@ -1511,21 +1654,20 @@ form {
   display: none;
 }
 
-#caja-up-author{
-  display:none;
+#caja-up-author {
+  display: none;
 }
-#caja-up-book{
-  display:none;
+#caja-up-book {
+  display: none;
 }
-#caja-up-container{
-  display:none;
+#caja-up-container {
+  display: none;
 }
-#caja-up-group{
-  display:none;
+#caja-up-group {
+  display: none;
 }
 
-.pop-up-general{
-
+.pop-up-general {
   position: fixed;
   width: 100vw;
   height: 100vh;
@@ -1683,7 +1825,15 @@ input:-webkit-autofill:active {
   font-size: 1.2em;
   height: 90%;
   align-self: center;
-  margin-left: 75px;
+  margin-left: 100px;
+}
+
+.texto-pequ {
+  font-size: 0.8em;
+  text-transform: uppercase;
+  font-family: "Montserrat", sans-serif !important;
+  color: #e6dfda;
+  letter-spacing: 3px;
 }
 
 /* Groups page */
