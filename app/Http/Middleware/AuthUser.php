@@ -17,8 +17,8 @@ class AuthUser
     {
         if (auth()->check() || auth()->viaRemember()) {
             return $next($request);
+        }else{
+            return redirect()->route('welcome');
         }
-        return $next($request);
-        // return redirect()->route('login');
     }
 }

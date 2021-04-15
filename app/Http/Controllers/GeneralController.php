@@ -22,7 +22,7 @@ class GeneralController extends Controller
 
 
 	public function __construct(){
-        $this->middleware('authorization');
+       
 	}
     public function welcome(){
     	$title = Configuration::find(1)->app_name;
