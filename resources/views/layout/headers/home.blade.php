@@ -1,5 +1,5 @@
 <div id="barra">
-  <img id="logotipo" src="{{asset('/img/logotype.svg')}}" />
+  <a href='{{route('welcome')}}'><img id="logotipo" style='cursor:pointer;' src="{{asset('/img/logotype.svg')}}" /></a>
   <div id="enlaces">
     <a class="b-principal">ABOUT</a>
     <a class="b-principal">HELP</a>

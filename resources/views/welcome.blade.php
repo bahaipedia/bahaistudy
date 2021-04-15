@@ -36,7 +36,7 @@
 
   <div class="general-container">
     @include('layout.headers.home')
-
+    @if(auth()->user())
     <div class="botones-flotantes">
       <a class="nuevo-autor" onclick="openPopup('caja-author')">
       </a>
@@ -45,8 +45,9 @@
       <a class="nuevo-container" onclick="openPopup('caja-container')">
       </a>
     </div>
+    @endif
 
-    <div id="hero-image">
+    <div id="hero-image" style='cursor:default;'>
       <div id="textos">
         <h1 id="hero-title">{{$configurations->app_name}},</h1>
         <h2 id="hero-subtitle">
@@ -70,8 +71,8 @@
 
     <div class="contenedor">
       <div class="subtitulo espacio">
-        <h3>{{$c->name}}</h3>
-        <a onclick="openPopup('caja-up-container', ['container', '{{route("api.update.container", [Crypt::encryptString($c->id)])}}'])" class="edit-boton"></a>
+        <h3 style='cursor:default'>{{$c->name}}</h3>
+         @if(auth()->user())<a onclick="openPopup('caja-up-container', ['container', '{{route("api.update.container", [Crypt::encryptString($c->id)])}}'])" class="edit-boton"></a>@endif
       </div>
       <img class="puntos" src="{{asset('/img/puntos.svg')}}" />
     <div class="barra-info">
@@ -93,7 +94,7 @@
       @if($g->group_container_id == $c->id)
       @php $count++ @endphp
 
-      <div class="ficha-libro">
+      <div class="ficha-libro" style='cursor:default;'>
         @if($g->book->book_image_id !== NULL && Storage::disk('s3')->exists("bahai-dev/".$g->book->bookImage->code))
         <img class="portada-libro new-group" src='{{Storage::disk("s3")->url("bahai-dev/".$g->book->bookImage->code)}}' onclick="openPopup('caja-up-group', ['group', '{{route("api.update.group", [Crypt::encryptString($g->id)])}}'])" src="{{asset('/img/ki.png')}}" />
         @else
@@ -101,12 +102,12 @@
         @endif
         <div class="parte-derecha-ficha">
           <div class="titulo-boton">
-          <h4 class="autor-nombre">{{$g->book->author->name}} {{$g->book->author->lastname}}</h4>
-         <a class="edit-boton-ficha" onclick="openPopup('caja-up-author', ['author', '{{route("api.update.author", [Crypt::encryptString($g->book->author_id)])}}'])"></a> 
+          <h4 class="autor-nombre" >{{$g->book->author->name}} {{$g->book->author->lastname}}</h4>
+         @if(auth()->user())<a class="edit-boton-ficha" onclick="openPopup('caja-up-author', ['author', '{{route("api.update.author", [Crypt::encryptString($g->book->author_id)])}}'])"></a> @endif
         </div>
-        <div class="autor-boton">
-          <h3 class="libro-nombre">{{$g->book->name}}</h3>
-          <a class="edit-boton-brown" onclick="openPopup('caja-up-book', ['book', '{{route("api.update.book", [Crypt::encryptString($g->book->id)])}}'])"> </a>
+        <div class="autor-boton" >
+         <h3 class="libro-nombre">{{$g->book->name}}</h3>
+           @if(auth()->user())<a class="edit-boton-brown" onclick="openPopup('caja-up-book', ['book', '{{route("api.update.book", [Crypt::encryptString($g->book->id)])}}'])"> </a>@endif
         </div>
           <p class="spaces">({{$g->available}} spaces available of {{$g->max_size}})</p>
           <p class="descripcion-libro">
@@ -126,11 +127,11 @@
       <div class="ficha-libro">
         <div class="izquierda">
         <img class="portada-libro new-group" src="{{asset('/img/books.png')}}" />
-        <h3 class="sobre-imagen">Create New Group</h3>
+        <h3 style='cursor:default;' class="sobre-imagen">Create New Group</h3>
         </div>
         <div class="parte-derecha-ficha-crear">
           <div class="custom-select">
-              <select class="autor-nombre hachecuatro desplegable-autor logic-an" data-container='{{$c->id}}' onchange='getBooks(this); createGroup(this);' name="author_id">
+              <select class="autor-nombre hachecuatro desplegable-autor logic-an" data-container='{{$c->id}}' style='cursor:pointer' onchange='getBooks(this); createGroup(this);' name="author_id">
               <option disabled selected value='0'>Choose the Author</option>
               
               @foreach($authors as $a)
@@ -147,7 +148,7 @@
             <input onchange='createGroup(this);' type='number' class='formulario-max pe-max max-group logic-mg' required name='max_size' placeholder='Maximum Group Size'/>
             <textarea onchange='createGroup(this);' type='description' required name='description'  class="descripcion-libro-form pe logic-de" rows="3" cols="15" placeholder="Description... Lorem ipsum dolor sit amet."></textarea>
             <span class="parte-derecha-ficha-espacio"></span>
-            <span onclick="renderInfoGroup(this);" data-container='{{$c->id}}' class="join-ficha-pop margen-ficha">CREATE</span>
+            <span onclick="renderInfoGroup(this);" data-container='{{$c->id}}' style='cursor:pointer' class="join-ficha-pop margen-ficha">CREATE</span>
         </div>
       </div>
     </form>
@@ -213,7 +214,7 @@
         @endforeach
       </div> --}}
 
-      <button class="show-more-lista ">
+      <button style='cursor:pointer;' class="show-more-lista ">
         EVERYTHING
       </button>
 

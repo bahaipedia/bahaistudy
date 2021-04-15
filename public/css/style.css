@@ -962,6 +962,7 @@ input.max-group::placeholder {
 .cuadricula {
   width: 18px;
   height: 18px;
+  cursor: pointer;
 }
 
 .cuadricula:hover,
@@ -973,6 +974,7 @@ input.max-group::placeholder {
   /*background: url("lista.svg");*/
   width: 18px;
   height: 15px;
+  cursor: pointer;
 }
 
 .lista:hover,
