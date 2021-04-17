@@ -26,6 +26,8 @@
   @include('layout.popups.author')
   @include('layout.popups.container')
   @include('layout.popups.register')
+  @include('layout.popups.user-info')
+
 
   @include('layout.popups.updates.author')
   @include('layout.popups.updates.book')
