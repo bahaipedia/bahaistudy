@@ -83,13 +83,28 @@ function groupUpdate(url){
 		document.querySelector('.logic-group-up-popup-name').value = data.name;
 		document.querySelector('.logic-group-up-popup-desc').value = data.description;
 		document.querySelector('.logic-group-up-popup-id').value = data.crypt;
-
-
-		// logic-group-up-popup-
-		// logic-group-up-popup-host
-		// logic-group-up-popup-author
       }
     });
 }
 
+ft = false;
+function openUserPopup(){
+	if(ft == false){
+		document.querySelector('.usuario-menu').style.display = 'block';
+		ft = true;
+	}
+	else{
+		document.querySelector('.usuario-menu').style.display = 'none';
+		ft = false;
+	}
+}
 
+function closeUserPopup(e){
+	if(document.querySelector('.usuario-menu').style.display == 'block' && !e.target.className.includes('logic-popup-settings') && e.target.id != 'login-popup-name'){
+		document.querySelector('.usuario-menu').style.display = 'none';
+		ft = false;
+	}
+}
+
+
+document.querySelector('body').addEventListener('click', closeUserPopup);

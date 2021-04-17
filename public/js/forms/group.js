@@ -74,7 +74,7 @@ function renderInfoGroup(element){
 	document.querySelector('#logic-group-popup-max-size').value = groupData.max_size;
 	}
 	else{
-		console.log(groupData.book);
+		openPopup('caja-alert');
 	}
 }
 

@@ -16,7 +16,11 @@
 	{{--<h1>{{$group->name}}</h1>--}}
 <div class="informacion">
 <div class="ficha-info">
-		<img class="imagen-libro-dash" src="{{asset('/img/ki.png')}}" />
+		@if($group->book->book_image_id !== NULL && Storage::disk('s3')->exists("bahai-dev/".$group->book->bookImage->code))
+        <img class="imagen-libro-dash" src='{{Storage::disk("s3")->url("bahai-dev/".$group->book->bookImage->code)}}' onclick="openPopup('caja-up-group', ['group', '{{route("api.update.group", [Crypt::encryptString($group->id)])}}'])" src="{{asset('/img/ki.png')}}" />
+        @else
+        <img class="imagen-libro-dash portada-libro" />
+        @endif
 		<div class="informacion-dash">
 			<h4 class="autor-nombre-dash">{{$group->book->author->name}} {{$group->book->author->lastname}}</h4>
 			<h3 class="libro-nombre-dash">{{$group->book->name}}</h3>
@@ -24,9 +28,9 @@
 				{{$group->participants_count}} Participants
 			</h5>
 			<h5 class="host-dash">
-				@if($group->host_id != NULL)	
+			@if($group->host_id != NULL)	
 				<b>HOST:</b> {{$group->host->name}} {{$group->host->lastname}}
-				@else
+			@else
 			<h5>NO HOST IN THIS GROUP</h5>
 			@endif
 			</h5>
@@ -38,12 +42,17 @@
 				<form method='POST' action='{{route('group.join')}}'>
 					{!! csrf_field() !!}
 					<input name='id' value='{{$group->id}}' type='hidden'/>
-					<button class="login-boton dashposition">join</button>
+					<button class="login-boton chat-dash">JOIN GROUP</button>
 				</form>
-				@else
-				<a class="chat-dash" href='{{route('group.chat', [str_replace(' ', '-', str_replace('/', ' ', str_replace('#', 'n', $group->book->name))), $group->route])}}'>JOIN GROUP</a>
-				<a class="chat-dash" href='{{route('group.chat', [str_replace(' ', '-', str_replace('/', ' ', str_replace('#', 'n', $group->book->name))), $group->route])}}'>JOIN CHAT</a>
-			@endif
+				@elseif(auth()->check())
+				<form method='POST' action='{{route('group.leave')}}'>
+					{!! csrf_field() !!}
+					<input name='id' value='{{$group->id}}' type='hidden'/>
+					<button class="chat-dash">LEAVE GROUP</button>
+				</form>
+				@endif
+				<a class="chat-dash" href='{{route('group.chat', [str_replace(' ', '-', str_replace('/', ' ', str_replace('#', 'n', $group->book->name))), $group->route])}}'>GO TO CHAT</a>
+
 		</div>
 		</div>
 	</div>
@@ -58,18 +67,24 @@
 			@if($p->user_id == $group->host_id)
 			<div class="particip-dash">
 			<h4 class="dash-list">{{$p->user->name}} {{$p->user->lastname}} (HOST)</h4>
-
-			@if($group->host_id == auth()->user()->id)
-			<div class="host-boton">STEP DOWN AS A HOST</div>
-			@elseif($group->host_id == NULL)
-			<div class="host-boton" href='#'>BE THE HOST</div>
+			@if(auth()->user() && $p->user_id == auth()->user()->id)
+			<form method='POST' action='{{route('group.stepdown')}}'>
+				{!! csrf_field() !!}
+				<input name='id' value='{{$group->id}}' type='hidden'/>
+				<button class="host-boton">STEP DOWN AS A HOST</button>
+			</form>
 			@endif
-
 			</div>
 			@else
 			<div class="particip-dash">
-				<div class="perfil-dash"></div>
 			<h4 class="dash-list">{{$p->user->name}} {{$p->user->lastname}} </h4>
+			@if(auth()->user() && $group->host_id == NULL && $p->user_id == auth()->user()->id)
+			<form method='POST' action='{{route('group.stepup')}}'>
+				{!! csrf_field() !!}
+				<input name='id' value='{{$group->id}}' type='hidden'/>
+				<button class="host-boton">BECOME THE HOST</button>
+			</form>
+			@endif
 			</div>
 			@endif
 
@@ -77,71 +92,4 @@
 		</div>
 </div>
 </div>
-
-
-{{-- <script>
-	onlineStatus = document.querySelectorAll('.online-status')
-	console.log(onlineStatus[1])
-	var cript = 
-	setInterval(function(){
-		var url = document.querySelector('#participant_route').value;
-		var url2 = document.querySelector('#beat_route').value;
-
-		$.ajax({
-	        url: url,
-	        type: "GET",
-	        success: function(data){
-	   			renderParticipant(data);
-	        }
-		});
-
-		$.ajax({
-
-		headers: {
-        'X-CSRF-Token': $('input[name="_token"]').val()
-   		},
-    	data: {
-    		'id': document.querySelector('#user_beat').value,
-    		'group_id': document.querySelector('#group_beat').value,
-		},
-        url: url2,
-        type: "POST",
-        success: function(data){
-        }
-	});
-	}, 15000)
-
-	
-
-	function renderParticipant(data){
-		document.querySelector('#participant').innerHTML = '';
-		for(var i = 0; i<data[1].length; i++){
-			
-				if(data[1][i].id == data[0].host_id){
-
-					document.querySelector('#participant').innerHTML += +data[1][i].name+' '+data[1][i].lastname+' (HOST)
-					document.querySelector('#host').innerHTML = 'host: '+data[1][i].name+' '+data[1][i].lastname
-				}
-				else{
-					document.querySelector('#participant').innerHTML += +data[1][i].name+' '+data[1][i].lastname+
-				}
-			}
-		if(data[0].host_id == null){
-				document.querySelector('#host').innerHTML = 'NO HOST IN THIS GROUP'
-		}
-
-		for(var ii = 0; ii<data[2].length; ii++){
-			var dt = new Date();
-         	var tz = dt.getTimezoneOffset();
-         	var actual = ((dt/1000)-tz);
-			if(new Date(data[2][ii].last_online_at).getTime()/1000 - actual - 18285 > 0){
-				// is online
-			}
-			else{
-				// is not online
-			}
-		}
-
-	}
-</script> --}}
 @stop

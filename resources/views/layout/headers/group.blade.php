@@ -8,11 +8,11 @@
     @if(auth()->user() !== NULL)
     <div style='margin-left:50px;' class="user">
       <div class="profile-pic"> </div>
-      <a class="nombre" href=" #">{{auth()->user()->name}} {{auth()->user()->lastname}}</a>
+      <a class="nombre" id='login-popup-name' onclick='openUserPopup()'>{{auth()->user()->name}} {{auth()->user()->lastname}}</a>
     </div>
     @else
     <div style='margin-left:50px;' class="login">
-      <a class="login-boton" href={{route('login')}}>LOGIN</a>
+      <a class="login-boton" onclick='openPopup("caja-login")'>LOGIN</a>
     </div>
     @endif
 

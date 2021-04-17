@@ -17,6 +17,6 @@
       <p>{!! $errors->first('email', '<p>please check</p>')!!}</p>
       <button class=" login-boton posicion-boton">LOGIN</button>
     </form>
-    <p class="texto-pequeno">Don't have an account? <a class="#" onclick="openPopup('caja-register'); closePopup('caja-login')">Register</a></p>
+    <p class="texto-pequeno">Don't have an account? <a onclick="openPopup('caja-register'); closePopup('caja-login')">Register</a></p>
   </div>
 </div>

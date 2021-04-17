@@ -30,6 +30,7 @@ html {
 
 html,
 body {
+  user-select: none;
   margin: 0;
   padding: 0;
 }
@@ -159,11 +160,12 @@ a:hover {
 }
 
 .chat-dash {
+  font-family: "Montserrat", sans-serif;;
   padding-top: 8px;
   padding-right: 15px;
   padding-bottom: 8px;
   padding-left: 15px;
-  font-size: 0.8em;
+  font-size: 0.8em !important;
   letter-spacing: 0.25em;
   border: solid 2px #49392b;
   color: #49392b;
@@ -171,11 +173,13 @@ a:hover {
   border-radius: 40px;
   line-height: 1.3em;
   outline: none;
-  font-weight: 700;
-  width: 150px;
+  font-weight: 700 !important;
+  background: white;
+  width: 170px !important;
   position: relative;
   text-transform: uppercase;
   margin-left: 10px;
+  cursor: pointer;
 }
 
 .parti-dash {
@@ -252,7 +256,9 @@ input.max-group::placeholder {
 .host-boton {
   margin-top: 0px;
   margin-bottom: 0px;
-  margin-left: 10px;
+  margin-left: 5px;
+  background: white;
+  border:none;
   text-transform: capitalize;
   text-decoration: underline;
   font-family: "Montserrat", sans-serif;
@@ -260,8 +266,11 @@ input.max-group::placeholder {
   color: #6d5f54;
   font-weight: 500;
   margin-bottom: 10px;
+  cursor:pointer;
 }
-
+.host-boton:hover{
+  color:black;
+}
 .botones-flotantes {
   width: 65px;
   height: 180px;
@@ -357,7 +366,7 @@ input.max-group::placeholder {
   letter-spacing: 1px;
   font-size: 0.9em;
   text-transform: capitalize;
-  margin-top: 0px;
+  margin-top: 5px;
   margin-bottom: 0px;
 }
 
@@ -785,6 +794,7 @@ input.max-group::placeholder {
   font-size: 0.9em;
   display: flex;
   align-items: center;
+  user-select: none;
 }
 
 .nombre:hover {
@@ -1598,6 +1608,7 @@ form {
   color: #baada2;
   font-weight: 600;
   font-size: 0.8em;
+  cursor: pointer;
 }
 
 .footer-text:hover {
@@ -1638,6 +1649,9 @@ form {
 /* LOGIN - REGISTER */
 
 #caja-login {
+  display: none;
+}
+#caja-alert {
   display: none;
 }
 #caja-group {
@@ -1964,7 +1978,7 @@ input:-webkit-autofill:active {
 }
 
 .usuario-menu {
-  display: block;
+  display: none;
   background-color: white;
   width: 220px;
   height: 120px;
