@@ -83,41 +83,40 @@ class GroupController extends Controller
 
     public function stepdown(Request $request){
       $configuration = Configuration::select('send_host_stepped_down')->get()[0];
+      $group = Group::where('id', $request->id)->select('id', 'host_id', 'route', 'book_id', 'name')->first();
+      if(auth()->user()->id == $group->host_id){
+        $group->host_id = NULL;
+        $group->update();
 
-	    $group = Group::where('id', $request->id)->select('id', 'host_id', 'route', 'book_id')->first();
-      $group->title_route = str_replace(' ', '-', str_replace('/', ' ', str_replace('#', 'n', $group->book->name)));
-	    if(auth()->user()->id == $group->host_id){
-	    	$group->host_id = NULL;
-	    	$group->update();
+        $log = New LogsSteppedDownHost;
+        $log->user_id = auth()->user()->id;
+        $log->group_id = $group->id;
+        $log->action = 1;
 
-	    	$log = New LogsSteppedDownHost;
-	     	$log->user_id = auth()->user()->id;
-	    	$log->group_id = $group->id;
-	    	$log->action = 1;
-
-	    	$log->save();
-
+        $log->save();
+        $user = auth()->user();
         if($configuration->send_host_stepped_down == 1){
           $email = new EmailController;
           $email->StepDownHost($user, $group);
         }
-	    }
+        
+      }
       return redirect()->route('group.dashboard', [str_replace('/', ' ', str_replace('#', ' ', $group->book->name)), $group->route]);
     }
     public function stepup(Request $request){
 
-	    $group = Group::where('id', $request->id)->select('id', 'host_id', 'route', 'book_id')->first();
-	    if(auth()->user()->email_validated != NULL){
-	    	$group->host_id = auth()->user()->id;
-	    	$group->update();
+	   $group = Group::where('id', $request->id)->select('id', 'host_id', 'route', 'book_id')->first();
+      if(auth()->user()->email_validated != NULL){
+        $group->host_id = auth()->user()->id;
+        $group->update();
 
-	    	$log = New LogsSteppedDownHost;
-	     	$log->user_id = auth()->user()->id;
-	    	$log->group_id = $group->id;
-	    	$log->action = 0;
+        $log = New LogsSteppedDownHost;
+        $log->user_id = auth()->user()->id;
+        $log->group_id = $group->id;
+        $log->action = 0;
 
-	    	$log->save();
-	    }
+        $log->save();
+      }
       return redirect()->route('group.dashboard', [str_replace('/', ' ', str_replace('#', ' ', $group->book->name)), $group->route]);
 
     }

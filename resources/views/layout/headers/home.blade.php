@@ -9,7 +9,7 @@
     @if(auth()->user() !== NULL)
     <div class="user">
       <div class="profile-pic"> </div>
-      <a class="nombre">{{auth()->user()->name}} {{auth()->user()->lastname}}</a>
+      <a class="nombre" id='login-popup-name' onclick='openUserPopup()'>{{auth()->user()->name}} {{auth()->user()->lastname}}</a>
     </div>
     @else
     <div class="login">
@@ -18,3 +18,5 @@
     @endif
   </div>
 </div>
+<script src='{{asset('/js/menu.js')}}'></script>
+

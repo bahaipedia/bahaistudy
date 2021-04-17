@@ -26,6 +26,7 @@
   @include('layout.popups.author')
   @include('layout.popups.container')
   @include('layout.popups.register')
+  @include('layout.popups.alert')
   @include('layout.popups.user-info')
 
 
@@ -246,7 +247,7 @@
             </p>
           </div>
 
-          <div class="linea-tres">
+          <div style='margin-top:10px;' class="linea-tres">
             <p class="copyright">
               © bahaistudygroup | 2021
             </p>
@@ -256,6 +257,8 @@
         <script src='{{asset('/js/popups.js')}}'></script>
         <script src='{{asset('/js/forms/group.js')}}'></script>
         <script src='{{asset('/js/forms/containers.js')}}'></script>
+        <script src='{{asset('/js/menu.js')}}'></script>
+
 </body>
 
 </html>

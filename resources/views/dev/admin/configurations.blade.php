@@ -1,9 +1,16 @@
 @extends('template')
 @section('cnt')
 
-<h1>general configuration</h1>
+
+
 <form method=POST action='{{route('dev.admin.configurations.post')}}' class='wrap-r'>
+<h3>general configuration</h3>
+<br>
+<a href='{{route('welcome')}}'>return home</a>
 {!! csrf_field() !!}
+<br>
+<br>
+<br>
 <label for='app_name'>website name</label>
 <input name='app_name' style=' border:1px solid black;' value='{{$configurations->app_name}}' type='text'>
 <br>

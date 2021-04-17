@@ -1,5 +1,6 @@
 @extends('template')
 @section('cnt')
+
 @include('layout.headers.group')
 <input id='group_id' type='hidden' value='{{Crypt::encryptString($group->id)}}'/>
 <input id='message-route' value='{{route('group.message')}}' type='hidden'/>
@@ -109,7 +110,7 @@
        @endif
       @endforeach
     </div>
-    @if(auth()->user())
+    @if($group->is_participant != 0 && auth()->check())
 
     <form method="POST" id='message-form' class="escribir-mensaje"}}>
       <textarea id='message-input' maxlength="400" placeholder='Write your message here'></textarea>
