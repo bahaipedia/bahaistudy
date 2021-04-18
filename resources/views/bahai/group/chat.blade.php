@@ -33,7 +33,7 @@
     @foreach($groups as $g)
       @if($g->id == $group->id)
       <a class="grupo-chat" href='{{route('group.chat', [str_replace(' ', '-', str_replace('/', ' ', str_replace('#', 'n', $g->book->name))), $g->route])}}'>
-        <div class="perfil-dash">
+        <div class="perfil-dash" style="background: #78c0d1;">
         </div>
         <div class="informacion-chat">
         <h6 class="subti-libro">{{$g->book->name}}</h6>

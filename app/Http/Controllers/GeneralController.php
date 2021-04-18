@@ -38,10 +38,10 @@ class GeneralController extends Controller
         $configurations = Configuration::select('app_name', 'app_description', 'app_description_hight', 'app_description_low', 'app_notes')->get()->first();
         $authors = AuthorsInContainer::select('author_id', 'group_container_id')->get();
         $books = Book::whereIn('author_id', $authors->pluck('author_id'))->get();
-        $containers = GroupContainer::select('id', 'name', 'weight')->orderBy('weight', 'asc')->limit(10)->get();
+        $containers = GroupContainer::select('id', 'name', 'weight', 'status')->where('status', NULL)->orderBy('weight', 'asc')->get();
         $authors_books = Author::select('id', 'name', 'lastname')->where('status', NULL)->get();
 
-        $create_group = true;
+        $create_group = false;
         if(auth()->check()){
             $count = Group::where('host_id', auth()->user()->id)->count();
             $groups_per_host = Configuration::select('groups_per_host')->get()[0]->groups_per_host;
