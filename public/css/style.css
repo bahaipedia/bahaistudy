@@ -160,7 +160,7 @@ a:hover {
 }
 
 .chat-dash {
-  font-family: "Montserrat", sans-serif;;
+  font-family: "Montserrat", sans-serif;
   padding-top: 8px;
   padding-right: 15px;
   padding-bottom: 8px;
@@ -258,7 +258,7 @@ input.max-group::placeholder {
   margin-bottom: 0px;
   margin-left: 5px;
   background: white;
-  border:none;
+  border: none;
   text-transform: capitalize;
   text-decoration: underline;
   font-family: "Montserrat", sans-serif;
@@ -266,10 +266,10 @@ input.max-group::placeholder {
   color: #6d5f54;
   font-weight: 500;
   margin-bottom: 10px;
-  cursor:pointer;
+  cursor: pointer;
 }
-.host-boton:hover{
-  color:black;
+.host-boton:hover {
+  color: black;
 }
 .botones-flotantes {
   width: 65px;
@@ -425,12 +425,13 @@ input.max-group::placeholder {
 .msj-recibido {
   width: 96%;
   display: flex;
-  align-self: center;
   padding-left: 35px;
   border-bottom: 1px solid #f2f2f2;
   padding-right: 200px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  justify-self: right;
+  padding-bottom: 5px;
 }
 
 .msj-enviado {
@@ -458,12 +459,13 @@ input.max-group::placeholder {
 .texto-enviado {
   line-height: 1.4em;
   color: #95989a;
-  /*padding: 25px;*/
+  padding-left: 25px;
 }
 
 .texto-enviado-uno {
   line-height: 1.4em;
   color: #49392b;
+  padding-left: 25px;
 }
 
 .perfil-dash {
@@ -494,15 +496,15 @@ input.max-group::placeholder {
 }
 
 .perfil-chat {
-  width: 65px !important;
-  height: 65px !important;
+  width: 50px !important;
+  height: 50px !important;
   border-radius: 50px;
   background-color: #58a38a;
 }
 
 .perfil-chat-dos {
-  width: 75px !important;
-  height: 75px !important;
+  width: 50px !important;
+  height: 50px !important;
   border-radius: 50px;
   background-color: #58a38a;
 }
@@ -702,12 +704,13 @@ input.max-group::placeholder {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
 }
 
 .autor-boton {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  justify-content: space-between;
 }
 
 .login-boton {
@@ -1121,6 +1124,9 @@ input.max-group::placeholder {
   padding-left: 25px;
   font-weight: 600;
   align-self: flex-start;
+  color: #49392b;
+  font-size: 0.8em;
+  margin-bottom: 5px;
 }
 
 .autor-nombre-dash {
@@ -1132,7 +1138,7 @@ input.max-group::placeholder {
   margin-left: 0px;
 }
 
-.nombre-grupos{
+.nombre-grupos {
   color: #49392b;
   font-size: 1.6em;
   font-weight: 500;
@@ -1333,7 +1339,7 @@ select::-ms-expand {
 
 /* GROUPS */
 
-.grupo-chat{
+.grupo-chat {
   padding-top: 15px;
   padding-bottom: 15px;
   display: flex;
