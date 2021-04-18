@@ -26,14 +26,14 @@
           type='text'>Description... Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</textarea>
         <textarea class="descripcion-libro-crear pe" style='height: 90px;'placeholder="add a host comment" max='120' name='host_comments'
           type='text'></textarea>
-        <label class="texto-may">number of particiapants</label>
+        <label class="texto-pequ">number of particiapants</label>
         <input required id='logic-group-popup-max-size' name='max_size' min="2" max="20" type='number'>
-        <label class="texto-may">meeting url</label>
+        <label class="texto-pequ">meeting url</label>
         <input  max='250'  name='url' type='text'>
         <br>
-        <input id='start_at' type='time' name='start_at' />
-        <input id='finish_at' type='time' name='finish_at' />
-        <select name='day_of_week' id='day_of_week'>
+        <input class="in-pop" id='start_at' type='time' name='start_at' />
+        <input class="in-pop" id='finish_at' type='time' name='finish_at' />
+        <select class="in-pop" name='day_of_week' id='day_of_week'>
           <option value='0'>Sunday</option>
           <option value='1'>Monday</option>
           <option value='2'>Tuesday</option>
@@ -46,7 +46,7 @@
         <button  class="join-ficha-pop">CREATE</button>
       </form>
 	  <div class="equis">
-	    <span onclick="closePopup('caja-group'); refreshForm();" id="equis">X</span>        
+	    <a onclick="closePopup('caja-group'); refreshForm();" id="equis">X</a>        
 	   </div>
     </div>
   </div>
