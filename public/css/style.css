@@ -750,6 +750,8 @@ input.max-group::placeholder {
 .general-container {
   display: flex;
   flex-direction: column;
+  background-color: #f9f7f6;
+  padding-bottom: 100px;
 }
 
 .centrado {
@@ -768,9 +770,10 @@ input.max-group::placeholder {
   position: fixed;
   align-items: center;
   z-index: 5;
-  -webkit-box-shadow: 15px 15px 5px -10px rgba(186, 173, 162, 0.07);
-  -moz-box-shadow: 15px 15px 5px -10px rgba(186, 173, 162, 0.07);
-  box-shadow: 15px 15px 5px -10px rgba(186, 173, 162, 0.07);
+  border-bottom: 1px solid #1313132b;
+  -webkit-box-shadow: 0px 6px 11px -2px rgb(0 0 0 / 10%);
+-moz-box-shadow: 0px 6px 11px -2px rgb(0 0 0 / 10%);
+box-shadow: 0px 6px 11px -2px rgb(0 0 0 / 10%);
 }
 
 #logotipo {
@@ -822,19 +825,20 @@ input.max-group::placeholder {
 #hero-image {
   background-image: linear-gradient(
       45deg,
-      rgba(235, 167, 44, 0.6),
-      rgba(121, 195, 170, 0.6),
-      rgba(241, 114, 33, 0.6)
+      rgba(235, 167, 44, 0.4),
+      rgba(121, 195, 170, 0.4),
+      rgba(241, 114, 33, 0.2)
     ),
     url("/img/hero.jpg");
-  width: 100%;
-  height: 100vh;
-  background-size: cover;
-  color: rgb(255, 255, 255);
-  padding: 20px;
-  position: relative;
-  display: flex;
-  align-items: center;
+    width: 100%;
+    height: 60vh;
+    margin-top: 50px;
+    background-size: cover;
+    color: rgb(255, 255, 255);
+    padding: 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
 }
 
 #textos {
@@ -842,6 +846,8 @@ input.max-group::placeholder {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  position: relative;
+  left: 40px;
 }
 
 #hero-title {
@@ -923,31 +929,29 @@ input.max-group::placeholder {
 .contenedor {
   display: flex;
   position: relative;
-  width: 100%;
+  width: 90%;
   flex-direction: column;
+  border-radius: 30px;
+  justify-content: center;
+  align-self: center;
+  margin: 10px;
+  background-color: white;
+  border: 1px solid #baada245;
+  top: 60px;
 }
 
 .subtitulo {
-  width: 100%;
+  width: 95%;
   height: 50px;
   display: flex;
   position: relative;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: row;
+  left: 40px;
 }
 
 .espacio {
-  margin-top: 50px;
-  margin-bottom: 10px;
-}
-
-.puntos {
-  height: 7px;
-  width: 32px;
-  display: flex;
-  align-self: center;
-  position: relative;
-  top: -12px;
+  margin-top: 30px;
 }
 
 .barra-info {
@@ -956,7 +960,6 @@ input.max-group::placeholder {
   position: relative;
   align-self: center;
   justify-content: space-between;
-  margin-top: 40px;
 }
 
 .contenedor-vistas {
@@ -1015,30 +1018,32 @@ input.max-group::placeholder {
 
 #contenedor-libros {
   width: 98%;
-  height: 370px;
   display: flex;
-  position: relative;
   flex-direction: row;
   align-self: center;
-  overflow-x: auto;
-  overflow-y: hidden;
   top: 20px;
-  margin-bottom: 80px;
+  margin-bottom: 20px;
   margin-top: 20px;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .ficha-libro {
-  width: 500px;
+  width: 44%;
   height: 335px;
   display: flex;
   left: 30px;
   flex-direction: row;
-  margin-left: 30px;
-  border-bottom: 4px solid #79c3aa;
+  margin: 10px;
+  border: 1px solid #baada245;
+  border-radius: 20px;
+  transition: box-shadow 0.4s;
+}
 
-  -webkit-box-shadow: 15px 15px 5px -10px rgba(186, 173, 162, 0.07);
-  -moz-box-shadow: 15px 15px 5px -10px rgba(186, 173, 162, 0.07);
-  box-shadow: 15px 15px 5px -10px rgba(186, 173, 162, 0.07);
+.ficha-libro:hover {
+  -webkit-box-shadow: 0px 0px 20px 3px rgba(230,225,223,1);
+  -moz-box-shadow: 0px 0px 20px 3px rgba(230,225,223,1);
+  box-shadow: 0px 0px 20px 3px rgba(230,225,223,1);
 }
 
 .fondo-show {
@@ -1048,11 +1053,12 @@ input.max-group::placeholder {
 }
 
 .portada-libro {
-  background-color: #58a38a;
   width: 220px;
   height: 335px;
   display: flex;
+  border-bottom-left-radius: 20px;
   position: relative;
+  border-top-left-radius: 20px;
 }
 
 .izquierda-show {
@@ -1108,7 +1114,6 @@ input.max-group::placeholder {
   font-size: 0.9em !important;
   margin-bottom: 10px;
   margin-top: 10px;
-  width: 200px;
 }
 
 .autor-envia {
@@ -1266,8 +1271,7 @@ select::-ms-expand {
   margin-top: -4px !important;
   margin-left: -1px !important;
   border-bottom: 2px solid #58a38a !important;
-  padding-bottom: 17px !important;
-  width: 255px !important;
+  padding-bottom: 12px !important;
 }
 
 .seleccion {
@@ -1331,10 +1335,9 @@ select::-ms-expand {
   display: flex;
   font-size: 1.1em;
   margin: 0px;
-  padding-bottom: 20px;
+  padding-bottom: 15px;
   padding-right: 20px;
   border-bottom: 2px solid #79c3aa;
-  width: 250px;
 }
 
 /* GROUPS */
@@ -1605,7 +1608,6 @@ form {
   width: 100%;
   position: relative;
   display: flex;
-  top: 100px;
   justify-content: center;
   flex-direction: column;
 }

@@ -19,12 +19,7 @@
         <input required class="hachecuatro autor-nombre"  max='50' placeholder="AUTHOR NAME" name='name'  type='text'>
 
         <input required class="hachecuatro autor-nombre"  max='50' placeholder="AUTHOR LASTNAME" name='lastname'  type='text'>
-   
-        <label class="texto-pequ">date of birth</label>
-        <input required name='date_of_birth' type='date' class='in-pop'>
 
-        <input required class="hachecuatro autor-nombre"  max='50' placeholder="NATIONALITY"  name='nationality'  type='text'>        
-       
         <button class="join-ficha-pop">CREATE</button>
       </form>
  

@@ -21,11 +21,6 @@
           <option value={{$a->id}}>{{$a->name}} {{$a->lastname}}</option>
           @endforeach
         </select>
-        <textarea class="descripcion-libro-crear pe" maxlength='200' placeholder='Description... Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' name='description'></textarea>
-        <label class="texto-pequ" for='date'>release date</label>
-        <input id='date' name='date' type='date' class='in-pop'>
-        <input id='number_pages'  placeholder="SELECT NUMBER PAGES" class="hachecuatro autor-nombre" min='0' max='3000' name='number_pages' type='number'>
-        <br>
         <label class="texto-min-bot" for='image'>Upload Cover Image</label>
         <input style='display:none;' id='image' type='file' accept='.png' name='image'>
         <p>{!! $errors->first('file')!!}</p>

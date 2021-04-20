@@ -77,17 +77,10 @@
         <h3 style='cursor:default'>{{$c->name}}</h3>
          @if(auth()->user())<a onclick="openPopup('caja-up-container', ['container', '{{route("api.update.container", [Crypt::encryptString($c->id)])}}'])" class="edit-boton"></a>@endif
       </div>
-      <img class="puntos" src="{{asset('/img/puntos.svg')}}" />
     <div class="barra-info">
       <div class="contenedor-vistas">
         <img class="cuadricula" src="{{asset('/img/cuadricula.svg')}}" />
         <img class="lista" src="{{asset('/img/lista.svg')}}" />
-      </div>
-
-      <div class="contenedor-busqueda">
-        <h5 class="filtro">filter</h5>
-        <h5 class="filtro">sort</h5>
-        <h5 class="filtro">search</h5>
       </div>
     </div>
     <div id="contenedor-libros">
@@ -112,12 +105,12 @@
          <h3 class="libro-nombre">{{$g->book->name}}</h3>
            @if(auth()->user())<a class="edit-boton-brown" onclick="openPopup('caja-up-book', ['book', '{{route("api.update.book", [Crypt::encryptString($g->book->id)])}}'])"> </a>@endif
         </div>
-          <p class="spaces">({{$g->available}} spaces available of {{$g->max_size}})</p>
+          <p class="spaces">({{$g->available}} of {{$g->max_size}} spaces available)</p>
           <p class="descripcion-libro">
             {{$g->description}}
           </p>
           <span class="parte-derecha-ficha-espacio"></span>
-          <a class="join-ficha margen-ficha" href='{{route('group.dashboard', [str_replace(' ', '-', str_replace('/', ' ', str_replace('#', 'n', $g->book->name))), $g->route])}}'>JOIN</a>
+          <a class="join-ficha margen-ficha" href='{{route('group.dashboard', [str_replace(' ', '-', str_replace('/', ' ', str_replace('#', 'n', $g->book->name))), $g->route])}}'>VIEW</a>
         </div>
       </div>
 
@@ -126,13 +119,13 @@
       @endforeach
 <!-- CREATE NEW GROUP -->
 @if(auth()->check() && $create_group)
-<form  class='wrap-r'>
       <div class="ficha-libro">
         <div class="izquierda">
         <img class="portada-libro new-group" src="{{asset('/img/books.png')}}" />
         <h3 style='cursor:default;' class="sobre-imagen">Create New Group</h3>
         </div>
         <div class="parte-derecha-ficha-crear">
+          <form  class='wrap-r'>
           <div class="custom-select">
               <select class="autor-nombre hachecuatro desplegable-autor logic-an" data-container='{{$c->id}}' style='cursor:pointer' onchange='getBooks(this); createGroup(this);' name="author_id">
               <option disabled selected value='0'>Choose the Author</option>
@@ -152,16 +145,10 @@
             <textarea onchange='createGroup(this);' type='description' required name='description'  class="descripcion-libro-form pe logic-de" rows="3" cols="15" placeholder="Description... Lorem ipsum dolor sit amet."></textarea>
             <span class="parte-derecha-ficha-espacio"></span>
             <span onclick="renderInfoGroup(this);" data-container='{{$c->id}}' style='cursor:pointer' class="join-ficha-pop margen-ficha">CREATE</span>
-        </div>
+          </form>
+          </div>
       </div>
-    </form>
     @endif
-
-    <div class="">
-      <div class="izquierda-show">
-        <h3 class="sobre-show">Show <br> Everything</h3>
-      </div>
-    </div>
   </div>
     </div>
     @endforeach
@@ -217,9 +204,6 @@
         @endforeach
       </div> --}}
 
-      <button style='cursor:pointer;' class="show-more-lista ">
-        EVERYTHING
-      </button>
 
 </div>
         <div class="footer">
