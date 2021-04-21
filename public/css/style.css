@@ -222,10 +222,7 @@ input.max-group::placeholder {
   display: block;
   width: 35px;
   height: 35px;
-  margin-left: 25px;
-  -webkit-box-shadow: 6px 6px 5px 0px rgb(186 173 162 / 10%);
-  -moz-box-shadow: 0px 15px 5px -10px rgba(186, 173, 162, 0.1);
-  box-shadow: 8px 8px 7px 0px rgb(186 173 162 / 20%);
+  margin-left: 15px;
   border-radius: 200px;
 }
 
@@ -235,9 +232,6 @@ input.max-group::placeholder {
   width: 30px;
   height: 30px;
   margin-left: 5px;
-  -webkit-box-shadow: 6px 6px 5px 0px rgb(186 173 162 / 10%);
-  -moz-box-shadow: 0px 15px 5px -10px rgba(186, 173, 162, 0.1);
-  box-shadow: 8px 8px 7px 0px rgb(186 173 162 / 20%);
   border-radius: 200px;
 }
 
@@ -247,9 +241,6 @@ input.max-group::placeholder {
   width: 30px;
   height: 30px;
   margin-left: 5px;
-  -webkit-box-shadow: 6px 6px 5px 0px rgb(186 173 162 / 10%);
-  -moz-box-shadow: 0px 15px 5px -10px rgba(186, 173, 162, 0.1);
-  box-shadow: 8px 8px 7px 0px rgb(186 173 162 / 20%);
   border-radius: 200px;
 }
 
@@ -704,13 +695,11 @@ input.max-group::placeholder {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
 }
 
 .autor-boton {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
 }
 
 .login-boton {
@@ -1869,20 +1858,17 @@ input:-webkit-autofill:active {
 }
 
 .columna-grupo {
-  width: 99vw;
-  height: 99vh;
   display: flex;
   flex-direction: row;
   overflow: hidden;
 }
 
 .informacion {
-  width: 80%;
-  height: 90%;
+  width: 100vw;
+  height: 100vh;
   display: flex;
-  align-self: flex-end;
-  align-items: center;
   justify-content: space-around;
+  background-color: #f9f7f6;
 }
 
 #name {
@@ -1908,37 +1894,40 @@ input:-webkit-autofill:active {
 
 .imagen-libro-dash {
   display: flex;
-  width: 350px;
-  height: 550px;
+  width: 250px;
+  height: 385px;
   flex-direction: column;
+  border-bottom-left-radius: 30px;
+  border-top-left-radius: 30px;
 }
 
 .informacion-dash {
-  width: 35%;
-  height: 100%;
   flex-direction: column;
   position: relative;
-  top: 50px;
-  left: 50px;
+  top: 25px;
+  left: 25px;
 }
 
 .participants-list {
-  width: 20%;
-  height: 100%;
-  align-self: flex-end;
+  width: 320px;
   padding: 20px;
-  padding-top: 100px;
-  -webkit-box-shadow: -16px 0px 5px -10px rgb(186 173 162 / 7%);
-  -moz-box-shadow: -16px 0px 5px -10px rgb(186 173 162 / 7%);
-  box-shadow: -16px 0px 5px -10px rgb(186 173 162 / 7%);
+  background-color: white;
+  border-radius: 20px;
+  height: 400px;
+  position: relative;
+  top: 125px;
+  border: 1px solid #baada245;
 }
 
 .ficha-info {
   display: flex;
-  width: 800px;
-  -webkit-box-shadow: 10px 10px 5px -10px rgb(186 173 162 / 7%);
-  -moz-box-shadow: 10px 10px 5px -10px rgb(186 173 162 / 7%);
-  box-shadow: 10px 10px 5px -10px rgb(186 173 162 / 7%);
+  width: 630px;
+  background-color: white;
+  height: 385px;
+  position: relative;
+  top: 125px;
+  border-radius: 30px;
+  border: 1px solid #baada245;
 }
 
 .informacion-libro {
@@ -1949,11 +1938,12 @@ input:-webkit-autofill:active {
 }
 
 .informacion-libro-dash {
-  width: 35%;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  line-height: 1.4;
+  display: flex;
+  width: 250px;
+  height: 385px;
+  flex-direction: column;
+  border-bottom-left-radius: 30px;
+  border-top-left-radius: 30px;
 }
 
 .contenedor-chat {

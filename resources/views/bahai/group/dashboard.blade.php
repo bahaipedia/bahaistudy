@@ -56,40 +56,40 @@
 		</div>
 		</div>
 	</div>
-		</div>
 
-
-<div class="participants-list">
-	<h2 class="parti-dash">List of participants<br></h2>
-		<h4 class="max-dash">(max {{$group->max_size}})</h4>
-	<div id='participant'>
-		@foreach($participants as $p)
-			@if($p->user_id == $group->host_id)
-			<div class="particip-dash">
-			<h4 class="dash-list">{{$p->user->name}} {{$p->user->lastname}} (HOST)</h4>
-			@if(auth()->user() && $p->user_id == auth()->user()->id)
-			<form method='POST' action='{{route('group.stepdown')}}'>
-				{!! csrf_field() !!}
-				<input name='id' value='{{$group->id}}' type='hidden'/>
-				<button class="host-boton">STEP DOWN AS A HOST</button>
-			</form>
-			@endif
+	<div class="participants-list">
+		<h2 class="parti-dash">List of participants<br></h2>
+			<h4 class="max-dash">(max {{$group->max_size}})</h4>
+		<div id='participant'>
+			@foreach($participants as $p)
+				@if($p->user_id == $group->host_id)
+				<div class="particip-dash">
+				<h4 class="dash-list">{{$p->user->name}} {{$p->user->lastname}} (HOST)</h4>
+				@if(auth()->user() && $p->user_id == auth()->user()->id)
+				<form method='POST' action='{{route('group.stepdown')}}'>
+					{!! csrf_field() !!}
+					<input name='id' value='{{$group->id}}' type='hidden'/>
+					<button class="host-boton">STEP DOWN AS A HOST</button>
+				</form>
+				@endif
+				</div>
+				@else
+				<div class="particip-dash">
+				<h4 class="dash-list">{{$p->user->name}} {{$p->user->lastname}} </h4>
+				@if(auth()->user() && $group->host_id == NULL && $p->user_id == auth()->user()->id)
+				<form method='POST' action='{{route('group.stepup')}}'>
+					{!! csrf_field() !!}
+					<input name='id' value='{{$group->id}}' type='hidden'/>
+					<button class="host-boton">BECOME THE HOST</button>
+				</form>
+				@endif
+				</div>
+				@endif
+	
+			@endforeach
 			</div>
-			@else
-			<div class="particip-dash">
-			<h4 class="dash-list">{{$p->user->name}} {{$p->user->lastname}} </h4>
-			@if(auth()->user() && $group->host_id == NULL && $p->user_id == auth()->user()->id)
-			<form method='POST' action='{{route('group.stepup')}}'>
-				{!! csrf_field() !!}
-				<input name='id' value='{{$group->id}}' type='hidden'/>
-				<button class="host-boton">BECOME THE HOST</button>
-			</form>
-			@endif
-			</div>
-			@endif
+	</div>
 
-		@endforeach
 		</div>
-</div>
 </div>
 @stop
