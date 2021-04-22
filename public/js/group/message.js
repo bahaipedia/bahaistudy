@@ -23,7 +23,7 @@ function messagePoll(){
           for(var i = 0; i<data.length; i++){
             messageRender(data[i].message, data[i].self, data[i].user_info, 'get')
           }
-          messageTimer = setTimeout(messagePoll,10000);
+          messageTimer = setTimeout(messagePoll,5000);
       }
     });
 }
@@ -89,7 +89,7 @@ message.form.addEventListener('keyup', function(e){
       url: message.route,
       type: "POST",
       success: function(data){
-        messageTimer = setTimeout(messagePoll,5000);
+        messageTimer = setTimeout(messagePoll,10000);
         renderMessage.style.color = 'black';
       },
       error: function(XMLHttpRequest, textStatus, errorThrown) {
