@@ -18,7 +18,7 @@
     {!! csrf_field() !!}
         <input type="hidden" name="book_id" class="logic-book-up-popup-id"/>
         <label class="texto-pequ" for='date'>name</label>
-        <input class="logic-book-up-popup-name hachecuatro autor-nombre" max='50' placeholder="BOOK NAME" name='name' type='text'>
+        <input required class="logic-book-up-popup-name hachecuatro autor-nombre" max='50' placeholder="BOOK NAME" name='name' type='text'>
         <select class="logic-book-up-popup-author libro-nombre hachetres" name='author_id'>
           @foreach($authors_books as $a)
           <option value={{$a->id}}>{{$a->name}} {{$a->lastname}}</option>

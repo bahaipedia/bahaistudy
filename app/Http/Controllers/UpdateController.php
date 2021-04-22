@@ -200,7 +200,7 @@ class UpdateController extends Controller
      
         $author = Author::find($query_id);
         $author->crypt = $id;
-        $author->date = date("Y-m-d", strtotime( $author->date_of_birth ));
+        // $author->date = date("Y-m-d", strtotime( $author->date_of_birth ));
         return $author;
     }
 
@@ -220,8 +220,8 @@ class UpdateController extends Controller
     	$author = Author::find($id);
     	$author->name = $request->name;
     	$author->lastname = $request->lastname;
-    	$author->date_of_birth = $request->date_of_birth;
-    	$author->nationality = $request->nationality;
+    	// $author->date_of_birth = $request->date_of_birth;
+    	// $author->nationality = $request->nationality;
     	$author->update();
 
         return redirect()->route('welcome');
@@ -272,7 +272,7 @@ class UpdateController extends Controller
      
         $book = Book::find($query_id);
         $book->crypt = $id;
-        $book->date = date("Y-m-d", strtotime( $book->date ));
+        // $book->date = date("Y-m-d", strtotime( $book->date ));
     
         return $book;
     }
@@ -291,10 +291,10 @@ class UpdateController extends Controller
 
         $book = Book::find($id);
         $book->name = $request->name;
-        $book->description = $request->description;
-        $book->date = $request->date;
+        // $book->description = $request->description;
+        // $book->date = $request->date;
         $book->author_id = $request->author_id;
-        $book->number_pages = $request->number_pages;
+        // $book->number_pages = $request->number_pages;
 
         $file_methods = new FileController;
         if($request->hasFile('image')){

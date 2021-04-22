@@ -98,8 +98,8 @@ class StoreController extends Controller
         $author->user_id = auth()->user()->id;
         $author->name = $request->name;
         $author->lastname = $request->lastname;
-        $author->date_of_birth = $request->date_of_birth;
-        $author->nationality = $request->nationality;
+        // $author->date_of_birth = $request->date_of_birth;
+        // $author->nationality = $request->nationality;
         $author->save();
 
         return redirect()->route('welcome');
@@ -120,13 +120,13 @@ class StoreController extends Controller
         $book = New Book;
         $book->user_id = auth()->user()->id;
         $book->name = $request->name;
-        $book->description = $request->description;
+        // $book->description = $request->description;
         if($request->hasFile('image')){
             $book->book_image_id = $book_image_id;
         }
-        $book->date = $request->date;
+        // $book->date = $request->date;
         $book->author_id = $request->author_id;
-        $book->number_pages = $request->number_pages;
+        // $book->number_pages = $request->number_pages;
         $book->save();
         return redirect()->route('welcome');
     }
