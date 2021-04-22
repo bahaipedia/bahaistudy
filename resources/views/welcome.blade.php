@@ -69,14 +69,21 @@
       <div id="flecha">
       </div>
     </div>
+    
+    <div class="contenedor-afuera">
+      <a class="join-ficha margen-ficha">NEW GROUP</a>
+    </div>
 
     @foreach($containers as $c)
 
     <div class="contenedor">
       <div class="subtitulo espacio">
+        <div class="parte-izquierda">
         <h3 style='cursor:default'>{{$c->name}}</h3>
          @if(auth()->user())<a onclick="openPopup('caja-up-container', ['container', '{{route("api.update.container", [Crypt::encryptString($c->id)])}}'])" class="edit-boton"></a>@endif
-      </div>
+        </div>
+         <h4 class="ver-todo">VIEW ALL ></h4>
+        </div>
     <div class="barra-info">
       <div class="contenedor-vistas">
         <img class="cuadricula" src="{{asset('/img/cuadricula.svg')}}" />
@@ -118,6 +125,7 @@
 
       @endforeach
 <!-- CREATE NEW GROUP -->
+{{--
 @if(auth()->check() && $create_group)
       <div class="ficha-libro">
         <div class="izquierda">
@@ -149,6 +157,7 @@
           </div>
       </div>
     @endif
+   --}}
   </div>
     </div>
     @endforeach
