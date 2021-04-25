@@ -34,8 +34,9 @@
         <input style='display:none;' id='logic-image-update' type='file' accept='.png' name='image'>
         <button class="join-ficha-pop">UPDATE</button>
       </form>
-      {{-- POR FAVOR NO BORRAR ESTE FORMULARIO DE ABAJO --}}
       
+      {{-- POR FAVOR NO BORRAR ESTE FORMULARIO DE ABAJO --}}
+
       {{-- <form method='POST' action='{{route('delete.book.post')}}' id="delete">
         {!! csrf_field() !!}
         <input name="_method" type="hidden" value="delete">

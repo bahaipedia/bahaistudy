@@ -31,6 +31,7 @@
         <input  class="logic-author-up-popup-nat hachecuatro autor-nombre"  max='50' placeholder="NATIONALITY"  name='nationality'  type='text'>
         <button class="join-ficha-pop">UPDATE</button>
       </form>
+      
     {{-- POR FAVOR NO BORRAR ESTE FORMULARIO DE ABAJO --}}
 
     {{--   <form method='POST' action='{{route('delete.author.post')}}' id="delete">
