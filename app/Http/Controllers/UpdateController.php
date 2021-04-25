@@ -20,6 +20,7 @@ use App\LogsGroupUpdate;
 use App\LogsAuthorUpdate;
 use App\LogsBookUpdate;
 use App\LogsUserUpdate;
+use App\LogsGroupContainerUpdate;
 
 class UpdateController extends Controller
 {
@@ -121,11 +122,12 @@ class UpdateController extends Controller
             return 'DD-E0001';
         }
 
-        // $logs = New LogsGroupUpdate;
-        // $logs->action = 0;
-        // $logs->user_id = auth()->user()->id;
-        // $logs->group_id = $id;
-        // $logs->save();
+        $logs = New LogsGroupContainerUpdate;
+        $logs->action = 0;
+        $logs->user_id = auth()->user()->id;
+        $logs->group_container_id = $id;
+        $logs->save();
+
         $container = GroupContainer::find($id);
         $container->name = $request->name;
         $container->description = $request->description;
@@ -136,6 +138,28 @@ class UpdateController extends Controller
         return redirect()->route('welcome');
        
     }
+
+    public function containerDelete(Request $request){
+        try{
+            $id = Crypt::decryptString($request->container_id);
+        } catch (DecryptException $e) {
+            return 'DD-E0002';
+        }
+
+        $logs = New LogsGroupContainerUpdate;
+        $logs->action = 1;
+        $logs->user_id = auth()->user()->id;
+        $logs->group_container_id = $id;
+        $logs->save();
+
+        $container = GroupContainer::find($id);
+        $container->status = Carbon::now();
+        $container->update();
+
+        return redirect()->route('welcome');
+   
+    }
+
     public function apiGroup($id){
         try{
             $query_id = Crypt::decryptString($id);
@@ -171,13 +195,15 @@ class UpdateController extends Controller
         $logs->user_id = auth()->user()->id;
         $logs->group_id = $id;
         $logs->save();
+
         $group = Group::find($id);
         $group->status = Carbon::now();
         $group->update();
-
-        $header = 'Group was deleted!';
-        $message = "The group was deleted";
-        return view('auth.response', compact('header', 'message'));
+        
+        return redirect()->route('welcome');
+        // $header = 'Group was deleted!';
+        // $message = "The group was deleted";
+        // return view('auth.response', compact('header', 'message'));
     }
 
 	public function author($id){
@@ -245,9 +271,8 @@ class UpdateController extends Controller
         $author->status = Carbon::now();
         $author->update();
 
-        $header = 'author was deleted!';
-        $message = "The author was deleted";
-        return view('auth.response', compact('header', 'message'));
+        return redirect()->route('welcome');
+   
     }
 
     public function book($id){
@@ -326,8 +351,7 @@ class UpdateController extends Controller
         $book->status = Carbon::now();
         $book->update();
 
-        $header = 'book was deleted!';
-        $message = "The book was deleted";
-        return view('auth.response', compact('header', 'message'));
+        return redirect()->route('welcome');
+        
     }
 }

@@ -38,13 +38,14 @@
 				{{$group->description}}
 			</p>
 			<div class="botones-dash">
-				@if($group->is_participant == 0 && auth()->check())
+				@if($group->is_participant == 0 && auth()->check() && ($group->max_size - $group->participants_count) > 0)
+
 				<form method='POST' action='{{route('group.join')}}'>
 					{!! csrf_field() !!}
 					<input name='id' value='{{$group->id}}' type='hidden'/>
 					<button class="login-boton chat-dash">JOIN GROUP</button>
 				</form>
-				@elseif(auth()->check())
+				@elseif($group->is_participant != 0 && auth()->check())
 				<form method='POST' action='{{route('group.leave')}}'>
 					{!! csrf_field() !!}
 					<input name='id' value='{{$group->id}}' type='hidden'/>

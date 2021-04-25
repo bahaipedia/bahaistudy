@@ -37,6 +37,14 @@
 
         <button class="join-ficha-pop">UPDATE</button>
       </form>
+     {{-- POR FAVOR NO BORRAR ESTE FORMULARIO DE ABAJO --}}
+
+    {{--   <form method='POST' action='{{route('delete.container.post')}}' id="delete">
+        {!! csrf_field() !!}
+        <input name="_method" type="hidden" value="delete">
+        <input name="container_id" type="hidden" class='logic-container-up-popup-id2' value="">
+        <button disabled class="logic-container-del-popup-btn join-ficha-pop">C</button> 
+      </form> --}}
 	  <div class="equis">
 	    <a onclick="closePopup('caja-up-container')" id="equis">X</a>        
 	   </div>

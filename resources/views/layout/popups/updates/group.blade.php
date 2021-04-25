@@ -27,11 +27,13 @@
         <textarea class="logic-group-up-popup-host descripcion-libro-crear pe" style='height: 90px;'placeholder="add a host comment" max='120' name='host_comments'
           type='text'></textarea>
 
-        <label class="texto-may">number of pages</label>
-        <input required class='logic-group-up-popup-max-size' name='max_size' type='number'>
+        <label class="texto-may">number of participants</label>
+        <input required class='logic-group-up-popup-max-size' name='max_size' min="2" max="20" type='number'>
 
         <label class="texto-may">meeting url</label>
         <input class='logic-group-up-popup-url' max='250'  name='url' type='text'>
+
+
 
         <br>
 
@@ -46,9 +48,17 @@
           <option value='5'>Friday</option>
           <option value='6'>Saturday</option>
         </select> --}}
-       
+        
         <button  class="join-ficha-pop">UPDATE</button>
       </form>
+
+     {{-- POR FAVOR NO BORRAR ESTE FORMULARIO DE ABAJO --}}
+     {{--  <form method='POST' action='{{route('delete.group.post')}}'>
+        {!! csrf_field() !!}
+        <input name="_method" type="hidden" value="delete">
+        <input name="group_id" type="hidden" class='logic-group-up-popup-id2' value="">
+        <button  disabled class="logic-group-del-popup-btn join-ficha-pop">D</button>
+      </form> --}}
 	  <div class="equis">
 	    <a onclick="closePopup('caja-up-group'); refreshForm();" id="equis">X</a>        
 	   </div>

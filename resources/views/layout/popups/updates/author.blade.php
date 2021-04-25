@@ -31,6 +31,14 @@
         <input  class="logic-author-up-popup-nat hachecuatro autor-nombre"  max='50' placeholder="NATIONALITY"  name='nationality'  type='text'>
         <button class="join-ficha-pop">UPDATE</button>
       </form>
+    {{-- POR FAVOR NO BORRAR ESTE FORMULARIO DE ABAJO --}}
+
+    {{--   <form method='POST' action='{{route('delete.author.post')}}' id="delete">
+        {!! csrf_field() !!}
+        <input name="_method" type="hidden" value="delete">
+        <input name="author_id" type="hidden" class='logic-author-up-popup-id2' value="">
+        <button disabled class="logic-author-del-popup-btn join-ficha-pop">DELETE</button> 
+      </form> --}}
     <div class="equis">
       <a onclick="closePopup('caja-up-author')" id="equis">X</a>        
     </div>

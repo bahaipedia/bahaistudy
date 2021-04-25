@@ -1,6 +1,11 @@
 function closePopup(element){
  	document.getElementById(element).style.display = "none";
 	document.querySelector("body").style.overflow = 'auto';
+	document.querySelector('.logic-group-del-popup-btn').disabled = true;
+	document.querySelector('.logic-book-del-popup-btn').disabled = true;
+	document.querySelector('.logic-author-del-popup-btn').disabled = true;
+	document.querySelector('.logic-container-del-popup-btn').disabled = true;
+
 }
 function openPopup(element, type){
 	document.getElementById(element).style.display = "flex";
@@ -27,6 +32,8 @@ function authorUpdate(url){
 		// document.querySelector('.logic-author-up-popup-dob').value = data.date;
 		document.querySelector('.logic-author-up-popup-name').value = data.name;
 		document.querySelector('.logic-author-up-popup-ltname').value = data.lastname;
+		document.querySelector('.logic-author-up-popup-id2').value = data.crypt;
+		document.querySelector('.logic-author-del-popup-btn').disabled = false;
       }
     });
 }
@@ -48,6 +55,8 @@ function bookUpdate(url){
 		document.querySelector('.logic-book-up-popup-name').value = data.name;
 		// document.querySelector('.logic-book-up-popup-desc').value = data.description;
 		// document.querySelector('.logic-book-up-popup-number').value = data.number_pages;
+		document.querySelector('.logic-book-up-popup-id2').value = data.crypt;
+		document.querySelector('.logic-book-del-popup-btn').disabled = false;
 
       	
       }
@@ -65,6 +74,8 @@ function containerUpdate(url){
 		document.querySelector('.logic-cont-up-popup-name').value = data.name;
 		document.querySelector('.logic-cont-up-popup-desc').value = data.description;
 		document.querySelector('.logic-cont-up-popup-weight').value = data.weight;
+		document.querySelector('.logic-container-up-popup-id2').value = data.crypt;
+		document.querySelector('.logic-container-del-popup-btn').disabled = false;
       }
     });
 }
@@ -83,6 +94,9 @@ function groupUpdate(url){
 		document.querySelector('.logic-group-up-popup-name').value = data.name;
 		document.querySelector('.logic-group-up-popup-desc').value = data.description;
 		document.querySelector('.logic-group-up-popup-id').value = data.crypt;
+		document.querySelector('.logic-group-up-popup-id2').value = data.crypt;
+		document.querySelector('.logic-group-del-popup-btn').disabled = false;
+
       }
     });
 }

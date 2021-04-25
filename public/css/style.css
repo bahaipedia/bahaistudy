@@ -550,6 +550,7 @@ input.max-group::placeholder {
   border-radius: 20px;
   outline: none;
   display: flex;
+  cursor: pointer;
   justify-content: center;
   align-items: center;
   font-family: "Montserrat", sans-serif;

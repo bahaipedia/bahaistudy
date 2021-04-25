@@ -49,6 +49,11 @@ class GroupController extends Controller
           $last_online_at->update();
         }
       }
+      if($group->status != NULL || $group->book->status != NULL){
+        $header = 'Sorry this group not longer exist!';
+        $message = "We are unable to render this group because its not longer exist";
+        return view('auth.response', compact('header', 'message'));
+      }
       else{
         $participants->is_participant = 'Not auth';
       }
@@ -147,6 +152,13 @@ class GroupController extends Controller
 	    $group = Group::where('id', $request->id)->select('id', 'host_id', 'book_id', 'route')->first();
       $group->title_route = str_replace(' ', '-', str_replace('/', ' ', str_replace('#', 'n', $group->book->name)));
 	    $g_participant = GroupParticipant::where('group_id', $request->id)->where('user_id', auth()->user()->id)->first();
+      $group->participants_count = GroupParticipant::where('group_id', $group->id)->where('status', 1)->count();
+      if($group->max_size-$group->participants_count < 1){        
+        $header = 'Sorry you was unable to join the group';
+        $message = "Max number of participants reached!";
+        return view('dev.response', compact('header', 'message'));
+      }
+
 	    if($g_participant == NULL){
 	    	$participant = New GroupParticipant;
 	        $participant->user_id = auth()->user()->id;
