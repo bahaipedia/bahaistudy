@@ -429,15 +429,14 @@ input.max-group::placeholder {
   width: 96%;
   display: flex;
   align-self: center;
-  padding-right: 35px;
-  padding-left: 200px;
-  text-align: end;
+  padding-right: 200px;
   margin-top: 5px;
   margin-bottom: 5px;
   border-bottom: 1px solid #f2f2f2;
   padding-bottom: 5px;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: center;
+  flex-direction: row-reverse;
 }
 
 .textos-chat {
@@ -576,9 +575,16 @@ input.max-group::placeholder {
   display: flex;
 }
 
+.container-ochenta {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+
 .ver-todo {
   font-weight: 600;
-  color: #49392b
+  color: #49392b;
+  letter-spacing: 2px;
 }
 
 .textos-iqcrear {
@@ -1112,9 +1118,8 @@ input.max-group::placeholder {
 }
 
 .autor-envia {
-  padding-right: 0px;
+  padding-left: 25px;
   font-weight: 600;
-  align-self: flex-end;
   color: #49392b;
   font-size: 0.8em;
   margin-bottom: 5px;
@@ -1807,11 +1812,36 @@ input:-webkit-autofill:active {
 .botones-dash {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-evenly;
   text-transform: uppercase;
-  align-items: center;
-  position: absolute;
-  top: 400px;
+  justify-self: flex-end;
+  position: relative;
+  top: 30px;
+}
+.parte-superior {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  top: 90px;}
+
+.parte-inferior {
+  display: flex;
+  width: 100%;
+  background-color: white;
+  height: 45%;
+  align-self: center;
+  border-radius: 30px;
+  border: 1px solid #baada245;
+  position: relative;
+  top: 100px;
+  flex-direction: column;
+}
+
+.chat-dash-inter {
+  background-color: white;
+  border-radius: 30px;
+  display: flex;
+  border: 1px solid red;
 }
 
 .tipo-logo:hover {
@@ -1920,8 +1950,8 @@ input:-webkit-autofill:active {
 .informacion-dash {
   flex-direction: column;
   position: relative;
-  top: 25px;
-  left: 25px;
+  width: inherit;
+  margin: 20px;
 }
 
 .participants-list {
@@ -1929,19 +1959,17 @@ input:-webkit-autofill:active {
   padding: 20px;
   background-color: white;
   border-radius: 20px;
-  height: 400px;
+  height: fit-content;
   position: relative;
-  top: 125px;
   border: 1px solid #baada245;
 }
 
 .ficha-info {
   display: flex;
-  width: 630px;
+  width: 60%;
   background-color: white;
   height: 385px;
   position: relative;
-  top: 125px;
   border-radius: 30px;
   border: 1px solid #baada245;
 }
