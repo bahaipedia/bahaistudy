@@ -70,6 +70,7 @@ Route::get('/list/users', 'ListController@users')->name('list.users');
 
 
 Route::put('/containers', 'UpdateController@containerUpdate')->name('update.container.post');
+Route::delete('/container/delete', 'UpdateController@containerDelete')->name('delete.container.post');
 
 // Group routes
 // Route::get('/group/dashboard/{g?}', 'GroupController@dashboard')->name('group.dashboard');

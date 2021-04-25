@@ -27,7 +27,11 @@ class GeneralController extends Controller
     public function welcome(){
     	$title = Configuration::find(1)->app_name;
 
-        $groups = Group::select('id', 'name', 'description', 'book_id', 'group_container_id', 'route', 'max_size')->where('status', NULL)->get();
+        $groups = Group::select('id', 'name', 'description', 'book_id', 'group_container_id', 'route', 'max_size')->whereHas('book', function ($query) {
+            return $query->where('status', NULL)->whereHas('author', function ($query) {
+                return $query->where('status', NULL);
+            });
+        })->where('status', NULL)->get();
 
         foreach($groups as $g){
             $participants = GroupParticipant::where('group_id', $g->id)->where('status', 1)->count();
