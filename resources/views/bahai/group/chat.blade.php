@@ -33,7 +33,7 @@
     @foreach($groups as $g)
       @if($g->id == $group->id)
       <a class="grupo-chat" href='{{route('group.chat', [str_replace(' ', '-', str_replace('/', ' ', str_replace('#', 'n', $g->book->name))), $g->route])}}'>
-        <div class="perfil-dash">
+        <div class="perfil-dash" style="background: #78c0d1;">
         </div>
         <div class="informacion-chat">
         <h6 class="subti-libro">{{$g->book->name}}</h6>
@@ -90,7 +90,8 @@
       </div>
     </div>
       <div class="todos-los-mensajes" id='message-box' style='overflow-y: scroll'>
-      @foreach($messages as $m)
+        
+{{--       @foreach($messages as $m)
         @if(auth()->check() && $m->user_id == auth()->user()->id)
           <div class="msj-enviado" style=''>
             <div class="textos-chat">
@@ -108,7 +109,7 @@
               </div>
           </div>
        @endif
-      @endforeach
+      @endforeach --}}
     </div>
     @if($group->is_participant != 0 && auth()->check())
 
@@ -123,6 +124,5 @@
   </div>
 </div>
 <script type="text/javascript" src='{{asset('/js/group/status.js')}}'></script>
-
 <script type="text/javascript" src='{{asset('/js/group/message.js')}}'></script>
 @stop

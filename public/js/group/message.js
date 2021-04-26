@@ -9,25 +9,42 @@ message.string = document.querySelector('#message-string').value;
 message.form = document.querySelector('#message-form');
 message.input = document.querySelector('#message-input');
 message.group_id = document.querySelector('#group_id').value
+message.user_id = document.querySelector('#user_id').value
+
 message.route = document.querySelector('#message-route').value
 message.query = document.querySelector('#message-poll').value;
 var messageTimer;
-// messagePoll();
+
 function messagePoll(){
-  var url = message.query;
+  var url = message.query+'/'+sessionStorage.getItem('t');
    $.ajax({
       url: url,
       type: "GET",
       success: function(data){
-          message.box.innerHTML = ''
+          sessionStorage.setItem('t', (new Date()/1000))
           for(var i = 0; i<data.length; i++){
             messageRender(data[i].message, data[i].self, data[i].user_info, 'get')
           }
-          messageTimer = setTimeout(messagePoll,10000);
+          messageTimer = setTimeout(messagePoll,5000);
       }
     });
 }
 
+firstMessagePoll();
+function firstMessagePoll(){
+   var url = message.query;
+   $.ajax({
+      url: url,
+      type: "GET",
+      success: function(data){
+          sessionStorage.setItem('t', (new Date()/1000))
+          for(var i = 0; i<data.length; i++){
+            messageRender(data[i].message, data[i].self, data[i].user_info, 'get')
+          }
+          messageTimer = setTimeout(messagePoll,5000);
+      }
+    });
+}
 
 function messageRender(newMessage, user, info, method){
     message.render.container = document.createElement('div')
@@ -63,7 +80,6 @@ function messageRender(newMessage, user, info, method){
     if(method == 'push'){
       message.render.text.style.color = 'green'
     }
-
     message.box.appendChild(message.render.container)
     message.box.scrollTop = message.box.scrollHeight;
     return message.render.text;
@@ -89,7 +105,7 @@ message.form.addEventListener('keyup', function(e){
       url: message.route,
       type: "POST",
       success: function(data){
-        messageTimer = setTimeout(messagePoll,5000);
+        messageTimer = setTimeout(messagePoll,10000);
         renderMessage.style.color = 'black';
       },
       error: function(XMLHttpRequest, textStatus, errorThrown) {

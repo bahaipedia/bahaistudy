@@ -23,8 +23,8 @@
   @include('layout.popups.user-info')
   @yield('cnt')
   {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> --}}
-  <script src='{{asset('/js/popups.js')}}'></script>
   <script src='{{asset('/js/menu.js')}}'></script>
+  <script src='{{asset('/js/popups.js')}}'></script>
   {{-- </div> --}}
 </body>
 

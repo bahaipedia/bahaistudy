@@ -49,6 +49,11 @@ class GroupController extends Controller
           $last_online_at->update();
         }
       }
+      if($group->status != NULL || $group->book->status != NULL){
+        $header = 'Sorry this group not longer exist!';
+        $message = "We are unable to render this group because its not longer exist";
+        return view('auth.response', compact('header', 'message'));
+      }
       else{
         $participants->is_participant = 'Not auth';
       }
@@ -58,7 +63,7 @@ class GroupController extends Controller
     
     public function chat($title, $id = NULL){
       $group = Group::where('route', $id)->first();
-      $groups = Group::where('group_container_id', $group->group_container_id)->get();
+      $groups = Group::where('group_container_id', $group->group_container_id)->where('status', NULL)->get();
       $messages = Message::all()->where('edited', NULL)->where('delete', NULL)->where('group_id', $group->id);
       $participants = GroupParticipant::where('group_id', $group->id)->where('status', 1)->get();
       $group->participants_count = GroupParticipant::where('group_id', $group->id)->where('status', 1)->count();
@@ -144,9 +149,17 @@ class GroupController extends Controller
 
     public function join(Request $request){
 
-	    $group = Group::where('id', $request->id)->select('id', 'host_id', 'book_id', 'route')->first();
+	    $group = Group::where('id', $request->id)->select('id', 'host_id', 'book_id', 'route', 'max_size')->first();
       $group->title_route = str_replace(' ', '-', str_replace('/', ' ', str_replace('#', 'n', $group->book->name)));
 	    $g_participant = GroupParticipant::where('group_id', $request->id)->where('user_id', auth()->user()->id)->first();
+      $group->participants_count = GroupParticipant::where('group_id', $group->id)->where('status', 1)->count();
+     
+      if($group->max_size - $group->participants_count < 1){        
+        $header = 'Sorry you was unable to join the group';
+        $message = "Max number of participants reached!";
+        return view('dev.response', compact('header', 'message'));
+      }
+
 	    if($g_participant == NULL){
 	    	$participant = New GroupParticipant;
 	        $participant->user_id = auth()->user()->id;
@@ -214,9 +227,16 @@ class GroupController extends Controller
       $message->user_info = $message->user->name.' '.$message->user->lastname.' said: ';
       return $message;
     }
-
-    public function apiMessagePoll($id){
-      $message = Message::select('user_id', 'id' ,'message')->where('group_id', $id)->get();
+    // take the time in the query to sessiostorage.
+    public function apiMessagePoll($id, $t = NULL){
+      if(auth()->check() !== NULL && $t != NULL){
+        $user_id = auth()->user()->id;
+        $message = Message::select('user_id', 'id' ,'message', 'created_at')->where('group_id', $id)->where('user_id', '!=', $user_id)->where('created_at', '>', Carbon::createFromTimestampMs($t)->format('Y-m-d h:i:s'))->get();
+      }else{
+        $message = Message::select('user_id', 'id' ,'message')->where('group_id', $id)->get();
+      }
+      $a = array();
+      
       foreach($message as $m){
         $m->user_info = $m->user->name.' '.$m->user->lastname;
         if(auth()->user() && $m->user_id == auth()->user()->id){
@@ -225,8 +245,16 @@ class GroupController extends Controller
         else{
           $m->self = 'other';
         }
+        if($t != NULL && $m->created_at->timestamp > $t){
+          array_push($a, $m);
+          // return 'hi';
+        }
+        if($t == NULL){
+
+          array_push($a, $m);
+        }
       }
-      return $message;
+      return $a;
     }
 
    

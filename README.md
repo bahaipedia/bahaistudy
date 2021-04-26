@@ -18,9 +18,9 @@
 - [X] Store implementation <br>
 - [X] Updates implementation <br>
 - [X] Deletes implementation <br>
-- [ ] Test and debug<br>
-- [ ] Feedback<br>
-- [ ] Clean data from database<br>
+- [X] Test and debug<br>
+- [X] Feedback<br>
+- [X] Clean data from database<br>
 
 ## Roles
 
@@ -31,15 +31,15 @@
 ## Group dashboard
 
 - [X] Online status<br>
-- [] Realtime updates<br>
-- [ ] Chat implementation<br>
-- [ ] Users Interactions<br>
+- [X] Realtime updates<br>
+- [X] Chat implementation<br>
+- [X] Users Interactions<br>
 
 ## Webapp config for admin role
 
 - [ ] Recheck DB logic<br>
-- [ ] Create Views<br>
-- [ ] Updates and monitoring system<br>
+- [X] Create Views<br>
+- [X] Updates and monitoring system<br>
 
 ## Final steps<br>
 

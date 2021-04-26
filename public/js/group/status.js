@@ -8,8 +8,6 @@ poll.group_id = document.querySelector('#group_id').value;
 poll.query.beat = document.querySelector('#beat_route').value;
 poll.query.participant = document.querySelector('#participant_route').value;
 
-// 
-
 getPoll();
 function getPoll(){
    $.ajax({

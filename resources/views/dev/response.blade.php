@@ -4,6 +4,6 @@
 <h1>{{$header}}</h1>
 <p>{{$message}}</p>
 <br>
-<a href={{route('dev.welcome')}}>home</a>
+<a href={{route('welcome')}}>home</a>
 
 @stop

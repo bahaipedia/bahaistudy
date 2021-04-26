@@ -24,8 +24,6 @@ Route::post('/auth/reset/paswword/post', 'Auth\UserValidationController@resetPas
 // route only for dev
 Route::get('/auth/reset/password', 'Auth\UserValidationController@resetPassword')->name('reset.password');
 Route::get('/auth/deconfirm/status/{id}', 'Auth\UserValidationController@deconfirmEmailStatus')->name('deconfirm.email.status');
-// DEP Route::post('/file/test/post', 'TestController@s3template')->name('file.test.post');
-// DEP Route::get('/file/test', 'TestController@s3form')->name('file.test');
 
 // rules for routes
 
@@ -45,7 +43,6 @@ Route::post('/containers', 'StoreController@containerPost')->name('store.contain
 // Container id parameter
 Route::get('/groups/{c?}', 'StoreController@group')->name('store.group');
 Route::post('/groups', 'StoreController@groupPost')->name('store.group.post');
-
 
 // Update data routes
 Route::get('/groups/update/{g?}/', 'UpdateController@group')->name('update.group');
@@ -68,30 +65,32 @@ Route::get('/list/authors', 'ListController@authors')->name('list.authors');
 Route::get('/list/containers', 'ListController@containers')->name('list.containers');
 Route::get('/list/users', 'ListController@users')->name('list.users');
 
-
 Route::put('/containers', 'UpdateController@containerUpdate')->name('update.container.post');
+Route::delete('/container/delete', 'UpdateController@containerDelete')->name('delete.container.post');
 
 // Group routes
-// Route::get('/group/dashboard/{g?}', 'GroupController@dashboard')->name('group.dashboard');
+
 Route::get('/group/{title}/{g?}', 'GroupController@dashboard')->name('group.dashboard');
 Route::get('/chat/{title}/{g?}', 'GroupController@chat')->name('group.chat');
-
 Route::post('/group/stepdown/', 'GroupController@stepdown')->name('group.stepdown');
 Route::post('/group/stepup/', 'GroupController@stepup')->name('group.stepup');
 Route::post('/group/leave/', 'GroupController@leave')->name('group.leave');
 Route::post('/group/join/', 'GroupController@join')->name('group.join');
-// NEW ROUTE IN LAYOUT ENV
 Route::post('/api/group/message/', 'GroupController@message')->name('group.message');
+
 // Api routes
 Route::get('/api/group/participant/{id}', 'GroupController@apiParticipant')->name('api.group.participant');
 Route::post('/api/group/beat', 'GroupController@apiBeat')->name('api.group.beat');
-Route::get('/api/message/poll/{id}', 'GroupController@apiMessagePoll')->name('api.message.poll');
+Route::get('/api/message/poll/{id}/{t?}', 'GroupController@apiMessagePoll')->name('api.message.poll');
 
 Route::get('/api/update/author/{id}', 'UpdateController@apiAuthor')->name('api.update.author');
 Route::get('/api/update/container/{id}', 'UpdateController@apiContainer')->name('api.update.container');
 Route::get('/api/update/group/{id}', 'UpdateController@apiGroup')->name('api.update.group');
 Route::get('/api/update/book/{id}', 'UpdateController@apiBook')->name('api.update.book');
 
+
+
+// DEV CONTROLLERS DEPRECATED
 Route::get('/dev', 'Dev\TestController@welcome')->name('dev.welcome');
 
 // Store data routes
@@ -122,6 +121,7 @@ Route::delete('/dev/books/delete', 'Dev\UpdateController@bookDelete')->name('dev
 
 Route::get('/dev/users/update/{g?}/', 'Dev\UpdateController@user')->name('dev.update.user');
 Route::put('/dev/users', 'Dev\UpdateController@userUpdate')->name('dev.update.user.post');
+
 // List views routes
 Route::get('/dev/list/books', 'Dev\ListController@books')->name('dev.list.books');
 Route::get('/dev/list/authors', 'Dev\ListController@authors')->name('dev.list.authors');
@@ -134,13 +134,10 @@ Route::post('/dev/group/stepup/', 'Dev\GroupController@stepup')->name('dev.group
 Route::post('/dev/group/leave/', 'Dev\GroupController@leave')->name('dev.group.leave');
 Route::post('/dev/group/join/', 'Dev\GroupController@join')->name('dev.group.join');
 
-
 // Api routes
 Route::get('/dev/api/group/participant/{id}', 'Dev\GroupController@apiParticipant')->name('dev.api.group.participant');
 Route::post('/dev/api/group/beat', 'Dev\GroupController@apiBeat')->name('dev.api.group.beat');
 Route::get('/dev/api/message/poll/{id}', 'Dev\GroupController@apiMessagePoll')->name('dev.api.message.poll');
-
-
 
 Route::post('/dev/admin/group/drop', 'Dev\AdminController@groupDrop')->name('dev.admin.group.drop');
 Route::get('/dev/admin/messages', 'Dev\AdminController@messages')->name('dev.admin.messages');
@@ -148,9 +145,5 @@ Route::get('/dev/admin/api/messages/{m?}', 'Dev\AdminController@apiMessages')->n
 Route::get('/dev/admin/configurations', 'Dev\AdminController@configurations')->name('dev.admin.configurations');
 Route::post('/dev/admin/configurations', 'Dev\AdminController@configurationsPost')->name('dev.admin.configurations.post');
 
-
-
-// CHANGED ROUTES
 Route::post('/dev/group/message/', 'Dev\GroupController@message')->name('dev.group.message');
 Route::get('/dev/{title}/{g?}', 'Dev\GroupController@dashboard')->name('dev.group.dashboard');
-// GROUPCONTROLLER, LIST/CONTAINER.BLADE.PHP, GROUP/DASHBOARD 
