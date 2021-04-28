@@ -98,7 +98,8 @@
         </div>
       </div>
       <div class="parte-inferior">
-				<div class="msj-enviado" style=''>
+        <div class="parte-mensajes">
+				<div class="msj-enviado">
 					<div class="textos-chat">
 						<h5 class="autor-envia">
 							Fabio B 
@@ -111,7 +112,7 @@
 				</div>
 				<div class="msj-recibido">
 					<div class="perfil-chat-dos"></div>
-					<div class="textos-chat">
+					<div class="textos-chat-derecha">
 						<h5 class="autor-envia-uno">
 							Jeanniffer Pimentel
 						</h5>
@@ -120,6 +121,12 @@
 						</p>
 					</div>
 				</div>
+      </div>
+      <div class="parte-escribir-txt">
+        <form id='message-form' class="escribir-mensaje">
+          <input class="input-tres" disabled id='message-input'  placeholder='Write your message here'></input>
+        </form>
+      </div>
       </div>
     </div>
   </div>

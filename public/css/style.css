@@ -399,18 +399,21 @@ input.max-group::placeholder {
 }
 
 .escribir-mensaje {
-  height: 10%;
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-self: flex-end;
+  align-items: center;
   background-color: white;
-  -webkit-box-shadow: 0px -20px 5px -10px rgb(186 173 162 / 10%);
-  -moz-box-shadow: 0px -20px 5px -10px rgb(186 173 162 / 10%);
-  box-shadow: 0px -20px 5px -10px rgb(186 173 162 / 10%);
-  justify-content: center;
-  position: relative;
-  left: 10px;
+  height: 100%;
+}
+
+.input-tres{
+  outline: none;
+  border: none;
+  text-transform: none;
+  height: 100%;
+  width: 100%;
+  padding-left: 20px;
 }
 
 .msj-recibido {
@@ -418,11 +421,12 @@ input.max-group::placeholder {
   display: flex;
   padding-left: 35px;
   border-bottom: 1px solid #f2f2f2;
-  padding-right: 200px;
   margin-top: 5px;
   margin-bottom: 5px;
   justify-self: right;
   padding-bottom: 5px;
+  flex-direction: row-reverse;
+  align-items: center;
 }
 
 .msj-enviado {
@@ -430,13 +434,31 @@ input.max-group::placeholder {
   display: flex;
   align-self: center;
   padding-right: 200px;
-  margin-top: 5px;
+  margin-top: 10px;
   margin-bottom: 5px;
   border-bottom: 1px solid #f2f2f2;
   padding-bottom: 5px;
   justify-content: flex-start;
   align-items: center;
   flex-direction: row-reverse;
+}
+
+.parte-mensajes {
+  width: 98%;
+  align-self: center;
+}
+
+.parte-escribir-txt {
+  position: absolute;
+  bottom: 10px;
+  width: 98%;
+  height: 50px;
+  border: 1px solid #baada245;
+  border-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
 .textos-chat {
@@ -454,7 +476,7 @@ input.max-group::placeholder {
 
 .texto-enviado-uno {
   line-height: 1.4em;
-  color: #49392b;
+  color: #95989a;
   padding-left: 25px;
 }
 
@@ -1129,7 +1151,6 @@ input.max-group::placeholder {
 .autor-envia-uno {
   padding-left: 25px;
   font-weight: 600;
-  align-self: flex-start;
   color: #49392b;
   font-size: 0.8em;
   margin-bottom: 5px;
@@ -1829,13 +1850,14 @@ input:-webkit-autofill:active {
   display: flex;
   width: 100%;
   background-color: white;
-  height: 45%;
+  height: 40%;
   align-self: center;
   border-radius: 30px;
   border: 1px solid #baada245;
   position: relative;
   top: 100px;
   flex-direction: column;
+  align-items: center;
 }
 
 .chat-dash-inter {
@@ -2074,4 +2096,12 @@ input:-webkit-autofill:active {
 
 .separacion {
   border-bottom: 1px solid #9e9e9e;
+}
+
+.textos-chat-derecha {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 90px);
+  margin-right: 20px;
+  text-align: end;
 }
