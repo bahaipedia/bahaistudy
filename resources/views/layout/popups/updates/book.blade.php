@@ -25,10 +25,6 @@
           @endforeach
         </select>
         <textarea class="logic-book-up-popup-desc descripcion-libro-crear pe" maxlength='200' placeholder='Description... Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' name='description'></textarea>
-        <label class="texto-pequ" for='date'>release date</label>
-        <input class='logic-book-up-popup-dor in-pop' name='date' type='date'>
-        <label class="texto-pequ" for='number_pages'>number of pages</label>
-        <input placeholder="SELECT NUMBER PAGES" class="logic-book-up-popup-number hachecuatro autor-nombre" min='0' max='3000' name='number_pages' type='number'>
         <br>
         <label class="texto-min-bot" for='logic-image-update'>Upload Cover Image</label>
         <input style='display:none;' id='logic-image-update' type='file' accept='.png' name='image'>

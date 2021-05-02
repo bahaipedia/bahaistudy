@@ -404,7 +404,8 @@ input.max-group::placeholder {
   flex-direction: column;
   align-items: center;
   background-color: white;
-  height: 100%;
+  height: 45px;
+  margin-bottom:5px;
 }
 
 .input-tres{
@@ -444,10 +445,17 @@ input.max-group::placeholder {
 }
 
 .parte-mensajes {
-  width: 98%;
-  align-self: center;
+      width: 98%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+  /*overflow-y: scroll;*/
 }
-
+.parte-espacio{
+  flex-grow: 2;
+}
 .parte-escribir-txt {
   position: absolute;
   bottom: 10px;
@@ -1624,7 +1632,27 @@ form {
   margin-bottom: 15px;
   margin-top: 15px;
 }
-
+.dash-status{
+  width: 10px;
+  height: 10px;
+  border-radius: 50px;
+  border:1px solid black;
+}
+.dash-status-allways{
+  width: 10px;
+  height: 10px;
+  border-radius: 50px;
+  border:1px solid black;
+}
+.dash-name{
+  margin-left: 5px;
+}
+.dash-list{
+  width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
 .integrantes-dash {
   color: #49392b;
   padding-bottom: 15px;
@@ -1843,19 +1871,26 @@ input:-webkit-autofill:active {
 .parte-superior {
   display: flex;
   justify-content: space-between;
-  position: relative;
+  /*position: relative;*/
   top: 90px;}
-
+.mensajes-almacenados{
+  overflow-y: auto;
+  height:85%;
+  padding:5px;
+}
 .parte-inferior {
   display: flex;
+  padding:5px;
   width: 100%;
   background-color: white;
-  height: 40%;
+  margin-bottom: 15px;
+  /*height: 40%;*/
   align-self: center;
   border-radius: 30px;
   border: 1px solid #baada245;
-  position: relative;
-  top: 100px;
+  /*position: relative;*/
+  /*top: 100px;*/
+  height: 30%;
   flex-direction: column;
   align-items: center;
 }
@@ -1935,6 +1970,7 @@ input:-webkit-autofill:active {
 .informacion {
   width: 100vw;
   height: 100vh;
+  padding-top: 100px;
   display: flex;
   justify-content: space-around;
   background-color: #f9f7f6;

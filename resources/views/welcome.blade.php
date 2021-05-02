@@ -71,7 +71,7 @@
     </div>
     
     <div class="contenedor-afuera">
-      <a class="join-ficha margen-ficha">NEW GROUP</a>
+      <a class="join-ficha margen-ficha" onclick="openPopup('caja-group')" style="width: 200px">NEW GROUP</a>
     </div>
 
     @foreach($containers as $c)
