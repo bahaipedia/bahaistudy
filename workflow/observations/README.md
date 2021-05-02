@@ -1,20 +1,8 @@
 ### Observations
 
-## For Front-end
+## Notas para efe:
 
-- [ ] Scroll-bar in firefox
-- [ ] Scroll-bar margin situation in containers when it show and not showing
-- [ ] Vincular x de login a volver a pantalla principal (Actualmente va a pantalla principal de Dev)
-- [ ] Vincular logo de welcome a welcome
-- [ ] Cómo hacer que funcione Filter / Sort y Search del Home?
-- [ ] Vista de lista: Cómo hacer las imagenes circulares (cuando están en un div en porcentajes)
-- [ ] authors (View: C:\xampp\htdocs\bahai\resources\views\welcome.blade.php)
-- [ ] arreglar placeholder home
 
-### Reunión 18 de Marzo de 2021
-- [ ] Necesito un Select Author como el Select Book de aca http://localhost:8000/dev/groups/6
-- Quiero que el show everything no aparezca cuando hay 1 solo grupo de libros
-- [ ] Creo que  <input required name='max_size' type='number' placeholder='Maximum Group Size' class="pe"/> Max size debería ser un rango y no agarrar numeros negativos
 
 
 

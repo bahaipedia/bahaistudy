@@ -62,6 +62,7 @@ git checkout -b <nameofthebranch>
 > PASO 2
 git fecth
 
+
 > PASO 3
 git merge -m"add your message" origin/main
 
