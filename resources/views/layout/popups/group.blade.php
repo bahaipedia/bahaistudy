@@ -15,13 +15,22 @@
 
       <form class="ancho" enctype="multipart/form-data" method=POST action='{{route('store.group.post')}}'>
         {!! csrf_field() !!}
-        <input type="hidden" name='group_container_id' id='logic-group-popup-container-id'>
+        <input type="hidden"  id='logic-group-popup-container-id'>
         <input type="hidden" name='book_id' id='logic-group-popup-book-id'>
         <input type="hidden" name='author_id' id='logic-group-popup-author-id'>
 
-        <input required disabled class="hachecuatro autor-nombre" id='logic-group-popup-book' value='book #' name='name' type='text'>
+        <select class="in-pop" name='day_of_week' id='day_of_week'>
+          <option disabled selected>CHOOSE CONTAINER</option>
+          @foreach($containers as $c)
+            <option name='group_container_id' value='{{$c->id}}'>{{$c->name}}</option>
+          @endforeach
+        </select>
+        <input required class="hachecuatro autor-nombre" id='logic-group-popup-book' placeholder='CHOOSE BOOK' name='name' type='text'>
         <br>
-        <input required class="hachecuatro autor-nombre" id='logic-group-popup-author' value='author' disabled>
+        <select class="in-pop" name='day_of_week' id='day_of_week'>
+          <option disabled selected>CHOOSE AUTHOR</option>
+          {{-- implementar logica de autor por container --}}
+        </select>
         <textarea required id='logic-group-popup-descriptions' style='height: 90px;' class="descripcion-libro-crear pe" max='120' name='description'
           type='text'>Description... Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</textarea>
         <textarea class="descripcion-libro-crear pe" style='height: 90px;'placeholder="add a host comment" max='120' name='host_comments'
@@ -42,8 +51,8 @@
           <option value='5'>Friday</option>
           <option value='6'>Saturday</option>
         </select>
-       
-        <button  class="join-ficha-pop">CREATE</button>
+       {{-- boton deshabilitado porque falta implementacion a nivel del servidro --}}
+        <button disabled class="join-ficha-pop">CREATE</button>
       </form>
 	  <div class="equis">
 	    <a onclick="closePopup('caja-group'); refreshForm();" id="equis">X</a>        

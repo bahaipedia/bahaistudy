@@ -190,7 +190,7 @@ class GroupController extends Controller
             return 'API-E0001';
         }
       	$participants = GroupParticipant::where('group_id', $id)->where('status', 1)->get()->pluck('user_id');
-      	$beat = GroupParticipant::select('id', 'last_online_at')->where('group_id', $id)->where('status', 1)->get();
+      	$beat = GroupParticipant::select('id', 'user_id', 'last_online_at')->where('group_id', $id)->where('status', 1)->get();
       	$users = User::select('id', 'name', 'lastname')->whereIn('id', $participants)->get();
       	$host = Group::select('host_id')->where('id', $id)->first();
         $data = [$host, $users, $beat];

@@ -50,13 +50,13 @@ function messageRender(newMessage, user, info, method){
     message.render.container = document.createElement('div')
     message.render.circle = document.createElement('div')
     message.render.subcontainer = document.createElement('div')
-    message.render.subcontainer.className = "textos-chat"
     message.render.info = document.createElement('h5')
     message.render.text = document.createElement('p')
 
     if(user == 'self'){
       message.render.container.className = 'msj-enviado';
       message.render.circle.className = 'perfil-chat';
+      message.render.subcontainer.className = "textos-chat"
       message.render.info.className = 'autor-envia';
       message.render.text.className = 'texto-enviado';
       message.render.text.innerHTML = newMessage;
@@ -68,6 +68,8 @@ function messageRender(newMessage, user, info, method){
     }else{
       message.render.container.className = 'msj-recibido';
       message.render.circle.className = 'perfil-chat-dos';
+      message.render.subcontainer.className = "textos-chat-derecha"
+
       message.render.info.className = 'autor-envia-uno';
       message.render.text.className = 'texto-enviado-uno';
       message.render.text.innerHTML = newMessage;
@@ -78,7 +80,7 @@ function messageRender(newMessage, user, info, method){
       message.render.container.appendChild(message.render.subcontainer);
     }
     if(method == 'push'){
-      message.render.text.style.color = 'green'
+      message.render.text.style.color = 'black'
     }
     message.box.appendChild(message.render.container)
     message.box.scrollTop = message.box.scrollHeight;
@@ -106,7 +108,7 @@ message.form.addEventListener('keyup', function(e){
       type: "POST",
       success: function(data){
         messageTimer = setTimeout(messagePoll,10000);
-        renderMessage.style.color = 'black';
+        renderMessage.style.color = '#95989a';
       },
       error: function(XMLHttpRequest, textStatus, errorThrown) {
         renderMessage.style.color = 'red';

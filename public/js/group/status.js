@@ -7,6 +7,7 @@ poll.group_id = document.querySelector('#group_id').value;
 // in blade 
 poll.query.beat = document.querySelector('#beat_route').value;
 poll.query.participant = document.querySelector('#participant_route').value;
+poll.element = document.querySelectorAll(".dash-status");
 
 getPoll();
 function getPoll(){
@@ -45,14 +46,25 @@ if(poll.user.autheticated == 'true'){
    
   function statusParticipant(data){
     for(time of data){
+      var online = false;
       var offset = new Date()/1000 + new Date().getTimezoneOffset()*60
       var online = new Date(time.last_online_at).getTime()/1000
         if(offset-15 > online){
-          console.log(time.id, 'this user is offline')
+          console.log(time.user_id, 'this user is offline')
+          online=false;
         }
         else{
-          console.log(time.id, 'this user is online')
+          console.log(time.user_id, 'this user is online')
+          online=true;
         }
+      for(element of poll.element){
+          if(element.dataset.din == time.user_id){
+            if(online){
+            }
+            else{
+            }
+          } 
+      }
     }
   }
 
