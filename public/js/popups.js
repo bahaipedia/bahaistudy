@@ -69,7 +69,6 @@ function containerUpdate(url){
       url: url,
       type: "GET",
       success: function(data){
-		console.log(data)
 		document.querySelector('.logic-cont-up-popup-id').value = data.crypt;
 		document.querySelector('.logic-cont-up-popup-name').value = data.name;
 		document.querySelector('.logic-cont-up-popup-desc').value = data.description;
@@ -86,7 +85,6 @@ function groupUpdate(url){
       url: url,
       type: "GET",
       success: function(data){
-		console.log(data)
 		document.querySelector('.logic-group-up-popup-url').value = data.url;
 		document.querySelector('.logic-group-up-popup-max-size').value = data.max_size;
 		document.querySelector('.logic-group-up-popup-host').value = data.host_comments;

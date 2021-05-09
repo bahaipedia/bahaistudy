@@ -43,9 +43,9 @@
 
 ## Final steps<br>
 
-- [ ] Documentation for external consult<br>
+- [X] Documentation for external consult<br>
 - [X] Apply layout, styles and design<br>
-- [ ] Test with styles layout and design<br>
+- [X] Test with styles layout and design<br>
 
 ## Production environment and deployment
 

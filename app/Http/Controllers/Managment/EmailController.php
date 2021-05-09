@@ -12,6 +12,8 @@ class EmailController extends Controller
     public function __construct(){
         $this->middleware('authorization');
 	}
+
+    // STEP DOWN EMAIL NOTIFICATION METHOD
 	public function StepDownHost($user, $group){
         $send = User::select('email', 'notifications', 'role')->where('notifications', !NULL)->where('role', 1)->get();
 		try {
@@ -27,6 +29,8 @@ class EmailController extends Controller
             return $e;
         }
 	}
+    
+    // GROUP CREATED NOTIFICATION METHOD
 	public function GroupCreated($user, $group){
         $send = User::select('email', 'notifications', 'role')->where('notifications', !NULL)->where('role', 1)->get();
 		try {
@@ -42,6 +46,8 @@ class EmailController extends Controller
             return $e;
         }
 	}
+
+    // GROUP CREATED NOTIFICATION METHOD
 	public function newUser($user){
         $send = User::select('email', 'notifications', 'role')->where('notifications', !NULL)->where('role', 1)->get();
 		try {

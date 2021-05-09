@@ -15,20 +15,24 @@ use Illuminate\Http\Request;
 
 class ListController extends Controller
 {
+
     public function __construct(){
     	$this->middleware('authorization');
-	}
-
-	public function authors(){
-		  $authors = Author::select('id', 'name', 'lastname')->where('status', NULL)->get();
-   		return view('bahai.lists.authors', compact('authors'));
     }
 
+    // METHOD FOR RENDER AUTHORS ***DEPRECATED***  
+    public function authors(){
+      $authors = Author::select('id', 'name', 'lastname')->where('status', NULL)->get();
+      return view('bahai.lists.authors', compact('authors'));
+    }
+
+    // METHOD FOR RENDER BOOKS ***DEPRECATED***  
     public function books(){
 		  $books = Book::select('id', 'name')->where('status', NULL)->get();
    		return view('bahai.lists.books', compact('books'));
     }
 
+    // METHOD FOR RENDER CONTAINERS ***DEPRECATED***  
     public function containers(){
       $weekday =  ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
 		  $containers = GroupContainer::select('id', 'name', 'weight')->orderBy('weight', 'desc')->get();
@@ -38,6 +42,7 @@ class ListController extends Controller
    		return view('bahai.lists.containers', compact('containers', 'aic', 'groups', 'at', 'weekday'));
     }
 
+    // METHOD FOR RENDER USERS  
     public function users(){
       $users = User::all();
       return view('bahai.lists.users', compact('users'));

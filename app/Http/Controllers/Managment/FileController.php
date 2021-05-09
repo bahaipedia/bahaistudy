@@ -11,13 +11,13 @@ use App\Group;
 use Illuminate\Http\Request;
 
 
-
 class FileController extends Controller
 {
     public function __construct(){
         $this->middleware('authorization');
 	}
 
+	// THIS METHOD IS FOR STORE BOOK IMAGE IN S3 AND IN THE DATABASE
 	public function storeBookImage($request){
 		if($request->hasFile('image')){
 			// 2mb
@@ -44,6 +44,8 @@ class FileController extends Controller
 			return redirect()->back()->withErrors(['file' => 'file input is null']);
 		}
 	}
+
+	// THIS METHOD IS FOR CREATE A UNIQUE RANDOM STRING FOR GROUP CREATION
 	public function getUniqueRandom(){
 		$get_unique_route =  str_random(4).'-'.str_random(4).'-'.str_random(3);
         $check_route = Group::select('route')->where('route', $get_unique_route)->get();
