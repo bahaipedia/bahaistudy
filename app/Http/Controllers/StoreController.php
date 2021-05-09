@@ -34,6 +34,7 @@ class StoreController extends Controller
 	public function groupPost(Request $request){
         $configuration = Configuration::select('send_created_a_study_group', 'validation_per_group_creation')->get()[0];
         $user = auth()->user();
+        
         if($configuration->validation_per_group_creation == 1 && $user->email_validated == NULL){
                 $header = "Sorry! We can't created a group this time";
                 $message = "Please confirm your email please!";
@@ -48,7 +49,6 @@ class StoreController extends Controller
             return view('auth.response', compact('header', 'message'));
         }
 
-        
         // check by
         $file_methods = new FileController;
         $group = New Group;

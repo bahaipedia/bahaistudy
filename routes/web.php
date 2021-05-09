@@ -88,7 +88,8 @@ Route::get('/api/update/container/{id}', 'UpdateController@apiContainer')->name(
 Route::get('/api/update/group/{id}', 'UpdateController@apiGroup')->name('api.update.group');
 Route::get('/api/update/book/{id}', 'UpdateController@apiBook')->name('api.update.book');
 
-
+Route::get('/api/container/author/{id}', 'GeneralController@apiContainerAuthor')->name('api.container.author');
+Route::get('/api/author/book', 'GeneralController@apiAuthorBook')->name('api.author.book');
 
 // DEV CONTROLLERS DEPRECATED
 Route::get('/dev', 'Dev\TestController@welcome')->name('dev.welcome');

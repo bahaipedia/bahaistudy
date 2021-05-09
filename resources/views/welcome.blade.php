@@ -41,7 +41,7 @@
     @include('layout.headers.home')
     @if(auth()->user())
     <div class="botones-flotantes">
-      <a class="nuevo-autor" onclick="openPopup('caja-author')">
+      <a class="nuevo-autor" title="NEW AUTOR" onclick="openPopup('caja-author')">
       </a>
       <a class="nuevo-libro" onclick="openPopup('caja-book')">
       </a>

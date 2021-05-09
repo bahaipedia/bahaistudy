@@ -1,7 +1,57 @@
+var authorElement = document.querySelector(`#logic-author-element`)
+var bookElement = document.querySelector(`#logic-book-element`)
+
+function getAuthors(element){
+	var url;
+
+    authorElement.innerHTML = '<option disabled selected>WAITING AUTHORS BOOKS</option>';
+    bookElement.innerHTML = '<option disabled selected>CHOOSE AUTHOR</option>';
+
+	for(option of element.options){
+		if(option.value == element.value){
+			url = option.dataset.link
+			console.log(url)
+		}
+	} 
+	$.ajax({
+        url: url,
+        type: "GET",
+        success: function(result){
+        	authorElement.innerHTML = '';
+        	if(result.length == 0){
+        		op = document.createElement('option')
+		        op.innerHTML = 'NO AUTHOR YET';
+		        op.disabled = 'true';
+		        op.selected = 'true';
+		        op.value = 0;
+		        authorElement.appendChild(op);
+        	}
+        	else{
+        		op = document.createElement('option')
+		        op.innerHTML = 'SELECT AUTHOR';
+		        op.disabled = 'true';
+		        op.selected = 'true';
+		        op.value = 0;
+		        authorElement.appendChild(op);
+        	}
+	        for(r of result){
+		        op = document.createElement('option')
+		        op.value = r.author_id;
+		        op.innerHTML = r.text.toUpperCase();
+		        op.dataset.link = `${document.querySelector('#get-book-api').value}/${r.author_id}`
+		        console.log(r)
+		        authorElement.appendChild(op);
+	       	}
+        }
+     });
+}
+
+
 function getBooks(element){
+    bookElement.innerHTML = '<option disabled selected>WAITING AUTHOR BOOKS</option>';
+
 	var containerId = element.dataset.container;
 	var authorId = element.value;
-	var bookElement = document.querySelector(`#book-element-${containerId}`)
 	var url;
 	for(option of element.options){
 		if(option.value == authorId){

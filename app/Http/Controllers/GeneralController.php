@@ -57,7 +57,14 @@ class GeneralController extends Controller
         
         return view('welcome', compact('title', 'groups', 'containers', 'authors', 'authors_books', 'books', 'configurations', 'create_group'));
     }
-
+    public function apiContainerAuthor($id){
+        $authors = AuthorsInContainer::select('author_id', 'group_container_id')->where('group_container_id', $id)->get();
+        foreach($authors as $a){
+            $author = Author::select('id', 'name', 'lastname')->where('id', $a->author_id)->get()[0];
+            $a->text = $author->name. ' ' .$author->lastname;
+        }
+        return $authors;
+    }
     public function apiAuthorBook($id){
         $books = Book::select('id', 'name')->where('author_id', $id)->get();
         return $books;
