@@ -118,10 +118,21 @@
           </div>
         </div>
       </div>
-      <div class='parte-espacio'></div>
+<!--     <div class='parte-espacio'></div> -->
       <div class="parte-inferior">
         <div  class="parte-mensajes">
+
         <div id="message-box" class='mensajes-almacenados'>
+        <div class="load">
+  <hr/><hr/><hr/><hr/>
+</div>
+
+<script>
+        $(window).on("load",function(){
+          $(".load").fadeOut("slow");
+        });
+    </script>
+
 				{{-- <div class="msj-enviado">
 					<div class="textos-chat">
 						<h5 class="autor-envia">
