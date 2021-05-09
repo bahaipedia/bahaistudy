@@ -32,6 +32,7 @@ class GeneralController extends Controller
         // $groups = Group::select('id', 'name', 'description', 'book_id', 'group_container_id', 'route', 'max_size')->where('status', NULL)->get();
 
         // This object is the selection of group in active state on containers, filtering by authors
+        $groups = Group::select('id', 'name', 'description', 'book_id', 'group_container_id', 'route', 'max_size')->where('status', NULL)->get();
         $groups = Group::select('id', 'name', 'description', 'book_id', 'group_container_id', 'route', 'max_size')->whereHas('book', function ($query) {
             return $query->where('status', NULL)->whereHas('author', function ($query) {
                 return $query->where('status', NULL);
@@ -39,6 +40,7 @@ class GeneralController extends Controller
         })->where('status', NULL)->get();
 
         // This loop select the available slots y groups
+
         foreach($groups as $g){
             $participants = GroupParticipant::where('group_id', $g->id)->where('status', 1)->count();
             $g->available = $g->max_size - $participants;

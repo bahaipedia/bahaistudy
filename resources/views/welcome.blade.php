@@ -42,10 +42,13 @@
     @if(auth()->user())
     <div class="botones-flotantes">
       <a class="nuevo-autor" title="NEW AUTOR" onclick="openPopup('caja-author')">
+
       </a>
-      <a class="nuevo-libro" onclick="openPopup('caja-book')">
+      <a class="nuevo-autor" title="New Author" onclick="openPopup('caja-author')">
       </a>
-      <a class="nuevo-container" onclick="openPopup('caja-container')">
+      <a class="nuevo-libro" title="New Book" onclick="openPopup('caja-book')">
+      </a>
+      <a class="nuevo-container" title="New Container" onclick="openPopup('caja-container')">
       </a>
     </div>
     @endif
@@ -68,10 +71,6 @@
       </div>
       <div id="flecha">
       </div>
-    </div>
-    
-    <div class="contenedor-afuera">
-      <a class="join-ficha margen-ficha" onclick="openPopup('caja-group')" style="width: 200px">NEW GROUP</a>
     </div>
 
     @foreach($containers as $c)
