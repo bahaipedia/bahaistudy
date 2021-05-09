@@ -2,7 +2,10 @@
 
 // General routes
 Route::get('/', 'GeneralController@welcome')->name('welcome');
-Route::get('/api/author/book/{id}', 'GeneralController@apiAuthorBook')->name('api.author.book');
+
+Route::get('/api/author/book/{id}', 'GeneralController@apiAuthorBook')->name('api.author.book'); // DEPRECATED
+Route::get('/api/container/author/{id}', 'GeneralController@apiContainerAuthor')->name('api.container.author');
+Route::get('/api/author/book', 'GeneralController@apiAuthorBook')->name('api.author.book');
 
 // Auth routes
 Route::get('/auth/login/', 'Auth\LoginController@showLoginForm')->name('login');
@@ -20,17 +23,6 @@ Route::post('/auth/reset/paswword/validate', 'Auth\UserValidationController@vali
 Route::get('/auth/reset/paswword/send/{email}/{tSoken}', 'Auth\UserValidationController@sendResetEmail')->name('auth.reset.password.send');
 Route::get('/auth/reset/paswword/form/{email}/{token}', 'Auth\UserValidationController@changePasswordInput')->name('auth.reset.password.form');
 Route::post('/auth/reset/paswword/post', 'Auth\UserValidationController@resetPassword')->name('auth.reset.password.post');
-
-// route only for dev
-Route::get('/auth/reset/password', 'Auth\UserValidationController@resetPassword')->name('reset.password');
-Route::get('/auth/deconfirm/status/{id}', 'Auth\UserValidationController@deconfirmEmailStatus')->name('deconfirm.email.status');
-
-// rules for routes
-
-// THIS RULES ARE FOR DATA INTERACTION
-// store, update, delete -> controllers for each methods
-// wich object to store, update or delete
-// it is a form or it is a post?
 
 // Store data routes
 Route::get('/books', 'StoreController@book')->name('store.book');
@@ -59,37 +51,55 @@ Route::delete('/books/delete', 'UpdateController@bookDelete')->name('delete.book
 
 Route::get('/users/update/{g?}/', 'UpdateController@user')->name('update.user');
 Route::put('/users', 'UpdateController@userUpdate')->name('update.user.post');
+
+Route::put('/containers', 'UpdateController@containerUpdate')->name('update.container.post');
+Route::delete('/container/delete', 'UpdateController@containerDelete')->name('delete.container.post');
+
 // List views routes
 Route::get('/list/books', 'ListController@books')->name('list.books');
 Route::get('/list/authors', 'ListController@authors')->name('list.authors');
 Route::get('/list/containers', 'ListController@containers')->name('list.containers');
 Route::get('/list/users', 'ListController@users')->name('list.users');
 
-Route::put('/containers', 'UpdateController@containerUpdate')->name('update.container.post');
-Route::delete('/container/delete', 'UpdateController@containerDelete')->name('delete.container.post');
-
 // Group routes
-
 Route::get('/group/{title}/{g?}', 'GroupController@dashboard')->name('group.dashboard');
-Route::get('/chat/{title}/{g?}', 'GroupController@chat')->name('group.chat');
 Route::post('/group/stepdown/', 'GroupController@stepdown')->name('group.stepdown');
 Route::post('/group/stepup/', 'GroupController@stepup')->name('group.stepup');
 Route::post('/group/leave/', 'GroupController@leave')->name('group.leave');
 Route::post('/group/join/', 'GroupController@join')->name('group.join');
-Route::post('/api/group/message/', 'GroupController@message')->name('group.message');
+Route::get('/chat/{title}/{g?}', 'GroupController@chat')->name('group.chat');
+
 
 // Api routes
-Route::get('/api/group/participant/{id}', 'GroupController@apiParticipant')->name('api.group.participant');
+Route::post('/api/group/message/', 'GroupController@message')->name('group.message');
 Route::post('/api/group/beat', 'GroupController@apiBeat')->name('api.group.beat');
-Route::get('/api/message/poll/{id}/{t?}', 'GroupController@apiMessagePoll')->name('api.message.poll');
 
+Route::get('/api/group/participant/{id}', 'GroupController@apiParticipant')->name('api.group.participant');
+Route::get('/api/message/poll/{id}/{t?}', 'GroupController@apiMessagePoll')->name('api.message.poll');
 Route::get('/api/update/author/{id}', 'UpdateController@apiAuthor')->name('api.update.author');
 Route::get('/api/update/container/{id}', 'UpdateController@apiContainer')->name('api.update.container');
 Route::get('/api/update/group/{id}', 'UpdateController@apiGroup')->name('api.update.group');
 Route::get('/api/update/book/{id}', 'UpdateController@apiBook')->name('api.update.book');
 
-Route::get('/api/container/author/{id}', 'GeneralController@apiContainerAuthor')->name('api.container.author');
-Route::get('/api/author/book', 'GeneralController@apiAuthorBook')->name('api.author.book');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// route only for dev
+Route::get('/auth/reset/password', 'Auth\UserValidationController@resetPassword')->name('reset.password');
+Route::get('/auth/deconfirm/status/{id}', 'Auth\UserValidationController@deconfirmEmailStatus')->name('deconfirm.email.status');
+
+
 
 // DEV CONTROLLERS DEPRECATED
 Route::get('/dev', 'Dev\TestController@welcome')->name('dev.welcome');

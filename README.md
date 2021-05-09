@@ -37,14 +37,14 @@
 
 ## Webapp config for admin role
 
-- [ ] Recheck DB logic<br>
+- [X] Recheck DB logic<br>
 - [X] Create Views<br>
 - [X] Updates and monitoring system<br>
 
 ## Final steps<br>
 
 - [ ] Documentation for external consult<br>
-- [ ] Apply layout, styles and design<br>
+- [X] Apply layout, styles and design<br>
 - [ ] Test with styles layout and design<br>
 
 ## Production environment and deployment
