@@ -40,6 +40,48 @@ class UpdateController extends Controller
         return view('bahai.forms.update.user', compact('user'));
     }
 
+    // THIS METHOD IS FOR RENDER GROUP UPDATE FORM *** DEPRECATED ***
+    public function group($id){
+        try{
+            $id = Crypt::decryptString($id);
+        } catch (DecryptException $e) {
+            return 'UPD-E0001';
+        }
+     
+        $group = Group::find($id);
+        $container = GroupContainer::select('id', 'name')->find($group->group_container_id);
+        $authors = AuthorsInContainer::select('author_id')->where('group_container_id', $group->group_container_id)->get();
+        $books = Book::whereIn('author_id', $authors->pluck('author_id'))->get();
+        $containers = GroupContainer::select('id', 'name')->get();
+        return view('bahai.forms.update.group', compact('container', 'containers', 'authors', 'books', 'group'));
+    }
+
+    // THIS METHOD IS FOR RENDER AUTHOR UPDATE FORM *** DEPRECATED ***
+    public function author($id){
+        try{
+            $id = Crypt::decryptString($id);
+        } catch (DecryptException $e) {
+            return 'UPD-E0002';
+        }
+     
+        $author = Author::find($id);
+        return view('bahai.forms.update.author', compact('author'));
+    }
+
+
+    // THIS METHOD IS FOR RENDER BOOK UPDATE FORM *** DEPRECATED ***
+    public function book($id){
+        try{
+            $id = Crypt::decryptString($id);
+        } catch (DecryptException $e) {
+            return 'UPD-E0002';
+        }
+     
+        $book = Book::find($id);
+        $authors = Author::all()->where('status', NULL);
+        return view('bahai.forms.update.book', compact('book', 'authors'));
+    }
+
     public function userUpdate(Request $request){
         try{
             $id = Crypt::decryptString($request->user_id);
@@ -72,20 +114,28 @@ class UpdateController extends Controller
         return view('auth.response', compact('header', 'message'));
     }
 
-    // THIS METHOD IS FOR RENDER GROUP UPDATE FORM *** DEPRECATED ***
-	public function group($id){
-		try{
-            $id = Crypt::decryptString($id);
+    public function containerUpdate(Request $request){
+
+        try{
+            $id = Crypt::decryptString($request->container_id);
         } catch (DecryptException $e) {
-            return 'UPD-E0001';
+            return 'DD-E0001';
         }
-     
-        $group = Group::find($id);
-		$container = GroupContainer::select('id', 'name')->find($group->group_container_id);
-		$authors = AuthorsInContainer::select('author_id')->where('group_container_id', $group->group_container_id)->get();
-        $books = Book::whereIn('author_id', $authors->pluck('author_id'))->get();
-		$containers = GroupContainer::select('id', 'name')->get();
-        return view('bahai.forms.update.group', compact('container', 'containers', 'authors', 'books', 'group'));
+
+        $logs = New LogsGroupContainerUpdate;
+        $logs->action = 0;
+        $logs->user_id = auth()->user()->id;
+        $logs->group_container_id = $id;
+        $logs->save();
+
+        $container = GroupContainer::find($id);
+        $container->name = $request->name;
+        $container->description = $request->description;
+        $container->weight = $request->weight;
+        $container->update();
+
+        return redirect()->route('welcome');
+       
     }
 
     public function groupUpdate(Request $request){
@@ -115,42 +165,6 @@ class UpdateController extends Controller
     	
     }
 
-    public function containerUpdate(Request $request){
-
-        try{
-            $id = Crypt::decryptString($request->container_id);
-        } catch (DecryptException $e) {
-            return 'DD-E0001';
-        }
-
-        $logs = New LogsGroupContainerUpdate;
-        $logs->action = 0;
-        $logs->user_id = auth()->user()->id;
-        $logs->group_container_id = $id;
-        $logs->save();
-
-        $container = GroupContainer::find($id);
-        $container->name = $request->name;
-        $container->description = $request->description;
-        $container->weight = $request->weight;
-        $container->update();
-
-        return redirect()->route('welcome');
-       
-    }
-
-    // THIS METHOD IS FOR RENDER AUTHOR UPDATE FORM *** DEPRECATED ***
-	public function author($id){
-		try{
-            $id = Crypt::decryptString($id);
-        } catch (DecryptException $e) {
-            return 'UPD-E0002';
-        }
-     
-        $author = Author::find($id);
-        return view('bahai.forms.update.author', compact('author'));
-    }
-
     public function authorUpdate(Request $request){
 
         try{
@@ -174,19 +188,6 @@ class UpdateController extends Controller
     	$author->update();
         return redirect()->route('welcome');
     	
-    }
-
-    // THIS METHOD IS FOR RENDER BOOK UPDATE FORM *** DEPRECATED ***
-    public function book($id){
-        try{
-            $id = Crypt::decryptString($id);
-        } catch (DecryptException $e) {
-            return 'UPD-E0002';
-        }
-     
-        $book = Book::find($id);
-        $authors = Author::all()->where('status', NULL);
-        return view('bahai.forms.update.book', compact('book', 'authors'));
     }
 
     public function bookUpdate(Request $request){
@@ -308,7 +309,6 @@ class UpdateController extends Controller
 
         return redirect()->route('welcome');
     }
-
 
     // THIS API METHODS IS FOR RENDER UPDATE AND DELETE FORM FOR THE MAIN OBJECTS
     public function apiContainer($id){
