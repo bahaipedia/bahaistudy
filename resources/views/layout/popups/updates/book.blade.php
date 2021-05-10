@@ -33,12 +33,12 @@
       
       {{-- POR FAVOR NO BORRAR ESTE FORMULARIO DE ABAJO --}}
 
-      {{-- <form method='POST' action='{{route('delete.book.post')}}' id="delete">
+      <form method='POST' action='{{route('delete.book.post')}}' id="delete">
         {!! csrf_field() !!}
         <input name="_method" type="hidden" value="delete">
         <input name="book_id" type="hidden" class='logic-book-up-popup-id2' value="">
         <button disabled class="logic-book-del-popup-btn join-ficha-pop">D</button> 
-      </form> --}}
+      </form>
 	  <div class="equis">
 	    <a onclick="closePopup('caja-up-book')">X</a>        
 	   </div>

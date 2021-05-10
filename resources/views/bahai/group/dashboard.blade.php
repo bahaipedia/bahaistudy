@@ -86,7 +86,7 @@
           <h4 class="max-dash">(max {{$group->max_size}})</h4>
           <div id='participant'>
             @foreach($participants as $p)
-            @if($p->user_id == $group->host_id)
+            @if(auth()->user() && $p->user_id == $group->host_id)
             <div class="particip-dash">
               <h4 class="dash-list"><span class='dash-status-allways' data-din='{{$p->user_id}}'></span><span class='dash-name'>{{$p->user->name}} {{$p->user->lastname}} (HOST)</span></h4>
               @if(auth()->user() && $p->user_id == auth()->user()->id)
@@ -97,7 +97,7 @@
               </form>
               @endif
             </div>
-            @elseif($p->user_id == auth()->user()->id)
+            @elseif(auth()->user() && $p->user_id == auth()->user()->id)
              <div class="particip-dash">
               <h4 class="dash-list"><span class='dash-status-allways' data-din='{{$p->user_id}}'></span><span class='dash-name'>{{$p->user->name}} {{$p->user->lastname}} </span></h4>
               @if(auth()->user() && $group->host_id == NULL)
@@ -128,9 +128,7 @@
 </div>
 
 <script>
-        $(window).on("load",function(){
-          $(".load").fadeOut("slow");
-        });
+     
     </script>
 
 				{{-- <div class="msj-enviado">

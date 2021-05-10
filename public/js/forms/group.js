@@ -1,7 +1,55 @@
+var authorElement = document.querySelector(`#logic-author-element`)
+var bookElement = document.querySelector(`#logic-book-element`)
+
+function getAuthors(element){
+	var url;
+
+    authorElement.innerHTML = '<option disabled selected>WAITING AUTHORS BOOKS</option>';
+    bookElement.innerHTML = '<option disabled selected>CHOOSE AUTHOR</option>';
+
+	for(option of element.options){
+		if(option.value == element.value){
+			url = option.dataset.link
+		}
+	} 
+	$.ajax({
+        url: url,
+        type: "GET",
+        success: function(result){
+        	authorElement.innerHTML = '';
+        	if(result.length == 0){
+        		op = document.createElement('option')
+		        op.innerHTML = 'NO AUTHOR YET';
+		        op.disabled = 'true';
+		        op.selected = 'true';
+		        op.value = 0;
+		        authorElement.appendChild(op);
+        	}
+        	else{
+        		op = document.createElement('option')
+		        op.innerHTML = 'SELECT AUTHOR';
+		        op.disabled = 'true';
+		        op.selected = 'true';
+		        op.value = 0;
+		        authorElement.appendChild(op);
+        	}
+	        for(r of result){
+		        op = document.createElement('option')
+		        op.value = r.author_id;
+		        op.innerHTML = r.text.toUpperCase();
+		        op.dataset.link = `${document.querySelector('#get-book-api').value}/${r.author_id}`
+		        authorElement.appendChild(op);
+	       	}
+        }
+     });
+}
+
+
 function getBooks(element){
+    bookElement.innerHTML = '<option disabled selected>WAITING AUTHOR BOOKS</option>';
+
 	var containerId = element.dataset.container;
 	var authorId = element.value;
-	var bookElement = document.querySelector(`#book-element-${containerId}`)
 	var url;
 	for(option of element.options){
 		if(option.value == authorId){
@@ -60,9 +108,6 @@ function createGroup(element){
 }
 
 function renderInfoGroup(element){
-	console.log(element.dataset.container)
-	// get book id for the form
-	// get container id for the form
 	if(typeof groupData.book != "undefined" && typeof groupData.author != "undefined" && typeof groupData.max_size != "undefined" && typeof groupData.description != "undefined" ){
 	openPopup('caja-group'); 
 	document.querySelector('#logic-group-popup-book').value = groupData.book.inner;
@@ -81,13 +126,10 @@ function renderInfoGroup(element){
 function refreshForm(){
 	groupData = {}
 	var lbn = document.querySelectorAll('.logic-bn');
-	console.log(lbn)
-	console.log(lbn.length)
 	var lan = document.querySelectorAll('.logic-an');
 	var lmg = document.querySelectorAll('.logic-mg');
 	var lde = document.querySelectorAll('.logic-de');
 	for (var i = 0; i<lbn.length; i++){
-		console.log('hi')
 		lbn[i].value = 0;
 		lan[i].value = 0;
 		lmg[i].value = 0;

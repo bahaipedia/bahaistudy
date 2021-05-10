@@ -21,6 +21,7 @@ class StoreController extends Controller
         $this->middleware('authorization');
 	}
 
+    // METHOD FOR GROUP CREATION FORM ***DEPRECATED***
 	public function group($id = NULL){
 		if($id == NULL){
 			return 'route in construction';
@@ -31,30 +32,35 @@ class StoreController extends Controller
         // CHECK AUTHOR STATUS
     	return view('bahai.forms.store.group', compact('container', 'authors', 'books'));
     }
+
+    // METHOD FOR GROUP CREATION
 	public function groupPost(Request $request){
         $configuration = Configuration::select('send_created_a_study_group', 'validation_per_group_creation')->get()[0];
         $user = auth()->user();
+        
         if($configuration->validation_per_group_creation == 1 && $user->email_validated == NULL){
                 $header = "Sorry! We can't created a group this time";
                 $message = "Please confirm your email please!";
                 return view('auth.response', compact('header', 'message'));
         }
-        // get how many groups where created by user
+        // Get how many groups where created by user
         $count = Group::where('host_id', auth()->user()->id)->count();
         $groups_per_host = Configuration::select('groups_per_host')->get()[0]->groups_per_host;
+        
+        // Check if user can create a new group
         if($count >= $groups_per_host){
             $header = 'Sorry!';
             $message = "You can't create a new group you reach the max amount of group per user";
             return view('auth.response', compact('header', 'message'));
         }
 
-        
-        // check by
+
+        // This get the fileController instance for store a new group image
         $file_methods = new FileController;
         $group = New Group;
-        // Test the function when it have repeat
         $book = Book::find($request->book_id);
 
+        // Group insert data from request body
         $group->route = $file_methods->getUniqueRandom();        
         $group->name = $book->name;
         $group->description = $request->description;
@@ -66,6 +72,7 @@ class StoreController extends Controller
         $group->group_container_id = $request->group_container_id;
         $group->save();
 
+        // Available time insert data
         // $at = New AvailableTime;
         // $at->start_at = date("Y:m:d h:i:s", strtotime( $request->start_at ));
         // $at->finish_at = date("Y:m:d h:i:s", strtotime( $request->finish_at ));
@@ -74,14 +81,14 @@ class StoreController extends Controller
         // $at->group_id = $group->id;
         // $at->save();
 
+        // Particpant insert data (inserting this user in the group that he just create)
         $participant = New GroupParticipant;
         $participant->user_id = auth()->user()->id;
         $participant->group_id = $group->id;
         $participant->status = 1;
         $participant->save();
 
-
-
+        // Check if configuration send email for this action
         if($configuration->send_created_a_study_group == 1){
           $email = new EmailController;
           $email->GroupCreated($user, $group);
@@ -89,17 +96,23 @@ class StoreController extends Controller
         
         return redirect()->route('welcome');
     }
+
+    // THIS METHOD IS FOR AUTHOR CREATE FORM ***DEPRECATED***
 	public function author(){
     	return view('bahai.forms.store.author');
     }
+
+    // METHOD FOR INSERT NEW AUTHOR TO DATABASE
 	public function authorPost(Request $request){
 
         $author = New Author;
         $author->user_id = auth()->user()->id;
         $author->name = $request->name;
         $author->lastname = $request->lastname;
+        // This fields are depracted ***DEPRACATED***
         // $author->date_of_birth = $request->date_of_birth;
         // $author->nationality = $request->nationality;
+        
         $author->save();
 
         return redirect()->route('welcome');
@@ -107,11 +120,13 @@ class StoreController extends Controller
     }
 
 
+    // THIS METHOD IS FOR BOOK CREATE FORM ***DEPRECATED***
     public function book(){
-    	// ALL THE VIEWS ITS GOING TO CHANGE WHEN WE START IMPLEMENT THE FRONT-END
     	$authors = Author::all()->where('status', NUll);
     	return view('bahai.forms.store.book', compact('authors'));
     }
+
+    // METHOD FOR INSERT NEW BOOK TO DATABASE
     public function bookPost(Request $request){
         $file_methods = new FileController;
         if($request->hasFile('image')){
@@ -120,22 +135,26 @@ class StoreController extends Controller
         $book = New Book;
         $book->user_id = auth()->user()->id;
         $book->name = $request->name;
-        // $book->description = $request->description;
         if($request->hasFile('image')){
             $book->book_image_id = $book_image_id;
         }
+
+        // This fields are deprecated
+        // $book->description = $request->description;
         // $book->date = $request->date;
-        $book->author_id = $request->author_id;
         // $book->number_pages = $request->number_pages;
+        $book->author_id = $request->author_id;
         $book->save();
         return redirect()->route('welcome');
     }
 
+    // THIS METHOD IS FOR CONTAINER CREATE FORM ***DEPRECATED***
     public function container(){
     	$authors = Author::all()->where('status', NUll);
     	return view('bahai.forms.store.container', compact('authors'));
     }
 
+    // METHOD FOR INSERT NEW CONTAINER TO DATABASE
 	public function containerPost(Request $request){
         
         $container = New GroupContainer;

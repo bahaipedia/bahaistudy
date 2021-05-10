@@ -18,19 +18,23 @@
         <input type="hidden"  id='logic-group-popup-container-id'>
         <input type="hidden" name='book_id' id='logic-group-popup-book-id'>
         <input type="hidden" name='author_id' id='logic-group-popup-author-id'>
-
-        <select class="in-pop" name='day_of_week' id='day_of_week'>
-          <option disabled selected>CHOOSE CONTAINER</option>
+        <input type="hidden" id='get-book-api' value={{route('api.author.book')}}>
+        <select onchange='getAuthors(this)'  class="in-pop" name='group_container_id'>
+        <option  disabled selected>CHOOSE CONTAINER</option>
           @foreach($containers as $c)
-            <option name='group_container_id' value='{{$c->id}}'>{{$c->name}}</option>
+            <option  data-link='{{route('api.container.author', [$c->id])}}' value='{{$c->id}}'>{{$c->name}}</option>
           @endforeach
         </select>
-        <input required class="hachecuatro autor-nombre" id='logic-group-popup-book' placeholder='CHOOSE BOOK' name='name' type='text'>
         <br>
-        <select class="in-pop" name='day_of_week' id='day_of_week'>
-          <option disabled selected>CHOOSE AUTHOR</option>
-          {{-- implementar logica de autor por container --}}
+        <select class="logic-an" id="logic-author-element" style='cursor:pointer' onchange='getBooks(this);' name="author_id">
+          <option disabled selected value='0'>Choose the Author</option>
         </select>
+        <br>
+
+        <select class='libro-nombre hachetres formulario-libro logic-bn' required name='book_id' id="logic-book-element">
+          <option disabled selected >Choose the Author</option>
+        </select>
+
         <textarea required id='logic-group-popup-descriptions' style='height: 90px;' class="descripcion-libro-crear pe" max='120' name='description'
           type='text'>Description... Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</textarea>
         <textarea class="descripcion-libro-crear pe" style='height: 90px;'placeholder="add a host comment" max='120' name='host_comments'
@@ -51,8 +55,7 @@
           <option value='5'>Friday</option>
           <option value='6'>Saturday</option>
         </select>
-       {{-- boton deshabilitado porque falta implementacion a nivel del servidro --}}
-        <button disabled class="join-ficha-pop">CREATE</button>
+        <button  class="join-ficha-pop">CREATE</button>
       </form>
 	  <div class="equis">
 	    <a onclick="closePopup('caja-group'); refreshForm();" id="equis">X</a>        
