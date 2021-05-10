@@ -28,6 +28,7 @@
   @include('layout.popups.register')
   @include('layout.popups.alert')
   @include('layout.popups.user-info')
+  @include('layout.popups.config')
 
 
   @include('layout.popups.updates.author')
@@ -41,8 +42,7 @@
     @include('layout.headers.home')
     @if(auth()->user())
     <div class="botones-flotantes">
-      <a class="nuevo-autor" title="NEW AUTOR" onclick="openPopup('caja-author')">
-
+      <a class="nuevo-autor" title="Config" onclick="openPopup('caja-config')">
       </a>
       <a class="nuevo-autor" title="New Author" onclick="openPopup('caja-author')">
       </a>

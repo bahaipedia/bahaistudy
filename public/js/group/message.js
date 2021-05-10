@@ -37,6 +37,7 @@ function firstMessagePoll(){
       url: url,
       type: "GET",
       success: function(data){
+          $(".load").fadeOut("fast");
           sessionStorage.setItem('t', (new Date()/1000))
           for(var i = 0; i<data.length; i++){
             messageRender(data[i].message, data[i].self, data[i].user_info, 'get')

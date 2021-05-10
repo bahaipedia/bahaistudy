@@ -32,7 +32,6 @@ class GeneralController extends Controller
         // $groups = Group::select('id', 'name', 'description', 'book_id', 'group_container_id', 'route', 'max_size')->where('status', NULL)->get();
 
         // This object is the selection of group in active state on containers, filtering by authors
-        $groups = Group::select('id', 'name', 'description', 'book_id', 'group_container_id', 'route', 'max_size')->where('status', NULL)->get();
         $groups = Group::select('id', 'name', 'description', 'book_id', 'group_container_id', 'route', 'max_size')->whereHas('book', function ($query) {
             return $query->where('status', NULL)->whereHas('author', function ($query) {
                 return $query->where('status', NULL);
@@ -47,7 +46,7 @@ class GeneralController extends Controller
         }
 
         // Objects querys from database
-        $configurations = Configuration::select('app_name', 'app_description', 'app_description_hight', 'app_description_low', 'app_notes')->get()->first();
+        $configurations = Configuration::all()->first();
         $authors = AuthorsInContainer::select('author_id', 'group_container_id')->get();
         $books = Book::whereIn('author_id', $authors->pluck('author_id'))->get();
         $containers = GroupContainer::select('id', 'name', 'weight', 'status')->where('status', NULL)->orderBy('weight', 'asc')->get();
