@@ -160,22 +160,16 @@
   </div>
     </div>
     @endforeach
-   {{--  <div class="contenedor">
+  <div class="contenedor-principal-lista">
       <div class="subtitulo espacio">
         <h3>Works of the House of Justice</h3>
+        <h4 class="ver-todo">VIEW ALL ></h4>
       </div>
-      <img class="puntos" src="{{asset('/img/puntos.svg')}}" />
       <!--FILTROS-->
       <div class="barra-info">
         <div class="contenedor-vistas">
           <img class="cuadricula" src="{{asset('/img/cuadricula.svg')}}" />
           <img class="lista" src="{{asset('/img/lista.svg')}}" />
-        </div>
-        <div class="contenedor-busqueda">
-          <h5 class="amarilloline">filter</h5>
-          <h5 class="amarilloline">sort</h5>
-          <h5 class="amarilloline">search</h5>
-
         </div>
       </div>
 
@@ -196,12 +190,12 @@
           </div>
         <div class="cinculibroizquierda">
           <p class="descripcion-libro-lista">
-            {{$g->description}} {{$g->description}} {{$g->description}}
+            {{$g->description}}
 
           </p>
         </div>
           <div class="spaces-part">
-            <p class="spaces-lista">({{$g->max_size}} spaces available)</p>
+            <p class="spaces-lista">({{$g->available}} of {{$g->max_size}} spaces available)</p>
           </div>
           <div class="derecha-cinco"> 
             <a href='{{route('group.dashboard', [str_replace(' ', '-', str_replace('/', ' ', str_replace('#', 'n', $g->book->name))), $g->route])}}'>
@@ -210,7 +204,7 @@
         </div>
         </div>
         @endforeach
-      </div> --}}
+      </div>
 
 
 </div>

@@ -1039,6 +1039,20 @@ input.max-group::placeholder {
   top: 60px;
 }
 
+.contenedor-principal-lista {
+  display: flex;
+  position: relative;
+  width: 80%;
+  flex-direction: column;
+  border-radius: 30px;
+  align-self: center;
+  margin: 10px;
+  background-color: white;
+  border: 1px solid #baada245;
+  top: 60px;
+  padding-bottom: 80px;
+}
+
 .subtitulo {
   height: 50px;
   display: flex;
@@ -1574,13 +1588,13 @@ form {
 .contenedor-lista {
   top: 50px;
   width: 98%;
-  height: 400px;
   display: flex;
   position: relative;
   flex-direction: column;
   align-self: center;
   overflow-x: auto;
   overflow-y: scroll;
+  align-items: center;
 }
 
 .portada-libro-pequeno {
@@ -1605,24 +1619,21 @@ form {
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  margin-left: 30px;
-  margin-right: 30px;
-  padding-bottom: 14px;
-  padding-top: 14px;
-  border-bottom: 1px solid #eba72c;
+  margin-bottom: 15px;
+  border: 1px solid #baada245;
+  border-radius: 40px;
 }
 
 .ticincoizquierda {
   display: flex;
   flex-direction: row;
-  width: 25%;
+  width: 30%;
 }
 
 .cinculibroizquierda {
   display: flex;
   flex-direction: row;
-  width: 48%;
-  height: 100%;
+  width: 37%;
 }
 
 .circulo-libro {
@@ -1663,7 +1674,7 @@ form {
 
 .spaces-part {
   display: flex;
-  width: 18%;
+  width: 20%;
   height: 100%;
 }
 
