@@ -85,6 +85,17 @@ h4 {
   color: #79c3aa;
 }
 
+.extra {
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  color: #49392b;
+  font-size: 0.8em !important;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  letter-spacing: 2px;
+  padding-top: 10px;
+}
+
 h5 {
   font-family: "Montserrat", sans-serif;
   font-size: 1em;
@@ -264,7 +275,7 @@ input.max-group::placeholder {
 }
 .botones-flotantes {
   width: 65px;
-  height: 240px;
+  height: 300px;
   position: fixed;
   right: 20px;
   bottom: 20px;
@@ -282,6 +293,36 @@ input.max-group::placeholder {
   box-shadow: 4px 4px 5px 0px rgb(186 173 162 / 20%);
   border-radius: 30px;
   margin-top: 10px;
+}
+
+.config {
+  background-image: url(/img/config.svg);
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  -webkit-box-shadow: 4px 4px 5px 00px rgba(186, 173, 162, 20%);
+  -moz-box-shadow: 4px 4px 5px 0px rgba(186, 173, 162, 20%);
+  box-shadow: 4px 4px 5px 0px rgb(186 173 162 / 20%);
+  border-radius: 30px;
+  margin-top: 10px;
+}
+
+.trash {
+  background-image: url(/img/trash.svg);
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  border-radius: 30px;
+  margin-top: 10px;
+  border: 2px solid #a90338;
+}
+
+.eliminar {
+  display: flex;
+  align-self: center;
+  height: 500px;
+  align-items: flex-end;
+  padding-bottom: 30px;
 }
 
 .nuevo-libro {
@@ -800,7 +841,6 @@ input.max-group::placeholder {
   display: flex;
   flex-direction: column;
   background-color: #f9f7f6;
-  padding-bottom: 100px;
 }
 
 .centrado {
@@ -1423,6 +1463,30 @@ select::-ms-expand {
   width: 250px;
 }
 
+.dos-columnas {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.colu-pe {
+  width: 100px !important;
+}
+
+.margen-peq {
+  margin-top: 10px !important;
+}
+
+.borde-redon {
+  border: 1px solid #baada245 !important;
+  border-radius: 20px !important;
+  padding: 5px;
+}
+
+.no-mar {
+  margin: 0px;
+}
 .agrupar-crear {
   display: flex;
   justify-content: space-between;
@@ -1520,6 +1584,32 @@ textarea {
   color: #49392b;
 }
 
+.texta {
+  resize: none;
+  outline: none;
+  width: 98%;
+  display: flex;
+  align-self: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1em;
+  justify-self: center;
+  line-height: 1.5;
+  color: #49392b;
+  border: 1px solid #baada245;
+  border-radius: 20px;
+  padding: 10px;
+  margin: 0px !important;
+}
+
+.texta:focus {
+  border: 1px solid #ebd8c945;
+  border-radius: 20px;
+}
+
+.peque {
+  width: 30% !important;
+}
+
 textarea:focus {
   border: none;
   outline: none;
@@ -1593,7 +1683,6 @@ form {
   flex-direction: column;
   align-self: center;
   overflow-x: auto;
-  overflow-y: scroll;
   align-items: center;
 }
 
@@ -1622,7 +1711,7 @@ form {
   margin-bottom: 15px;
   border: 1px solid #baada245;
   border-radius: 40px;
-  transition: box-shadow: 0.4s;
+  transition: box-shadow 0.4s;
 }
 
 .lista-libro:hover {
@@ -1756,6 +1845,7 @@ form {
   display: flex;
   justify-content: center;
   flex-direction: column;
+  margin-top: 80px;
 }
 
 .footer-text {
@@ -2028,7 +2118,19 @@ input:-webkit-autofill:active {
   font-size: 1.2em;
   height: 90%;
   align-self: center;
-  margin-left: 100px;
+  margin-left: 40px;
+}
+
+.config-pop {
+  width: 80%;
+  display: flex;
+  align-self: center;
+  overflow: auto;
+}
+
+.config-blanco {
+  width: 100%;
+  height: 95%;
 }
 
 .texto-pequ {
@@ -2056,10 +2158,53 @@ input:-webkit-autofill:active {
 .informacion {
   width: 100vw;
   height: 100vh;
-  padding-top: 100px;
+  padding-top: 80px;
   display: flex;
   justify-content: space-around;
   background-color: #f9f7f6;
+}
+
+.org-horizontal {
+  display: flex;
+  align-items: center;
+  padding-top: 15px;
+}
+
+.selec-nu {
+  margin-top: 0px;
+  top: 0px;
+  margin-bottom: 10px;
+  font-family: "Montserrat";
+  font-size: 1em !important;
+  color: #e6dfda;
+  font-weight: 500;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  width: fit-content;
+  padding-right: 20px;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  font-weight: 500 !important;
+  color: #49392b;
+  font-size: 0.8em !important;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.texto-check {
+  text-transform: lowercase !important;
+  padding-left: 10px;
+}
+
+.texto-check::first-letter {
+  text-transform: uppercase !important;
 }
 
 #name {
@@ -2174,6 +2319,7 @@ input:-webkit-autofill:active {
   box-shadow: 15px 15px 5px -10px rgb(186 173 162 / 7%);
   z-index: 10;
   border-radius: 10px;
+  border: 1px solid #baada245;
 }
 
 .usuario-contenido {
