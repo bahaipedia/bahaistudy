@@ -42,7 +42,9 @@
     @include('layout.headers.home')
     @if(auth()->user())
     <div class="botones-flotantes">
-      <a class="nuevo-autor" title="Config" onclick="openPopup('caja-config')">
+    <a class="nuevo-grupo" title="New Group" onclick="openPopup('caja-group')">
+      </a>
+      <a class="config" title="Settings" onclick="openPopup('caja-config')">
       </a>
       <a class="nuevo-autor" title="New Author" onclick="openPopup('caja-author')">
       </a>
@@ -160,6 +162,7 @@
   </div>
     </div>
     @endforeach
+    @foreach($containers as $c)
   <div class="contenedor-principal-lista">
       <div class="subtitulo espacio">
         <h3>Works of the House of Justice</h3>
@@ -175,6 +178,8 @@
 
       <div class="contenedor-lista">
         @foreach($groups as $g)
+        @if($g->group_container_id == $c->id)
+
         <!--LISTA - LIBRO 001-->
         <div class="lista-libro">
           <div class="ticincoizquierda">
@@ -203,11 +208,14 @@
             </a>
         </div>
         </div>
+        @endif
         @endforeach
       </div>
 
 
 </div>
+@endforeach
+
         <div class="footer">
           <div class="linea-uno">
             <p  class="footer-text">
