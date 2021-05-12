@@ -1,3 +1,9 @@
+let listas = document.getElementsByClassName('contenedor-lista');
+let cuadricula = document.getElementsByClassName('contenedor-libros');
+
+listas[0].style.visibility = 'none';
+
+
 function closePopup(element){
  	document.getElementById(element).style.display = "none";
 	document.querySelector("body").style.overflow = 'auto';

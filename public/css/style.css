@@ -1,19 +1,250 @@
-/*
-DUDAS PARA FABIO:
-- Hacer una prueba de cómo configurar el template y @yield y que yo siga aplicando cosas, 
-FABIO DICE: ;
-NO TE PREOCUPES POR ESTO AUN
-- Como agregar imagenes (de las carpetas y de la base de datos) 
-FABIO DICE: LISTO jejeje
-- Los estilos responsives se arman en php ¿? 
-FABIO DICE: NOP EN CSS / HTML-BLADE
-- https://stackoverflow.com/questions/30058556/including-svg-contents-in-laravel-5-blade-template
+@media (min-width: 300px) {
+  #barra {
+    background-color: white;
+    width: 100%;
+    height: 200px;
+    top: 0px;
+    display: flex;
+    position: fixed;
+    align-items: center;
+    z-index: 5;
+    border-bottom: 1px solid #1313132b;
+    -webkit-box-shadow: 0px 6px 11px -2px rgb(0 0 0 / 10%);
+    -moz-box-shadow: 0px 6px 11px -2px rgb(0 0 0 / 10%);
+    box-shadow: 0px 6px 11px -2px rgb(0 0 0 / 10%);
+    justify-content: space-between;
+  }
 
-POR HACER:
-- Convertir login en un popup en la misma ventana de inicio con Javascript
-- Agregar logotipos
-*/
+  #logotipo {
+    display: none;
+  }
 
+  #logo-resp {
+    display: block;
+    height: 120px;
+    position: relative;
+    left: 20px;
+  }
+
+  #enlaces {
+    display: none;
+  }
+
+  .user {
+    display: flex;
+  }
+
+  .nombre {
+    letter-spacing: 1px;
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+    user-select: none;
+  }
+
+  .nombre:hover {
+    letter-spacing: 1.1px;
+  }
+
+  .logo1 {
+    display: none;
+  }
+
+  .profile-pic {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    width: 30px;
+    height: 30px;
+    background-color: #79c3aa;
+    border-radius: 100px;
+    margin: 10px;
+  }
+
+  #burger {
+    display: flex;
+    width: 140px;
+    position: relative;
+  }
+
+  #login {
+  }
+
+  .footer {
+    display: none;
+  }
+
+  .contenedor-libros {
+    width: 98%;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    top: 20px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+
+  #hero-image {
+    background-image: linear-gradient(
+        45deg,
+        rgba(235, 167, 44, 0.4),
+        rgba(121, 195, 170, 0.4)
+      ),
+      url(/img/hero03.jpg);
+    width: 100%;
+    height: 80vh;
+    margin-top: 200px;
+    background-size: cover;
+    color: rgb(255, 255, 255);
+    position: relative;
+  }
+
+  #textos {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    position: relative;
+    left: 40px;
+  }
+
+  #hero-title {
+    position: relative;
+    left: 50px;
+    line-height: 1.4;
+  }
+
+  #hero-subtitle {
+    position: relative;
+    left: 50px;
+    line-height: 1.2;
+  }
+
+  #resaltar {
+    color: #f17221;
+  }
+}
+
+@media (min-width: 1300px) {
+  #barra {
+    height: 80px;
+  }
+
+  #logotipo {
+    display: block;
+    height: 40px;
+    position: relative;
+    left: 20px;
+  }
+
+  #logo-resp {
+    display: none;
+  }
+
+  #burger {
+    display: block;
+  }
+  /* FOOTER */
+
+  .footer {
+    background-color: #e6dfda;
+    /*background-image: url(./footer.png);*/
+    height: 180px;
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 80px;
+  }
+
+  .footer-text {
+    color: #baada2;
+    font-weight: 600;
+    font-size: 0.8em;
+    cursor: pointer;
+  }
+
+  .footer-text:hover {
+    color: #49392b;
+  }
+
+  .linea-uno {
+    justify-content: center;
+    flex-direction: row;
+    display: flex;
+    justify-content: space-around;
+    margin-right: 550px;
+    margin-left: 550px;
+    margin-bottom: 5px;
+  }
+
+  .linea-dos {
+    justify-content: center;
+    flex-direction: row;
+    display: flex;
+    justify-content: space-around;
+    margin-right: 600px;
+    margin-left: 600px;
+    margin-bottom: 5px;
+  }
+
+  .copyright {
+    font-family: "Noto Serif", serif;
+    color: #49392b;
+    font-weight: 600;
+    align-text: center;
+    display: flex;
+    justify-content: center;
+    font-size: 0.78em;
+    margin-bottom: 5px;
+  }
+
+  #hero-image {
+    background-image: linear-gradient(
+        45deg,
+        rgba(235, 167, 44, 0.4),
+        rgba(121, 195, 170, 0.4) /*,*/ /*      rgba(241, 114, 33, 0.2)*/
+      ),
+      url("/img/hero03.jpg");
+    width: 100%;
+    height: 60vh;
+    margin-top: 50px;
+    background-size: cover;
+    color: rgb(255, 255, 255);
+    padding: 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  #textos {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    position: relative;
+    left: 40px;
+  }
+
+  #hero-title {
+    position: relative;
+    left: 50px;
+    line-height: 1.4;
+  }
+
+  #hero-subtitle {
+    position: relative;
+    left: 50px;
+    line-height: 1.2;
+  }
+
+  #resaltar {
+    color: #f17221;
+  }
+}
+/* HEADER MENU */
 /* GENERAL */
 html {
   box-sizing: border-box;
@@ -848,111 +1079,7 @@ input.max-group::placeholder {
   align-items: center;
   justify-content: center;
 }
-
-/* HEADER MENU */
-#barra {
-  background-color: white;
-  width: 100%;
-  height: 80px;
-  top: 0px;
-  display: flex;
-  position: fixed;
-  align-items: center;
-  z-index: 5;
-  border-bottom: 1px solid #1313132b;
-  -webkit-box-shadow: 0px 6px 11px -2px rgb(0 0 0 / 10%);
-  -moz-box-shadow: 0px 6px 11px -2px rgb(0 0 0 / 10%);
-  box-shadow: 0px 6px 11px -2px rgb(0 0 0 / 10%);
-}
-
-#logotipo {
-  height: 40px;
-  position: relative;
-  left: 20px;
-}
-
-#enlaces {
-  width: 60%;
-  position: absolute;
-  right: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.user {
-  display: flex;
-}
-
-.nombre {
-  letter-spacing: 1px;
-  font-size: 0.9em;
-  display: flex;
-  align-items: center;
-  user-select: none;
-}
-
-.nombre:hover {
-  letter-spacing: 1.1px;
-}
-
-.profile-pic {
-  display: flex;
-  flex-direction: row;
-  position: relative;
-  width: 30px;
-  height: 30px;
-  background-color: #79c3aa;
-  border-radius: 100px;
-  margin: 10px;
-}
-
-#login {
-}
-
 /* HERO IMAGE */
-#hero-image {
-  background-image: linear-gradient(
-      45deg,
-      rgba(235, 167, 44, 0.4),
-      rgba(121, 195, 170, 0.4) /*,*/ /*      rgba(241, 114, 33, 0.2)*/
-    ),
-    url("/img/hero03.jpg");
-  width: 100%;
-  height: 60vh;
-  margin-top: 50px;
-  background-size: cover;
-  color: rgb(255, 255, 255);
-  padding: 20px;
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-#textos {
-  width: 50%;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  position: relative;
-  left: 40px;
-}
-
-#hero-title {
-  position: relative;
-  left: 50px;
-  line-height: 1.4;
-}
-
-#hero-subtitle {
-  position: relative;
-  left: 50px;
-  line-height: 1.2;
-}
-
-#resaltar {
-  color: #f17221;
-}
 
 #alert {
   position: relative;
@@ -1169,7 +1296,7 @@ input.max-group::placeholder {
 
 /* LIBROS */
 
-#contenedor-libros {
+.contenedor-libros {
   width: 98%;
   display: flex;
   flex-direction: row;
@@ -1676,7 +1803,7 @@ form {
 }
 /* VISTA DE LISTA */
 .contenedor-lista {
-  top: 50px;
+  top: 25px;
   width: 98%;
   display: flex;
   position: relative;
@@ -1708,7 +1835,7 @@ form {
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  margin-bottom: 15px;
+  margin-top: 20px;
   border: 1px solid #baada245;
   border-radius: 40px;
   transition: box-shadow 0.4s;
@@ -1832,62 +1959,6 @@ form {
   color: #49392b;
   padding-bottom: 15px;
   border-bottom: 2px solid #79c3aa;
-}
-
-/* FOOTER */
-
-.footer {
-  background-color: #e6dfda;
-  /*background-image: url(./footer.png);*/
-  height: 180px;
-  width: 100%;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  margin-top: 80px;
-}
-
-.footer-text {
-  color: #baada2;
-  font-weight: 600;
-  font-size: 0.8em;
-  cursor: pointer;
-}
-
-.footer-text:hover {
-  color: #49392b;
-}
-
-.linea-uno {
-  justify-content: center;
-  flex-direction: row;
-  display: flex;
-  justify-content: space-around;
-  margin-right: 550px;
-  margin-left: 550px;
-  margin-bottom: 5px;
-}
-
-.linea-dos {
-  justify-content: center;
-  flex-direction: row;
-  display: flex;
-  justify-content: space-around;
-  margin-right: 600px;
-  margin-left: 600px;
-  margin-bottom: 5px;
-}
-
-.copyright {
-  font-family: "Noto Serif", serif;
-  color: #49392b;
-  font-weight: 600;
-  align-text: center;
-  display: flex;
-  justify-content: center;
-  font-size: 0.78em;
-  margin-bottom: 5px;
 }
 
 /* LOGIN - REGISTER */
