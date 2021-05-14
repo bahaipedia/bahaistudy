@@ -42,7 +42,7 @@
     @include('layout.headers.home')
     @if(auth()->user())
     <div class="botones-flotantes">
-    <a class="nuevo-grupo" title="New Group" onclick="openPopup('caja-group')">
+      <a class="nuevo-grupo" title="New Group" onclick="openPopup('caja-group')">
       </a>
       <a class="config" title="Settings" onclick="openPopup('caja-config')">
       </a>
@@ -61,9 +61,9 @@
         <h2 id="hero-subtitle">
           {{$configurations->app_description}}
           <b id="resaltar">
-             {{$configurations->app_description_hight}}
+            {{$configurations->app_description_hight}}
           </b>
-           {{$configurations->app_description_low}}
+          {{$configurations->app_description_low}}
         </h2>
         <div id="alert">
           <h5 class="hero-texto">
@@ -75,183 +75,185 @@
       </div>
     </div>
 
-    @foreach($containers as $c)
+    @foreach($containers as $key => $c )
 
     <div class="contenedor">
       <div class="subtitulo espacio">
         <div class="parte-izquierda">
-        <h3 style='cursor:default'>{{$c->name}}</h3>
-         @if(auth()->user())<a onclick="openPopup('caja-up-container', ['container', '{{route("api.update.container", [Crypt::encryptString($c->id)])}}'])" class="edit-boton"></a>@endif
+          <h3 style='cursor:default'>{{$c->name}}</h3>
+          @if(auth()->user())<a
+            onclick="openPopup('caja-up-container', ['container', '{{route("api.update.container", [Crypt::encryptString($c->id)])}}'])"
+            class="edit-boton"></a>@endif
         </div>
-         <h4 class="ver-todo">VIEW ALL ></h4>
-        </div>
-    <div class="barra-info">
-      <div class="contenedor-vistas">
-        <img class="cuadricula" src="{{asset('/img/cuadricula.svg')}}" />
-        <img class="lista" src="{{asset('/img/lista.svg')}}" />
-      </div>
-    </div>
-    <div id="contenedor-libros">
-      @php $count = 0 @endphp
-
-      @foreach($groups as $g)
-      @if($g->group_container_id == $c->id)
-      @php $count++ @endphp
-
-      <div class="ficha-libro" style='cursor:default;'>
-        @if($g->book->book_image_id !== NULL && Storage::disk('s3')->exists("bahai-dev/".$g->book->bookImage->code))
-        <img class="portada-libro new-group" src='{{Storage::disk("s3")->url("bahai-dev/".$g->book->bookImage->code)}}' onclick="openPopup('caja-up-group', ['group', '{{route("api.update.group", [Crypt::encryptString($g->id)])}}'])" src="{{asset('/img/ki.png')}}" />
-        @else
-        <img class="portada-libro" />
-        @endif
-        <div class="parte-derecha-ficha">
-          <div class="titulo-boton">
-          <h4 class="autor-nombre" >{{$g->book->author->name}} {{$g->book->author->lastname}}</h4>
-         @if(auth()->user())<a class="edit-boton-ficha" onclick="openPopup('caja-up-author', ['author', '{{route("api.update.author", [Crypt::encryptString($g->book->author_id)])}}'])"></a> @endif
-        </div>
-        <div class="autor-boton" >
-         <h3 class="libro-nombre">{{$g->book->name}}</h3>
-           @if(auth()->user())<a class="edit-boton-brown" onclick="openPopup('caja-up-book', ['book', '{{route("api.update.book", [Crypt::encryptString($g->book->id)])}}'])"> </a>@endif
-        </div>
-          <p class="spaces">({{$g->available}} of {{$g->max_size}} spaces available)</p>
-          <p class="descripcion-libro">
-            {{$g->description}}
-          </p>
-          <span class="parte-derecha-ficha-espacio"></span>
-          <a class="join-ficha margen-ficha" href='{{route('group.dashboard', [str_replace(' ', '-', str_replace('/', ' ', str_replace('#', 'n', $g->book->name))), $g->route])}}'>VIEW</a>
-        </div>
-      </div>
-
-      @endif
-
-      @endforeach
-<!-- CREATE NEW GROUP -->
-{{--
-@if(auth()->check() && $create_group)
-      <div class="ficha-libro">
-        <div class="izquierda">
-        <img class="portada-libro new-group" src="{{asset('/img/books.png')}}" />
-        <h3 style='cursor:default;' class="sobre-imagen">Create New Group</h3>
-        </div>
-        <div class="parte-derecha-ficha-crear">
-          <form  class='wrap-r'>
-          <div class="custom-select">
-              <select class="autor-nombre hachecuatro desplegable-autor logic-an" data-container='{{$c->id}}' style='cursor:pointer' onchange='getBooks(this); createGroup(this);' name="author_id">
-              <option disabled selected value='0'>Choose the Author</option>
-              
-              @foreach($authors as $a)
-              @if($a->group_container_id == $c->id && $a->author->status === NULL)
-              <option data-link='{{route('api.author.book', [$a->author->id])}}' value='{{$a->author->id}}'>{{$a->author->name}} {{$a->author->lastname}}
-              </option>
-              @endif
-              @endforeach
-            </select>
-            </div>
-            <select onchange='createGroup(this);' class='libro-nombre hachetres formulario-libro logic-bn' required name='book_id' id='book-element-{{$c->id}}'>
-              <option disabled selected >Choose the Author</option>
-            </select>
-            <input onchange='createGroup(this);' type='number' class='formulario-max pe-max max-group logic-mg' required name='max_size' placeholder='Maximum Group Size'/>
-            <textarea onchange='createGroup(this);' type='description' required name='description'  class="descripcion-libro-form pe logic-de" rows="3" cols="15" placeholder="Description... Lorem ipsum dolor sit amet."></textarea>
-            <span class="parte-derecha-ficha-espacio"></span>
-            <span onclick="renderInfoGroup(this);" data-container='{{$c->id}}' style='cursor:pointer' class="join-ficha-pop margen-ficha">CREATE</span>
-          </form>
-          </div>
-      </div>
-    @endif
-   --}}
-  </div>
-    </div>
-    @endforeach
-    @foreach($containers as $c)
-  <div class="contenedor-principal-lista">
-      <div class="subtitulo espacio">
-        <h3>Works of the House of Justice</h3>
         <h4 class="ver-todo">VIEW ALL ></h4>
       </div>
-      <!--FILTROS-->
       <div class="barra-info">
         <div class="contenedor-vistas">
-          <img class="cuadricula" src="{{asset('/img/cuadricula.svg')}}" />
-          <img class="lista" src="{{asset('/img/lista.svg')}}" />
+          <img class="cuadricula" src="{{asset('/img/cuadricula.svg')}}" onclick="mostrarCuadricula({{$key}})" />
+          <img class="lista" src="{{asset('/img/lista.svg')}}" onclick="mostrarLista({{$key}})" />
         </div>
       </div>
-
-      <div class="contenedor-lista">
+      <div class="logic-contenedor-lista">
         @foreach($groups as $g)
         @if($g->group_container_id == $c->id)
 
         <!--LISTA - LIBRO 001-->
         <div class="lista-libro">
           <div class="ticincoizquierda">
-        @if($g->book->book_image_id !== NULL && Storage::disk('s3')->exists("bahai-dev/".$g->book->bookImage->code))
-        <img class="portada-libro-pequeno circular" src='{{Storage::disk("s3")->url("bahai-dev/".$g->book->bookImage->code)}}'/>
-        @else
-        <img class="portada-libro-pequeno circular" src="{{asset('/img/ki.png')}}" />
-        @endif
-          <div class="autor-libro">
-            <h4 class="autor-nombre amarillo">{{$g->book->author->name}} {{$g->book->author->lastname}}</h4>
-            <h3 class="libro-nombre">{{$g->book->name}}</h3>
+            @if($g->book->book_image_id !== NULL && Storage::disk('s3')->exists("bahai-dev/".$g->book->bookImage->code))
+            <img class="portada-libro-pequeno circular"
+              src='{{Storage::disk("s3")->url("bahai-dev/".$g->book->bookImage->code)}}' />
+            @else
+            <img class="portada-libro-pequeno circular" src="{{asset('/img/ki.png')}}" />
+            @endif
+            <div class="autor-libro">
+              <h4 class="autor-nombre amarillo">{{$g->book->author->name}} {{$g->book->author->lastname}}</h4>
+              <h3 class="libro-nombre">{{$g->book->name}}</h3>
+            </div>
           </div>
-          </div>
-        <div class="cinculibroizquierda">
-          <p class="descripcion-libro-lista">
-            {{$g->description}}
+          <div class="cinculibroizquierda">
+            <p class="descripcion-libro-lista">
+              {{$g->description}}
 
-          </p>
-        </div>
+            </p>
+          </div>
           <div class="spaces-part">
             <p class="spaces-lista">({{$g->available}} of {{$g->max_size}} spaces available)</p>
           </div>
-          <div class="derecha-cinco"> 
-            <a href='{{route('group.dashboard', [str_replace(' ', '-', str_replace('/', ' ', str_replace('#', 'n', $g->book->name))), $g->route])}}'>
-          <img class="join-plus" src="{{asset('/img/plus-sign.svg')}}" />
+          <div class="derecha-cinco">
+            <a
+              href='{{route('group.dashboard', [str_replace(' ', '-', str_replace('/', ' ', str_replace('#', 'n', $g->book->name))), $g->route])}}'>
+              <img class="join-plus" src="{{asset('/img/plus-sign.svg')}}" />
             </a>
-        </div>
+          </div>
         </div>
         @endif
         @endforeach
       </div>
 
+      <div class="logic-contenedor-libros">
+        @php $count = 0 @endphp
 
-</div>
-@endforeach
+        @foreach($groups as $g)
+        @if($g->group_container_id == $c->id)
+        @php $count++ @endphp
 
-        <div class="footer">
-          <div class="linea-uno">
-            <p  class="footer-text">
-              About
+        <div class="ficha-libro" style='cursor:default;'>
+          @if($g->book->book_image_id !== NULL && Storage::disk('s3')->exists("bahai-dev/".$g->book->bookImage->code))
+          <img class="portada-libro new-group"
+            src='{{Storage::disk("s3")->url("bahai-dev/".$g->book->bookImage->code)}}'
+            onclick="openPopup('caja-up-group', ['group', '{{route("api.update.group", [Crypt::encryptString($g->id)])}}'])"
+            src="{{asset('/img/ki.png')}}" />
+          @else
+          <img class="portada-libro" />
+          @endif
+          <div class="parte-derecha-ficha">
+            <div class="titulo-boton">
+              <h4 class="autor-nombre">{{$g->book->author->name}} {{$g->book->author->lastname}}</h4>
+              @if(auth()->user())<a class="edit-boton-ficha"
+                onclick="openPopup('caja-up-author', ['author', '{{route("api.update.author", [Crypt::encryptString($g->book->author_id)])}}'])"></a>
+              @endif
+            </div>
+            <div class="autor-boton">
+              <h3 class="libro-nombre">{{$g->book->name}}</h3>
+              @if(auth()->user())<a class="edit-boton-brown"
+                onclick="openPopup('caja-up-book', ['book', '{{route("api.update.book", [Crypt::encryptString($g->book->id)])}}'])">
+              </a>@endif
+            </div>
+            <p class="spaces">({{$g->available}} of {{$g->max_size}} spaces available)</p>
+            <p class="descripcion-libro">
+              {{$g->description}}
             </p>
-            <p class="footer-text">
-              Help
-            </p>
-            <p class="footer-text">
-              Resources
-            </p>
-            <p class="footer-text">
-              Materials
-            </p>
+            <span class="parte-derecha-ficha-espacio"></span>
+            <a class="join-ficha margen-ficha"
+              href='{{route('group.dashboard', [str_replace(' ', '-', str_replace('/', ' ', str_replace('#', 'n', $g->book->name))), $g->route])}}'>VIEW</a>
           </div>
-
-          <div class="linea-dos">
-            <p class="footer-text">
-              Terms of Use
-            </p>
-            <p class="footer-text">
-              Privacy Policy
-            </p>
-          </div>
-
-          <div style='margin-top:10px;' class="linea-tres">
-            <p class="copyright">
-              © bahaistudygroup | 2021
-            </p>
-          </div>
-
         </div>
-        <script src='{{asset('/js/popups.js')}}'></script>
-        <script src='{{asset('/js/forms/group.js')}}'></script>
-        <script src='{{asset('/js/forms/containers.js')}}'></script>
-        <script src='{{asset('/js/menu.js')}}'></script>
+
+        @endif
+
+        @endforeach
+        <!-- CREATE NEW GROUP -->
+        {{--
+@if(auth()->check() && $create_group)
+      <div class="ficha-libro">
+        <div class="izquierda">
+        <img class="portada-libro new-group" src="{{asset('/img/books.png')}}" />
+        <h3 style='cursor:default;' class="sobre-imagen">Create New Group</h3>
+      </div>
+      <div class="parte-derecha-ficha-crear">
+        <form class='wrap-r'>
+          <div class="custom-select">
+            <select class="autor-nombre hachecuatro desplegable-autor logic-an" data-container='{{$c->id}}'
+              style='cursor:pointer' onchange='getBooks(this); createGroup(this);' name="author_id">
+              <option disabled selected value='0'>Choose the Author</option>
+
+              @foreach($authors as $a)
+              @if($a->group_container_id == $c->id && $a->author->status === NULL)
+              <option data-link='{{route('api.author.book', [$a->author->id])}}' value='{{$a->author->id}}'>
+                {{$a->author->name}} {{$a->author->lastname}}
+              </option>
+              @endif
+              @endforeach
+            </select>
+          </div>
+          <select onchange='createGroup(this);' class='libro-nombre hachetres formulario-libro logic-bn' required
+            name='book_id' id='book-element-{{$c->id}}'>
+            <option disabled selected>Choose the Author</option>
+          </select>
+          <input onchange='createGroup(this);' type='number' class='formulario-max pe-max max-group logic-mg' required
+            name='max_size' placeholder='Maximum Group Size' />
+          <textarea onchange='createGroup(this);' type='description' required name='description'
+            class="descripcion-libro-form pe logic-de" rows="3" cols="15"
+            placeholder="Description... Lorem ipsum dolor sit amet."></textarea>
+          <span class="parte-derecha-ficha-espacio"></span>
+          <span onclick="renderInfoGroup(this);" data-container='{{$c->id}}' style='cursor:pointer'
+            class="join-ficha-pop margen-ficha">CREATE</span>
+        </form>
+      </div>
+    </div>
+    @endif
+    --}}
+  </div>
+  </div>
+  @endforeach
+
+  <div class="footer">
+    <div class="linea-uno">
+      <p class="footer-text">
+        About
+      </p>
+      <p class="footer-text">
+        Help
+      </p>
+      <p class="footer-text">
+        Resources
+      </p>
+      <p class="footer-text">
+        Materials
+      </p>
+    </div>
+
+    <div class="linea-dos">
+      <p class="footer-text">
+        Terms of Use
+      </p>
+      <p class="footer-text">
+        Privacy Policy
+      </p>
+    </div>
+
+    <div style='margin-top:10px;' class="linea-tres">
+      <p class="copyright">
+        © bahaistudygroup | 2021
+      </p>
+    </div>
+
+  </div>
+  <script src='{{asset('/js/popups.js')}}'></script>
+  <script src='{{asset('/js/forms/group.js')}}'></script>
+  <script src='{{asset('/js/forms/containers.js')}}'></script>
+  <script src='{{asset('/js/menu.js')}}'></script>
 
 </body>
 

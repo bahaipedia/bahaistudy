@@ -1,3 +1,31 @@
+let listas = document.querySelectorAll('.logic-contenedor-lista');
+let cuadricula = document.querySelectorAll('.logic-contenedor-libros');
+
+function mostrarLista(index){
+	for (i = 0; i<listas.length; i++){
+		if (index == i){
+			listas[i].style.display = 'flex';
+			cuadricula[i].style.display = 'none';
+			break;
+		}
+	}
+}
+
+function mostrarCuadricula(index){
+	for (i = 0; i<cuadricula.length; i++){
+		if (index == i){
+			listas[i].style.display = 'none';
+			cuadricula[i].style.display = 'flex';
+			break;
+		}
+	}
+}
+
+//listas.style.display = 'none';
+
+// mostrarLista(index);
+// mostrarCuadricula(index);
+
 function closePopup(element){
  	document.getElementById(element).style.display = "none";
 	document.querySelector("body").style.overflow = 'auto';
