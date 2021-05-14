@@ -75,7 +75,7 @@
       </div>
     </div>
 
-    @foreach($containers as $c)
+    @foreach($containers as $key => $c )
 
     <div class="contenedor">
       <div class="subtitulo espacio">
@@ -89,11 +89,11 @@
       </div>
       <div class="barra-info">
         <div class="contenedor-vistas">
-          <img class="cuadricula" src="{{asset('/img/cuadricula.svg')}}" />
-          <img class="lista" src="{{asset('/img/lista.svg')}}" />
+          <img class="cuadricula" src="{{asset('/img/cuadricula.svg')}}" onclick="mostrarCuadricula({{$key}})" />
+          <img class="lista" src="{{asset('/img/lista.svg')}}" onclick="mostrarLista({{$key}})" />
         </div>
       </div>
-      <div class="contenedor-lista">
+      <div class="logic-contenedor-lista">
         @foreach($groups as $g)
         @if($g->group_container_id == $c->id)
 
@@ -131,7 +131,7 @@
         @endforeach
       </div>
 
-      <div class="contenedor-libros">
+      <div class="logic-contenedor-libros">
         @php $count = 0 @endphp
 
         @foreach($groups as $g)

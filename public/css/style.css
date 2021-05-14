@@ -1,3 +1,24 @@
+/* GENERAL */
+html {
+  box-sizing: border-box;
+  height: 100%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  line-height: 1;
+  margin: 0px;
+}
+
+html,
+body {
+  user-select: none;
+  margin: 0;
+  padding: 0;
+}
+
 @media (min-width: 300px) {
   #barra {
     background-color: white;
@@ -28,10 +49,6 @@
 
   #enlaces {
     display: none;
-  }
-
-  .user {
-    display: flex;
   }
 
   .nombre {
@@ -74,7 +91,7 @@
     display: none;
   }
 
-  .contenedor-libros {
+  .logic-contenedor-libros {
     width: 98%;
     display: flex;
     flex-direction: column;
@@ -126,26 +143,157 @@
   }
 }
 
-@media (min-width: 1300px) {
+@media (min-width: 800px) {
   #barra {
+    background-color: white;
+    width: 100%;
+    height: 100px;
+    top: 0px;
+    display: flex;
+    position: fixed;
+    align-items: center;
+    z-index: 5;
+    -webkit-box-shadow: 15px 15px 5px -10px rgb(186 173 162 / 7%);
+    -moz-box-shadow: 15px 15px 5px -10px rgba(186, 173, 162, 0.07);
+    box-shadow: 15px 15px 5px -10px rgb(186 173 162 / 7%);
+  }
+}
+
+@media (min-width: 1280px) {
+  #barra {
+    background-color: white;
+    width: 100%;
     height: 80px;
+    top: 0px;
+    display: flex;
+    position: fixed;
+    align-items: center;
+    z-index: 5;
+    -webkit-box-shadow: 15px 15px 5px -10px rgb(186 173 162 / 7%);
+    -moz-box-shadow: 15px 15px 5px -10px rgba(186, 173, 162, 0.07);
+    box-shadow: 15px 15px 5px -10px rgb(186 173 162 / 7%);
+  }
+
+  #enlaces {
+    width: 60%;
+    position: absolute;
+    right: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  a {
+    text-decoration: none;
+    font-family: "Montserrat", sans-serif;
+    color: #baada2;
+    letter-spacing: 3px;
+    transition: letter-spacing 0.4s, color 0.4s, border-bottom 0.4s;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
   }
 
   #logotipo {
-    display: block;
+    display: flex;
     height: 40px;
     position: relative;
     left: 20px;
+  }
+
+  .logo1 {
+    display: flex;
   }
 
   #logo-resp {
     display: none;
   }
 
+  .nombre {
+    letter-spacing: 1px;
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+    user-select: none;
+  }
+
+  .nombre:hover {
+    letter-spacing: 1.1px;
+  }
+
   #burger {
-    display: block;
+    display: none;
+  }
+
+  .user {
+    display: flex;
+  }
+
+  .profile-pic {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    width: 30px;
+    height: 30px;
+    background-color: #79c3aa;
+    border-radius: 100px;
+    margin: 10px;
   }
   /* FOOTER */
+
+  #login {
+  }
+
+  .login-boton {
+    padding-top: 8px;
+    padding-right: 15px;
+    padding-bottom: 8px;
+    padding-left: 15px;
+    font-size: 0.7em;
+    letter-spacing: 0.25em;
+    border: solid 2px #49392b;
+    color: #49392b;
+    align-self: center;
+    border-radius: 40px;
+    line-height: 1.3em;
+    outline: none;
+    font-weight: 600;
+    width: 110px;
+    position: relative;
+  }
+
+  .login-boton:hover {
+    background-color: #49392b;
+    color: white;
+  }
+
+  .login-boton:active {
+    background-color: #251d16;
+    color: white;
+  }
+
+  .b-principal {
+    padding-bottom: 10px;
+    background: radial-gradient(
+          circle closest-side,
+          currentColor 80%,
+          transparent
+        )
+        bottom 0 left calc(50% - var(--d, 0px) / 2) / 100% 5px no-repeat,
+      radial-gradient(circle closest-side, currentColor 80%, transparent) bottom
+        0 left calc(50% + var(--d, 0px) / 2) / 100% 5px no-repeat,
+      linear-gradient(currentColor 0 0) bottom / var(--d, 0%) 5px no-repeat;
+    transition: 0.5s;
+    font-weight: 200;
+  }
+
+  .b-principal:hover {
+    --d: 40px;
+    color: #79c3aa;
+    font-weight: 400;
+  }
 
   .footer {
     background-color: #e6dfda;
@@ -243,27 +391,6 @@
   #resaltar {
     color: #f17221;
   }
-}
-/* HEADER MENU */
-/* GENERAL */
-html {
-  box-sizing: border-box;
-  height: 100%;
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-  line-height: 1;
-  margin: 0px;
-}
-
-html,
-body {
-  user-select: none;
-  margin: 0;
-  padding: 0;
 }
 
 /* TIPOGRAFÍAS */
@@ -1034,37 +1161,9 @@ input.max-group::placeholder {
   flex-direction: row;
 }
 
-.login-boton {
-  padding-top: 8px;
-  padding-right: 15px;
-  padding-bottom: 8px;
-  padding-left: 15px;
-  font-size: 0.7em;
-  letter-spacing: 0.25em;
-  border: solid 2px #49392b;
-  color: #49392b;
-  align-self: center;
-  border-radius: 40px;
-  line-height: 1.3em;
-  outline: none;
-  font-weight: 600;
-  width: 110px;
-  position: relative;
-}
-
 .dashposition {
   text-transform: uppercase;
   font-size: 0.8em !important;
-}
-
-.login-boton:hover {
-  background-color: #49392b;
-  color: white;
-}
-
-.login-boton:active {
-  background-color: #251d16;
-  color: white;
 }
 
 /* BODY */
@@ -1296,7 +1395,7 @@ input.max-group::placeholder {
 
 /* LIBROS */
 
-.contenedor-libros {
+.logic-contenedor-libros {
   width: 98%;
   display: flex;
   flex-direction: row;
@@ -1554,27 +1653,6 @@ select::-ms-expand {
   border: none;
 }
 
-.b-principal {
-  padding-bottom: 10px;
-  background: radial-gradient(
-        circle closest-side,
-        currentColor 80%,
-        transparent
-      )
-      bottom 0 left calc(50% - var(--d, 0px) / 2) / 100% 5px no-repeat,
-    radial-gradient(circle closest-side, currentColor 80%, transparent) bottom 0
-      left calc(50% + var(--d, 0px) / 2) / 100% 5px no-repeat,
-    linear-gradient(currentColor 0 0) bottom / var(--d, 0%) 5px no-repeat;
-  transition: 0.5s;
-  font-weight: 200;
-}
-
-.b-principal:hover {
-  --d: 40px;
-  color: #79c3aa;
-  font-weight: 400;
-}
-
 .agrupar {
   display: flex;
   justify-content: space-between;
@@ -1802,15 +1880,16 @@ form {
   top: 60px;
 }
 /* VISTA DE LISTA */
-.contenedor-lista {
+.logic-contenedor-lista {
   top: 25px;
   width: 98%;
-  display: flex;
+  display: none;
   position: relative;
   flex-direction: column;
   align-self: center;
   overflow-x: auto;
   align-items: center;
+  padding-bottom: 60px;
 }
 
 .portada-libro-pequeno {
