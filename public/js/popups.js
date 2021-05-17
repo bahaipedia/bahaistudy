@@ -87,6 +87,7 @@ function containerUpdate(url){
       type: "GET",
       success: function(data){
 		document.querySelector('.logic-cont-up-popup-id').value = data.crypt;
+		document.querySelector('.logic-container-up-popup-id2').value = data.crypt;
 		document.querySelector('.logic-cont-up-popup-name').value = data.name;
 		document.querySelector('.logic-cont-up-popup-desc').value = data.description;
 		document.querySelector('.logic-cont-up-popup-weight').value = data.weight;
