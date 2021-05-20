@@ -20,38 +20,42 @@
 </head>
 
 <body>
+
   @include('layout.popups.login')
-  @include('layout.popups.group')
-  @include('layout.popups.book')
-  @include('layout.popups.author')
-  @include('layout.popups.container')
   @include('layout.popups.register')
-  @include('layout.popups.alert')
-  @include('layout.popups.user-info')
-  @include('layout.popups.config')
 
-
-  @include('layout.popups.updates.author')
-  @include('layout.popups.updates.book')
-  @include('layout.popups.updates.container')
-  @include('layout.popups.updates.group')
-
-
+  @if(auth()->user())
+    @if(auth()->user()->role == 1)
+      @include('layout.popups.book')
+      @include('layout.popups.author')
+      @include('layout.popups.container')
+      @include('layout.popups.updates.author')
+      @include('layout.popups.updates.book')
+      @include('layout.popups.updates.container')
+    @endif
+    @if(auth()->user()->role == 2 || auth()->user()->role == 1)
+      @include('layout.popups.user-info')
+      @include('layout.popups.updates.group')
+      @include('layout.popups.group')
+      @include('layout.popups.alert')
+      @include('layout.popups.config')
+    @endif
+  @endif
 
   <div class="general-container">
     @include('layout.headers.home')
     @if(auth()->user())
     <div class="botones-flotantes">
-      <a class="nuevo-grupo" title="New Group" onclick="openPopup('caja-group')">
-      </a>
-      <a class="config" title="Settings" onclick="openPopup('caja-config')">
-      </a>
-      <a class="nuevo-autor" title="New Author" onclick="openPopup('caja-author')">
-      </a>
-      <a class="nuevo-libro" title="New Book" onclick="openPopup('caja-book')">
-      </a>
-      <a class="nuevo-container" title="New Container" onclick="openPopup('caja-container')">
-      </a>
+     
+      @if(auth()->user()->role == 1)
+        <a class="config" title="Settings" onclick="openPopup('caja-config')"> </a>
+        <a class="nuevo-autor" title="New Author" onclick="openPopup('caja-author')"></a>
+        <a class="nuevo-libro" title="New Book" onclick="openPopup('caja-book')"></a>
+        <a class="nuevo-container" title="New Container" onclick="openPopup('caja-container')"></a>
+      @endif
+      @if(auth()->user()->role == 2 || auth()->user()->role == 1)
+        <a class="nuevo-grupo" title="New Group" onclick="openPopup('caja-group')"></a>
+      @endif
     </div>
     @endif
 
@@ -81,9 +85,9 @@
       <div class="subtitulo espacio">
         <div class="parte-izquierda">
           <h3 style='cursor:default'>{{$c->name}}</h3>
-          @if(auth()->user())<a
-            onclick="openPopup('caja-up-container', ['container', '{{route("api.update.container", [Crypt::encryptString($c->id)])}}'])"
-            class="edit-boton"></a>@endif
+          @if(auth()->user() && auth()->user()->role == 1)<a
+            onclick="openPopup('caja-up-container', ['container', '{{route("api.update.container", [Crypt::encryptString($c->id)])}}'])"class="edit-boton"></a>
+          @endif
         </div>
         <h4 class="ver-todo">VIEW ALL ></h4>
       </div>
@@ -140,23 +144,28 @@
 
         <div class="ficha-libro" style='cursor:default;'>
           @if($g->book->book_image_id !== NULL && Storage::disk('s3')->exists("bahai-dev/".$g->book->bookImage->code))
+          @if(auth()->user() && (auth()->user()->role == 1 || $g->host_id == auth()->user()->id))
           <img class="portada-libro new-group"
             src='{{Storage::disk("s3")->url("bahai-dev/".$g->book->bookImage->code)}}'
             onclick="openPopup('caja-up-group', ['group', '{{route("api.update.group", [Crypt::encryptString($g->id)])}}'])"
             src="{{asset('/img/ki.png')}}" />
+          @else
+          <img class="portada-libro new-group"
+          src='{{Storage::disk("s3")->url("bahai-dev/".$g->book->bookImage->code)}}'/>
+          @endif
           @else
           <img class="portada-libro" />
           @endif
           <div class="parte-derecha-ficha">
             <div class="titulo-boton">
               <h4 class="autor-nombre">{{$g->book->author->name}} {{$g->book->author->lastname}}</h4>
-              @if(auth()->user())<a class="edit-boton-ficha"
+              @if(auth()->user() && auth()->user()->role == 1)<a class="edit-boton-ficha"
                 onclick="openPopup('caja-up-author', ['author', '{{route("api.update.author", [Crypt::encryptString($g->book->author_id)])}}'])"></a>
               @endif
             </div>
             <div class="autor-boton">
               <h3 class="libro-nombre">{{$g->book->name}}</h3>
-              @if(auth()->user())<a class="edit-boton-brown"
+              @if(auth()->user() && auth()->user()->role == 1)<a class="edit-boton-brown"
                 onclick="openPopup('caja-up-book', ['book', '{{route("api.update.book", [Crypt::encryptString($g->book->id)])}}'])">
               </a>@endif
             </div>
