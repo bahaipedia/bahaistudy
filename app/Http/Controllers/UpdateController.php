@@ -26,6 +26,7 @@ class UpdateController extends Controller
 {
     public function __construct(){
         $this->middleware('authorization');
+        $this->middleware('admin')->except(['apiGroup', 'groupDelete', 'groupUpdate']);
 	}
 
     // THIS METHOD IS FOR RENDER USER UPDATE FORM *** DEPRECATED ***

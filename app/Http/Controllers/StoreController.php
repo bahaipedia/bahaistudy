@@ -19,6 +19,7 @@ class StoreController extends Controller
 {
     public function __construct(){
         $this->middleware('authorization');
+        $this->middleware('admin')->except(['groupPost', 'group']);
 	}
 
     // METHOD FOR GROUP CREATION FORM ***DEPRECATED***

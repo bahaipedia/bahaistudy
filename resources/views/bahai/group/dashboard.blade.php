@@ -2,7 +2,7 @@
 @section('cnt')
 
 {{-- estudia la ruta como si fuera un view -> view/layout..etc --}}
-@include('layout.headers.group')
+@include('layout.headers.home')
 <input id='group_id' type='hidden' value='{{Crypt::encryptString($group->id)}}'/>
 <input id='message-route' value='{{route('group.message')}}' type='hidden'/>
 @if(auth()->check())
@@ -81,6 +81,7 @@
           </div>
         </div>
 
+        @if(auth()->check())
         <div class="participants-list">
           <h2 class="parti-dash">List of participants<br></h2>
           <h4 class="max-dash">(max {{$group->max_size}})</h4>
@@ -117,64 +118,30 @@
             @endforeach
           </div>
         </div>
+        @endif
       </div>
 <!--     <div class='parte-espacio'></div> -->
+      @if(auth()->check() && ($group->is_participant == 1 || auth()->user()->role == 1))
+
       <div class="parte-inferior">
         <div  class="parte-mensajes">
+          <div id="message-box" class='mensajes-almacenados'>
+            <div class="load">
+              <hr/><hr/><hr/><hr/>
+            </div>
+          </div>
+          <div class='parte-espacio'></div>
 
-        <div id="message-box" class='mensajes-almacenados'>
-        <div class="load">
-  <hr/><hr/><hr/><hr/>
-</div>
-
-<script>
-     
-    </script>
-
-				{{-- <div class="msj-enviado">
-					<div class="textos-chat">
-						<h5 class="autor-envia">
-							Fabio B 
-						</h5>
-						<p class="texto-enviado">
-							Ejemplo de mensaje que me envia fabio
-						</p>
-					</div>
-					<div class="perfil-chat"></div>
-				</div>
-				<div class="msj-recibido">
-					<div class="perfil-chat-dos"></div>
-					<div class="textos-chat-derecha">
-						<h5 class="autor-envia-uno">
-							Jeanniffer Pimentel
-						</h5>
-						<p class="texto-enviado-uno">
-							Ejemplo de mensaje que responde Jeanniffer
-						</p>
-					</div>
-				</div> --}}
-      
+          <form onkeydown="return event.key != 'Enter';" id='message-form' class="escribir-mensaje">
+            @if(auth()->check() && $group->is_participant == 1)
+            <input class="input-tres message-input" id='message-input'  placeholder='Write your message here'></input>
+            @else
+            <input class="input-tres" disabled id='message-input'  placeholder='Join group to write a message'></input>
+            @endif
+          </form>
         </div>
-        <div class='parte-espacio'></div>
-
-        <form onkeydown="return event.key != 'Enter';" id='message-form' class="escribir-mensaje">
-        @if(auth()->check() && $group->is_participant == 1)
-        <input class="input-tres message-input" id='message-input'  placeholder='Write your message here'></input>
-        @else
-        <input class="input-tres" disabled id='message-input'  placeholder='Join group to write a message'></input>
-        @endif
-        </form>
       </div>
-      {{-- <div class="parte-escribir-txt"> --}}
-    {{--     <form id='message-form' class="escribir-mensaje">
-          @if(auth()->check() && $group->is_participant == 1)
-          <input class="input-tres" id='message-input'  placeholder='Write your message here'></input>
-          @else
-          <input class="input-tres" disabled id='message-input'  placeholder='Join group to write a message'></input>
-          @endif
-        </form>
-      </div> --}}
-      </div>
+      @endif
     </div>
   </div>
 </div>
