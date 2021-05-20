@@ -673,6 +673,7 @@ input.max-group::placeholder {
   border-radius: 30px;
   margin-top: 10px;
   border: 2px solid #a90338;
+  cursor: pointer;
 }
 
 .eliminar {
@@ -2010,6 +2011,7 @@ form {
   letter-spacing: 3px;
   text-transform: uppercase;
   font-size: 0.9em;
+  line-height: 1.5;
   margin-bottom: 15px;
   margin-top: 15px;
 }
@@ -2017,13 +2019,15 @@ form {
   width: 10px;
   height: 10px;
   border-radius: 50px;
-  border: 1px solid black;
+  /*border: 1px solid black;*/
+  background: #baada2;
 }
 .dash-status-allways {
   width: 10px;
   height: 10px;
+  background: #baada2;
   border-radius: 50px;
-  border: 1px solid black;
+  /*border: 1px solid black;*/
 }
 .dash-name {
   margin-left: 5px;

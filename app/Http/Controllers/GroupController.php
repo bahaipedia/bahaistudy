@@ -216,7 +216,7 @@ class GroupController extends Controller
   		$log->reason = NULL;
   		$log->save();
 
-      return redirect()->route('group.chat', [$group->title_route, $group->route]);
+       return redirect()->route('group.dashboard', [str_replace('/', ' ', str_replace('#', ' ', $group->book->name)), $group->route]);
      	
     }
 
