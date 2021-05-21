@@ -24,9 +24,9 @@
 
 ## Roles
 
-- [ ] Determine roles types<br>
-- [ ] Middlewares creation for this types<br>
-- [ ] Testing<br>
+- [X] Determine roles types<br>
+- [X] Middlewares creation for this types<br>
+- [X] Testing<br>
 
 ## Group dashboard
 

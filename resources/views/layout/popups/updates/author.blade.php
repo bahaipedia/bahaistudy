@@ -35,7 +35,7 @@
         <input name="_method" type="hidden" value="delete">
         <input name="author_id" type="hidden" class='logic-author-up-popup-id2' value="">
         <!-- necesito el sustituto acá y acción del onclick de la papelera-->
-        <a class="trash" title="Delete" onclick=""></a>
+        <a class="trash logic-author-del-popup-btn" title="Delete" onclick=""></a>
       </form>
       </div>
     <div class="equis">

@@ -22,7 +22,8 @@ use App\Group;
 class GroupController extends Controller
 {
     public function __construct(){
-    	// $this->middleware('authorization');
+    	$this->middleware('authorization')->except(['dashboard']);
+    	$this->middleware('host')->except(['dashboard', 'join', 'leave', 'message', 'apiMessagePoll', 'apiBeat', 'apiParticipant']);
     }
 
 
@@ -106,6 +107,7 @@ class GroupController extends Controller
 
 
     // THIS METHOD IS FOR STEPDOWN HOST FROM GROUP
+    // HOST ROLE
     public function stepdown(Request $request){
       // Check if the configuration indicate send email for this action
       $configuration = Configuration::select('send_host_stepped_down')->get()[0];
@@ -135,6 +137,7 @@ class GroupController extends Controller
     }
 
     // THIS METHOD IS NEW HOST IS IN STEPUP IN GROUP
+    // HOST ROLE
     public function stepup(Request $request){
 
     // Query from 'id' request body the group wich the host is steped up
@@ -156,9 +159,11 @@ class GroupController extends Controller
     }
 
     // THIS METHOD IS FOR USER LEAVE THE GROUP
+    // PARTICIPANT ROLE
     public function leave(Request $request){
       // THE RULE IS USER LEAVE STATUS ON GROUP PARTICIPANT IS IS JOIN 1 WE HAVE ONLY ONE ROW FOR JOIN SO THE LOGIC VALIDATE IF THE ROW EXIST (UPDATE)
       // AND IF NOT IT WILL CREATE ONE (INSERT)
+      $configuration = Configuration::select('send_host_stepped_down')->get()[0];
 
       // Query from 'id' request body the group wich the user is leaving
       $group = Group::where('id', $request->id)->select('id', 'host_id', 'route', 'book_id')->first();
@@ -172,12 +177,31 @@ class GroupController extends Controller
       $log->action = 1;
       $log->reason = NULL;
       $log->save();
+
+      if(auth()->user()->id == $group->host_id){
+        $group->host_id = NULL;
+        $group->update();
+        // Log insert logic
+        $log = New LogsSteppedDownHost;
+        $log->user_id = auth()->user()->id;
+        $log->group_id = $group->id;
+        $log->action = 1;
+        $log->save();
+        $user = auth()->user();
+        // Send the email validator
+        if($configuration->send_host_stepped_down == 1){
+          $email = new EmailController;
+          $email->StepDownHost($user, $group);
+        }  
+      }
+
       return redirect()->route('group.dashboard', [str_replace('/', ' ', str_replace('#', ' ', $group->book->name)), $group->route]);
     
     }
 
     
     // THIS METHOD IS FOR USER JOINING THE GROUP
+    // PARTICIPANT ROLE
     public function join(Request $request){
 
       // Query from 'id' request body the group wich the user is joinig
@@ -216,7 +240,7 @@ class GroupController extends Controller
   		$log->reason = NULL;
   		$log->save();
 
-      return redirect()->route('group.chat', [$group->title_route, $group->route]);
+       return redirect()->route('group.dashboard', [str_replace('/', ' ', str_replace('#', ' ', $group->book->name)), $group->route]);
      	
     }
 

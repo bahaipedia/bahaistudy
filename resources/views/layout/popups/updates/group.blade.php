@@ -53,12 +53,14 @@
       </form>
 
      {{-- POR FAVOR NO BORRAR ESTE FORMULARIO DE ABAJO --}}
+<div class="eliminar">
       <form method='POST' action='{{route('delete.group.post')}}'>
         {!! csrf_field() !!}
         <input name="_method" type="hidden" value="delete">
         <input name="group_id" type="hidden" class='logic-group-up-popup-id2' value="">
-        <button  disabled class="logic-group-del-popup-btn join-ficha-pop">D</button>
+        <button  disabled class="logic-group-del-popup-btn trash"></button>
       </form>
+      </div>
 	  <div class="equis">
 	    <a onclick="closePopup('caja-up-group'); refreshForm();" id="equis">X</a>        
 	   </div>
