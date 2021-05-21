@@ -19,7 +19,7 @@ body {
   padding: 0;
 }
 
-@media (min-width: 300px) {
+@media (max-width: 460px) {
   #barra {
     background-color: white;
     width: 100%;
@@ -143,7 +143,7 @@ body {
   }
 }
 
-@media (min-width: 800px) {
+@media (min-width: 748px) {
   #barra {
     background-color: white;
     width: 100%;
@@ -157,9 +157,54 @@ body {
     -moz-box-shadow: 15px 15px 5px -10px rgba(186, 173, 162, 0.07);
     box-shadow: 15px 15px 5px -10px rgb(186 173 162 / 7%);
   }
+  .informacion {
+    width: 100vw;
+    height: 100vh;
+    padding-top: 120px;
+    display: flex;
+    justify-content: space-around;
+    background-color: #f9f7f6;
+  }
+
+  .ficha-info {
+    display: flex;
+    width: 60%;
+    background-color: white;
+    height: 90%;
+    position: relative;
+    border-radius: 30px;
+    border: 1px solid #baada245;
+  }
+  .imagen-libro-dash {
+    display: flex;
+    width: 200px;
+    flex-direction: column;
+    border-bottom-left-radius: 30px;
+    border-top-left-radius: 30px;
+  }
+
+  .parte-inferior {
+    display: flex;
+    padding: 5px;
+    width: 90%;
+    background-color: white;
+    align-self: center;
+    border-radius: 30px;
+    border: 1px solid #baada245;
+    height: 35%;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .container-ochenta {
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 }
 
-@media (min-width: 1280px) {
+@media (max-width: 1004px) {
   #barra {
     background-color: white;
     width: 100%;
@@ -393,6 +438,8 @@ body {
   }
 }
 
+@media (max-width: 1260px) {
+}
 /* TIPOGRAFÍAS */
 h1 {
   font-size: 4em;
