@@ -19,6 +19,7 @@
 </form>
     <p class="texto-pequeno">Already have an account? <a class="#" onclick="closePopup('caja-register'); openPopup('caja-login');">Login</a></p>
   </div>
+
 </div>
 
 

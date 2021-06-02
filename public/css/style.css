@@ -166,6 +166,16 @@ a {
   margin-top: 80px;
 }
 
+.footer-grupo {
+  background-color: #e6dfda;
+  /* background-image: url(./footer.png); */
+  height: 180px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
 .footer-text {
   color: #baada2;
   font-weight: 600;
@@ -690,30 +700,28 @@ input.max-group::placeholder {
 }
 
 .msj-recibido {
-  width: 96%;
   display: flex;
-  padding-left: 35px;
+  padding-left: 20px;
   border-bottom: 1px solid #f2f2f2;
   margin-top: 5px;
   margin-bottom: 5px;
   justify-self: right;
   padding-bottom: 5px;
-  flex-direction: row-reverse;
+  flex-direction: row;
   align-items: center;
+  text-align: start;
 }
 
 .msj-enviado {
-  width: 96%;
   display: flex;
-  align-self: center;
-  padding-right: 200px;
-  margin-top: 10px;
+  padding-right: 20px;
   margin-bottom: 5px;
   border-bottom: 1px solid #f2f2f2;
   padding-bottom: 5px;
-  justify-content: flex-start;
+  justify-content: flex-end;
   align-items: center;
-  flex-direction: row-reverse;
+  flex-direction: row;
+  text-align: end;
 }
 
 .parte-mensajes {
@@ -721,7 +729,7 @@ input.max-group::placeholder {
   height: 99%;
   display: flex;
   flex-direction: column;
-  align-self: flex-start;
+  align-self: center;
   justify-content: center;
 }
 .parte-espacio {
@@ -881,7 +889,11 @@ input.max-group::placeholder {
   width: 80%;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-around;
+  align-self: center;
+  position: relative;
+  top: 120px;
+  height: 850px;
 }
 
 .ver-todo {
@@ -2091,7 +2103,7 @@ input:-webkit-autofill:active {
   align-self: center;
   border-radius: 30px;
   border: 1px solid #baada245;
-  height: 40%;
+  height: 300px;
   flex-direction: column;
   align-items: center;
 }
@@ -2182,11 +2194,11 @@ input:-webkit-autofill:active {
 
 .informacion {
   width: 100vw;
-  height: 100vh;
-  padding-top: 80px;
   display: flex;
-  justify-content: space-around;
   background-color: #f9f7f6;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 1200px;
 }
 
 .org-horizontal {
@@ -2397,5 +2409,4 @@ input:-webkit-autofill:active {
   flex-direction: column;
   width: calc(100% - 90px);
   margin-right: 20px;
-  text-align: end;
 }

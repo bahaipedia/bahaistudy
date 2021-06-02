@@ -143,6 +143,38 @@
       </div>
       @endif
     </div>
+    <div class="footer-grupo">
+    <div class="linea-uno">
+      <p class="footer-text">
+        About
+      </p>
+      <p class="footer-text">
+        Help
+      </p>
+      <p class="footer-text">
+        Resources
+      </p>
+      <p class="footer-text">
+        Materials
+      </p>
+    </div>
+
+    <div class="linea-dos">
+      <p class="footer-text">
+        Terms of Use
+      </p>
+      <p class="footer-text">
+        Privacy Policy
+      </p>
+    </div>
+
+    <div style='margin-top:10px;' class="linea-tres">
+      <p class="copyright">
+        © bahaistudygroup | 2021
+      </p>
+    </div>
+
+  </div>
   </div>
 </div>
 <script type="text/javascript" src='{{asset('/js/group/status.js')}}'></script>
