@@ -2410,3 +2410,34 @@ input:-webkit-autofill:active {
   width: calc(100% - 90px);
   margin-right: 20px;
 }
+
+@media (max-width: 1000px) {
+  .ficha-libro {
+    width: 46%;
+    height: 240px;
+  }
+  .portada-libro {
+    width: 260px;
+    height: 240px;
+  }
+
+.autor-nombre {
+  font-size: 0.7em !important;
+}
+
+h3 {
+  font-size: 1.3em;
+}
+.spaces{
+  font-size: 0.9em;
+}
+.descripcion-libro {
+  font-size: 0.9em;
+}
+
+.join-ficha {
+  margin-top: 10px;
+  
+}
+
+}
