@@ -7,9 +7,7 @@
 
     <form action='{{route('register.post')}}' method=POST class='wrap-r'>
      {!! csrf_field() !!}
-      <input placeholder='name' name='name' class='formulario' required type='text'>
-      <br>
-      <input id='lastname' placeholder='lastname' name='lastname' class='formulario' required type='text'>
+      <input placeholder='name' name='name' class='formulario texto-form' required type='text'>
       <br>
       <input placeholder='email' name='email' class='formulario' required type='email'>
       <br>
@@ -21,6 +19,7 @@
 </form>
     <p class="texto-pequeno">Already have an account? <a class="#" onclick="closePopup('caja-register'); openPopup('caja-login');">Login</a></p>
   </div>
+
 </div>
 
 
