@@ -19,6 +19,7 @@ body {
   padding: 0;
 }
 
+
 #barra {
   background-color: white;
   width: 100%;
@@ -261,6 +262,8 @@ a {
   color: #f17221;
 }
 
+@media (max-width: 1260px) {
+}
 /* TIPOGRAFÍAS */
 h1 {
   font-size: 4em;
