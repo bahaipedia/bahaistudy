@@ -141,8 +141,8 @@ a {
         transparent
       )
       bottom 0 left calc(50% - var(--d, 0px) / 2) / 100% 5px no-repeat,
-    radial-gradient(circle closest-side, currentColor 80%, transparent) bottom
-      0 left calc(50% + var(--d, 0px) / 2) / 100% 5px no-repeat,
+    radial-gradient(circle closest-side, currentColor 80%, transparent) bottom 0
+      left calc(50% + var(--d, 0px) / 2) / 100% 5px no-repeat,
     linear-gradient(currentColor 0 0) bottom / var(--d, 0%) 5px no-repeat;
   transition: 0.5s;
   font-weight: 200;
@@ -188,23 +188,25 @@ a {
 }
 
 .linea-uno {
-  justify-content: center;
+  justify-content: space-between;
+  margin-right: 0px;
+  margin-left: 0px;
+  margin-bottom: 10px;
+  width: 30%;
+  align-self: center;
   flex-direction: row;
   display: flex;
-  justify-content: space-around;
-  margin-right: 550px;
-  margin-left: 550px;
-  margin-bottom: 5px;
 }
 
 .linea-dos {
-  justify-content: center;
+  justify-content: space-between;
+  margin-right: 0px;
+  margin-left: 0px;
+  margin-bottom: 10px;
+  width: 22%;
+  align-self: center;
   flex-direction: row;
   display: flex;
-  justify-content: space-around;
-  margin-right: 600px;
-  margin-left: 600px;
-  margin-bottom: 5px;
 }
 
 .copyright {
@@ -230,19 +232,19 @@ a {
   margin-top: 50px;
   background-size: cover;
   color: rgb(255, 255, 255);
-  padding: 20px;
   position: relative;
   display: flex;
   align-items: center;
 }
 
 #textos {
-  width: 50%;
+  width: 40%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-direction: column;
   position: relative;
   left: 40px;
+  height: 90%;
 }
 
 #hero-title {
@@ -315,7 +317,7 @@ h4 {
   font-weight: 700 !important;
   text-transform: uppercase;
   color: #49392b;
-  font-size: 0.8em !important;
+  font-size: 0.7em !important;
   padding-left: 10px;
   padding-bottom: 10px;
   letter-spacing: 2px;
@@ -826,11 +828,11 @@ input.max-group::placeholder {
   border: solid 2px #79c3aa;
   color: #79c3aa;
   align-self: center;
-  margin-top: 40px;
+/*  margin-top: 40px; */
   transition-duration: 0.4s;
   border-radius: 20px;
   outline: none;
-  margin-bottom: 25px;
+/*  margin-bottom: 25px; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -866,8 +868,6 @@ input.max-group::placeholder {
 }
 
 .full-libro {
-  height: 100vh;
-  width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -918,6 +918,7 @@ input.max-group::placeholder {
   width: 100%;
   height: 100%;
   justify-content: center;
+  align-items: center;
 }
 
 .crear-texto {
@@ -972,6 +973,8 @@ input.max-group::placeholder {
   background-color: #58a38a;
   border: none;
 }
+
+.ancho-peq
 
 .join-plus {
   width: 40px;
@@ -1054,7 +1057,6 @@ input.max-group::placeholder {
 #alert {
   position: relative;
   left: 50px;
-  top: 40px;
   justify-content: flex-start;
   flex-direction: row;
 }
@@ -1279,7 +1281,7 @@ input.max-group::placeholder {
 
 .ficha-libro {
   width: 46%;
-  height: 335px;
+  height: 300px;
   display: flex;
   left: 30px;
   flex-direction: row;
@@ -1302,8 +1304,8 @@ input.max-group::placeholder {
 }
 
 .portada-libro {
-  width: 220px;
-  height: 335px;
+  width: 40%;
+  height: 100%;
   display: flex;
   border-bottom-left-radius: 20px;
   position: relative;
@@ -1543,7 +1545,6 @@ select::-ms-expand {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 10px;
 }
 
 .colu-pe {
@@ -1633,11 +1634,12 @@ select::-ms-expand {
 
 .texto-min-bot {
   font-family: "Montserrat", sans-serif;
-  border: 1px solid #9e9e9e;
+  border: 1px solid #d9cec5;
   border-radius: 5px;
   padding: 10px;
   width: 200px;
   text-align: center;
+  color: #d9cec5;
 }
 
 .texto-min-bot:hover {
@@ -1667,7 +1669,7 @@ textarea {
   display: flex;
   align-self: center;
   font-family: "Montserrat", sans-serif;
-  font-size: 1em;
+  font-size: 0.8em;
   justify-self: center;
   line-height: 1.5;
   color: #49392b;
@@ -2001,7 +2003,7 @@ form {
   top: -30px;
 }
 
-.texto-form{
+.texto-form {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -2167,7 +2169,7 @@ input:-webkit-autofill:active {
 
 .config-blanco {
   width: 100%;
-  height: 95%;
+  height: 98%;
 }
 
 .texto-pequ {
@@ -2218,7 +2220,6 @@ input:-webkit-autofill:active {
   border: none;
   text-transform: uppercase;
   letter-spacing: 3px;
-  width: fit-content;
   padding-right: 20px;
 }
 
@@ -2286,7 +2287,7 @@ input:-webkit-autofill:active {
   padding: 20px;
   background-color: white;
   border-radius: 30px;
-  height: 100%;
+  height: max-content;
   position: relative;
   border: 1px solid #baada245;
 }
@@ -2384,6 +2385,14 @@ input:-webkit-autofill:active {
   margin-right: 30px;
 }
 
+.ancho-peq {
+  height: 50%;
+  width: 84%;
+  display: flex;
+  justify-content: space-around;
+  align-self: center;
+}
+
 .usuario-boton-salir {
   background-image: url("/img/logout.svg");
   display: flex;
@@ -2411,33 +2420,381 @@ input:-webkit-autofill:active {
   margin-right: 20px;
 }
 
-@media (max-width: 1000px) {
+.full-libro{
+  width: 50% !important;
+  justify-content: center;
+}
+
+@media (max-width: 1200px) {
+  #barra {
+    height: 65px;
+  }
+
+  .full-libro{
+    width: 70% !important;
+    justify-content: center;
+  }
+
   .ficha-libro {
-    width: 46%;
-    height: 240px;
+    width: 49%;
+    margin: 0.5%;
+    height: 250px;
   }
   .portada-libro {
-    width: 260px;
-    height: 240px;
+    width: 145px;
   }
 
-.autor-nombre {
-  font-size: 0.7em !important;
+  .autor-nombre {
+    font-size: 0.7em !important;
+    margin-bottom: 0px;
+    line-height: 1.2em;
+    margin-top: 0px;
+  }
+
+  h1 {
+    font-size: 2.6em;
+  }
+
+  h2 {
+    font-size: 1.4em;
+  }
+
+  h3 {
+    font-size: 1.3em;
+    line-height: 1.3em;
+    margin-bottom: 0px !important;
+  }
+
+  .libro-nombre-dash{
+    font-size: 1.3em;
+    line-height: 1.3em;
+    margin-bottom: 0px !important;
+  }
+
+  h4, .autor-nombre-dash {
+    font-size: 0.9em;
+  }
+
+  h5 {
+    font-size: 0.8em;
+  }
+
+  .spaces {
+    font-size: 0.9em;
+    padding-right: 0px;
+    padding-bottom: 8px;
+    padding-top: 4px;
+  }
+
+  .spaces-lista {
+    font-size: 0.9em;
+    line-height: 1.5em;
+  }
+
+  .descripcion-libro {
+    font-size: 0.9em;
+    margin-top: 5px;
+  }
+
+  .descripcion-libro-lista {
+    font-size: 0.9em;
+  }
+
+  .join-ficha {
+    margin-top: 10px;
+    width: 100px;
+    height: 35px;
+  }
+
+  .contenedor {
+    width: 82%;
+  }
+
+  #alert {
+    top: 0px;
+  }
+
+  #textos {
+    justify-content: space-evenly;
+    left: 0px;
+  }
+
+  #enlaces {
+    font-size: 0.85em;
+  }
+
+  .barra-info {
+    width: 92%;
+  }
+
+  .linea-uno {
+    justify-content: space-between;
+    margin-right: 0px;
+    margin-left: 0px;
+    margin-bottom: 10px;
+    width: 45%;
+    align-self: center;
+  }
+
+  .linea-dos {
+    justify-content: space-between;
+    margin-right: 0px;
+    margin-left: 0px;
+    margin-bottom: 10px;
+    width: 30%;
+    align-self: center;
+  }
+
+  .lista-libro {
+    width: 100%;
+    border-radius: 30px;
+    margin-top: 5px;
+  }
+
+  .container-ochenta{
+    width: 105%;
+  }
+
+  .ficha-info {
+    width: 62%;
+  }
+
+  .imagen-libro-dash{
+    width: 200px;
+  }
+
+  .ficha-crear {
+    width: 92%;
+  }
 }
 
-h3 {
-  font-size: 1.3em;
-}
-.spaces{
-  font-size: 0.9em;
-}
-.descripcion-libro {
-  font-size: 0.9em;
+@media (max-width: 820px) {
+  #textos {
+    width: 70%;
+  }
+
+  .parte-superior {
+    flex-direction: column;
+    align-self: center;
+  }
+
+.ficha-info {
+  width: 80%;
+  align-self: center;
+  margin-top: 130px;
+  margin-bottom: 40px;
 }
 
-.join-ficha {
-  margin-top: 10px;
+.participants-list {
+  width: 80%;
+  align-self: center;
+}
+
+  .logic-contenedor-libros {
+    flex-direction: column;
+  }
+
+  .ficha-libro {
+    width: 88%;
+    margin: 2%;
+    align-self: center;
+  }
+
+  .contenedor {
+    width: 85%;
+    align-self: flex-start;
+  }
+
+  .sutitulo {
+    width: 85%;
+    align-self: center;
+  }
+
+  .barra-info {
+    width: 89%;
+  }
+
+  #enlaces {
+    display: none;
+  }
+  #burger {
+    display: block;
+    width: 50px;
+    height: 50px;
+  }
+
+  #barra {
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .linea-dos {
+    width: 35%;
+  }
+
+  .imagen-libro-dash{
+
+  }
+
+  .ficha-crear {
+    width: 92%;
+  }
+
+  .parte-inferior {
+    width: 72%;
+  }
+
+  .full-libro{
+    width: 88% !important;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 500px) {
+  .contenedor {
+    width: 85%;
+    border-radius: 15px;
+  }
+
+.participants-list{
+  width: 100%;
+}
+
+  .botones-flotantes {
+    width: 50px;
+    right: 5px;
+    bottom: 5px;
+  }
+
+  .ficha-libro {
+    width: 98%;
+    margin: 1%;
+  }
+
+  .barra-info {
+    width: 92%;
+  }
+
+  .espacio {
+    width: 92%;
+    align-self: center;
+  }
+
+  .logic-contenedor-libros {
+    margin-bottom: 5px;
+  }
+
+  .linea-dos {
+    width: 40%;
+  }
+
+  .portada-libro-pequeno {
+    display: none;
+  }
+
+  .cinculibroizquierda {
+    display: none;
+  }
+
+  .lista-libro{
+    justify-content: space-between;
+  }
   
-}
+  .ticincoizquierda {
+    width: 40%;
+  }
+  .autor-libro {
+    width: 100%;
+  }
+
+  .spaces-part {
+    width: 28%;
+  }
+
+  .derecha-cinco {
+    width: 20%;
+  }
+
+  .logic-contenedor-lista {
+    padding-bottom: 35px;
+  }
+
+  .lista-libro {
+    border-radius: 45px;
+  }
+
+  .full-libro {
+    width: 90% !important;
+    height: 100% !important;
+    justify-content: flex-start !important;
+  }
+
+  .texta {
+    font-size: 0.8em;
+  }
+
+  .extra {
+    font-size: 0.7em;
+  }
+
+  .equis {
+    height: 95%;
+    margin-left: 25px;
+  }
+
+  .parte-izq-crear {
+    display: none;
+  }
+
+  .ancho {
+    width: 84%;
+    height: 90%;
+  }
+
+  .ancho-peq {
+    height: 50%;
+    width: 84%;
+    display: flex;
+    justify-content: space-around;
+    align-self: center;
+  }
+
+  .ficha-crear {
+    width: 92%;
+  }
+
+  .selec-nu {
+    font-size: 0.8em !important;
+    margin-bottom: 0px;
+    width: -webkit-fill-available;
+  }
+
+  .organizar-elementos {
+    width: 500px;
+    height: 80%;
+  }
+
+  .descripcion-libro-crear {
+    font-size: 0.8em !important;
+  }
+
+  .dos-columnas {
+  }
+
+  .texto-pequ {
+    line-height: 1.3em;
+  }
+
+  .ficha-info {
+    width: 100%;
+  }
+
+  .parte-superior {
+    flex-direction: column;
+  }
+
+  .container-ochenta{
+    width: 90%;
+  }
 
 }
