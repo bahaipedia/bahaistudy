@@ -102,9 +102,6 @@ a {
 }
 /* FOOTER */
 
-#login {
-}
-
 .login-boton {
   padding-top: 8px;
   padding-right: 15px;
@@ -213,7 +210,7 @@ a {
   font-family: "Noto Serif", serif;
   color: #49392b;
   font-weight: 600;
-  align-text: center;
+  /* align-text: center; */
   display: flex;
   justify-content: center;
   font-size: 0.78em;
@@ -828,11 +825,11 @@ input.max-group::placeholder {
   border: solid 2px #79c3aa;
   color: #79c3aa;
   align-self: center;
-/*  margin-top: 40px; */
+  /*  margin-top: 40px; */
   transition-duration: 0.4s;
   border-radius: 20px;
   outline: none;
-/*  margin-bottom: 25px; */
+  /*  margin-bottom: 25px; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -893,7 +890,7 @@ input.max-group::placeholder {
   align-self: center;
   position: relative;
   top: 120px;
-  height: 850px;
+  height: 800px;
 }
 
 .ver-todo {
@@ -974,9 +971,7 @@ input.max-group::placeholder {
   border: none;
 }
 
-.ancho-peq
-
-.join-plus {
+.ancho-peq .join-plus {
   width: 40px;
   height: 40px;
   justify-content: center;
@@ -1773,9 +1768,6 @@ form {
   border-radius: 4em;
 }
 
-.circular {
-}
-
 .segundo {
   top: 125px;
 }
@@ -2083,7 +2075,7 @@ input:-webkit-autofill:active {
   text-transform: uppercase;
   justify-self: flex-end;
   position: relative;
-  top: 30px;
+  top: 15px;
 }
 .parte-superior {
   display: flex;
@@ -2200,7 +2192,7 @@ input:-webkit-autofill:active {
   background-color: #f9f7f6;
   flex-direction: column;
   justify-content: space-between;
-  height: 1200px;
+  height: 1100px;
 }
 
 .org-horizontal {
@@ -2245,9 +2237,6 @@ input:-webkit-autofill:active {
   text-transform: uppercase !important;
 }
 
-#name {
-}
-
 .imagen-libro {
   display: block;
   width: 350px;
@@ -2259,7 +2248,6 @@ input:-webkit-autofill:active {
   color: #49392b;
   font-size: 1em;
   margin-top: 30px;
-  margin-bottom: 30px;
 }
 
 .bloqtext-dash::first-letter {
@@ -2420,7 +2408,7 @@ input:-webkit-autofill:active {
   margin-right: 20px;
 }
 
-.full-libro{
+.full-libro {
   width: 50% !important;
   justify-content: center;
 }
@@ -2430,7 +2418,7 @@ input:-webkit-autofill:active {
     height: 65px;
   }
 
-  .full-libro{
+  .full-libro {
     width: 70% !important;
     justify-content: center;
   }
@@ -2465,18 +2453,19 @@ input:-webkit-autofill:active {
     margin-bottom: 0px !important;
   }
 
-  .libro-nombre-dash{
-    font-size: 1.3em;
+  .libro-nombre-dash {
+    font-size: 1.5em;
     line-height: 1.3em;
     margin-bottom: 0px !important;
   }
 
-  h4, .autor-nombre-dash {
+  h4,
+  .autor-nombre-dash {
     font-size: 0.9em;
   }
 
   h5 {
-    font-size: 0.8em;
+    font-size: 0.9em;
   }
 
   .spaces {
@@ -2551,20 +2540,42 @@ input:-webkit-autofill:active {
     margin-top: 5px;
   }
 
-  .container-ochenta{
-    width: 105%;
+  .ficha-crear {
+    width: 92%;
   }
 
   .ficha-info {
     width: 62%;
   }
 
-  .imagen-libro-dash{
-    width: 200px;
+  .container-ochenta{
+    height: 600px;
+    width: 80%;
   }
 
-  .ficha-crear {
-    width: 92%;
+  .informacion{
+    height: 970px;
+  }
+
+  .ficha-info {
+    height: 300px;
+  }
+
+  .imagen-libro-dash {
+    width: 45%;
+    height: 300px;
+  }
+
+  .parte-superior{
+    margin-bottom: 40px;
+  }
+
+  .container-ochenta{
+    width: 95%;
+  }
+
+  .parti-dash {
+    font-size: 1.3em;
   }
 }
 
@@ -2572,23 +2583,6 @@ input:-webkit-autofill:active {
   #textos {
     width: 70%;
   }
-
-  .parte-superior {
-    flex-direction: column;
-    align-self: center;
-  }
-
-.ficha-info {
-  width: 80%;
-  align-self: center;
-  margin-top: 130px;
-  margin-bottom: 40px;
-}
-
-.participants-list {
-  width: 80%;
-  align-self: center;
-}
 
   .logic-contenedor-libros {
     flex-direction: column;
@@ -2632,21 +2626,45 @@ input:-webkit-autofill:active {
     width: 35%;
   }
 
-  .imagen-libro-dash{
-
-  }
-
   .ficha-crear {
     width: 92%;
   }
 
-  .parte-inferior {
-    width: 72%;
-  }
-
-  .full-libro{
+  .full-libro {
     width: 88% !important;
     justify-content: flex-start;
+  }
+
+  /* DASHBOARD MESSAGES */
+  .parte-superior{
+    width: 80%;
+    flex-direction: column;
+    margin-top: 300px;
+  }
+
+  .ficha-info{
+    width: 100%;
+  }
+  .parte-inferior{
+    width: 80%;
+    margin-top: 20px;
+  }
+
+  .participants-list{
+    width: 100%;
+    top: 30px;
+  }
+
+  .autor-nombre-dash{
+    margin-bottom: 5px;
+  }
+
+  .libro-nombre-dash{
+    margin-bottom: 10px !important;
+  }
+
+  .informacion {
+    height: 1270px;
   }
 }
 
@@ -2655,10 +2673,6 @@ input:-webkit-autofill:active {
     width: 85%;
     border-radius: 15px;
   }
-
-.participants-list{
-  width: 100%;
-}
 
   .botones-flotantes {
     width: 50px;
@@ -2696,10 +2710,10 @@ input:-webkit-autofill:active {
     display: none;
   }
 
-  .lista-libro{
+  .lista-libro {
     justify-content: space-between;
   }
-  
+
   .ticincoizquierda {
     width: 40%;
   }
@@ -2778,23 +2792,11 @@ input:-webkit-autofill:active {
     font-size: 0.8em !important;
   }
 
-  .dos-columnas {
-  }
-
   .texto-pequ {
     line-height: 1.3em;
   }
 
-  .ficha-info {
-    width: 100%;
+  .container-ochenta {
+    width: 115%;
   }
-
-  .parte-superior {
-    flex-direction: column;
-  }
-
-  .container-ochenta{
-    width: 90%;
-  }
-
 }
