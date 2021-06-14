@@ -865,9 +865,15 @@ input.max-group::placeholder {
 }
 
 .full-libro {
+  height: 100vh;
+  width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.config-libro{
+  width: 50% !important;
 }
 
 .parte-izq-crear {
@@ -1954,7 +1960,6 @@ form {
   -webkit-box-shadow: 15px 15px 5px -10px rgba(186, 173, 162, 0.07);
   -moz-box-shadow: 15px 15px 5px -10px rgba(186, 173, 162, 0.07);
   box-shadow: 15px 15px 5px -10px rgba(186, 173, 162, 0.07);
-  z-index: 3;
   justify-content: center;
   align-items: center;
   animation: fondo-color 1s forwards;
@@ -2408,19 +2413,10 @@ input:-webkit-autofill:active {
   margin-right: 20px;
 }
 
-.full-libro {
-  width: 50% !important;
-  justify-content: center;
-}
 
 @media (max-width: 1200px) {
   #barra {
     height: 65px;
-  }
-
-  .full-libro {
-    width: 70% !important;
-    justify-content: center;
   }
 
   .ficha-libro {
@@ -2540,10 +2536,6 @@ input:-webkit-autofill:active {
     margin-top: 5px;
   }
 
-  .ficha-crear {
-    width: 92%;
-  }
-
   .ficha-info {
     width: 62%;
   }
@@ -2577,6 +2569,15 @@ input:-webkit-autofill:active {
   .parti-dash {
     font-size: 1.3em;
   }
+
+  .config-libro{
+    width: 80% !important;
+  }
+
+  .parte-izq-crear{
+    display: none;
+  }
+
 }
 
 @media (max-width: 820px) {
@@ -2626,15 +2627,6 @@ input:-webkit-autofill:active {
     width: 35%;
   }
 
-  .ficha-crear {
-    width: 92%;
-  }
-
-  .full-libro {
-    width: 88% !important;
-    justify-content: flex-start;
-  }
-
   /* DASHBOARD MESSAGES */
   .parte-superior{
     width: 80%;
@@ -2666,6 +2658,7 @@ input:-webkit-autofill:active {
   .informacion {
     height: 1270px;
   }
+
 }
 
 @media (max-width: 500px) {
@@ -2737,12 +2730,6 @@ input:-webkit-autofill:active {
     border-radius: 45px;
   }
 
-  .full-libro {
-    width: 90% !important;
-    height: 100% !important;
-    justify-content: flex-start !important;
-  }
-
   .texta {
     font-size: 0.8em;
   }
@@ -2751,30 +2738,12 @@ input:-webkit-autofill:active {
     font-size: 0.7em;
   }
 
-  .equis {
-    height: 95%;
-    margin-left: 25px;
-  }
-
-  .parte-izq-crear {
-    display: none;
-  }
-
-  .ancho {
-    width: 84%;
-    height: 90%;
-  }
-
   .ancho-peq {
     height: 50%;
     width: 84%;
     display: flex;
     justify-content: space-around;
     align-self: center;
-  }
-
-  .ficha-crear {
-    width: 92%;
   }
 
   .selec-nu {
@@ -2798,5 +2767,10 @@ input:-webkit-autofill:active {
 
   .container-ochenta {
     width: 115%;
+  }
+
+  .ficha-crear {
+    width: 95%;
+    height: 90%;
   }
 }

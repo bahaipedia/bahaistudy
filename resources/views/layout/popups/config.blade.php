@@ -1,5 +1,5 @@
 <div id="caja-config" class='pop-up-general' >
-<div class="full-libro" style='width:50%'>
+<div class="full-libro config-libro">
   <div class="ficha-crear config-blanco">
     
     <div class="formulario-crear">
