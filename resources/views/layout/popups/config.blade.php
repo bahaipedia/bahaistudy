@@ -66,7 +66,7 @@
 </form>
 	  <div class="equis">
 	    <a onclick="closePopup('caja-config')" id="equis">X</a>        
-	   </div>
+    </div>
     </div>
   </div>
 </div>

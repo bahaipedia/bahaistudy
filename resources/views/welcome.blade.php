@@ -20,6 +20,7 @@
 </head>
 
 <body>
+  @include('layout.popups.menurespon')
 
   @include('layout.popups.login')
   @include('layout.popups.register')
@@ -263,6 +264,7 @@
   <script src='{{asset('/js/forms/group.js')}}'></script>
   <script src='{{asset('/js/forms/containers.js')}}'></script>
   <script src='{{asset('/js/menu.js')}}'></script>
+  <script src='{{asset('/js/burger.js')}}'></script>
 
 </body>
 
