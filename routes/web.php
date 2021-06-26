@@ -2,6 +2,7 @@
 
 // General routes
 Route::get('/', 'GeneralController@welcome')->name('welcome');
+Route::get('/about', 'GeneralController@about')->name('about');
 
 Route::get('/api/author/book/{id}', 'GeneralController@apiAuthorBook')->name('api.author.book'); // DEPRECATED
 Route::get('/api/container/author/{id}', 'GeneralController@apiContainerAuthor')->name('api.container.author');

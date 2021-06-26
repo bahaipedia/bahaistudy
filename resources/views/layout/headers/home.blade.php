@@ -30,4 +30,3 @@
 
 <script src='{{ asset('/js/menu.js') }}'></script>
 <script type="text/javascript" src='{{asset('/js/group/burger.js')}}'></script>
-
