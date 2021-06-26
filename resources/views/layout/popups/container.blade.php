@@ -15,21 +15,19 @@
 
       <form class="ancho" enctype="multipart/form-data" method=POST action='{{route('store.container.post')}}'>
          {!! csrf_field() !!}
-        <input required class="hachecuatro autor-nombre" max='50' placeholder="CONTAINER NAME" name='name' type='text'>
+        <input required class="hachecuatro autor-nombre selec-nu borde-redon" max='50' placeholder="CONTAINER NAME" name='name' type='text'>
       
-        <textarea required  class="descripcion-libro-crear pe" maxlength='200' placeholder='Description... Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' name='description'></textarea>
+        <textarea required  class="descripcion-libro-crear pe selec-nu borde-redon" maxlength='200' placeholder='Description... Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' name='description'></textarea>
 
         <div id='author-in-container'>
-          <select required name="author[0]" onchange='newAuthor(this);'>
-            <option value='null' disabled selected>SELECT ONE AUTHOR</option>
+          <select required name="author[0]" class='selec-nu borde-redon' onchange='newAuthor(this);'>
+            <option value='null' class='selec-nu borde-redon' disabled selected>SELECT ONE AUTHOR</option>
               @foreach($authors_books as $a)
-                <option value='{{$a->id}}'>{{$a->name}} {{$a->lastname}}</option>
+                <option value='{{$a->id}}' class='selec-nu borde-redon'>{{$a->name}} {{$a->lastname}}</option>
               @endforeach
           </select>
         </div>
-        <input required placeholder="SELECT CONTAINER WEIGHT" class="hachecuatro autor-nombre" name='weight' min='0' max='10' type='number'>
-        <br>
-
+        <input required placeholder="SELECT CONTAINER WEIGHT" class="hachecuatro autor-nombre selec-nu borde-redon" name='weight' min='0' max='10' type='number'>
         <button class="join-ficha-pop">CREATE</button>
       </form>
 	  <div class="equis">

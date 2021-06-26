@@ -3,7 +3,7 @@
         <img id="logotipo" style='cursor:pointer;' src="{{ asset('/img/logotype.svg') }}" /></a>
     <a class="logo2" href='{{ route('welcome') }}'>
         <img id="logo-resp" style='cursor:pointer;' src="{{ asset('/img/logo-resp.svg') }}" /></a>
-    <img id="burger" src="{{ asset('/img/menu.svg') }}" />
+
     <div id="enlaces">
         <a class="b-principal">ABOUT</a>
         <a class="b-principal">HELP</a>
@@ -23,4 +23,10 @@
         @endif
     </div>
 </div>
+<div id="barra-pequeno">
+    <a class="login-boton" onclick='openPopup("caja-login")'>LOGIN</a>
+    <img id="burger" onclick='show()' src="{{ asset('/img/menu.svg') }}" />
+</div>
+
 <script src='{{ asset('/js/menu.js') }}'></script>
+<script type="text/javascript" src='{{asset('/js/group/burger.js')}}'></script>

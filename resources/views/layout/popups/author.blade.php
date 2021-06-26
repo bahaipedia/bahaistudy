@@ -13,12 +13,12 @@
     </div>
     <div class="formulario-crear">
 
-      <form class="ancho" method=POST action='{{route('store.author.post')}}'>
+      <form class="ancho-peq" method=POST action='{{route('store.author.post')}}'>
         {!! csrf_field() !!}
 
-        <input required class="hachecuatro autor-nombre"  max='50' placeholder="AUTHOR NAME" name='name'  type='text'>
+        <input required class="hachecuatro autor-nombre selec-nu borde-redon"  max='50' placeholder="AUTHOR NAME" name='name'  type='text'>
 
-        <input required class="hachecuatro autor-nombre"  max='50' placeholder="AUTHOR LASTNAME" name='lastname'  type='text'>
+        <input required class="hachecuatro autor-nombre selec-nu borde-redon"  max='50' placeholder="AUTHOR LASTNAME" name='lastname'  type='text'>
         <button class="join-ficha-pop">CREATE</button>
       </form>
  

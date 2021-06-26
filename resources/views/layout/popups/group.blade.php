@@ -25,16 +25,12 @@
             <option  data-link='{{route('api.container.author', [$c->id])}}' value='{{$c->id}}'>{{$c->name}}</option>
           @endforeach
         </select>
-        <br>
         <select class="logic-an selec-nu borde-redon" id="logic-author-element" style='cursor:pointer' onchange='getBooks(this);' name="author_id">
           <option disabled selected value='0'>Choose the Author</option>
         </select>
-        <br>
-
         <select class='selec-nu logic-bn borde-redon' required name='book_id' id="logic-book-element">
           <option disabled selected >Choose the Author</option>
         </select>
-
         <textarea required id='logic-group-popup-descriptions' style='height: 90px;' class="borde-redon descripcion-libro-crear pe" max='120' name='description'
           type='text' placeholder="Description... Lorem ipsum dolor sit amet"></textarea>
         <textarea class="descripcion-libro-crear pe borde-redon" style='height: 90px;'placeholder="add a host comment" max='120' name='host_comments'

@@ -1,0 +1,3 @@
+@extends('template')
+@section('cnt')
+

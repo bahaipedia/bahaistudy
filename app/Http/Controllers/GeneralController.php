@@ -87,4 +87,9 @@ class GeneralController extends Controller
         return $books;
     }
 
+    public function about() {
+        return view('bahai.about');
+        
+    }
+
 }

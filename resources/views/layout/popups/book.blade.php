@@ -13,10 +13,10 @@
     </div>
     <div class="formulario-crear">
 
-      <form class="ancho" enctype="multipart/form-data" method=POST action='{{route('store.book.post')}}'>
+      <form class="ancho-peq" enctype="multipart/form-data" method=POST action='{{route('store.book.post')}}'>
         {!! csrf_field() !!}
-        <input class="hachecuatro autor-nombre" max='50' placeholder="BOOK NAME" name='name' type='text'>
-        <select class="libro-nombre hachetres" name='author_id' id='author_id'>
+        <input class="hachecuatro autor-nombre selec-nu borde-redon" max='50' placeholder="BOOK NAME" name='name' type='text'>
+        <select class="libro-nombre hachetres selec-nu borde-redon" name='author_id' id='author_id'>
           @foreach($authors_books as $a)
           <option value={{$a->id}}>{{$a->name}} {{$a->lastname}}</option>
           @endforeach

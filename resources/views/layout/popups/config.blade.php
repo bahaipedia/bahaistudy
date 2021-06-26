@@ -1,5 +1,5 @@
 <div id="caja-config" class='pop-up-general' >
-<div class="full-libro" style='width:50%'>
+<div class="full-libro config-libro">
   <div class="ficha-crear config-blanco">
     
     <div class="formulario-crear">
@@ -66,7 +66,7 @@
 </form>
 	  <div class="equis">
 	    <a onclick="closePopup('caja-config')" id="equis">X</a>        
-	   </div>
+    </div>
     </div>
   </div>
 </div>
